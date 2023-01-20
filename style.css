@@ -1,0 +1,33 @@
+body {
+    background-color: lightgray;
+}
+h2.margzero {
+    margin: 0px;
+    padding: 0px;
+}
+h2.margtop {
+    margin: 0px;
+    padding: 0px;
+    margin-top: 5rem;
+}
+ul.bull {
+    list-style-type: disc;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+#box {
+    display: flex;
+    flex-wrap: wrap;
+    width: 60rem;
+    gap: 20rem;
+}
+.item {
+    justify-content: flex-start;
+}
+.itemborder {
+    justify-content: flex-start;
+    border-left: 1px;
+    border-spacing: 10px;
+}
