@@ -1,33 +1,62 @@
 body {
     background-color: lightgray;
 }
+img {
+    border-radius: 0.4rem;
+}
+h1.font,h2.font {
+    font-family: Roboto-Mono;
+}
 h2.margzero {
+    font-family: Roboto-Mono;
     margin: 0px;
     padding: 0px;
 }
 h2.margtop {
+    font-family: Roboto-Mono;
     margin: 0px;
     padding: 0px;
     margin-top: 5rem;
 }
 ul.bull {
+    font-family: Roboto-Mono;
     list-style-type: disc;
     margin: 0px;
     padding: 0px;
     margin-top: 1rem;
     margin-left: 1rem;
 }
-#box {
+@font-face {
+    font-family: Roboto-Mono;
+    src: url(RobotoMono-Regular.ttf);
+    font-weight: bold;
+}
+.skills {
     display: flex;
     flex-wrap: wrap;
-    width: 60rem;
+    width: 80rem;
     gap: 20rem;
 }
 .item {
     justify-content: flex-start;
+    margin-top: 1.5rem;
 }
 .itemborder {
     justify-content: flex-start;
-    border-left: 1px;
-    border-spacing: 10px;
+    border-left-style: solid;
+    border-width: 0.4rem;
+    border-radius: 0.2rem;
+}
+.borderpadd {
+    margin-left: 1.5rem;
+}
+.contact {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80rem;
+    gap: 20rem;
+    margin-top: 5rem;
+}
+#contact {
+    width: 15rem;
 }
