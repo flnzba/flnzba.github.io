@@ -9,7 +9,11 @@ img {
     width: 15rem;
     height: auto;
 }
-h1.font,h2.font {
+h1 {
+    margin-bottom: 2.5rem;
+    font-family: Roboto-Mono;
+}
+h2 {
     font-family: Roboto-Mono;
 }
 h2.margzero {
@@ -37,6 +41,7 @@ ul.bull {
     font-weight: bold;
 }
 /*Mobile Devices*/
+@media only screen and (max-width: 768px){
 #contactheading {
     width: 15rem;
     margin-top: 3.5rem;
@@ -44,7 +49,7 @@ ul.bull {
 #mobilemargin {
     margin-top: 3.5rem;
 }
-
+}
 @media only screen and (min-width: 768px){
 .skills {
     display: flex;
@@ -57,14 +62,10 @@ ul.bull {
     flex-wrap: wrap;
     width: 80rem;
     gap: 10rem;
-    margin-top: 5rem;
+    margin-top: 3.5rem;
 }
-#contactheading {
+#contactwidth {
     width: 15rem;
-}
-.item {
-    justify-content: flex-start;
-    margin-top: 1.5rem;
 }
 }
 
