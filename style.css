@@ -1,8 +1,13 @@
+* {
+    box-sizing: border-box;
+  }  
 body {
     background-color: lightgray;
 }
 img {
     border-radius: 0.4rem;
+    width: 15rem;
+    height: auto;
 }
 h1.font,h2.font {
     font-family: Roboto-Mono;
@@ -16,7 +21,7 @@ h2.margtop {
     font-family: Roboto-Mono;
     margin: 0px;
     padding: 0px;
-    margin-top: 5rem;
+    margin-top: 3.5rem;
 }
 ul.bull {
     font-family: Roboto-Mono;
@@ -31,16 +36,40 @@ ul.bull {
     src: url(RobotoMono-Regular.ttf);
     font-weight: bold;
 }
+/*Mobile Devices*/
+#contactheading {
+    width: 15rem;
+    margin-top: 3.5rem;
+}
+#mobilemargin {
+    margin-top: 3.5rem;
+}
+
+@media only screen and (min-width: 768px){
 .skills {
     display: flex;
     flex-wrap: wrap;
     width: 80rem;
-    gap: 20rem;
+    gap: 10rem;
+}
+.contact {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80rem;
+    gap: 10rem;
+    margin-top: 5rem;
+}
+#contactheading {
+    width: 15rem;
 }
 .item {
     justify-content: flex-start;
     margin-top: 1.5rem;
 }
+}
+
+/*
+not used:
 .itemborder {
     justify-content: flex-start;
     border-left-style: solid;
@@ -50,13 +79,4 @@ ul.bull {
 .borderpadd {
     margin-left: 1.5rem;
 }
-.contact {
-    display: flex;
-    flex-wrap: wrap;
-    width: 80rem;
-    gap: 20rem;
-    margin-top: 5rem;
-}
-#contact {
-    width: 15rem;
-}
+*/
