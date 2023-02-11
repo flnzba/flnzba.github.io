@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Roboto-Mono;
+    src: url(fonts/RobotoMono-Regular.ttf);
+    font-weight: bold;
+}
 * {
     box-sizing: border-box;
   }  
@@ -34,11 +39,6 @@ ul.bull {
     padding: 0px;
     margin-top: 1rem;
     margin-left: 1rem;
-}
-@font-face {
-    font-family: Roboto-Mono;
-    src: url(RobotoMono-Regular.ttf);
-    font-weight: bold;
 }
 /*Mobile Devices*/
 @media only screen and (max-width: 768px){
