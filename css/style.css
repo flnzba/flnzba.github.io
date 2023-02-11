@@ -37,7 +37,7 @@ ul.bull {
 }
 @font-face {
     font-family: Roboto-Mono;
-    src: url(/fonts/RobotoMono-Regular.ttf);
+    src: url(./fonts/RobotoMono-Regular.ttf);
     font-weight: bold;
 }
 /*Mobile Devices*/
