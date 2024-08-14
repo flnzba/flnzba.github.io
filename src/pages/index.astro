@@ -3,34 +3,61 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<h1>Florian Zeba</h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
+<Layout title="Florian Zeba • Data Engineer">
+	<main>	
+		<h1 class="heading1">Florian Zeba</h1>
+		<h2>Intro</h2>
+		<div class="intro-grid">
+			<div class="photo-box" id="profile-pic">
+				<img src="/assets/Dev_Pic_FZ.jpg" alt="Profile Picture" width="100%" height="100%" style="border-radius: 2%;">
+			</div>
+			<div class="instructions-box">
+				<ul>
+					<li>Nice to meet you. I am Data / Backend IT-Guy.</li> <br>
+					<li>My focus lies on implementing software and algorithms which are maintainable.</li> <br>
+					<li>I create:</li>
+					<strong>
+					<li>∆ Data Pipelines, Data Warehouses and implement Machine Learning Models.</li>
+					<li>∆ APIs, Microservices and Web Applications.</li>
+					<li>∆ Front-End... mhh... no thanks :D</li>
+					</strong>
+				</ul>
+			</div>
+		</div>
+		<h2>Projects</h2>
 		<ul role="list" class="link-card-grid">
 			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
+				href="#"
+				title="Data Engineering"
+				body="See Data Pipelines, Data Warehouses, etc"
 			/>
 			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
+				href="#"
+				title="Business Analytics"
+				body="Browse projects with business value"
 			/>
 			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
+				href="#"
+				title="AI & Machine Learning"
+				body="Search for AI & ML Projects"
 			/>
 			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
+				href="#"
+				title="Software Development"
+				body="Software? Let's see"
 			/>
 		</ul>
+
+		<h2>Curriculum Vitae</h2>
+		<p>Coming Soon...</p>
+
+		<h2>Contact</h2>
+		<div class="instructions-box">
+			<ul class="flex-init">
+				<li> <a href="mailto:florian@fzeba.com"><img src = "/assets/mail-icon.svg" alt="Mail Icon"/></a></li> <br>
+				<li> <a href="https://at.linkedin.com/in/florian-zeba"><img src = "/assets/linkedin-icon.svg" alt="LinkedIn Icon"/></a></li> <br>
+				<li> <a href="https://github.com/flnzba"><img src = "/assets/github-icon.svg" alt="GitHub Icon"/></a></li> <br>
+			</ul>
+		</div>
 	</main>
 </Layout>

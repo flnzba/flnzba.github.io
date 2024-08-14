@@ -6,5 +6,6 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), sitemap(), mdx()]
+  integrations: [tailwind({applyBaseStyles: false},), sitemap(), mdx()],
+  site: 'https://www.fzeba.com',
 });
