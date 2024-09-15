@@ -2,31 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'BungeeTint';
+    src: url('/fonts/BungeeTint-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: Ubuntu;
+    src: url('/fonts/Ubuntu-Regular.ttf') format('truetype');
+}
+
 :root {
-    --accent: 0, 48, 73;
-    --accent-light: 0, 48, 73;
+    --accent: #003049;
+    --accent-light: #FCBF49;
     --accent-light2: 234, 226, 183;
-    --accent-gradient: 
-            linear-gradient(45deg,
+    --accent-gradient:
+        linear-gradient(45deg,
             rgb(var(--accent)),
             rgb(var(--accent-light)) 30%,
             white 60%);
 }
 
 html {
-    font-family: system-ui, sans-serif;
+    font-family: -apple-system,system-ui, BlinkMacSystemFont, "Segoe UI", Roboto;
     background: #003049;
 }
 
 ul {
     list-style-type: none;
     padding: 0;
-}
-
-@font-face {
-    font-family: "BungeeTint";
-    src: local("BungeeTint"),
-        url("../fonts/BungeeTint-Regular.ttf");
 }
 
 
@@ -44,12 +47,10 @@ code {
 
 main {
     margin: auto;
-    padding: 1rem;
     width: 1080px;
     max-width: calc(100% - 2rem);
     color: white;
     font-size: 20px;
-    line-height: 1.6;
 }
 
 h1 {
@@ -68,82 +69,4 @@ h2 {
     text-align: left;
     margin-bottom: 1.5em;
     margin-top: 1.5em;
-}
-
-.heading1 {
-    font-family: "BungeeTint";
-    font-size: 2.5rem;
-    font-weight: 800;
-    line-height: 1, 5;
-    text-align: left;
-    margin-bottom: 1em;
-    margin-top: 1em;
-}
-
-.flex-init {
-    display: flex;
-    flex-wrap: wrap;
-    flex-basis: 100%;
-    align-items: center;
-    gap: 1rem;
-}
-
-.text-gradient {
-    background-image: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400%;
-    background-position: 0%;
-}
-
-.instructions-box {
-    font-size: 1rem;
-    line-height: 1.5rem;
-    margin-bottom: 2rem;
-    border: 1px solid rgba(var(--accent-light), 25%);
-    background: linear-gradient(rgba(var(--accent-light2), 66%), rgba(var(--accent-light2), 33%));
-    padding: 1.5rem;
-    border-radius: 8px;
-}
-
-.photo-box {
-    margin-bottom: 2rem;
-    border: 1px solid rgba(var(--accent-light), 25%);
-    background: linear-gradient(rgba(var(--accent-light2), 66%), rgba(var(--accent-light2), 33%));
-    padding: 1.5rem;
-    border-radius: 8px;
-    max-width: 25%;
-}
-
-
-.instructions code {
-    font-size: 0.8em;
-    font-weight: bold;
-    background: rgba(var(--accent-light), 12%);
-    color: rgb(var(--accent-light));
-    border-radius: 4px;
-    padding: 0.3em 0.4em;
-}
-
-.instructions strong {
-    color: rgb(var(--accent-light));
-}
-
-.link-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-    gap: 2rem;
-    padding: 0;
-}
-
-.intro-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-}
-
-@media (max-width: 600px) {
-    #profile-pic {
-        display: none;
-    }
 }
