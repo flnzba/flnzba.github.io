@@ -1,85 +1,24 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Hero from '../components/Hero.astro';
+import FooterSec from '../components/FooterSec.astro';
+import Projects from '../components/Projects.astro';
+import Navbar from '../components/Navbar.astro';
 ---
 
-<Layout title="Florian Zeba • Data Engineer">
-	<main>	
-		<h1 class="heading1">Florian Zeba</h1>
-		<h2>Intro</h2>
-		<div class="intro-grid">
-			<div class="photo-box" id="profile-pic">
-				<img src="/assets/Dev_Pic_FZ.jpg" alt="Profile Picture" width="100%" height="100%" style="border-radius: 2%;">
-			</div>
-			<div class="instructions-box">
-				<ul class="instructions-box__text">
-					<li>Nice to meet you.</li>
-					<li>I am a Data / Backend IT-Guy.</li>
-					<li>My focus lies on implementing software and algorithms which are maintainable.</li>
-					<br>
-					<li>I create:</li>
-					<strong>
-					<li>⚒️ Data Pipelines, Data Warehouses</li>
-					<li>🛜 APIs, Microservices and Web Applications.</li>
-					<li>🤖 Machine Learning Models</li>
-					</strong>
-				</ul>
-			</div>
-			<div class="instructions-box">
-				<ul class="social_icons">
-					<li>
-						<a href="mailto:florian@fzeba.com">
-							<img src="/assets/icons8-apple-mail-150.png" alt="Mail Icon" style="width:2.5rem; height:2.5rem;" />
-						</a>
-					</li>
-					<li>
-						<a href="https://at.linkedin.com/in/florian-zeba">
-							<img src="/assets/icons8-linkedin-150.png" alt="LinkedIn Icon" style="width:2.5rem; height:2.5rem;" />
-						</a>
-					</li>
-					<li>
-						<a href="https://github.com/flnzba">
-							<img src="/assets/icons8-github-150.png" alt="GitHub Icon" style="width:2.5rem; height:2.5rem;" />
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		
-		<h2>Projects</h2>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="#"
-				title="⚒️ Data Engineering"
-				body="See Data Pipelines, Data Warehouses, etc"
-			/>
-			<Card
-				href="#"
-				title="📈 Business Analytics"
-				body="Browse projects with business value"
-			/>
-			<Card
-				href="#"
-				title="🤖 AI & Machine Learning"
-				body="Search for AI & ML Projects"
-			/>
-			<Card
-				href="#"
-				title="👨🏼‍💻 Software Development"
-				body="Software? Let's see"
-			/>
-		</ul>
-		<br>
-		<footer>
-			<div class="footer-section">
-				<p>Imprint</p>
-				<p>Icons provided by:</p>
-				<ul>
-					<li><a target="_blank" href="https://icons8.com/icon/12598/github">GitHub</a> Icon from <a target="_blank" href="https://icons8.com">Icons8</a></li>
-					<li><a target="_blank" href="https://icons8.com/icon/447/linkedin">LinkedIn</a> Icon von <a target="_blank" href="https://icons8.com">Icons8</a></li>
-					<li><a target="_blank" href="https://icons8.com/icon/baRhMh2wmjbT/mail">Apple-Mail</a> Icon von <a target="_blank" href="https://icons8.com">Icons8</a></li>
-				</ul>
-			</div>
-		</footer>
+<Layout title='Florian Zeba • Data Engineer'>
+	<main>
+		<h1 class='heading1'>Florian Zeba</h1>
+
+		<Navbar />
+
+		<Hero />
+
+		<Projects/>
+
+		<br />
+
+		<FooterSec/>
+
 	</main>
 </Layout>
