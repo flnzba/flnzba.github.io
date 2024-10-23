@@ -29,7 +29,7 @@ const { href, title, body } = Astro.props;
 		background-size: 400%;
 		border-radius: 7px;
 		background-position: 100%;
-		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+		transition: background-position 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 	}
 	.link-card > a {
@@ -45,7 +45,7 @@ const { href, title, body } = Astro.props;
 	h2 {
 		margin: 0;
 		font-size: 1.1rem;
-		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+		transition: color 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 	}
 	p {
 		font-size: 1rem;
@@ -54,9 +54,15 @@ const { href, title, body } = Astro.props;
 	}
 	.link-card:is(:hover, :focus-within) {
 		background-position: 0;
-		background-image: var(--colorGradientLight);
+		background-image: var(--colorDetails);
+		transform: scale(1.05);
+		transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.7s cubic-bezier(0.22, 1, 0.36, 1); /* Increased duration */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 	}
 	.link-card:is(:hover, :focus-within) h2 {
-		color: rgb(var(--colorObjects));
+		/* color: rgb(var(--colorObjects)); */
+		background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
 	}
 </style>

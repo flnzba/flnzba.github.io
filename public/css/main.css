@@ -75,15 +75,3 @@ h2 {
     margin-bottom: 1.5em;
     margin-top: 1.5em;
 }
-
-a {
-    color: var(--colorDetails);
-    text-decoration: none;
-    border-bottom: 2px solid var(--colorDetails);
-    transition: color 0.3s, border-bottom-color 0.3s;
-
-    &:hover {
-        color: var(--colorObjects);
-        border-bottom-color: var(--colorObjects);
-    }
-}

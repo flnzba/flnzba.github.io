@@ -23,3 +23,14 @@ nav a::before {
 nav a:hover::before {
     background: var(--colorObjects);
 }
+
+ul a {
+    color: var(--colorDetails);
+    text-decoration: none;
+    transition: color 0.3s, border-bottom-color 0.3s;
+
+    &:hover {
+        color: var(--colorObjects);
+        border-bottom-color: var(--colorObjects);
+    }
+}
