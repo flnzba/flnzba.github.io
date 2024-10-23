@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro"
 import Navbar from "../components/Navbar.astro"
+import FooterSec from "../components/FooterSec.astro";
+import Socials from "../components/Socials.astro";
 
 interface Frontmatter {
 	title: string;
@@ -13,7 +15,7 @@ const projectsfiltered = projects.filter((projects) => !projects.frontmatter.dra
 ---
 
 <Layout title='Florian Zeba • Data Engineer'>
-	<main>
+	<main transition:animate="slide">
 		<h1 class='heading1'>Florian Zeba</h1>
 
 		<Navbar/>
@@ -35,5 +37,12 @@ const projectsfiltered = projects.filter((projects) => !projects.frontmatter.dra
 		TODO: Test HTMX and alpinejs
 		-->
 
+		<br />
+
+		<Socials/>
+		
+		<br />
+
+		<FooterSec/>
 	</main>
 </Layout>

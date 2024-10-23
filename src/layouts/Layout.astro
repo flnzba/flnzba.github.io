@@ -4,6 +4,27 @@ interface Props {
 }
 
 const { title } = Astro.props;
+
+import { ViewTransitions } from 'astro:transitions';
+
+const anim = {
+	old: {
+	  name: 'bump',
+	  duration: '0.5s',
+	  easing: 'ease-in',
+	  direction: 'reverse',
+	},
+	new: {
+	  name: 'bump',
+	  duration: '0.5s',
+	  easing: 'ease-in-out',
+	},
+  };
+  
+  const customTransition = {
+	forwards: anim,
+	backwards: anim,
+  };
 ---
 
 <!doctype html>
@@ -17,11 +38,12 @@ const { title } = Astro.props;
 		<link rel="stylesheet" type="text/css" href="../css/main.css" />
 		<link rel="stylesheet" type="text/css" href="../css/classes.css" />
 		<link rel="stylesheet" type="text/css" href="../css/nested_classes.css" />
-		<script is:inline src="https://unpkg.com/htmx.org@2.0.3" defer></script>
+		<!-- <script is:inline src="https://unpkg.com/htmx.org@2.0.3" defer></script> -->
 		<script is:inline src="https://unpkg.com/alpinejs" defer></script>
 		<script defer data-domain="fzeba.com" src="https://plausible.io/js/script.js"></script>
 
 		<title>{title}</title>
+		<ViewTransitions />
 	</head>
 	<body>
 		<slot />
