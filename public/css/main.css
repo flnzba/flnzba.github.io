@@ -12,19 +12,24 @@
 }
 
 :root {
-    --accent: #003049;
-    --accent-light: #FCBF49;
-    --accent-light2: 234, 226, 183;
-    --accent-gradient:
+    --mainColor: #0b415e;
+    --colorObjects: #c0bcac;
+    --colorDetails: #C3C9E9;
+    --colorGradientLight:
         linear-gradient(45deg,
-            rgb(var(--accent)),
-            rgb(var(--accent-light)) 30%,
+            rgb(var(--mainColor)),
+            rgb(var(--colorObjects)) 30%,
+            white 60%);
+    --colorGradientDark:
+        linear-gradient(45deg,
+            rgb(var(--mainColor)),
+            rgb(var(--colorObjects)) 30%,
             white 60%);
 }
 
 html {
     font-family: -apple-system,system-ui, BlinkMacSystemFont, "Segoe UI", Roboto;
-    background: #003049;
+    background: var(--mainColor);
 }
 
 ul {
@@ -69,4 +74,16 @@ h2 {
     text-align: left;
     margin-bottom: 1.5em;
     margin-top: 1.5em;
+}
+
+a {
+    color: var(--colorDetails);
+    text-decoration: none;
+    border-bottom: 2px solid var(--colorDetails);
+    transition: color 0.3s, border-bottom-color 0.3s;
+
+    &:hover {
+        color: var(--colorObjects);
+        border-bottom-color: var(--colorObjects);
+    }
 }

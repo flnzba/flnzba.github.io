@@ -1,10 +1,39 @@
 ---
 import Layout from "../layouts/Layout.astro"
+import Navbar from "../components/Navbar.astro"
+
+interface Frontmatter {
+	title: string;
+	subtitle?: string;
+	description?: string;
+}
+// const posts = await Astro.glob<Frontmatter>('../pages/post/*.mdx');
+const projects = await Astro.glob('../pages/project/*.mdx')
+const projectsfiltered = projects.filter((projects) => !projects.frontmatter.draft);
 ---
 
 <Layout title='Florian Zeba • Data Engineer'>
 	<main>
 		<h1 class='heading1'>Florian Zeba</h1>
+
+		<Navbar/>
+
+		<ul>
+			{projectsfiltered.map(
+				projects => 
+				<li>{projects.frontmatter.title}</li>
+				<li>{projects.frontmatter.description}</li>
+				<li>{projects.frontmatter.subtitle}</li>
+				<a href={projects.url}>{projects.frontmatter.title}</a>
+			)}
+			<!-- post.title ist vom Typ `string`! -->
+		</ul>
+		<!-- 
+		TODO: Community Loader Notion to load blog posts from notion
+		https://astro.build/blog/community-loaders/#notion
+
+		TODO: Test HTMX and alpinejs
+		-->
 
 	</main>
 </Layout>
