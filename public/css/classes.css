@@ -68,11 +68,13 @@
 }
 
 .instructions-box {
+    display: flex;
     border: 1px solid rgba(var(--colorObjects), 25%);
     /* background: linear-gradient(rgba(var(--colorObjects2), 66%), rgba(var(--colorObjects2), 33%)); */
     background: var(--colorObjects);
     padding: 1.2rem;
     border-radius: 8px;
+    max-width: clamp(21rem, 22rem, 30rem);
 }
 
 .instructions-box__text {
@@ -83,6 +85,18 @@
     color: black;
 }
 
+.other-boxes{
+    /* copy of instructions-box */
+    display: flex;
+    border: 1px solid rgba(var(--colorObjects), 25%);
+    /* background: linear-gradient(rgba(var(--colorObjects2), 66%), rgba(var(--colorObjects2), 33%)); */
+    background: var(--colorObjects);
+    padding: 1.2rem;
+    border-radius: 8px;
+    max-width: 11rem;
+    max-height: 3rem;
+}
+
 .photo-box {
     margin-bottom: 0;
     border: 1px solid rgba(var(--colorObjects), 25%);
@@ -91,8 +105,22 @@
     padding: 0.2rem;
     border-radius: 8px;
     max-width: 25%;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1); /* Improved box shadow */
 }
 
+/* Media query for mobile devices */
+@media (max-width: 600px) {
+    #profile-pic {
+        display: block;
+        width: 15rem;
+        height: 15rem;
+        object-fit: cover;
+    }
+
+    .photo-box {
+        background: none;
+    }
+}
 
 .instructions code {
     font-size: 0.8em;
@@ -118,10 +146,4 @@
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
-}
-
-@media (max-width: 600px) {
-    #profile-pic {
-        display: none;
-    }
 }

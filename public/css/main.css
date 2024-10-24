@@ -13,7 +13,7 @@
 
 :root {
     --mainColor: #0b415e;
-    --colorObjects: #c0bcac;
+    --colorObjects: #dbd9cf;
     --colorDetails: #C3C9E9;
     --colorGradientLight:
         linear-gradient(45deg,
@@ -68,7 +68,7 @@ h1 {
 }
 
 h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 800;
     line-height: 1.5rem;
     text-align: left;
