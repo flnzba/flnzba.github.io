@@ -27,7 +27,7 @@ const postsfiltered = posts.filter((post) => !post.frontmatter.draft);
 				<Card
 				title={post.frontmatter.title}
 				body={post.frontmatter.subtitle}
-				href={'/blog/${post.slug}'}/>
+				href={post.url}/>
 			)}
 		</ul>
 
