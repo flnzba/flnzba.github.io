@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro"
 import Navbar from "../components/Navbar.astro"
 import FooterSec from "../components/FooterSec.astro";
 import Socials from "../components/Socials.astro";
+import Card from "../components/Card.astro";
 
 interface Frontmatter {
 	title: string;
@@ -20,7 +21,17 @@ const projectsfiltered = projects.filter((projects) => !projects.frontmatter.dra
 
 		<Navbar/>
 
-		<ul>
+		<ul role='list' class='link-card-grid'>
+			{projectsfiltered.map(
+				projects => 
+				<Card
+				title={projects.frontmatter.title}
+				body={projects.frontmatter.subtitle}
+				href={projects.url}/>
+			)}
+		</ul>
+
+		<!-- <ul>
 			{projectsfiltered.map(
 				projects => 
 				<li>{projects.frontmatter.title}</li>
@@ -28,8 +39,8 @@ const projectsfiltered = projects.filter((projects) => !projects.frontmatter.dra
 				<li>{projects.frontmatter.subtitle}</li>
 				<a href={projects.url}>{projects.frontmatter.title}</a>
 			)}
-			<!-- post.title ist vom Typ `string`! -->
-		</ul>
+		</ul> -->
+
 		<!-- 
 		TODO: Community Loader Notion to load blog posts from notion
 		https://astro.build/blog/community-loaders/#notion

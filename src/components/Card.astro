@@ -1,8 +1,8 @@
 ---
 interface Props {
-	title: string;
-	body: string;
-	href: string;
+	title: any | undefined;
+	body: any | undefined;
+	href: string | undefined;
 }
 
 const { href, title, body } = Astro.props;

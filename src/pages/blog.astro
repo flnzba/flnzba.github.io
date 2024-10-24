@@ -1,8 +1,9 @@
 ---
-import Layout from "../layouts/Layout.astro"
-import Navbar from "../components/Navbar.astro"
-import FooterSec from "../components/FooterSec.astro";
-import Socials from "../components/Socials.astro";
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import FooterSec from '../components/FooterSec.astro';
+import Socials from '../components/Socials.astro';
+import Card from '../components/Card.astro';
 
 interface Frontmatter {
 	title: string;
@@ -10,17 +11,27 @@ interface Frontmatter {
 	description?: string;
 }
 // const posts = await Astro.glob<Frontmatter>('../pages/post/*.mdx');
-const posts = await Astro.glob('../pages/post/*.mdx')
+const posts = await Astro.glob('../pages/post/*.mdx');
 const postsfiltered = posts.filter((post) => !post.frontmatter.draft);
 ---
 
 <Layout title='Florian Zeba • Data Engineer'>
-	<main transition:animate="slide">
+	<main transition:animate='slide'>
 		<h1 class='heading1'>Florian Zeba</h1>
 
-		<Navbar/>
+		<Navbar />
 
-		<ul>
+		<ul role='list' class='link-card-grid'>
+			{postsfiltered.map(
+				post => 
+				<Card
+				title={post.frontmatter.title}
+				body={post.frontmatter.subtitle}
+				href={'/blog/${post.slug}'}/>
+			)}
+		</ul>
+
+		<!-- <ul>
 			{postsfiltered.map(
 				post => 
 				<li>{post.frontmatter.title}</li>
@@ -28,9 +39,9 @@ const postsfiltered = posts.filter((post) => !post.frontmatter.draft);
 				<li>{post.frontmatter.subtitle}</li>
 				<a href={post.url}>{post.frontmatter.title}</a>
 			)}
-			<!-- post.title ist vom Typ `string`! -->
-		</ul>
-		<!-- 
+		</ul> -->
+	
+	<!-- 
 		TODO: Community Loader Notion to load blog posts from notion
 		https://astro.build/blog/community-loaders/#notion
 
@@ -39,10 +50,10 @@ const postsfiltered = posts.filter((post) => !post.frontmatter.draft);
 
 		<br />
 
-		<Socials/>
+		<Socials />
 
 		<br />
 
-		<FooterSec/>
+		<FooterSec />
 	</main>
 </Layout>
