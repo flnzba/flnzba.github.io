@@ -1,8 +1,8 @@
 ---
-title: "Github Page Setup #2"
+title: "#2 Github Page Setup"
 description: "How to Connect a Github Page to Your Own Domain and Set Up an Email Address with Google Mail and Cloudflare"
-publishDate: "25 October 2024"
-updatedDate: "25 October 2024"
+publishDate: "24 October 2024"
+updatedDate: "24 October 2024"
 # coverImage:
 #   src: "./cover.png"
 #   alt: "Astro build wallpaper"

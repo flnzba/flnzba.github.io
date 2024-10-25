@@ -1,5 +1,5 @@
 ---
-title: "node unsupported engine when updating npm"
+title: "#3 node unsupported engine when updating npm"
 description: "When error occurs: “unsupported engine” while trying to update npm to 10.1. a solution is to use nvm"
 publishDate: "25 October 2024"
 updatedDate: "25 October 2024"

@@ -1,12 +1,12 @@
 ---
-title: "Starting the new Site"
+title: "#1 Starting the new Site"
 description: "A short update about the new portfolio site fzeba.com"
-publishDate: "25 October 2024"
-updatedDate: "25 October 2024"
+publishDate: "23 October 2024"
+updatedDate: "23 October 2024"
 coverImage:
   src: "./pic1.webp"
   alt: "Screenshot Github Code"
-tags: ["internal", "image"]
+tags: ["internal"]
 ---
 
 # Starting the new Site

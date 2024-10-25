@@ -17,10 +17,10 @@ export function getPostSortDate(post: CollectionEntry<"post">) {
 
 /** sort post by date (by siteConfig.sortPostsByUpdatedDate), desc.*/
 export function sortMDByDate(posts: CollectionEntry<"post">[]) {
-	return posts.sort((a, b) => {
+	return posts.sort((b, a) => {
 		const aDate = getPostSortDate(a).valueOf();
 		const bDate = getPostSortDate(b).valueOf();
-		return bDate - aDate;
+		return aDate - bDate;
 	});
 }
 
