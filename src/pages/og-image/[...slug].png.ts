@@ -36,7 +36,7 @@ const markup = (title: string, pubDate: string) =>
 		</div>
 		<div tw="flex items-center justify-between w-full p-10 border-t border-[#2bbc89] text-xl">
 			<div tw="flex items-center">
-				<svg height="60" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 272 480">
+				<!--- <svg height="60" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 272 480">
 					<path
 						d="M181.334 93.333v-40L226.667 80v40l-45.333-26.667ZM136.001 53.333 90.667 26.667v426.666L136.001 480V53.333Z"
 						fill="#B04304"
@@ -50,7 +50,12 @@ const markup = (title: string, pubDate: string) =>
 						fill="#53C68C"
 					></path>
 					<path d="M45.334 240 0 213.334v120L45.334 360V240Z" fill="#B04304"></path>
-				</svg>
+				</svg> --->
+				<Image
+					class='me-3 h-6 w-6 sm:absolute sm:start-[-4.5rem] sm:me-0 sm:h-16 sm:w-16'
+					alt='Logo'
+					src={logoImg}
+				/>
 				<p tw="ml-3 font-semibold">${siteConfig.title}</p>
 			</div>
 			<p>by ${siteConfig.author}</p>
