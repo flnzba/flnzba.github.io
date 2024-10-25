@@ -8,11 +8,10 @@
 
 ## Tech
 - Astro
-- Astro Sitemap
-- Astro View Transitions
-- Astro Markdown Remark
-- Astro RSS
-- Tailwind CSS
-- Notion SDK (https://github.com/makenotion/notion-sdk-js)
-- Notion to md (https://github.com/makenotion/notion-sdk-js?tab=readme-ov-file)
-- Vite envs
+- Template from https://github.com/chrismwilliams/astro-theme-cactus?tab=readme-ov-file
+
+## TODOS
+- Add Projects in Projects Page -> masonry layout
+- Link Tech Stack (Home) to Catgeorys of Projects
+- Add CV in Projects Page (Open with Token -> given to users manually)
+- Add Webmentions Integration

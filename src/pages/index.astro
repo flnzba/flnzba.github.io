@@ -1,24 +1,140 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import FooterSec from '../components/FooterSec.astro';
-import Projects from '../components/Projects.astro';
-import Navbar from '../components/Navbar.astro';
+import SocialList from '@/components/SocialList.astro';
+import PostPreview from '@/components/blog/PostPreview.astro';
+import { getAllPosts, sortMDByDate } from '@/data/post';
+import PageLayout from '@/layouts/Base.astro';
+
+const MAX_POSTS = 5;
+const allPosts = await getAllPosts();
+const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
+
+const cactusTech: { desc: string; href: string; title: string }[] = [
+	{
+		desc: 'OOP and so on...',
+		href: '#',
+		title: 'Java',
+	},
+	{
+		desc: 'Individualizing Wordpress, Laravel Web Apps, ...',
+		href: '#',
+		title: 'PHP',
+	},
+	{
+		desc: 'Node, Web Apps, Game Dev, ...',
+		href: '#',
+		title: 'Javascript',
+	},
+	{
+		desc: 'Backends, ML/AI, ...',
+		href: '#',
+		title: 'Python',
+	},
+	{
+		desc: 'mySQL, PostgreSQL, MongoDB, Azure SQL, ...',
+		href: '#',
+		title: 'Databases',
+	},
+	{
+		desc: 'Azure Data Warehouse, ...',
+		href: '#',
+		title: 'Data Warehouses',
+	},
+	{
+		desc: 'PowerBI, Microsoft Fabric, ...',
+		href: '#',
+		title: 'Business Intelligence',
+	},
+	{
+		desc: 'Alteryx, KNIME',
+		href: '#',
+		title: 'Data Analytics',
+	},
+	{
+		desc: 'Arduino, Power Apps, ...',
+		href: '#',
+		title: 'Automations',
+	},
+	{
+		desc: 'OOCSS, Tailwind CSS, ...',
+		href: '#',
+		title: 'CSS',
+	},
+];
 ---
 
-<Layout title='Florian Zeba • Data Engineer'>
-	<main transition:animate="slide">
-		<h1 class='heading1'>Florian Zeba</h1>
-
-		<Navbar />
-
-		<Hero />
-
-		<Projects/>
-
-		<br />
-
-		<FooterSec/>
-
-	</main>
-</Layout>
+<PageLayout meta={{ title: 'Home' }}>
+	<section>
+		<h1 class='title mb-6'>Hello Visitor!</h1>
+		<p class='mb-4'>
+			<p class='mb-4'>
+				I’m delighted to introduce myself as a dedicated IT professional
+				with a passion for data and backend systems. My primary goal is
+				to implement software solutions and algorithms that are not only
+				effective but also sustainable and easy to maintain. By focusing
+				on innovation and quality, I ensure that every project benefits
+				from the highest standards of technology integration.
+			</p>
+			<p class='mb-4'>Here’s a glimpse of what I do:</p>
+			<ul class='mb-4'>
+				<li class='mb-4'>
+					<strong>Data Mastery:</strong> I design and implement robust
+					data pipelines and data warehouses, ensuring that your data flows
+					efficiently and securely.
+				</li>
+				<li class='mb-4'>
+					<strong>Backend Solutions:</strong> From APIs to microservices
+					and comprehensive web applications, I build scalable and maintainable
+					backend architectures.
+				</li>
+				<li class='mb-4'>
+					<strong>AI Innovation:</strong> I develop machine learning models
+					that drive data intelligence and provide cutting-edge solutions
+					to complex problems.
+				</li>
+			</ul>
+			<p class='mb-8'>
+				Looking forward to exploring how my expertise can help your
+				projects thrive!
+			</p>
+		</p>
+		<SocialList />
+	</section>
+	<section aria-label='Blog post list' class='mt-16'>
+		<h2 class='title mb-4 text-xl'>Posts</h2>
+		<ul class='space-y-4'>
+			{
+				allPostsByDate.map((p) => (
+					<li class='grid gap-2 sm:grid-cols-[auto_1fr] sm:[&_q]:col-start-2'>
+						{/* @ts-ignore-next-line - issue with -> @astrojs/check@0.9.3 */}
+						<PostPreview post={p} />
+					</li>
+				))
+			}
+		</ul>
+	</section>
+	<section class='mt-16'>
+		<h2 class='title mb-4 text-xl'>Technology Stack</h2>
+		<dl class='space-y-4'>
+			{
+				cactusTech.map(({ desc, href, title }) => (
+					<div class='flex flex-col gap-2 sm:flex-row'>
+						<dt>
+							<span class='flex'>
+								<a
+									class='cactus-link'
+									href={href}
+									rel='noreferrer'
+									target='_blank'
+								>
+									{title}
+								</a>
+								:
+							</span>
+						</dt>
+						<dd>{desc}</dd>
+					</div>
+				))
+			}
+		</dl>
+	</section>
+</PageLayout>
