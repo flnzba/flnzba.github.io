@@ -21,4 +21,18 @@ With nvm it is possible to manage node versions on the system and easily install
 
 3. [Installing oh-my-zsh-nvm plugin (when zsh is in use)](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/nvm)
 
+A list of useful nvm commands:
+
+Link: 
+- [Gist d2S](https://gist.github.com/d2s/372b5943bce17b964a79)
+- [Gist Chranderson](https://gist.github.com/chranderson/b0a02781c232f170db634b40c97ff455)
+
+```js
+nvm ls // list installed node versions
+nvm ls-remote // list available node versions
+nvm install 10.1 // install node version 10.1
+nvm use 10.1 // use node version 10.1
+nvm alias default 10.1 // set node version 10.1 as default
+```
+
 Done.
