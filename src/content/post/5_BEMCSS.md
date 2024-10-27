@@ -1,6 +1,6 @@
 ---
 title: "#5 Block Element Module Methodology for CSS"
-description: "A possibility to structure your CSS effectively"
+description: "A possibility to structure your CSS effectively and keep it maintainable for growing projects"
 publishDate: "27 October 2024"
 updatedDate: "27 October 2024"
 # coverImage:
