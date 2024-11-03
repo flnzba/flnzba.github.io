@@ -5,7 +5,7 @@ publishDate: "02 November 2024"
 updatedDate: "02 November 2024"
 coverImage:
   src: "./cover-latex-in-astro.webp"
-  alt: "Cover Image of the Bayes-Optimal Classifier"
+  alt: "Cover Image Books Flying"
 tags: ["frontend", "markdown", "astro"]
 ---
 
