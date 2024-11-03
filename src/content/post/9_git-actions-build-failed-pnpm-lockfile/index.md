@@ -54,4 +54,4 @@ pnpm install
 pnpm run build
 ```
 
-***... can to wonders!***
+***... can do wonders!***
