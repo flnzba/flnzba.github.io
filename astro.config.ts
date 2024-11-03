@@ -16,6 +16,9 @@ import remarkUnwrapImages from "remark-unwrap-images";
 import { remarkAdmonitions } from "./src/plugins/remark-admonitions"; /* Add admonitions */
 import { remarkReadingTime } from "./src/plugins/remark-reading-time";
 
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+
 // Rehype plugins
 import rehypeExternalLinks from "rehype-external-links";
 
@@ -84,8 +87,9 @@ export default defineConfig({
 					target: "_blank",
 				},
 			],
+			rehypeKatex
 		],
-		remarkPlugins: [remarkUnwrapImages, remarkReadingTime, remarkDirective, remarkAdmonitions],
+		remarkPlugins: [remarkUnwrapImages, remarkReadingTime, remarkDirective, remarkAdmonitions, remarkMath],
 		remarkRehype: {
 			footnoteLabelProperties: {
 				className: [""],
