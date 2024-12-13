@@ -166,3 +166,7 @@ By solving this recurrence relation, it is established that the average complexi
 $$
 O(n \log n)
 $$
+
+## Conclusion
+
+Discrete Maths aids data engineers to represent concepts in a bigger picture and solve complex problems efficiently by understanding how things relate to each other.
