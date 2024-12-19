@@ -1,0 +1,52 @@
+[
+  {
+    "desc": "OOP and so on...",
+    "href": "#",
+    "title": "Java"
+  },
+  {
+    "desc": "Individualizing Wordpress, Laravel Web Apps, ...",
+    "href": "#",
+    "title": "PHP"
+  },
+  {
+    "desc": "Node, Web Apps, Game Dev, ...",
+    "href": "#",
+    "title": "Javascript"
+  },
+  {
+    "desc": "Backends, ML/AI, ...",
+    "href": "#",
+    "title": "Python"
+  },
+  {
+    "desc": "mySQL, PostgreSQL, MongoDB, Azure SQL, ...",
+    "href": "#",
+    "title": "Databases"
+  },
+  {
+    "desc": "Azure Data Warehouse, ...",
+    "href": "#",
+    "title": "Data Warehouses"
+  },
+  {
+    "desc": "PowerBI, Microsoft Fabric, ...",
+    "href": "#",
+    "title": "Business Intelligence"
+  },
+  {
+    "desc": "Alteryx, KNIME",
+    "href": "#",
+    "title": "Data Analytics"
+  },
+  {
+    "desc": "Arduino, Power Apps, ...",
+    "href": "#",
+    "title": "Automations"
+  },
+  {
+    "desc": "OOCSS, Tailwind CSS, ...",
+    "href": "#",
+    "title": "CSS"
+  }
+]

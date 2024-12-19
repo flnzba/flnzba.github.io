@@ -5,6 +5,8 @@ import { getAllPosts, sortMDByDate } from '@/data/post';
 import PageLayout from '@/layouts/Base.astro';
 import { Image } from 'astro:assets';
 import devPicFZ from '@/assets/devPicFZ.jpg'
+import projectList from '../data/projectList.json';
+import techStack from '../data/techStack.json';
 
 const MAX_POSTS = 5;
 const allPosts = await getAllPosts();
@@ -119,7 +121,56 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 			}
 		</ul>
 	</section>
+	<!-- Loads project data via json file -->
 	<section class='mt-16'>
+		<h2 class='title mb-4 text-xl'>Projects</h2>
+		<dl class='space-y-4'>
+			{projectList.map(project => (
+				<div class='flex flex-col gap-2 sm:flex-row'>
+					
+					<span class='flex'>
+						<a
+							class='cactus-link'
+							href={project.href}
+							rel='noreferrer'
+							target='_blank'
+						>
+							{project.title}
+						</a>
+						:
+					</span>
+					<h2>{project.title}</h2>
+					<p>{project.desc}</p>
+				</div>
+			))}
+		</dl>
+	</section>
+	<!-- Loads TechStack data via json file -->
+	<section class='mt-16'>
+		<h2 class='title mb-4 text-xl'>Projects</h2>
+		<dl class='space-y-4'>
+			{techStack.map(techPoint => (
+				<div class='flex flex-col gap-2 sm:flex-row'>
+					
+					<span class='flex'>
+						<a
+							class='cactus-link'
+							href={techPoint.href}
+							rel='noreferrer'
+							target='_blank'
+						>
+							{techPoint.title}
+						</a>
+						:
+					</span>
+					<h2>{techPoint.title}</h2>
+					<p>{techPoint.desc}</p>
+				</div>
+			))}
+		</dl>
+	</section>
+
+	<!-- <section class='mt-16'>
 		<h2 class='title mb-4 text-xl'>Technology Stack</h2>
 		<dl class='space-y-4'>
 			{
@@ -143,5 +194,5 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 				))
 			}
 		</dl>
-	</section>
+	</section> -->
 </PageLayout>
