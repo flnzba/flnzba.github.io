@@ -12,58 +12,6 @@ const MAX_POSTS = 5;
 const allPosts = await getAllPosts();
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
 
-const cactusTech: { desc: string; href: string; title: string }[] = [
-	{
-		desc: 'OOP and so on...',
-		href: '#',
-		title: 'Java',
-	},
-	{
-		desc: 'Individualizing Wordpress, Laravel Web Apps, ...',
-		href: '#',
-		title: 'PHP',
-	},
-	{
-		desc: 'Node, Web Apps, Game Dev, ...',
-		href: '#',
-		title: 'Javascript',
-	},
-	{
-		desc: 'Backends, ML/AI, ...',
-		href: '#',
-		title: 'Python',
-	},
-	{
-		desc: 'mySQL, PostgreSQL, MongoDB, Azure SQL, ...',
-		href: '#',
-		title: 'Databases',
-	},
-	{
-		desc: 'Azure Data Warehouse, ...',
-		href: '#',
-		title: 'Data Warehouses',
-	},
-	{
-		desc: 'PowerBI, Microsoft Fabric, ...',
-		href: '#',
-		title: 'Business Intelligence',
-	},
-	{
-		desc: 'Alteryx, KNIME',
-		href: '#',
-		title: 'Data Analytics',
-	},
-	{
-		desc: 'Arduino, Power Apps, ...',
-		href: '#',
-		title: 'Automations',
-	},
-	{
-		desc: 'OOCSS, Tailwind CSS, ...',
-		href: '#',
-		title: 'CSS',
-	},
-];
 ---
 
 <PageLayout meta={{ title: 'Home' }}>
@@ -128,18 +76,18 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 			{projectList.map(project => (
 				<div class='flex flex-col gap-2 sm:flex-row'>
 					
-					<span class='flex'>
+					<span class='flex min-w-24'>
 						<a
 							class='cactus-link'
 							href={project.href}
 							rel='noreferrer'
 							target='_blank'
 						>
-							{project.title}
+							{project.number}
 						</a>
 						:
 					</span>
-					<h2>{project.title}</h2>
+					<h2 class="min-w-48 font-bold">{project.title}</h2>
 					<p>{project.desc}</p>
 				</div>
 			))}
@@ -147,7 +95,7 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 	</section>
 	<!-- Loads TechStack data via json file -->
 	<section class='mt-16'>
-		<h2 class='title mb-4 text-xl'>Projects</h2>
+		<h2 class='title mb-4 text-xl'>Tech Stack</h2>
 		<dl class='space-y-4'>
 			{techStack.map(techPoint => (
 				<div class='flex flex-col gap-2 sm:flex-row'>

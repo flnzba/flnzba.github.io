@@ -1,52 +1,122 @@
 [
   {
-    "desc": "OOP and so on...",
+    "number": "Project 1",
+    "desc": "Developed a sophisticated ventilation circuit system utilizing Arduino for an educational project to manage three high-energy consumption ventilators.",
     "href": "#",
-    "title": "Java"
+    "title": "Ventilation Circuit System Using Arduino"
   },
   {
-    "desc": "Individualizing Wordpress, Laravel Web Apps, ...",
+    "number": "Project 2",
+    "desc": "Guided an electrical services company through initial digital strategy and developed their website to enhance visibility and customer engagement.",
     "href": "#",
-    "title": "PHP"
+    "title": "Website Development for Electrical Services"
   },
   {
-    "desc": "Node, Web Apps, Game Dev, ...",
+    "number": "Project 3",
+    "desc": "Provided a comprehensive data protection consultation focusing on GDPR compliance for an opinion polling company.",
     "href": "#",
-    "title": "Javascript"
+    "title": "GDPR Consultation for Opinion Polling"
   },
   {
-    "desc": "Backends, ML/AI, ...",
+    "number": "Project 4",
+    "desc": "Assisted a smart watch company in creating technical documentation to secure a Series B investment, highlighting technical and financial aspects.",
     "href": "#",
-    "title": "Python"
+    "title": "Technical Documentation for Smart Watch"
   },
   {
-    "desc": "mySQL, PostgreSQL, MongoDB, Azure SQL, ...",
+    "number": "Project 5",
+    "desc": "Implemented a CRM system for a financial advisory firm, including data migration and training for enhanced client management.",
     "href": "#",
-    "title": "Databases"
+    "title": "CRM System Implementation for Financial Firm"
   },
   {
-    "desc": "Azure Data Warehouse, ...",
+    "number": "Project 6",
+    "desc": "Assumed leadership at Alps Digital, managing projects and internal processes to establish a profitable business model.",
     "href": "#",
-    "title": "Data Warehouses"
+    "title": "Operational Management at Alps Digital"
   },
   {
-    "desc": "PowerBI, Microsoft Fabric, ...",
+    "number": "Project 7",
+    "desc": "Enhanced a transport company's database system and analytical dashboard, optimizing resource allocation across fleet operations.",
     "href": "#",
-    "title": "Business Intelligence"
+    "title": "Database Management for Logistics"
   },
   {
-    "desc": "Alteryx, KNIME",
+    "number": "Project 8",
+    "desc": "Developed a data management system for a recycling company, integrating real-time operational insights to optimize material processing.",
     "href": "#",
-    "title": "Data Analytics"
+    "title": "Data Solutions for Waste Management"
   },
   {
-    "desc": "Arduino, Power Apps, ...",
+    "number": "Project 9",
+    "desc": "Conducted an extensive inventory analysis for an automotive parts manufacturer to streamline the annual inventory audit process.",
     "href": "#",
-    "title": "Automations"
+    "title": "Inventory Analysis for Auto Parts Manufacturer"
   },
   {
-    "desc": "OOCSS, Tailwind CSS, ...",
+    "number": "Project 10",
+    "desc": "Provided financial controlling and advisory services focusing on cost reallocation across manufacturing sites for an automotive manufacturer.",
     "href": "#",
-    "title": "CSS"
+    "title": "Financial Advisory for Auto Manufacturer"
+  },
+  {
+    "number": "Project 11",
+    "desc": "Conducted a detailed financial analysis for retroactive price adjustments to support a subsidiary's transition to a new owner.",
+    "href": "#",
+    "title": "Financial Analysis for Price Adjustments"
+  },
+  {
+    "number": "Project 12",
+    "desc": "Developed a unified grant search platform for the manufacturing sector, consolidating various grant sources into a single interface.",
+    "href": "#",
+    "title": "Grant Search Platform Development"
+  },
+  {
+    "number": "Project 13",
+    "desc": "Executed a comprehensive e-commerce platform migration from WordPress to Shopify for Steyraholic, enhancing operational efficiency.",
+    "href": "#",
+    "title": "E-commerce Migration for Steyraholic"
+  },
+  {
+    "number": "Project 14",
+    "desc": "Developed a comprehensive e-commerce platform for Steyraholic to automate sales and manage pricing strategies.",
+    "href": "#",
+    "title": "E-commerce System Development for Steyraholic"
+  },
+  {
+    "number": "Project 15",
+    "desc": "Enhanced e-commerce and bookkeeping workflows for Steyraholic, customizing Shopify store and streamlining financial processes.",
+    "href": "#",
+    "title": "E-commerce and Bookkeeping Enhancement"
+  },
+  {
+    "number": "Project 16",
+    "desc": "Implemented a management dashboard for a vehicle cabin manufacturer to analyze customer and producer reclamations.",
+    "href": "#",
+    "title": "Management Dashboard for Cabin Manufacturer"
+  },
+  {
+    "number": "Project 17",
+    "desc": "Developed and deployed a new database system for an Underwater Habitat Protection Association, enhancing data management and accessibility.",
+    "href": "#",
+    "title": "Database Implementation for Habitat Protection"
+  },
+  {
+    "number": "Project 18",
+    "desc": "Created a PowerBI dashboard for an electric car charging port provider to analyze pricing strategies and customer engagement.",
+    "href": "#",
+    "title": "PowerBI Dashboard for Charging Port Provider"
+  },
+  {
+    "number": "Project 19",
+    "desc": "Enhanced data integration between global and national ERP systems for an electric car charging port provider, improving data workflow automation.",
+    "href": "#",
+    "title": "ERP Integration for Charging Port Provider"
+  },
+  {
+    "number": "Project 20",
+    "desc": "Consulted on the implementation, customization, and deployment of Microsoft Dynamics ERP, focusing on legal compliance and system interoperability.",
+    "href": "#",
+    "title": "Microsoft Dynamics ERP Consultation"
   }
 ]
