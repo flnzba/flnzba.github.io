@@ -1,0 +1,28 @@
+---
+import projectList from '../data/projectList.json';
+---
+
+<!-- Loads project data via json file -->
+<section class='mt-16'>
+    <h2 class='title mb-4 text-xl'>Projects</h2>
+    <dl class='space-y-4'>
+        {projectList.map(project => (
+            <div class='flex flex-col gap-2 sm:flex-row'>
+                
+                <span class='flex min-w-24'>
+                    <a
+                        class='cactus-link'
+                        href={project.href}
+                        rel='noreferrer'
+                        target='_blank'
+                    >
+                        {project.number}
+                    </a>
+                    :
+                </span>
+                <h2 class="min-w-48 font-bold">{project.title}</h2>
+                <p>{project.desc}</p>
+            </div>
+        ))}
+    </dl>
+</section>
