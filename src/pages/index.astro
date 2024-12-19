@@ -7,7 +7,8 @@ import { Image } from 'astro:assets';
 import devPicFZ from '@/assets/devPicFZ.jpg'
 // import projectList from '../data/projectList.json';
 import techStack from '../data/techStack.json';
-import ProjectsComp from '@/components/ProjectsComp.astro';
+import masonryComp from '@/components/masonryComp.astro';
+import MasonryComp from '@/components/masonryComp.astro';
 
 const MAX_POSTS = 5;
 const allPosts = await getAllPosts();
@@ -74,7 +75,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
 	<ProjectsComp /> -->
 
 	<!-- Loads TechStack data via json file -->
-	<section class='mt-16'>
+	<section class='my-16'>
 		<h2 class='title mb-4 text-xl'>Tech Stack</h2>
 		<dl class='space-y-4'>
 			{techStack.map(techPoint => (
@@ -97,5 +98,8 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
 			))}
 		</dl>
 	</section>
+
+	<!-- Projects Masonry Grid -->
+	<MasonryComp />
 
 </PageLayout>
