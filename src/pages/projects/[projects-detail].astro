@@ -1,0 +1,14 @@
+---
+export function getStaticPaths() {
+  return [
+    {params: {dog: 'clifford'}},
+    {params: {dog: 'rover'}},
+    {params: {dog: 'spot'}},
+  ];
+}
+
+// TODO: return Static Path Param from Projects JSON
+
+const { dog } = Astro.params;
+---
+<div>Good dog, {dog}!</div>
