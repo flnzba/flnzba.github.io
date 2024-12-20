@@ -1,0 +1,57 @@
+---
+import SocialList from '@/components/SocialList.astro';
+import PageLayout from '@/layouts/Base.astro';
+// import { Image } from 'astro:assets';
+// import devPicFZ from '@/assets/devPicFZ.jpg'
+
+// export function getStaticPaths() {
+//   return [
+//     { params: { id: '1' } },
+//     { params: { id: '2' } },
+//     { params: { id: '3' } }
+//   ];
+// }
+
+import projects from '../../data/projectList.json';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: {
+      id: project.urlNumber
+    }
+  }));
+};
+
+// TODO: title, desc, number are not loaded in
+
+const { id } = Astro.params;
+const project = projects.find((p) => p.urlNumber === id);
+
+if (!project) {
+  throw new Error(`Project with id ${id} not found`);
+}
+
+const { number, desc, href, title, image, urlNumber } = project;
+
+// import { Debug } from 'astro:components';
+---
+<!-- <h1>ID: {id} TITLE: {title}</h1>
+<h2>{desc}</h2>
+<h2>{number}</h2>
+
+<h1>{id}</h1>
+<Debug answer={id} />
+<Debug answer={projects} /> -->
+
+<PageLayout meta={{ title: 'Projects Details' }}>
+	<section>
+    <img src={image} alt={number} class="w-full object-cover mb-10 size-56 drop-shadow-md rounded-md" />
+		<h1 class='title mb-6'>{number} - {title}</h1>
+    <h2 class='mb-4'>{desc}</h2>
+    <p class='mb-4'>URL: {href}</p>
+    <p class='mb-4'>Detailed Business Case -> coming soon...</p>
+
+		<SocialList />
+	</section>
+
+</PageLayout>
