@@ -1,7 +1,10 @@
 ---
+import type { number } from 'astro/zod';
+import projectList from '../../data/projectList.json';
+
 export function getStaticPaths() {
   return [
-    {params: {dog: 'clifford'}},
+    {params: {Number: {projectList}}},
     {params: {dog: 'rover'}},
     {params: {dog: 'spot'}},
   ];
