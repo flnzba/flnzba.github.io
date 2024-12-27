@@ -4,7 +4,7 @@
     "desc": "Developed a sophisticated ventilation circuit system utilizing Arduino for an educational project to manage three high-energy consumption ventilators.",
     "href": "/projectsDetail/1",
     "title": "Design and Implementation of a High-Energy Ventilation Circuit System Using Arduino",
-    "image": "public/projectImgs/project1.webp",
+    "image": "../projectImgs/project1.webp",
     "urlNumber": "1"
   },
   {
@@ -12,7 +12,7 @@
     "desc": "Guided an electrical services company through initial digital strategy and developed their website to enhance visibility and customer engagement.",
     "href": "/projectsDetail/2",
     "title": "Consulting and Website Development for an Electrical Services Company",
-    "image": "public/projectImgs/project2.webp",
+    "image": "../projectImgs/project2.webp",
     "urlNumber": "2"
   },
   {
@@ -20,7 +20,7 @@
     "desc": "Provided a comprehensive data protection consultation focusing on GDPR compliance for an opinion polling company.",
     "href": "/projectsDetail/3",
     "title": "Data Protection Consultation for an Opinion Polling Company",
-    "image": "public/projectImgs/project3.webp",
+    "image": "../projectImgs/project3.webp",
     "urlNumber": "3"
   },
   {
@@ -28,7 +28,7 @@
     "desc": "Assisted a smart watch company in creating comprehensive technical documentation to secure Series B funding.",
     "href": "/projectsDetail/4",
     "title": "Technical Documentation Consultation for a Smart Watch Company",
-    "image": "public/projectImgs/project4.webp",
+    "image": "../projectImgs/project4.webp",
     "urlNumber": "4"
   },
   {
@@ -36,7 +36,7 @@
     "desc": "Implemented a comprehensive CRM system for a financial advisory firm, including data migration to enhance client management and operational efficiency.",
     "href": "/projectsDetail/5",
     "title": "CRM System Implementation and Data Migration for a Financial Advisory Firm",
-    "image": "public/projectImgs/project5.webp",
+    "image": "../projectImgs/project5.webp",
     "urlNumber": "5"
   },
   {
@@ -44,7 +44,7 @@
     "desc": "Led operational and project management at Alps Digital, focusing on digital projects and IT consulting for mid-sized companies.",
     "href": "/projectsDetail/6",
     "title": "Interim Management - Operational Management and Project Management",
-    "image": "public/projectImgs/project6.webp",
+    "image": "../projectImgs/project6.webp",
     "urlNumber": "6"
   },
   {
@@ -52,7 +52,7 @@
     "desc": "Enhanced a transport company's database system and analytical dashboard, optimizing logistical and personnel resource allocation.",
     "href": "/projectsDetail/7",
     "title": "Data and Database Management for Logistics Clients",
-    "image": "public/projectImgs/project7.webp",
+    "image": "../projectImgs/project7.webp",
     "urlNumber": "7"
   },
   {
@@ -60,7 +60,7 @@
     "desc": "Developed and integrated a data management system for a waste management company to improve decision-making and operational efficiency.",
     "href": "/projectsDetail/8",
     "title": "Database Solutions and Dashboards for Waste Management",
-    "image": "public/projectImgs/project8.webp",
+    "image": "../projectImgs/project8.webp",
     "urlNumber": "8"
   },
   {
@@ -68,7 +68,7 @@
     "desc": "Conducted an extensive inventory analysis and valuation for a Tier 2 automotive parts manufacturer to streamline the annual audit process.",
     "href": "/projectsDetail/9",
     "title": "Inventory Analysis and Valuation for a Tier 2 Automotive Parts Manufacturer",
-    "image": "public/projectImgs/project9.webp",
+    "image": "../projectImgs/project9.webp",
     "urlNumber": "9"
   },
   {
@@ -76,7 +76,7 @@
     "desc": "Provided ongoing financial controlling and advisory services focusing on production costs and investments for a Tier 2 automotive manufacturer.",
     "href": "/projectsDetail/10",
     "title": "Project-Based Controlling and Financial Advisory for a Tier 2 Automotive Manufacturer",
-    "image": "public/projectImgs/project10.webp",
+    "image": "../projectImgs/project10.webp",
     "urlNumber": "10"
   },
   {
@@ -84,7 +84,7 @@
     "desc": "Performed a detailed financial analysis to account for retroactive price adjustments in an automotive parts manufacturing process.",
     "href": "/projectsDetail/11",
     "title": "Financial Analysis for Retroactive Price Adjustments in Automotive Parts Manufacturing",
-    "image": "public/projectImgs/project11.webp",
+    "image": "../projectImgs/project11.webp",
     "urlNumber": "11"
   },
   {
@@ -92,7 +92,7 @@
     "desc": "Developed a unified platform for manufacturing and industrial clients to easily access various governmental grants.",
     "href": "/projectsDetail/12",
     "title": "Development of a Unified Grant Search Platform for the Manufacturing and Industrial Sector",
-    "image": "public/projectImgs/project12.webp",
+    "image": "../projectImgs/project12.webp",
     "urlNumber": "12"
   },
   {
@@ -100,7 +100,7 @@
     "desc": "Managed the migration of Steyraholic's e-commerce platform from WordPress to Shopify, enhancing data structure and technical details.",
     "href": "/projectsDetail/13",
     "title": "E-commerce Platform Migration for Steyraholic from WordPress to Shopify (with Docker)",
-    "image": "public/projectImgs/project13.webp",
+    "image": "../projectImgs/project13.webp",
     "urlNumber": "13"
   },
   {
@@ -108,7 +108,7 @@
     "desc": "Developed an e-commerce platform for Steyraholic, specializing in Steyr tractor parts, which included automated sales processes and customer-specific pricing.",
     "href": "/projectsDetail/14",
     "title": "Development and Programming of Steyraholic.at Shop System",
-    "image": "public/projectImgs/project14.webp",
+    "image": "../projectImgs/project14.webp",
     "urlNumber": "14"
   },
   {
@@ -116,7 +116,7 @@
     "desc": "Enhanced the Shopify store and bookkeeping workflows for Steyraholic, optimizing invoice processes and tax calculations.",
     "href": "/projectsDetail/15",
     "title": "Enhancement of E-commerce and Bookkeeping Workflows for Steyraholic",
-    "image": "public/projectImgs/project15.webp",
+    "image": "../projectImgs/project15.webp",
     "urlNumber": "15"
   },
   {
@@ -124,7 +124,7 @@
     "desc": "Created a management dashboard for a vehicle cabin manufacturer to analyze customer and producer reclamations in PowerBI.",
     "href": "/projectsDetail/16",
     "title": "Development of a Management Dashboard for a Vehicle Cabin Manufacturer",
-    "image": "public/projectImgs/project16.webp",
+    "image": "../projectImgs/project16.webp",
     "urlNumber": "16"
   },
   {
@@ -132,7 +132,7 @@
     "desc": "Implemented and migrated a new database system for an Underwater Habitat Protection Association, improving data handling and user-friendliness.",
     "href": "/projectsDetail/17",
     "title": "Database Implementation and Migration for an Underwater Habitat Protection Association",
-    "image": "public/projectImgs/project17.webp",
+    "image": "../projectImgs/project17.webp",
     "urlNumber": "17"
   },
   {
@@ -140,7 +140,7 @@
     "desc": "Developed a PowerBI dashboard for an electric car charging port provider, enhancing data visualization and decision-making capabilities.",
     "href": "/projectsDetail/18",
     "title": "Development of a PowerBI Dashboard for an Electric Car Charging Port Provider",
-    "image": "public/projectImgs/project18.webp",
+    "image": "../projectImgs/project18.webp",
     "urlNumber": "18"
   },
   {
@@ -148,7 +148,7 @@
     "desc": "Enhanced data integration capabilities between SAP and BMD ERP systems for an electric car charging port provider, customizing workflows and automating data exchange.",
     "href": "/projectsDetail/19",
     "title": "ERP System Integration and Data Workflow Automation for an Electric Car Charging Port Provider",
-    "image": "public/projectImgs/project19.webp",
+    "image": "../projectImgs/project19.webp",
     "urlNumber": "19"
   },
   {
@@ -156,7 +156,7 @@
     "desc": "Developed a new service offering for Microsoft Dynamics ERP implementation, focusing on consultation and system customization for diverse business environments.",
     "href": "/projectsDetail/20",
     "title": "Development and Consultation for Microsoft Dynamics ERP Implementation Services",
-    "image": "public/projectImgs/project20.webp",
+    "image": "../projectImgs/project20.webp",
     "urlNumber": "20"
   }
 ]
