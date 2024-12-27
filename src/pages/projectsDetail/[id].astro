@@ -7,13 +7,12 @@ import projects from '../../data/projectList.json';
 export function getStaticPaths() {
   return projects.map((project) => ({
     params: {
-      id: project.urlNumber,
-      newImageUrl: "./" + project.image
+      id: project.urlNumber
     }
   }));
 };
 
-const { id, newImageUrl } = Astro.params;
+const { id } = Astro.params;
 const project = projects.find((p) => p.urlNumber === id);
 
 if (!project) {
@@ -27,7 +26,7 @@ const { number, desc, href, title, image, urlNumber } = project;
 
 <PageLayout meta={{ title: 'Projects Details' }}>
 	<section>
-    <img src={newImageUrl} alt={number} class="w-full object-cover mb-10 size-56 drop-shadow-md rounded-md" />
+    <img src={image} alt={number} class="w-full object-cover mb-10 size-56 drop-shadow-md rounded-md" />
 		<h1 class='title mb-6'>{number} - {title}</h1>
     <h2 class='mb-4'>{desc}</h2>
     <p class='mb-4'>URL: {href}</p>
