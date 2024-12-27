@@ -1,6 +1,6 @@
 ---
-title: '#14 The Current State of Quantum Computing: A Comprehensive Overview'
-description: 'This article provides a detailed analysis of the latest quantum CPUs from leading companies, comparing their technological advancements and addressing the challenges that remain on the path to fully operational quantum computing systems.'
+title: '#14 The Current State of Quantum Computing Dec 2024'
+description: 'This article provides a analysis and comparison of the latest quantum CPUs from leading companies.'
 publishDate: '28 December 2024'
 updatedDate: '28 December 2024'
 coverImage:
@@ -67,20 +67,23 @@ Despite these achievements, the road to fault-tolerant, scalable quantum computi
 ## Sources
 
 **Google's Willow Quantum Chip**:
-   - [Meet Willow, our state-of-the-art quantum chip](https://blog.google/technology/research/google-willow-quantum-chip/)
-   - [Google's Quantum Chip, Willow](https://finance.yahoo.com/news/googles-quantum-chip-willow-143300408.html)
-   - [Google claims its new Willow quantum chip can swiftly solve a problem](https://www.tomshardware.com/tech-industry/quantum-computing/google-claims-its-new-willow-quantum-chip-can-swiftly-solve-a-problem-that-would-take-a-standard-supercomputer-10-septillion-years)
-   - [Google unveils 'mind-boggling' quantum computing chip](https://www.bbc.com/news/articles/c791ng0zvl3o)
-   - [Google's Quantum Computing Chip 'Willow' Fortifies Its Moat In AI](https://seekingalpha.com/article/4744935-googles-quantum-computing-chip-willow-fortifies-its-moat-in-ai)
+
+- [Meet Willow, our state-of-the-art quantum chip](https://blog.google/technology/research/google-willow-quantum-chip/)
+- [Google's Quantum Chip, Willow](https://finance.yahoo.com/news/googles-quantum-chip-willow-143300408.html)
+- [Google claims its new Willow quantum chip can swiftly solve a problem](https://www.tomshardware.com/tech-industry/quantum-computing/google-claims-its-new-willow-quantum-chip-can-swiftly-solve-a-problem-that-would-take-a-standard-supercomputer-10-septillion-years)
+- [Google unveils 'mind-boggling' quantum computing chip](https://www.bbc.com/news/articles/c791ng0zvl3o)
+- [Google's Quantum Computing Chip 'Willow' Fortifies Its Moat In AI](https://seekingalpha.com/article/4744935-googles-quantum-computing-chip-willow-fortifies-its-moat-in-ai)
 
 **IBM's Heron Processor**:
-   - [IBM Debuts Next-Generation Quantum Processor & IBM Quantum System Two](https://newsroom.ibm.com/2023-12-04-IBM-Debuts-Next-Generation-Quantum-Processor-IBM-Quantum-System-Two%2C-Extends-Roadmap-to-Advance-Era-of-Quantum-Utility)
-   - [IBM Launches Its Most Advanced Quantum Computers, Fueling New Scientific Value and Progress Towards Quantum Advantage](https://newsroom.ibm.com/2024-11-13-ibm-launches-its-most-advanced-quantum-computers%2C-fueling-new-scientific-value-and-progress-towards-quantum-advantage)
-   - [IBM’s Quantum Processor and Modular Computer Are Now in Operation](https://www.techrepublic.com/article/ibm-quantum-heron-system-two/)
-   - [IBM unveils first 'utility scale' quantum processor](https://www.theregister.com/2023/12/05/ibm_heron_quantum_processor/)
-   - [IBM Heron - Wikipedia](https://en.wikipedia.org/wiki/IBM_Heron)
+
+- [IBM Debuts Next-Generation Quantum Processor & IBM Quantum System Two](https://newsroom.ibm.com/2023-12-04-IBM-Debuts-Next-Generation-Quantum-Processor-IBM-Quantum-System-Two%2C-Extends-Roadmap-to-Advance-Era-of-Quantum-Utility)
+- [IBM Launches Its Most Advanced Quantum Computers, Fueling New Scientific Value and Progress Towards Quantum Advantage](https://newsroom.ibm.com/2024-11-13-ibm-launches-its-most-advanced-quantum-computers%2C-fueling-new-scientific-value-and-progress-towards-quantum-advantage)
+- [IBM’s Quantum Processor and Modular Computer Are Now in Operation](https://www.techrepublic.com/article/ibm-quantum-heron-system-two/)
+- [IBM unveils first 'utility scale' quantum processor](https://www.theregister.com/2023/12/05/ibm_heron_quantum_processor/)
+- [IBM Heron - Wikipedia](https://en.wikipedia.org/wiki/IBM_Heron)
 
 **Intel's Tunnel Falls Processor**:
-   - [Intel Announce 'Tunnel Falls' Quantum Research Chip](https://www.tomshardware.com/news/intel-announce-tunnel-falls-quantum-research-chip)
-   - [Intel’s New Chip to Advance Silicon Spin Qubit Research for Quantum Computing](https://www.intc.com/news-events/press-releases/detail/1626/intels-new-chip-to-advance-silicon-spin-qubit-research)
-   - [Tunnel Falls: Intel reveals 12-qubit quantum chip for research](https://www.siliconrepublic.com/innovation/tunnel-falls-intel-quantum-chip-processor-research)
+
+- [Intel Announce 'Tunnel Falls' Quantum Research Chip](https://www.tomshardware.com/news/intel-announce-tunnel-falls-quantum-research-chip)
+- [Intel’s New Chip to Advance Silicon Spin Qubit Research for Quantum Computing](https://www.intc.com/news-events/press-releases/detail/1626/intels-new-chip-to-advance-silicon-spin-qubit-research)
+- [Tunnel Falls: Intel reveals 12-qubit quantum chip for research](https://www.siliconrepublic.com/innovation/tunnel-falls-intel-quantum-chip-processor-research)

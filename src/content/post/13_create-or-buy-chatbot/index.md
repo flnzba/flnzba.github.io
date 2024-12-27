@@ -1,6 +1,6 @@
 ---
-title: '#13 Create or Buy Chatbot: Self-Trained vs. Out-of-the-Box Solutions'
-description: 'Deciding between a self-trained, fine-tuned chatbot and an out-of-the-box solution? Explore the implications, advantages, and use cases to make the right choice.'
+title: '#13 Chatbot: Self-Trained vs. Out-of-the-Box Solutions'
+description: 'Explore the differences between self-trained and out-of-the-box chatbot solutions, and learn which one fits your business needs.'
 publishDate: '27 December 2024'
 updatedDate: '27 December 2024'
 coverImage:
