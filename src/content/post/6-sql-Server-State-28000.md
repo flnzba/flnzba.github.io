@@ -1,17 +1,17 @@
 ---
-title: "#6 Find logged Microsoft SQL Server Messages"
-description: "Navigating SQL Server Error Codes: A Guide to Understanding 28000 to 30999 and searching the logs for information"
-publishDate: "28 October 2024"
-updatedDate: "28 October 2024"
+title: '#6 Find logged Microsoft SQL Server Messages'
+description: 'Navigating SQL Server Error Codes: A Guide to Understanding 28000 to 30999 and searching the logs for information'
+publishDate: '28 October 2024'
+updatedDate: '28 December 2024'
 # coverImage:
 #   src: "./cover.png"
 #   alt: "Astro build wallpaper"
-tags: ["SQL", "Microsoft sql server"]
+tags: ['SQL', 'SQL Server']
 ---
 
 # Navigating SQL Server Error Codes: A Guide to Understanding 28000 to 30999
 
-Today I encounterd an Error when creating an ODBC Connection. It stated the “SQL State Error: 28000”. 
+Today I encounterd an Error when creating an ODBC Connection. It stated the “SQL State Error: 28000”.
 
 The Microsoft documentation provides a comprehensive list and explanation of SQL Server error codes from 28000 to 30999. This range includes errors related to authentication issues, permissions, and configuration problems, which are common when setting up or managing SQL Server databases. There you can find the SQL Code to search for all possible Error Codes, the description and if the error exists in the logs.
 
