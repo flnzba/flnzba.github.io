@@ -59,12 +59,14 @@ Since ADLS combines all files by default, the next step is to filter files indiv
    - Click on **Transform Data** to enter the Power Query editor.
 2. **Add a Custom Column**:
    - Use the following code to extract file names:
-     ```PowerQuery
+     ```dax
+     // Power Query Lang
      Table.AddColumn(Source, "FileName", each Text.AfterDelimiter([Name], "/"))
      ```
 3. **Filter Files**:
    - Apply a filter for each file using its name:
-     ```PowerQuery
+     ```dax
+     // Power Query Lang
      Table.SelectRows(Source, each Text.Contains([FileName], "File1.json"))
      ```
    - Repeat this step for all other files (e.g., `File2.json`, `File3.json`, etc.).
@@ -79,24 +81,28 @@ Each file must be transformed to match its counterpart in the local data source.
 
 1. **Expand JSON Data**:
    If the file content is JSON, extract and expand its nested structure:
-   ```PowerQuery
+   ```dax
+   // Power Query Lang
    Source = Json.Document(Binary.Load(File.Contents("File1.json"))),
    ExpandedData = Table.ExpandRecordColumn(Source, "Data", {"Field1", "Field2"})
    ```
 2. **Rename Columns**:
    Ensure column names match those in the local file:
-   ```PowerQuery
+   ```dax
+   // Power Query Lang
    RenamedColumns = Table.RenameColumns(ExpandedData, {{"Field1", "NewField1"}, {"Field2", "NewField2"}})
    ```
 3. **Change Data Types**:
    Apply consistent data types:
-   ```PowerQuery
+   ```dax
+   // Power Query Lang
    TransformedTypes = Table.TransformColumnTypes(RenamedColumns, {{"NewField1", Int64.Type}, {"NewField2", Text.Type}})
    ```
 
 ### **Example Code for Transforming a File**
 
-```PowerQuery
+```dax
+// Power Query Lang
 let
     Source = AzureStorage.Contents("https://<storage-account-name>.dfs.core.windows.net/<container-name>"),
     FilteredFiles = Table.SelectRows(Source, each Text.Contains([Name], "File1.json")),
@@ -133,14 +139,16 @@ To transition from local to ADLS without rebuilding your transformations, replac
 
 **Original Local Query**:
 
-```PowerQuery
+```dax
+// Power Query Lang
 Source = Folder.Files("C:\LocalFolder"),
 FilteredFiles = Table.SelectRows(Source, each Text.Contains([Name], "File1.json"))
 ```
 
 **Updated ADLS Query**:
 
-```PowerQuery
+```dax
+// Power Query Lang
 Source = AzureStorage.Contents("https://<storage-account-name>.dfs.core.windows.net/<container-name>"),
 FilteredFiles = Table.SelectRows(Source, each Text.Contains([Name], "File1.json"))
 ```
