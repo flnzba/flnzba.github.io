@@ -1,5 +1,5 @@
 ---
-title: '#16 Change Power BI Data Source from Local to Azure Data Lake Storage Gen2'
+title: '#16 Change Power BI Data Source from Local to ADLS Gen2'
 description: 'Learn how to transition Power BI data sources from local files to Azure Data Lake Storage Gen2 without disrupting your dashboard.'
 publishDate: '31 December 2024'
 updatedDate: '31 December 2024'
