@@ -115,7 +115,7 @@ Tip: To get proper formatting click the right mouse button and select "Format Do
 
 ![Formatting Option](./formatting-code.jpg)
 
-![Shopify Formatting](./shopify-liquid-formatter.jpg)
+![Shopify Formatting](./shopify-liquid-formatter-ext.jpg)
 
 ## 4. Write a Ruby Script to Render Liquid
 
