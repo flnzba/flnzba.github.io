@@ -2,6 +2,7 @@
 import { getAllPosts } from "@/data/post";
 import PostLayout from "@/layouts/BlogPost.astro";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import SocialList from "@/components/SocialList.astro";
 
 // if you're using an adaptor in SSR mode, getStaticPaths wont work -> https://docs.astro.build/en/guides/routing/#modifying-the-slug-example-for-ssr
 export const getStaticPaths = (async () => {
@@ -20,4 +21,7 @@ const { Content } = await entry.render();
 
 <PostLayout post={entry}>
 	<Content />
+	<p>Any Questions? I am happy to hear from readers...</p>
+	<p>Contact me on any of my communication channels:</p>
+	<SocialList />
 </PostLayout>

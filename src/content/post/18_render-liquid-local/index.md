@@ -243,3 +243,5 @@ theme-check
 ```
 
 By following this guide, you can efficiently render and test Liquid templates locally.
+
+The Link to the github repository can be found [Shopify Liquid Local on Github](https://github.com/flnzba/shopify-liquid-local).

@@ -1,6 +1,6 @@
 ---
-title: '#19 Supervised, Unsupervised, Parametric, Non-Parametric Machine Learning Methods'
-description: 'The different machine learning methods such as supervised, unsupervised, parametric, and non-parametric will be shown.'
+title: '#19 (Un)Supervised, (Non-)Parametric ML Methods'
+description: 'Discussion of machine learning methods supervised, unsupervised, parametric, and non-parametric.'
 publishDate: '11 January 2025'
 updatedDate: '11 January 2025'
 coverImage:
@@ -18,6 +18,7 @@ Machine learning (ML) continues to evolve, offering innovative ways to analyze d
 Supervised learning models are trained using labeled datasets where both input and the corresponding output are provided. These models are designed to predict outcomes based on new data. Here’s a brief look at some common supervised learning methods:
 
 1. **Linear and Logistic Regression**: Linear regression predicts continuous values, while logistic regression is used for binary classification tasks.
+
    - **Linear Regression Example**:
      ```python
      from sklearn.linear_model import LinearRegression
@@ -27,6 +28,7 @@ Supervised learning models are trained using labeled datasets where both input a
      ```
 
 2. **Decision Trees and Random Forests**: These models are used for both classification and regression tasks. Decision trees split data into subsets based on feature values, whereas random forests are ensembles of decision trees.
+
    - **Decision Tree Example**:
      ```python
      from sklearn.tree import DecisionTreeClassifier
@@ -36,6 +38,7 @@ Supervised learning models are trained using labeled datasets where both input a
      ```
 
 3. **Support Vector Machines (SVMs)**: SVMs are effective in high-dimensional spaces and are capable of defining complex higher-order relationships in data.
+
    - **SVM Example**:
      ```python
      from sklearn.svm import SVC
@@ -45,6 +48,7 @@ Supervised learning models are trained using labeled datasets where both input a
      ```
 
 4. **Neural Networks**: These models are foundations for deep learning and can model highly intricate relationships in data.
+
    - **Neural Network Example**:
      ```python
      from tensorflow.keras.models import Sequential
@@ -68,6 +72,7 @@ Supervised learning models are trained using labeled datasets where both input a
 Unlike supervised learning, unsupervised learning algorithms infer patterns from a dataset without reference to known or labeled outcomes:
 
 1. **Clustering (e.g., K-means, Hierarchical)**: Used to group a set of objects in such a way that objects in the same group are more similar to each other than to those in other groups.
+
    - **K-means Clustering Example**:
      ```python
      from sklearn.cluster import KMeans
@@ -77,6 +82,7 @@ Unlike supervised learning, unsupervised learning algorithms infer patterns from
      ```
 
 2. **Dimensionality Reduction (e.g., PCA, t-SNE)**: Techniques to reduce the number of random variables under consideration.
+
    - **PCA Example**:
      ```python
      from sklearn.decomposition import PCA
@@ -85,6 +91,7 @@ Unlike supervised learning, unsupervised learning algorithms infer patterns from
      ```
 
 3. **Association Rules (e.g., Apriori, FP-Growth)**: Aim to find interesting relationships between variables in large databases.
+
    - **Apriori Example**:
      ```python
      from mlxtend.frequent_patterns import apriori, association_rules
@@ -109,13 +116,13 @@ Unlike supervised learning, unsupervised learning algorithms infer patterns from
 
 ### Comparison Table of Parametric vs. Non-Parametric Models
 
-| Aspect               | Parametric Models                         | Non-Parametric Models                      |
-|----------------------|-------------------------------------------|--------------------------------------------|
-| **Assumptions**      | Fixed functional form                     | Flexible, data-driven                      |
-| **Complexity**       | Fixed number of parameters                | Grows with data size                       |
-| **Data Requirements**| Requires less data                        | Requires large data                        |
-| **Flexibility**      | Limited                                   | High                                       |
-| **Interpretability** | Easier to interpret                       | Often harder to interpret                  |
+| Aspect                | Parametric Models          | Non-Parametric Models     |
+| --------------------- | -------------------------- | ------------------------- |
+| **Assumptions**       | Fixed functional form      | Flexible, data-driven     |
+| **Complexity**        | Fixed number of parameters | Grows with data size      |
+| **Data Requirements** | Requires less data         | Requires large data       |
+| **Flexibility**       | Limited                    | High                      |
+| **Interpretability**  | Easier to interpret        | Often harder to interpret |
 
 ## Real-World Applications
 
