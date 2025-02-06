@@ -1,11 +1,11 @@
 ---
-title: '#21 Optimizing Data Lake Storage for High-Volume, High-Velocity Data'
+title: '#21 Optimizing Data Lake Storage for High-Volume Data'
 description: 'Explore advanced techniques for optimizing data lake.'
 publishDate: '06 February 2025'
 updatedDate: '06 February 2025'
 coverImage:
   src: './cover-data-lake.webp'
-  alt: 'Optimizing Data Lake Storage for High-Volume, High-Velocity Data'
+  alt: 'Optimizing Data Lake Storage for High-Volume and volatile Data'
 tags: ['Data Lake', 'Database']
 ---
 
