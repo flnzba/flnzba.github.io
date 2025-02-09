@@ -1,8 +1,8 @@
 ---
 title: '#23 How to Uninstall and Reinstall Node.js and npm'
 description: 'A comprehensive guide on reinstalling Node.js and npm.'
-publishDate: '09 February 2025'
-updatedDate: '09 February 2025'
+publishDate: '10 February 2025'
+updatedDate: '10 February 2025'
 coverImage:
   src: './cover-node-reinstall.webp'
   alt: 'Guide to Uninstalling and Reinstalling Node.js and npm'
