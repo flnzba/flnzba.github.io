@@ -15,6 +15,9 @@ In today's digital landscape, the need to convert images between various formats
 To address this, I developed an Image Converter Tool that streamlines the process, allowing users to effortlessly transform images into formats like JPG, PNG, WebP, and PDF.
 This blog post delves into the technical architecture of the application, highlighting key components and code implementations.
 
+Link to the live demo: [Image Converter Tool](https://image-converter-tool.vercel.app/)
+Link to the source code: [GitHub Repository](https://github.com/flnzba/image-converter-tool)
+
 ## Application Overview
 
 The Image Converter Tool is a web-based application built using Next.js, React, and TypeScript.
