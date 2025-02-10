@@ -15,12 +15,12 @@ In today's digital landscape, the need to convert images between various formats
 To address this, I developed an Image Converter Tool that streamlines the process, allowing users to effortlessly transform images into formats like JPG, PNG, WebP, and PDF.
 This blog post delves into the technical architecture of the application, highlighting key components and code implementations.
 
-Link to the live demo: 
+Link to the live demo:
 [Image Converter Tool (Main Domain)](https://ai-image-converter.com/)
 OR
 [Image Converter Tool (Vercel Domain)](https://image-converter-tool.vercel.app/)
 
-Link to the source code: 
+Link to the source code:
 [GitHub Repository](https://github.com/flnzba/image-converter-tool)
 
 ## Application Overview
@@ -79,6 +79,8 @@ The `onValueChange` prop updates the `format` state accordingly.
 ```
 
 ### Conversion Process
+
+The logic for handling image conversion is separated from the client side and is handled by the `route.tsx` file in the api folder.
 
 Upon clicking the "Convert" button, the `handleConversion` function is invoked.
 This function performs the following steps:
