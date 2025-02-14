@@ -1,31 +1,31 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 
-import Masthead from '@/components/project/Masthead.astro';
-import TOC from '@/components/project/TOC.astro';
+import Masthead from '@/components/insight/Masthead.astro';
+import TOC from '@/components/insight/TOC.astro';
 import WebMentions from '@/components/blog/webmentions/index.astro';
 
 import BaseLayout from './Base.astro';
 
 interface Props {
-	project: CollectionEntry<'project'>;
+	insight: CollectionEntry<'insight'>;
 }
 
-const { project } = Astro.props;
+const { insight } = Astro.props;
 const {
 	data: { description, ogImage, publishDate, title, updatedDate },
 	slug,
-} = project;
+} = insight;
 const socialImage = ogImage ?? `/og-image/${slug}.png`;
 const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString();
-const { headings } = await project.render();
+const { headings } = await insight.render();
 ---
 
 <BaseLayout meta={{ articleDate, description, ogImage: socialImage, title }}>
 	<div class='gap-x-10 lg:flex lg:items-start'>
 		{!!headings.length && <TOC headings={headings} />}
 		<article class='flex-grow break-words' data-pagefind-body>
-			<div id='blog-hero'><Masthead content={project} /></div>
+			<div id='blog-hero'><Masthead content={insight} /></div>
 			<div
 				class="prose prose-sm prose-cactus mt-12 prose-headings:font-semibold prose-headings:text-accent-2 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-accent sm:prose-headings:before:content-['#'] sm:prose-th:before:content-none"
 			>
