@@ -1,0 +1,28 @@
+---
+import { getAllInsights } from "@/data/insight";
+import PostLayout from "@/layouts/InsightPost.astro";
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import SocialList from "@/components/SocialList.astro";
+
+// if you're using an adaptor in SSR mode, getStaticPaths wont work -> https://docs.astro.build/en/guides/routing/#modifying-the-slug-example-for-ssr
+export const getStaticPaths = (async () => {
+	const insightEntries = await getAllInsights();
+	return insightEntries.map((entry) => ({
+		params: { slug: entry.slug },
+		props: { entry },
+	}));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<PostLayout insight={entry}>
+	<Content />
+	<br />
+	<p>Any Questions?</p>
+	<p>Contact me on any of my communication channels:</p>
+	<SocialList />
+</PostLayout>
