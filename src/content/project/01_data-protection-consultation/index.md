@@ -1,12 +1,14 @@
 ---
 title: 'Data Protection Consultation for an Opinion Polling Company'
 description: 'Provided a comprehensive data protection consultation focusing on GDPR compliance for an opinion polling company.'
-publishDate: '02 November 2024'
-updatedDate: '02 November 2024'
+publishDate: '01 January 2018'
+updatedDate: '01 January 2018'
 coverImage:
-  src: 'project1.webp'
+  src: 'project3.webp'
   alt: 'Cover Image'
-tags: ['frontend', 'markdown', 'astro']
+tags: ['Data Protection', 'GDPR', 'Consultation']
 ---
 
-### Data Protection Consultation for an Opinion Polling Company
+# Data Protection Consultation for an Opinion Polling Company
+
+## CONTENT COMING SOON

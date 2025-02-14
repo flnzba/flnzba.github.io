@@ -4,7 +4,7 @@ description: 'Led operational and project management at Alps Digital, focusing o
 publishDate: '02 November 2024'
 updatedDate: '02 November 2024'
 coverImage:
-  src: 'project1.webp'
+  src: 'project6.webp'
   alt: 'Cover Image'
 tags: ['frontend', 'markdown', 'astro']
 ---
