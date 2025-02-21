@@ -1,8 +1,8 @@
 ---
 title: '#27 Set up Graph Databases in Large-Scale Applications'
 description: 'Learn how to effectively implement graph databases in large-scale applications, ensuring optimal performance and scalability.'
-publishDate: '21 February 2025'
-updatedDate: '21 February 2025'
+publishDate: '16 February 2025'
+updatedDate: '16 February 2025'
 coverImage:
   src: './cover.webp'
   alt: 'Graph Databases in Large-Scale Applications'
