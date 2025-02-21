@@ -1,8 +1,8 @@
 ---
 title: '#28.3 Part 3/3 Basics of Software Architecture and Design Patterns'
 description: 'Explore design patterns in software development, their benefits, and how to start implementing them.'
-publishDate: '21 February 2025'
-updatedDate: '21 February 2025'
+publishDate: '20 February 2025'
+updatedDate: '20 February 2025'
 coverImage:
   src: './cover.webp'
   alt: 'Design Patterns in Software Development'
