@@ -24,8 +24,11 @@ Why Refactor from PHP to Java?
 PHP is widely used for web applications but can present challenges when scaling enterprise-grade financial platforms. The main reasons for refactoring include:
 
 ✔️ Improved Maintainability – Java's object-oriented nature makes managing large codebases easier.
+
 ✔️ Performance Optimization – Java is better suited for high-performance applications with large-scale transactions.
+
 ✔️ Better Security – Java provides strong security features, which are crucial in fintech applications.
+
 ✔️ Scalability – Spring Boot enables microservice architecture, allowing for better modularity and scaling.
 
 To facilitate a smooth transition, we designed a new platform structure incorporating design patterns that promote clean, reusable, and scalable code. Also the API's are designed in Java using SOAP protocol.

@@ -1,5 +1,5 @@
 ---
-title: '#28.1 Part 1/2 Basics of Software Architecture and Design Patterns'
+title: '#28.1 Part 1/3 Basics of Software Architecture and Design Patterns'
 description: 'Explore design patterns in software development, their benefits, and how to start implementing them.'
 publishDate: '18 February 2025'
 updatedDate: '18 February 2025'
