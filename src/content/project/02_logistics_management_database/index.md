@@ -4,8 +4,8 @@ description: 'Improvement of database management system for a transportation com
 publishDate: '01 February 2022'
 updatedDate: '01 February 2022'
 coverImage:
-src: 'cover.webp'
-alt: 'Cover Image'
+  src: 'cover.webp'
+  alt: 'Cover Image'
 tags: ['Database Management', 'Logistics', 'Optimization']
 ---
 
