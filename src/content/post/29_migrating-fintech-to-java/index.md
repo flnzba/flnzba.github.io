@@ -280,7 +280,7 @@ Create the project using Spring Initializr:
 </project>
 ```
 
-# ⚙️ **2. Configuration**
+## ⚙️ **2. Configuration**
 
 ### **application.properties**
 
@@ -317,7 +317,7 @@ public class SOAPConfig {
 }
 ```
 
-# 🟡 **3. SOAP Client with Singleton Pattern**
+## 🟡 **3. SOAP Client with Singleton Pattern**
 
 ### **SOAPClient.java**
 
@@ -357,7 +357,7 @@ public class SOAPClient {
 - Ensures only one SOAP connection exists, reducing memory usage.
 - Prevents duplicate API requests, improving efficiency.
 
-# 🟠 **4. Adapter Pattern for Bank APIs**
+## 🟠 **4. Adapter Pattern for Bank APIs**
 
 ### **SOAP Interface for Banks**
 
@@ -396,7 +396,7 @@ public class BankAAdapter implements BankAPI {
 - Allows the system to integrate with multiple bank APIs without modifying the core code.
 - Ensures smooth switching between different banks.
 
-# 🟡 **5. Facade Pattern for Multiple Banks**
+## 🟡 **5. Facade Pattern for Multiple Banks**
 
 ### **BankServiceFacade.java**
 
@@ -427,7 +427,7 @@ Why Facade Pattern?
 - Reduces complexity by exposing a single method for fetching balances.
 - Improves code readability.
 
-# 🟢 **6. Strategy Pattern for Investment Calculations**
+## 🟢 **6. Strategy Pattern for Investment Calculations**
 
 ### **InvestmentStrategy.java**
 
@@ -470,7 +470,7 @@ public class SimpleInterestStrategy implements InvestmentStrategy {
 - Users can choose between compound interest or simple interest dynamically.
 - Simplifies adding new investment strategies in the future.
 
-# 🟤 **7. Observer Pattern for Real-Time Market Updates**
+## 🟤 **7. Observer Pattern for Real-Time Market Updates**
 
 ### **MarketDataService.java**
 
@@ -512,7 +512,7 @@ public class MarketDataService implements MarketData {
 }
 ```
 
-# 🟠 **8. Repository Pattern for Database Operations**
+## 🟠 **8. Repository Pattern for Database Operations**
 
 ### **Client Entity**
 
@@ -546,7 +546,7 @@ public interface ClientRepository extends JpaRepository<Client, String> {
 }
 ```
 
-# 🟢 **9. Service Layer**
+## 🟢 **9. Service Layer**
 
 ### **InvestmentService.java**
 
@@ -580,7 +580,7 @@ public class InvestmentService {
 }
 ```
 
-# 🟡 **10. REST Controller**
+## 🟡 **10. REST Controller**
 
 ### **InvestmentController.java**
 
