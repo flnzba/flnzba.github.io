@@ -4,11 +4,8 @@ import PostPreview from '@/components/blog/PostPreview.astro';
 import { getAllPosts, sortMDByDate } from '@/data/post';
 import PageLayout from '@/layouts/Base.astro';
 import { Image } from 'astro:assets';
-import devPicFZ from '@/assets/devPicFZ.jpg'
-// import projectList from '../data/projectList.json';
+import devPicFZ from '@/assets/devPicFZ.webp';
 import techStack from '../data/techStack.json';
-// import masonryComp from '@/components/masonryComp.astro';
-import MasonryComp from '@/components/masonryComp.astro';
 
 const MAX_POSTS = 5;
 const allPosts = await getAllPosts();
