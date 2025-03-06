@@ -18,9 +18,11 @@ As organizations increasingly adopt hybrid and multi-cloud environments to drive
 The foundation of successful data governance in any environment is a well-defined framework that outlines the roles, policies, and procedures for managing data.
 
 ### Define Data Governance Policies
+
 Creating clear and enforceable data governance policies is crucial. These policies should address key aspects such as data quality, data security, privacy policies, and compliance with regulatory requirements. Each policy must be detailed, reflecting the unique needs and regulations applicable to the industry and regions the organization operates in.
 
 ### Assign Data Stewardship
+
 Data stewards play a critical role in the governance framework. They are responsible for implementing policies, managing data assets, and ensuring data quality and compliance. Effective data stewardship requires a combination of business knowledge and technical expertise to manage data effectively across diverse environments.
 
 ## Implementing Data Cataloging
@@ -28,9 +30,11 @@ Data stewards play a critical role in the governance framework. They are respons
 Data cataloging is a powerful tool for managing data assets by creating a centralized repository of information about the data, often referred to as metadata.
 
 ### Choose a Data Catalog Tool
+
 Tools like Apache Atlas, Collibra, or Alation are essential for effective data cataloging. These tools help in organizing data into a searchable repository, making it easier for users to find and understand data across different clouds and systems.
 
 ### Automate Metadata Management
+
 Automating the ingestion and ongoing management of metadata helps maintain up-to-date and accurate data catalogs. Automation also supports scalability by handling large volumes of data across various sources without manual intervention.
 
 ## Data Quality Management
@@ -38,9 +42,11 @@ Automating the ingestion and ongoing management of metadata helps maintain up-to
 Ensuring high data quality across all systems is vital for operational efficiency and analytical accuracy.
 
 ### Implement Data Quality Rules
+
 Establish rules for how data should be validated, cleaned, and transformed before it is used. This might include checks for data completeness, accuracy, and consistency.
 
 ### Monitor Data Quality
+
 Use data quality tools that provide ongoing monitoring and reporting capabilities. These tools can identify and alert on data quality issues, allowing for timely remediation to maintain the integrity of business operations and analytics.
 
 ## Data Privacy and Compliance
@@ -48,9 +54,11 @@ Use data quality tools that provide ongoing monitoring and reporting capabilitie
 Compliance with data-related regulations such as GDPR, HIPAA, or CCPA is non-negotiable. Managing compliance in hybrid and multi-cloud environments requires robust tools and processes.
 
 ### Data Privacy Tools
+
 Implement tools designed to help manage data privacy requirements effectively. These might include functionalities for data discovery, classification, and risk assessment to ensure compliance across different jurisdictions.
 
 ### Regular Compliance Audits
+
 Conducting regular audits helps ensure that all data handling practices comply with legal and regulatory standards. This also helps in identifying any potential gaps in compliance and addressing them proactively.
 
 ## Secure Data Across Environments
@@ -58,9 +66,11 @@ Conducting regular audits helps ensure that all data handling practices comply w
 Security is a major concern in hybrid and multi-cloud environments due to the increased complexity and data exposure risks.
 
 ### Unified Security Model
+
 Develop and implement a unified security model that applies consistent security measures across all data stores and clouds. This includes uniform data encryption, consistent use of access controls, and comprehensive threat detection systems.
 
 ### Hybrid Data Security Solutions
+
 Tools such as CipherCloud or McAfee MVISION Cloud offer cross-platform security features that help secure data transitions between cloud environments and on-premises data centers.
 
 ## Manage Multi-Cloud Data Integration
@@ -68,9 +78,11 @@ Tools such as CipherCloud or McAfee MVISION Cloud offer cross-platform security 
 Effective data integration strategies are critical for operational continuity and data consistency across different cloud platforms.
 
 ### Integration Tools
+
 Leverage tools like Talend, Informatica, or Apache NiFi, which facilitate the integration of data from various sources, ensuring that data remains consistent and accessible regardless of its location.
 
 ### API Management
+
 Utilizing API management tools helps streamline the integration and efficient management of data services across multiple clouds, enabling seamless data interaction and access.
 
 ## Example
@@ -107,15 +119,19 @@ print(results)
 ```
 
 ### Authentication
+
 Authenticates to Apache Atlas using a service principal (client ID, secret, and tenant ID).
 
 ### Client Initialization
+
 Initializes a client to interact with the Atlas API.
 
 ### Entity Creation
+
 Defines an entity with specific attributes, such as name, type, and a unique identifier.
 
 ### Entity Upload
+
 Uploads the entity to Apache Atlas, effectively registering it in the system.
 
 ## Conclusion

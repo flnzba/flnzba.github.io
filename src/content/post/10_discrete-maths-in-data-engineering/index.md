@@ -9,8 +9,6 @@ coverImage:
 tags: ['Mathematics', 'Data Engineering']
 ---
 
-# Discrete Mathematics in Data Engineering
-
 Discrete mathematics plays a crucial role in data engineering, providing the foundational concepts and tools necessary for processing, interpreting data and much more. By understanding discrete mathematics, data engineers can design efficient algorithms, optimize data structures and develop efficient data processing pipelines.
 
 ## Set Theory

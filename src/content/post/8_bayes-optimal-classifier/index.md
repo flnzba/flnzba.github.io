@@ -9,8 +9,6 @@ coverImage:
 tags: ["AI", "Statistics"]
 ---
 
-# Understanding the Bayes-Optimal Classifier and Bayesian Inference in Medical Diagnostics
-
 In the world of statistical decision theory and machine learning, the Bayes-optimal classifier represents a benchmark of accuracy, providing a theoretical framework for making predictions under uncertainty. Similarly, in medical diagnostics, Bayesian inference helps in making informed decisions based on test results. Let’s delve deeper into these concepts to understand how they apply to everyday scenarios like medical testing.
 
 ## The Bayes-Optimal Classifier
@@ -28,6 +26,7 @@ P(C \mid X) = \frac{P(X \mid C)P(C)}{P(X)}
 $$
 
 where:
+
 - $$P(C \mid X)$$ is the posterior probability of class $$C$$ given features $$ X $$.
 - $$ P(X \mid C) $$ is the likelihood of features $$ X $$ given class $$ C $$.
 - $$ P(C) $$ is the prior probability of class $$ C $$.
@@ -36,6 +35,7 @@ where:
 ### Example in Practice
 
 Consider a scenario where:
+
 - Apples weigh around 150 grams on average.
 - Oranges weigh about 200 grams on average.
 - 40% of our fruit collection are apples, and 60% are oranges.
@@ -64,6 +64,7 @@ $$
 ### Application with Numbers
 
 Let’s assume:
+
 - 1% of the population has a certain disease.
 - A diagnostic test has a 95% sensitivity and a 10% false positive rate.
 

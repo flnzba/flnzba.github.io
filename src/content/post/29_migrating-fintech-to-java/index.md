@@ -4,12 +4,10 @@ description: 'Transforming a fintech investment platform from PHP to Java to imp
 publishDate: '21 February 2025'
 updatedDate: '21 February 2025'
 coverImage:
-  src: './cover.webp'
-  alt: 'Migrating a Fintech Investment Platform from PHP to Java (Spring Boot)'
+    src: './cover.webp'
+    alt: 'Migrating a Fintech Investment Platform from PHP to Java (Spring Boot)'
 tags: ['business case', 'php', 'java', 'spring boot', 'fintech']
 ---
-
-# Transformig a Fintech Investment Platform: From PHP to Java (Spring Boot)
 
 ## Project Overview
 
@@ -39,7 +37,7 @@ This comprehensive manual will guide you through building the **new investment p
 
 ## 📂 **Project Structure**
 
-```
+```text
 investment-platform/
 ├── src/
 │   └── main/
@@ -232,7 +230,7 @@ Let's see how the theory would be used in a real-world scenario.
 Create the project using Spring Initializr:
 
 - Dependencies: **Spring Web**, **Spring Boot Starter SOAP**, **Spring Boot Starter Data JPA**, **Spring Boot Starter Web Services**, **Lombok**, **MySQL Driver**
-  **This setup includes:**
+    **This setup includes:**
 - Spring Boot Web – To build REST APIs.
 - Spring Boot Web Services – To handle SOAP-based APIs.
 - Spring Data JPA – To manage database transactions with MySQL.
@@ -645,10 +643,10 @@ docker run --name mysql-investment -e MYSQL_ROOT_PASSWORD=secret -e MYSQL_DATABA
 ### **Step 3:** Test Endpoints
 
 - **Calculate Returns:**  
-  `http://localhost:8080/api/investment/returns?type=compound&principal=10000&rate=5&years=10`
+    `http://localhost:8080/api/investment/returns?type=compound&principal=10000&rate=5&years=10`
 
 - **Get Account Balances:**  
-  `http://localhost:8080/api/investment/balances?accountId=12345`
+    `http://localhost:8080/api/investment/balances?accountId=12345`
 
 ## **Conclusion**
 

@@ -9,8 +9,6 @@ coverImage:
 tags: ['PowerBI', 'DataLake', 'Azure']
 ---
 
-# Change Power BI Data Source from Local to Azure Data Lake Storage Gen2
-
 In Power BI, data transformations are often tailored to specific datasets. Moving from a local data source to Azure Data Lake Storage Gen2 (ADLSv2) can introduce challenges, especially when the JSON files in ADLS have varying structures and must not be combined. In my case there where 4 JSON files in a local folder which were transfered to an ADLS Gen 2. These files then needed to be reconnected to the POWER BI Report.
 
 ## Understanding the Problem
@@ -38,9 +36,11 @@ Before modifying your queries, establish a connection to the ADLS folder.
 2. Navigate to the **Home** tab and select **Get Data**.
 3. Choose **Azure > Azure Data Lake Storage Gen2** from the list of connectors.
 4. Enter the storage account URL in the format:
-   ```
+
+   ```text
    https://<storage-account-name>.dfs.core.windows.net/<container-name>
    ```
+
 5. Authenticate using one of the following:
    - **Account key**: Available in the Azure portal.
    - **Azure Active Directory**: If integrated with your organization's Azure AD.
@@ -59,16 +59,20 @@ Since ADLS combines all files by default, the next step is to filter files indiv
    - Click on **Transform Data** to enter the Power Query editor.
 2. **Add a Custom Column**:
    - Use the following code to extract file names:
+
      ```dax
      // Power Query Lang
      Table.AddColumn(Source, "FileName", each Text.AfterDelimiter([Name], "/"))
      ```
+
 3. **Filter Files**:
    - Apply a filter for each file using its name:
+
      ```dax
      // Power Query Lang
      Table.SelectRows(Source, each Text.Contains([FileName], "File1.json"))
      ```
+
    - Repeat this step for all other files (e.g., `File2.json`, `File3.json`, etc.).
 
 This ensures that each query targets a single file, preventing Power BI from combining the data. You get a separate query for each file, allowing you to apply unique transformations.
@@ -81,19 +85,24 @@ Each file must be transformed to match its counterpart in the local data source.
 
 1. **Expand JSON Data**:
    If the file content is JSON, extract and expand its nested structure:
+
    ```dax
    // Power Query Lang
    Source = Json.Document(Binary.Load(File.Contents("File1.json"))),
    ExpandedData = Table.ExpandRecordColumn(Source, "Data", {"Field1", "Field2"})
    ```
+
 2. **Rename Columns**:
    Ensure column names match those in the local file:
+
    ```dax
    // Power Query Lang
    RenamedColumns = Table.RenameColumns(ExpandedData, {{"Field1", "NewField1"}, {"Field2", "NewField2"}})
    ```
+
 3. **Change Data Types**:
    Apply consistent data types:
+
    ```dax
    // Power Query Lang
    TransformedTypes = Table.TransformColumnTypes(RenamedColumns, {{"NewField1", Int64.Type}, {"NewField2", Text.Type}})

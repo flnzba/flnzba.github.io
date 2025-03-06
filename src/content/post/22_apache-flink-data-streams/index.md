@@ -9,8 +9,6 @@ coverImage:
 tags: ['ETL', 'Apache Flink']
 ---
 
-# Implementing Real-Time Data Processing Using Apache Flink
-
 In today’s fast-paced digital landscape, the ability to process data in real-time is invaluable for businesses looking to gain a competitive edge. Apache Flink stands out as a powerful framework for building and executing high-performance, scalable, and fault-tolerant streaming applications. This article delves into implementing real-time data processing using Apache Flink, covering everything from its core architecture to practical application development and deployment.
 
 ## Understanding Apache Flink’s Architecture
@@ -28,9 +26,11 @@ To begin with Apache Flink, follow these steps to set up your environment:
 
 1. **Download and Install Apache Flink**: Navigate to the Apache Flink website, download the latest stable release, and unzip it on your machine.
 2. **Start Flink Local Cluster**: Initiate a local test cluster by running the following from your Flink directory:
-   ```
+
+   ```bash
    ./bin/start-cluster.sh
    ```
+
    This command starts the JobManager and TaskManager processes, setting up a basic environment for developing and testing Flink applications.
 
 ## Creating a Flink Application
@@ -38,6 +38,7 @@ To begin with Apache Flink, follow these steps to set up your environment:
 Developing a Flink application involves several key steps, from setting up a project to writing the actual data processing logic:
 
 1. **Create a Maven Project**: Initialize a Maven project to handle dependencies. Your `pom.xml` should include the necessary Flink dependencies:
+
    ```xml
    <dependencies>
      <dependency>
@@ -52,7 +53,9 @@ Developing a Flink application involves several key steps, from setting up a pro
      </dependency>
    </dependencies>
    ```
+
 2. **Implementing the Data Stream Processing Logic**: Define a simple data stream source, transformations, and sink:
+
    ```java
    StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
    DataStream<String> text = env.fromElements("Here are some elements");

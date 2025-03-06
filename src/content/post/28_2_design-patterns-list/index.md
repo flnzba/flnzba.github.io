@@ -4,19 +4,19 @@ description: 'Explore design patterns in software development, their benefits, a
 publishDate: '19 February 2025'
 updatedDate: '19 February 2025'
 coverImage:
-  src: './cover.webp'
-  alt: 'Design Patterns in Software Development'
+    src: './cover.webp'
+    alt: 'Design Patterns in Software Development'
 tags: ['architecture', 'design-pattern']
 ---
 
-# The Power of Design Patterns in Software Development
-
 ## Intro 2
+
 Last time we spoke about all the benefits and reasons why design patterns are important. Today we will dive into the different types and principles of design patterns and how they can be used in your projects.
 
 ## **Aspects of Software Architecture**
 
 ### **1. Modularity**
+
 Modularity is the practice of dividing a system into smaller, independent modules, each responsible for a specific functionality. These modules can be developed, tested, and maintained independently.
 
 - Enhances maintainability by making it easier to locate and fix issues.

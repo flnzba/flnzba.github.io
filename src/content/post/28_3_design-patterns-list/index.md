@@ -4,14 +4,13 @@ description: 'Explore design patterns in software development, their benefits, a
 publishDate: '20 February 2025'
 updatedDate: '20 February 2025'
 coverImage:
-  src: './cover.webp'
-  alt: 'Design Patterns in Software Development'
+    src: './cover.webp'
+    alt: 'Design Patterns in Software Development'
 tags: ['architecture', 'design-pattern']
 ---
 
-# The Power of Design Patterns in Software Development
-
 ## Intro 3
+
 The last part of the design pattern series is all about examples and practical implementations. We will dive into the different types and principles of design patterns and how they can be used in your projects.
 
 ## **Design Patterns in Software Development**
@@ -265,7 +264,6 @@ adapter = Adapter(OldSystem())
 print(adapter.request())  # "Old system output"
 ```
 
-
 ### **Bridge Pattern**
 
 Separates abstraction from implementation.
@@ -294,7 +292,6 @@ abstraction = Abstraction(implementation)
 print(abstraction.operation())  # "ConcreteImplementationA"
 ```
 
-
 ### **Decorator Pattern**
 
 Dynamically adds behavior to objects.
@@ -322,7 +319,6 @@ component = ConcreteComponent()
 decorated = Decorator(component)
 print(decorated.operation())  # "Decorator(ConcreteComponent)"
 ```
-
 
 ### **Facade Pattern**
 
@@ -385,7 +381,6 @@ subject.attach(observer)
 subject.notify("Hello, World!")  # "Observer received: Hello, World!"
 ```
 
-
 ### **Command Pattern**
 
 Encapsulates a request as an object.
@@ -413,7 +408,6 @@ receiver = Receiver()
 command = ConcreteCommand(receiver)
 command.execute()  # "Action executed"
 ```
-
 
 ### **State Pattern**
 
@@ -486,7 +480,6 @@ handler_chain = ConcreteHandlerA(ConcreteHandlerB())
 handler_chain.handle_request("B")  # "Handled by HandlerB"
 ```
 
-
 ### **Mediator Pattern**
 
 Reduces coupling by centralizing communication between objects.
@@ -545,7 +538,6 @@ component2.do_b()
 # Component1 reacts to B
 ```
 
-
 ### **Memento Pattern**
 
 Captures and restores an object’s state.
@@ -589,7 +581,6 @@ originator.restore(caretaker.get_memento(0))
 print(originator.state)  # "State1"
 ```
 
-
 ### **Strategy Pattern**
 
 Encapsulates algorithms into interchangeable modules.
@@ -623,7 +614,6 @@ print(context.execute_strategy(5, 3))  # 8
 context.strategy = SubtractStrategy()
 print(context.execute_strategy(5, 3))  # 2
 ```
-
 
 ### **Template Method Pattern**
 
@@ -668,7 +658,6 @@ obj.template_method()
 # Step 2 implemented by ConcreteClass
 # Optional hook executed
 ```
-
 
 ### **Visitor Pattern**
 
@@ -737,7 +726,6 @@ with ThreadPoolExecutor(max_workers=3) as executor:
         executor.submit(worker_function, i)
 ```
 
-
 ### **Read-Write Lock Pattern**
 
 Allows concurrent reads but exclusive writes.
@@ -787,7 +775,6 @@ def writer():
 threading.Thread(target=reader).start()
 threading.Thread(target=writer).start()
 ```
-
 
 ### **Double-Checked Locking Pattern**
 
@@ -868,7 +855,6 @@ presentation_layer.display()
 # Presentation: DATA FROM DATABASE
 ```
 
-
 ### **Model-View-Controller (MVC) Pattern**
 
 Separates application logic (Model), user interface (View), and input handling (Controller).
@@ -901,7 +887,6 @@ controller = Controller(model, view)
 controller.update_view()
 # View displaying: Hello MVC
 ```
-
 
 ### **Microservices Pattern**
 
@@ -984,7 +969,6 @@ for i in range(10):
     time.sleep(1)
 ```
 
-
 ### **API Gateway Pattern**
 
 Acts as a single entry point for a set of microservices.
@@ -1015,7 +999,6 @@ if __name__ == '__main__':
     app.run(port=5000)
 ```
 
-
 ### **Service Mesh Pattern**
 
 Manages service-to-service communication within a microservices architecture.
@@ -1027,19 +1010,18 @@ Manages service-to-service communication within a microservices architecture.
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: service-mesh-gateway
+    name: service-mesh-gateway
 spec:
-  selector:
-    istio: ingressgateway
-  servers:
-    - port:
-        number: 80
-        name: http
-        protocol: HTTP
-      hosts:
-        - '*'
+    selector:
+        istio: ingressgateway
+    servers:
+        - port:
+              number: 80
+              name: http
+              protocol: HTTP
+          hosts:
+              - '*'
 ```
-
 
 ### **Sidecar Pattern**
 
@@ -1050,16 +1032,15 @@ Attaches additional functionality to a service without altering it (e.g., loggin
 ```yaml
 version: '3'
 services:
-  app:
-    image: my-app
-    ports:
-      - '5000:5000'
-  sidecar:
-    image: logging-sidecar
-    volumes:
-      - /var/log/app:/app/logs
+    app:
+        image: my-app
+        ports:
+            - '5000:5000'
+    sidecar:
+        image: logging-sidecar
+        volumes:
+            - /var/log/app:/app/logs
 ```
-
 
 ### **Saga Pattern**
 
@@ -1115,7 +1096,6 @@ saga.execute()
 # Inventory reservation cancelled
 ```
 
-
 ### **CQRS (Command Query Responsibility Segregation) Pattern**
 
 Separates read and write operations for better scalability.
@@ -1145,7 +1125,6 @@ query_handler = QueryHandler(command_handler)
 command_handler.update(1, {"name": "Alice"})
 print(query_handler.get_user(1))  # {"name": "Alice"}
 ```
-
 
 ### **Event Sourcing Pattern**
 
@@ -1225,7 +1204,6 @@ aggregator.add_message("Message 2")
 print(aggregator.aggregate())  # "Message 1 | Message 2"
 ```
 
-
 ### **Message Broker Pattern**
 
 Routes messages between services.
@@ -1256,7 +1234,6 @@ channel.basic_consume(queue='hello', on_message_callback=callback, auto_ack=True
 print('Waiting for messages...')
 channel.start_consuming()
 ```
-
 
 ### **Content-Based Router Pattern**
 
@@ -1292,7 +1269,6 @@ router.route("This is a payment notification")
 # Order Handler: This is an order request
 # Payment Handler: This is a payment notification
 ```
-
 
 ### **Publish-Subscribe Channel Pattern**
 
@@ -1331,7 +1307,6 @@ pubsub.publish("error", "Disk space low")
 # Logging: Disk space low
 # Alert: Disk space low
 ```
-
 
 ## Conclusion
 

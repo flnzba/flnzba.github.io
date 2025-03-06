@@ -9,8 +9,6 @@ coverImage:
 tags: ['frontend', 'Astro', 'routing']
 ---
 
-# Crafting Dynamic Pages in Astro: A Guide to Creating Individual Project Pages
-
 ## Setting Up Your Astro Project
 
 Before diving into dynamic routing, ensure that your development environment is ready. If you haven’t already set up an Astro project, you'll need to do that first. Here’s how you can prepare your project for dynamic content generation:

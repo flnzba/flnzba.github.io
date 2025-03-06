@@ -9,8 +9,6 @@ coverImage:
 tags: ['quantum computing', 'general']
 ---
 
-# The Current State of Quantum Computing: A Comprehensive Overview
-
 Quantum computing has evolved from a theoretical concept into a practical tool that is transforming how we approach complex computational problems. By leveraging the principles of quantum mechanics, this technology has the potential to revolutionize industries such as cryptography, drug discovery, and optimization. The year 2023 has marked significant advancements in quantum hardware, with key players like Google, IBM, and Intel achieving critical milestones. These developments demonstrate progress not only in the number of qubits available but also in the critical areas of error correction, scalability, and utility-scale computation.
 
 This article provides a detailed analysis of the latest quantum CPUs from leading companies, comparing their technological advancements and addressing the challenges that remain on the path to fully operational quantum computing systems.
@@ -27,7 +25,7 @@ Moreover, Willow's design focuses on modularity and precision, positioning it as
 
 IBM's **Heron processor**, released as part of its **Quantum System Two** architecture, represents another milestone in quantum computing. Heron comprises **133 qubits**, and while the increase in qubit count compared to Willow is incremental, IBM emphasizes modularity and enhanced error correction as key innovations.
 
-### Key Features:
+### Key Features
 
 1. **Improved Error Rates**: The Heron processor achieves a five-fold reduction in error rates compared to its predecessor, the Eagle processor. For instance, this enables more precise simulations in material science, such as predicting the behavior of novel compounds.
 2. **Modular Design**: IBM Quantum System Two integrates classical computation with quantum processors, allowing multiple Heron chips to work collaboratively. This design is a cornerstone of IBM's vision for **quantum-centric supercomputing**, where quantum and classical resources are combined seamlessly.

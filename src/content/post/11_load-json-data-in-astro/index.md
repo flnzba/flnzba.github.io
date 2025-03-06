@@ -9,8 +9,6 @@ coverImage:
 tags: ['JSON', 'Typescript', 'Astro']
 ---
 
-# Refactoring Code for Enhanced Maintainability: From In-file Data Objects to JSON
-
 ## The Original Approach: In-file Data Object
 
 Initially, the technology stack data for the front page of [fzeba.com](https://fzeba.com) was embedded directly within the React component using a constant array `cactusTech`. This array held multiple technology entries, each described by properties like `desc`, `href`, and `title`. The array was directly used in the component to render the technology stack section.

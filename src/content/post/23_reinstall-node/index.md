@@ -9,8 +9,6 @@ coverImage:
 tags: ['Node.js', 'npm', 'Guide']
 ---
 
-# How to Uninstall and Reinstall Node.js and npm on Windows, macOS, and Linux (Manually, via Homebrew, and via nvm)
-
 Node.js is an essential runtime for JavaScript, and npm (Node Package Manager) is its package manager. However, there are times when you need to **completely uninstall and reinstall Node.js and npm**, whether due to version conflicts, broken installations, or upgrading to a newer version.
 
 This guide will cover **three different methods** to uninstall and reinstall Node.js and npm on **Windows, macOS, and Linux**.
@@ -32,10 +30,12 @@ If you installed Node.js via the official installer or a package manager other t
 #### **Remove npm Cache & Environment Variables**
 
 1. Delete the global npm modules:
+
    ```sh
    rd /s /q "%AppData%\npm"
    rd /s /q "%AppData%\npm-cache"
    ```
+
 2. Remove Node.js from **System Environment Variables**:
    - Press `Win + R`, type `sysdm.cpl`, and hit Enter.
    - Go to the **Advanced** tab and click **Environment Variables**.
@@ -60,17 +60,22 @@ If it returns `"command not found"`, Node.js has been successfully removed.
 #### **Remove Node.js and npm**
 
 1. Open **Terminal** and run:
+
    ```sh
    sudo rm -rf /usr/local/bin/node
    sudo rm -rf /usr/local/include/node
    sudo rm -rf /usr/local/lib/node_modules
    ```
+
 2. Remove npm cache:
+
    ```sh
    rm -rf ~/.npm
    rm -rf ~/.node-gyp
    ```
+
 3. If you installed Node.js using the `.pkg` file, you can also remove it via:
+
    ```sh
    sudo rm -rf /usr/local/lib/dtrace/node.d
    ```
@@ -91,10 +96,13 @@ If they are no longer recognized, Node.js is fully removed.
 #### **Remove Node.js and npm**
 
 1. Run the following command:
+
    ```sh
    sudo apt-get remove --purge nodejs npm
    ```
+
 2. Clean up global npm packages:
+
    ```sh
    sudo rm -rf /usr/local/lib/node_modules
    rm -rf ~/.npm
@@ -116,10 +124,13 @@ If you installed Node.js via **Homebrew**, you can easily uninstall and reinstal
 ### **🔹 Uninstall Node.js using Homebrew**
 
 1. Open **Terminal** and run:
+
    ```sh
    brew uninstall node
    ```
+
 2. Clean up leftover files:
+
    ```sh
    brew cleanup
    ```
@@ -161,14 +172,19 @@ The link to the source code can be found here: [nvm-sh/nvm](https://github.com/n
 
 1. Open **Terminal** (or PowerShell for Windows).
 2. Run the following command:
+
    ```sh
    nvm uninstall <version>
    ```
+
    Replace `<version>` with the installed Node.js version. You can check installed versions with:
+
    ```sh
    nvm ls
    ```
+
 3. To completely remove `nvm` (optional), delete its directory:
+
    ```sh
    rm -rf ~/.nvm
    ```
@@ -178,24 +194,33 @@ The link to the source code can be found here: [nvm-sh/nvm](https://github.com/n
 ### **🔄 Reinstall Node.js using nvm**
 
 1. First, make sure `nvm` is installed:
+
    ```sh
    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
    ```
+
    If you are like me and have some problems with the PATH of your nvm installation, run the following command (from the source repository):
+
    ```sh
    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
    ```
+
 2. Reload your shell configuration:
+
    ```sh
    source ~/.zshrc  # For macOS/Linux (zsh users)
    source ~/.bashrc  # For Linux/macOS (bash users)
    ```
+
 3. Install the latest LTS version of Node.js:
+
    ```sh
    nvm install --lts
    ```
+
 4. Verify installation:
+
    ```sh
    node -v
    npm -v

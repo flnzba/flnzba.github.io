@@ -9,17 +9,15 @@ coverImage:
 tags: ['Power Query', 'PowerBI', 'ETL']
 ---
 
-# Use Power Query SDK in Visual Studio Code for Power BI'
-
 ## Why Use Power Query SDK in VS Code?
 
-### For Power BI Integration:
+### For Power BI Integration
 
 1. **Custom Data Connectors**: Extend Power BI’s capabilities by connecting to unique data sources that aren’t supported natively.
 2. **Advanced Data Transformation**: Build reusable queries and logic to clean and structure raw data for dashboards and reports.
 3. **Dynamic Data Models**: Create parameterized models that enable real-time user interactions in Power BI visualizations.
 
-### As a Standalone SDK:
+### As a Standalone SDK
 
 1. **Cross-Platform Data Processing**: Use Power Query outside of Power BI to integrate, clean, and transform data for other applications.
 2. **Integration with APIs**: Build connectors to pull data from REST APIs or custom endpoints for data pipelines.
@@ -152,6 +150,7 @@ shared CloudConnector.Contents = (url as text, apiKey as text) =>
 ## Testing and Debugging in VS Code
 
 1. **Write Test Queries**: Use the `*.query.pq` files to evaluate your connectors.
+
    ```dax
    // language: m (Power Query M Language)
    let
@@ -159,6 +158,7 @@ shared CloudConnector.Contents = (url as text, apiKey as text) =>
    in
        result
    ```
+
 2. **Evaluate Queries**: Right-click on the query file in VS Code and select "Evaluate current Power Query file."
 3. **View Results**: Debug and inspect the output in the VS Code console and results panel.
 

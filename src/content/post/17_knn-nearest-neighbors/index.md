@@ -9,15 +9,14 @@ coverImage:
 tags: ['Machine Learning', 'KNN', 'AI']
 ---
 
-# An Extensive Guide to Using K-Nearest Neighbors (KNN) in Business Settings
-
 ## Understanding K-Nearest Neighbors (KNN)
 
-K-Nearest Neighbors (KNN) is a simple yet versatile supervised machine learning algorithm. It is primarily used for classification and regression problems by finding the \( k \)-closest data points (neighbors) to a query point in a feature space. 
+K-Nearest Neighbors (KNN) is a simple yet versatile supervised machine learning algorithm. It is primarily used for classification and regression problems by finding the \( k \)-closest data points (neighbors) to a query point in a feature space.
 
 The core idea behind KNN is the principle of similarity: points with similar features are often close to each other. The algorithm identifies the neighbors and uses their attributes or labels to predict the query point's outcome.
 
 ### How KNN Works
+
 1. **Feature Representation**: Represent data points in an \( n \)-dimensional feature space.
 2. **Distance Measurement**: Calculate the distance between points using a metric like Euclidean, Manhattan, or Minkowski.
 3. **Neighbor Selection**: Choose the \( k \) nearest neighbors.
@@ -26,11 +25,13 @@ The core idea behind KNN is the principle of similarity: points with similar fea
    - **Regression**: Compute the average (or weighted average) of the neighbors' values.
 
 ### Advantages
+
 - Simple and intuitive.
 - Non-parametric (no assumptions about data distribution).
 - Versatile for both classification and regression.
 
 ### Challenges
+
 - Computationally expensive with large datasets.
 - Sensitive to noise and irrelevant features.
 - Performance depends on choosing \( k \) and the distance metric.
@@ -44,6 +45,7 @@ Below are specific business cases where KNN can provide value. Each case include
 **Scenario**: A retail store wants to group customers based on behavior such as age, income, and purchase frequency to target marketing efforts.
 
 **Approach**:
+
 - Use KNN to classify customers into segments (e.g., high-spending, frequent shoppers).
 - Normalize features (e.g., income, purchase frequency) to ensure equal contribution to distance metrics.
 
@@ -88,6 +90,7 @@ print(predictions)
 **Scenario**: An e-commerce platform recommends products to users based on their preferences or purchase history.
 
 **Approach**:
+
 - Represent users and products in a feature space (e.g., ratings, purchase counts).
 - Use KNN to find users with similar profiles and recommend products they liked.
 
@@ -118,6 +121,7 @@ print(f"Recommended neighbors for user 0: {indices}")
 **Scenario**: A bank wants to identify potentially fraudulent transactions by analyzing past transaction data.
 
 **Approach**:
+
 - Train KNN on labeled transactions (fraudulent or non-fraudulent).
 - Predict the likelihood of new transactions being fraudulent.
 
@@ -153,6 +157,7 @@ print(predictions)
 **Scenario**: A retailer predicts demand to optimize inventory.
 
 **Approach**:
+
 - Use KNN to forecast demand based on historical data.
 - Adjust inventory to prevent stockouts or overstocking.
 
@@ -185,6 +190,7 @@ print(predictions)
 **Scenario**: A bank assesses the risk of loan applicants based on credit scores and financial history.
 
 **Approach**:
+
 - Classify applicants into "High Risk" or "Low Risk" categories.
 
 ```python

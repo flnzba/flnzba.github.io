@@ -9,9 +9,10 @@ coverImage:
 tags: ["frontend", "markdown", "astro"]
 ---
 
-### How to Implement LaTeX in Astro.js for Markdown Rendering
+## How to Implement LaTeX in Astro.js for Markdown Rendering
 
-#### Introduction
+### Introduction
+
 Rendering LaTeX in Astro.js enriches your markdown files with mathematical expressions, making your content both engaging and informative. This blog post outlines the necessary steps to integrate LaTeX into Astro.js and addresses potential pitfalls along with their solutions.
 
 #### Step-by-Step Implementation
@@ -56,5 +57,6 @@ Rendering LaTeX in Astro.js enriches your markdown files with mathematical expre
   - *Problem:* Errors during build time when processing LaTeX syntax.
   - *Solution:* Ensure that your LaTeX is correctly formatted and that there are no syntax errors in your markdown files. LaTeX syntax errors can break the parser and cause build failures.
 
-#### Conclusion
+## Conclusion
+
 Integrating LaTeX into Astro.js allows your markdown files to display complex mathematical notations and enhances the readability of scientific or academic content. By following these steps and avoiding the common pitfalls, you can successfully render LaTeX in your Astro projects.

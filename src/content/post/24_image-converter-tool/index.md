@@ -9,8 +9,6 @@ coverImage:
 tags: ['Next.js', 'React', 'Tool']
 ---
 
-# Building a Fast and Efficient Image Converter with Next.js and Sharp
-
 In today's digital landscape, the need to convert images between various formats is commonplace.
 To address this, I developed an Image Converter Tool that streamlines the process, allowing users to effortlessly transform images into formats like JPG, PNG, WebP, and PDF.
 This blog post delves into the technical architecture of the application, highlighting key components and code implementations.

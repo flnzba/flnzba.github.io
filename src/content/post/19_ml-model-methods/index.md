@@ -9,8 +9,6 @@ coverImage:
 tags: ['machine-learning', 'AI', statistics']
 ---
 
-# Understanding the Landscape of Machine Learning: An In-Depth Analysis
-
 Machine learning (ML) continues to evolve, offering innovative ways to analyze data, predict trends, and automate decision-making processes across various industries. This article provides a detailed overview of the different types of machine learning methods, focusing on supervised, unsupervised, parametric, and non-parametric models.
 
 ## Supervised Machine Learning
@@ -20,6 +18,7 @@ Supervised learning models are trained using labeled datasets where both input a
 1. **Linear and Logistic Regression**: Linear regression predicts continuous values, while logistic regression is used for binary classification tasks.
 
    - **Linear Regression Example**:
+
      ```python
      from sklearn.linear_model import LinearRegression
      model = LinearRegression()
@@ -30,6 +29,7 @@ Supervised learning models are trained using labeled datasets where both input a
 2. **Decision Trees and Random Forests**: These models are used for both classification and regression tasks. Decision trees split data into subsets based on feature values, whereas random forests are ensembles of decision trees.
 
    - **Decision Tree Example**:
+
      ```python
      from sklearn.tree import DecisionTreeClassifier
      model = DecisionTreeClassifier()
@@ -40,6 +40,7 @@ Supervised learning models are trained using labeled datasets where both input a
 3. **Support Vector Machines (SVMs)**: SVMs are effective in high-dimensional spaces and are capable of defining complex higher-order relationships in data.
 
    - **SVM Example**:
+
      ```python
      from sklearn.svm import SVC
      model = SVC()
@@ -50,6 +51,7 @@ Supervised learning models are trained using labeled datasets where both input a
 4. **Neural Networks**: These models are foundations for deep learning and can model highly intricate relationships in data.
 
    - **Neural Network Example**:
+
      ```python
      from tensorflow.keras.models import Sequential
      from tensorflow.keras.layers import Dense
@@ -60,6 +62,7 @@ Supervised learning models are trained using labeled datasets where both input a
 
 5. **Gradient Boosting Machines (GBMs)**: GBMs are another ensemble technique that builds sequential trees to minimize errors.
    - **Gradient Boosting Example**:
+
      ```python
      from sklearn.ensemble import GradientBoostingClassifier
      model = GradientBoostingClassifier()
@@ -74,6 +77,7 @@ Unlike supervised learning, unsupervised learning algorithms infer patterns from
 1. **Clustering (e.g., K-means, Hierarchical)**: Used to group a set of objects in such a way that objects in the same group are more similar to each other than to those in other groups.
 
    - **K-means Clustering Example**:
+
      ```python
      from sklearn.cluster import KMeans
      model = KMeans(n_clusters=3)
@@ -84,6 +88,7 @@ Unlike supervised learning, unsupervised learning algorithms infer patterns from
 2. **Dimensionality Reduction (e.g., PCA, t-SNE)**: Techniques to reduce the number of random variables under consideration.
 
    - **PCA Example**:
+
      ```python
      from sklearn.decomposition import PCA
      model = PCA(n_components=2)
@@ -93,6 +98,7 @@ Unlike supervised learning, unsupervised learning algorithms infer patterns from
 3. **Association Rules (e.g., Apriori, FP-Growth)**: Aim to find interesting relationships between variables in large databases.
 
    - **Apriori Example**:
+
      ```python
      from mlxtend.frequent_patterns import apriori, association_rules
      frequent_itemsets = apriori(df, min_support=0.07, use_colnames=True)
@@ -101,6 +107,7 @@ Unlike supervised learning, unsupervised learning algorithms infer patterns from
 
 4. **Anomaly Detection (e.g., Isolation Forest)**: Identifies rare items, events, or observations which raise suspicions by differing significantly from the majority of the data.
    - **Isolation Forest Example**:
+
      ```python
      from sklearn.ensemble import IsolationForest
      model = IsolationForest()

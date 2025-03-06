@@ -9,11 +9,10 @@ coverImage:
 tags: ["internal"]
 ---
 
-# Starting the new Site
-
 I am happy to announce (never wrote this on linkedIn - but on my own site - ironic) that my new site is up and running. I started with my own creation of the site. I then switched to a template from Chris Williams (Astro-Cactus) (I am not a good designer). As I changed the things in the backend for my needs, I realized how much was put in into this template (My thanks to Chris).
 
 I am still working on the site and will add more content in the future. Some open TODOS are:
+
 - Add every project individually to the site
 - Do some individual styling
 - etc

@@ -4,12 +4,10 @@ description: 'Learn how to effectively implement graph databases in large-scale 
 publishDate: '16 February 2025'
 updatedDate: '16 February 2025'
 coverImage:
-  src: './cover.webp'
-  alt: 'Graph Databases in Large-Scale Applications'
+    src: './cover.webp'
+    alt: 'Graph Databases in Large-Scale Applications'
 tags: ['database', 'graph-db']
 ---
-
-# Set up Graph Databases in Large-Scale Applications for Complex Data Management
 
 In the realm of data management, graph databases offer unparalleled advantages for handling complex and interconnected data. This makes them ideal for applications such as social networks, recommendation engines, and fraud detection systems. This article provides a comprehensive guide on how to effectively implement graph databases in large-scale applications, ensuring optimal performance and scalability.
 
@@ -44,24 +42,28 @@ To populate your graph database, you’ll need to import your existing data:
 
 - **Prepare Data**: Transform data from existing sources to fit the graph model, which might involve creating lists of nodes and edges.
 - **Import Tools**: Utilize the database’s built-in tools for data import. For Neo4j, the command might look like:
-  ```
-  neo4j-admin import --nodes=users.csv --relationships=friends.csv
-  ```
+
+    ```
+    neo4j-admin import --nodes=users.csv --relationships=friends.csv
+    ```
 
 ## Querying Data
 
 Querying in graph databases is done through specialized languages designed to handle complex relationships:
 
 - **Cypher Query Language (for Neo4j)**: An SQL-like language for graph querying.
-  ```
-  MATCH (u:User)-[:FRIENDS_WITH]->(f)
-  WHERE u.name = 'Alice'
-  RETURN f.name
-  ```
+
+    ```
+    MATCH (u:User)-[:FRIENDS_WITH]->(f)
+    WHERE u.name = 'Alice'
+    RETURN f.name
+    ```
+
 - **Gremlin (for Apache TinkerPop compatible databases)**: A graph traversal language.
-  ```
-  g.V().has('name', 'Alice').out('friends_with').values('name')
-  ```
+
+    ```
+    g.V().has('name', 'Alice').out('friends_with').values('name')
+    ```
 
 ## Implementing Business Logic
 
@@ -89,7 +91,7 @@ Ensuring data security and compliance is critical, especially in applications de
 
 This Neo4j Cypher query demonstrates how to implement a basic recommendation system for a movie platform:
 
-```
+```SQL
 MATCH (user:Person {name: 'Alice'})-[:FRIENDS_WITH]->(friend:Person)-[:LIKES]->(movie:Movie)
 WHERE NOT (user)-[:LIKES]->(movie)
 RETURN movie.title AS RecommendedMovies

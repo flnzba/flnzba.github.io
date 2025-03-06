@@ -9,8 +9,6 @@ coverImage:
 tags: ['Shopify', 'Liquid', 'Ruby']
 ---
 
-# Rendering Shopify Liquid Code Locally with VS Code
-
 This guide explains how to set up a local development environment to render and test Shopify Liquid templates using VS Code.
 
 What I like to do if I test code or software with which I usually do not interact with (in this case ruby) is to create a docker container (or a github codespace) with the necessary tools and dependencies. This way I can keep my local machine clean and I can easily share the environment with others.
@@ -76,6 +74,7 @@ Tip: In a Github-Codespace you can use the pre-installed ruby and node.js versio
    ```
 
 4. Install dependencies:
+
    ```bash
    bundle install
    ```
@@ -170,6 +169,7 @@ Open `output.html` in your browser.
   Visit `http://localhost:8000`.
 
 - **Node.js:**
+
   ```bash
   npm install -g http-server
   http-server
@@ -186,6 +186,7 @@ Open `output.html` in your browser.
 
 1. Install Shopify CLI ([Guide](https://shopify.dev/docs/cli)).
 2. Log in:
+
    ```bash
    shopify login
    ```

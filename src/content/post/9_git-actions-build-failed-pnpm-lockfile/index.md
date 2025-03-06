@@ -9,9 +9,8 @@ coverImage:
 tags: ["Github Actions", "yml", "pnpm"]
 ---
 
-# How to Resolve GitHub Actions Build Failures for Astro Sites
-
 ## Introduction
+
 When deploying projects using GitHub Actions, encountering errors can be a common but frustrating setback. Recently, I faced an issue with a mismatch in package versions and outdated dependencies, which typically suggests running a specific command. However, in my case, the typical solution didn’t work. This post details a successful workaround.
 
 **The Problem**
@@ -24,6 +23,7 @@ ERR_PNPM_OUTDATED_LOCKFILE Cannot install with 'frozen-lockfile' because pnpm-lo
 Common advice suggests using `pnpm install --no-frozen-lockfile` to resolve such issues, but this did not work for me.
 
 ## Step-by-Step Solution
+
 Here's how I successfully resolved the error:
 
 1. **Analyze the Error**: Start by closely reading the error message provided during the build process. It often points directly to the nature of the issue, which is typically related to dependency management.
