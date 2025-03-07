@@ -22,12 +22,12 @@ const techIcons: Record<string, string> = {
   
   <!-- Mobile Accordion View -->
   <div class="md:hidden">
-    <details class="accordion-item rounded-lg border border-opacity-20 dark:border-opacity-10 border-slate-400 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 overflow-hidden">
+    <details class="accordion-item rounded-lg border border-opacity-20 dark:border-opacity-10 border-slate-400 dark:border-slate-700 bg-white dark:bg-slate-800 overflow-hidden">
       <summary class="p-3 cursor-pointer flex items-center">
-        <div class="icon-container flex items-center justify-center text-xl mr-3 p-1.5 rounded-full bg-slate-100 dark:bg-slate-700" aria-hidden="true">
+        <div class="icon-container flex items-center justify-center text-xl mr-3 p-1.5 rounded-full bg-slate-50 dark:bg-slate-700" aria-hidden="true">
           🧰
         </div>
-        <h3 class="font-bold text-base">My Tech Stack</h3>
+        <h3 class="font-bold text-base text-theme-accent">My Tech Stack</h3>
         <span class="ml-auto text-lg accordion-icon">+</span>
       </summary>
       <div class="p-3 pt-3 border-t border-slate-200 dark:border-slate-700">
@@ -39,10 +39,10 @@ const techIcons: Record<string, string> = {
               rel="noreferrer"
               target="_blank"
             >
-              <div class="h-full p-3 rounded-lg border border-opacity-20 dark:border-opacity-10 border-slate-400 dark:border-slate-700 transition-all duration-300 hover:shadow-md hover:scale-[1.02] hover:border-theme-accent bg-slate-50 dark:bg-slate-800 flex flex-col">
+              <div class="h-full p-3 rounded-lg border border-opacity-20 dark:border-opacity-10 border-slate-400 dark:border-slate-700 transition-all duration-300 hover:shadow-md hover:scale-[1.02] hover:border-theme-accent bg-white dark:bg-slate-800 flex flex-col">
                 <div class="flex items-center mb-1">
                   <span class="text-xl mr-2 icon-container" aria-hidden="true">{techIcons[tech.title] || "🔧"}</span>
-                  <h3 class="font-bold text-base group-hover:text-theme-accent transition-colors">{tech.title}</h3>
+                  <h3 class="font-bold text-base text-theme-accent group-hover:text-theme-accent transition-colors">{tech.title}</h3>
                 </div>
                 <p class="text-xs text-opacity-80 text-slate-700 dark:text-slate-300">{tech.desc}</p>
               </div>
@@ -54,7 +54,7 @@ const techIcons: Record<string, string> = {
   </div>
   
   <!-- Desktop Grid View -->
-  <div class="hidden md:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+  <div class="hidden md:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
     {techStack.map(tech => (
       <a 
         href={tech.href} 
@@ -62,10 +62,10 @@ const techIcons: Record<string, string> = {
         rel="noreferrer"
         target="_blank"
       >
-        <div class="h-full p-3 rounded-lg border border-opacity-20 dark:border-opacity-10 border-slate-400 dark:border-slate-700 transition-all duration-300 hover:shadow-md hover:scale-[1.02] hover:border-theme-accent bg-slate-50 dark:bg-slate-800 flex flex-col">
+        <div class="h-full p-3 rounded-lg border border-opacity-20 dark:border-opacity-10 border-slate-400 dark:border-slate-700 transition-all duration-300 hover:shadow-md hover:scale-[1.02] hover:border-theme-accent bg-white dark:bg-slate-800 flex flex-col">
           <div class="flex items-center mb-1">
             <span class="text-xl mr-2 icon-container" aria-hidden="true">{techIcons[tech.title] || "🔧"}</span>
-            <h3 class="font-bold text-base group-hover:text-theme-accent transition-colors">{tech.title}</h3>
+            <h3 class="font-bold text-base text-theme-accent group-hover:text-theme-accent transition-colors">{tech.title}</h3>
           </div>
           <p class="text-xs text-opacity-80 text-slate-700 dark:text-slate-300">{tech.desc}</p>
         </div>
