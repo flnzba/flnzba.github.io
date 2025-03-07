@@ -43,7 +43,7 @@ To populate your graph database, you’ll need to import your existing data:
 - **Prepare Data**: Transform data from existing sources to fit the graph model, which might involve creating lists of nodes and edges.
 - **Import Tools**: Utilize the database’s built-in tools for data import. For Neo4j, the command might look like:
 
-    ```
+    ```bash
     neo4j-admin import --nodes=users.csv --relationships=friends.csv
     ```
 
@@ -53,7 +53,7 @@ Querying in graph databases is done through specialized languages designed to ha
 
 - **Cypher Query Language (for Neo4j)**: An SQL-like language for graph querying.
 
-    ```
+    ```sql
     MATCH (u:User)-[:FRIENDS_WITH]->(f)
     WHERE u.name = 'Alice'
     RETURN f.name
@@ -61,7 +61,7 @@ Querying in graph databases is done through specialized languages designed to ha
 
 - **Gremlin (for Apache TinkerPop compatible databases)**: A graph traversal language.
 
-    ```
+    ```sql
     g.V().has('name', 'Alice').out('friends_with').values('name')
     ```
 
@@ -91,11 +91,11 @@ Ensuring data security and compliance is critical, especially in applications de
 
 This Neo4j Cypher query demonstrates how to implement a basic recommendation system for a movie platform:
 
-```SQL
-MATCH (user:Person {name: 'Alice'})-[:FRIENDS_WITH]->(friend:Person)-[:LIKES]->(movie:Movie)
-WHERE NOT (user)-[:LIKES]->(movie)
-RETURN movie.title AS RecommendedMovies
-```
+ ```sql
+ MATCH (user:Person {name: 'Alice'})-[:FRIENDS_WITH]->(friend:Person)-[:LIKES]->(movie:Movie)
+ WHERE NOT (user)-[:LIKES]->(movie)
+ RETURN movie.title AS RecommendedMovies
+ ```
 
 This query efficiently navigates the connections between users and their interests, providing personalized movie recommendations, a typical use case in social and recommendation applications.
 

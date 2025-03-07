@@ -1,0 +1,171 @@
+---
+import miniProjects from '../data/miniProjects.json';
+
+// Map of project types to their corresponding icons
+const projectIcons: Record<string, string> = {
+  "JavaScript": "📜",
+  "React": "⚛️",
+  "API": "🔌",
+  "Backend": "🖥️",
+  "Database": "🗄️",
+  "CSS": "🎨",
+  "Design": "✏️",
+  "Security": "🔒",
+  "Utility": "🔧",
+  "Productivity": "⏱️",
+  "Markdown": "📝",
+  "LocalStorage": "💾",
+  "Image Processing": "🖼️",
+  "Privacy": "🔐",
+  "AI": "🤖",
+  "Content Creation": "✍️",
+  "Automotive": "🚗",
+  "Python": "🐍",
+  "Data Analytics": "📊",
+  "Sports": "🎾",
+  "Real Estate": "🏠",
+  "Analysis": "📈",
+  "Reporting": "📑"
+};
+
+// Function to get an icon for a project based on its first tag
+const getProjectIcon = (tags: string[]) => {
+  if (tags && tags.length > 0) {
+    return projectIcons[tags[0]] || "🔍";
+  }
+  return "🔍";
+};
+---
+
+<section class="my-16">
+  <h2 class="title mb-4 text-xl">Mini Projects</h2>
+  
+  <!-- Mobile Accordion View -->
+  <div class="md:hidden">
+    {miniProjects.map((project, index) => (
+      <details class="accordion-item mb-2 rounded-lg border border-opacity-20 dark:border-opacity-10 border-slate-400 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 overflow-hidden">
+        <summary class="p-3 cursor-pointer flex items-center">
+          <div class="icon-container flex items-center justify-center text-xl mr-3 p-1.5 rounded-full bg-slate-100 dark:bg-slate-700" aria-hidden="true">
+            {getProjectIcon(project.tags)}
+          </div>
+          <h3 class="font-bold text-base">{project.title}</h3>
+          <span class="ml-auto text-lg accordion-icon">+</span>
+        </summary>
+        <div class="p-3 pt-3 border-t border-slate-200 dark:border-slate-700">
+          <p class="text-sm text-slate-700 dark:text-slate-300 mb-3">{project.desc}</p>
+          <div class="flex flex-wrap gap-2 mb-3">
+            {project.tags.map(tag => (
+              <span class="text-xs px-1.5 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700">{tag}</span>
+            ))}
+          </div>
+          <a 
+            href={project.href} 
+            class="inline-block text-sm text-theme-accent hover:underline"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Visit Project →
+          </a>
+        </div>
+      </details>
+    ))}
+  </div>
+  
+  <!-- Desktop Card View -->
+  <div class="hidden md:grid grid-cols-1 gap-3 max-w-3xl">
+    {miniProjects.map(project => (
+      <a 
+        href={project.href} 
+        class="group"
+        rel="noreferrer"
+        target="_blank"
+      >
+        <div class="project-card p-4 rounded-lg border border-opacity-20 dark:border-opacity-10 border-slate-400 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 transition-all duration-300 hover:shadow-md hover:scale-[1.01] hover:border-theme-accent">
+          <div class="flex items-center mb-2">
+            <div class="icon-container flex items-center justify-center text-xl mr-3 p-2 rounded-full bg-slate-100 dark:bg-slate-700" aria-hidden="true">
+              {getProjectIcon(project.tags)}
+            </div>
+            <h3 class="font-bold text-base group-hover:text-theme-accent transition-colors">{project.title}</h3>
+          </div>
+          <p class="text-sm text-slate-700 dark:text-slate-300 mb-2">{project.desc}</p>
+          <div class="flex flex-wrap gap-2">
+            {project.tags.map(tag => (
+              <span class="text-xs px-1.5 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700">{tag}</span>
+            ))}
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  .text-theme-accent {
+    color: hsl(var(--theme-accent));
+  }
+  
+  .hover\:border-theme-accent:hover {
+    border-color: hsl(var(--theme-accent));
+  }
+  
+  .project-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 120px;
+  }
+  
+  .icon-container {
+    width: 2.25rem;
+    height: 2.25rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .group:hover .icon-container {
+    transform: scale(1.1);
+  }
+  
+  /* Accordion styles */
+  details.accordion-item {
+    transition: all 0.3s ease;
+  }
+  
+  details.accordion-item summary {
+    list-style: none;
+    transition: all 0.3s ease;
+  }
+  
+  details.accordion-item summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  details.accordion-item[open] summary .accordion-icon {
+    transform: rotate(45deg);
+  }
+  
+  details.accordion-item summary .accordion-icon {
+    transition: transform 0.3s ease;
+  }
+  
+  details.accordion-item:hover {
+    border-color: hsl(var(--theme-accent));
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    .dark\:border-slate-700 {
+      border-color: rgb(51, 65, 85);
+    }
+    
+    .dark\:bg-slate-800 {
+      background-color: rgb(30, 41, 59);
+    }
+    
+    .dark\:bg-slate-700 {
+      background-color: rgb(51, 65, 85);
+    }
+    
+    .dark\:text-slate-300 {
+      color: rgb(203, 213, 225);
+    }
+  }
+</style> 

@@ -1,0 +1,87 @@
+---
+// Define expertise areas with icons
+const expertiseAreas = [
+  {
+    title: "Data Mastery",
+    icon: "📊",
+    description: "I design and implement robust data pipelines and data warehouses, ensuring that your data flows efficiently and securely."
+  },
+  {
+    title: "Backend Solutions",
+    icon: "🔧",
+    description: "From APIs to microservices and comprehensive web applications, I build scalable and maintainable backend architectures."
+  },
+  {
+    title: "AI Innovation",
+    icon: "🧠",
+    description: "I develop machine learning models that drive data intelligence and provide cutting-edge solutions to complex problems."
+  },
+  {
+    title: "Cloud Architecture",
+    icon: "☁️",
+    description: "I design and implement scalable cloud solutions on AWS, Azure, and GCP, optimizing for performance, security, and cost-efficiency across diverse business needs."
+  }
+];
+---
+<section class="my-8">
+	<div class="my-8">
+	<h2 class="text-lg font-bold mb-4">Here's a glimpse of what I do:</h2>
+	<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+		{expertiseAreas.map(area => (
+		<div class="expertise-card p-4 rounded-lg border border-opacity-20 dark:border-opacity-10 border-slate-400 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 transition-all duration-300 hover:shadow-md hover:scale-[1.02] hover:border-theme-accent">
+			<div class="flex items-center mb-2">
+			<div class="icon-container flex items-center justify-center text-xl mr-3 p-1.5 rounded-full bg-slate-100 dark:bg-slate-700" aria-hidden="true">
+				{area.icon}
+			</div>
+			<h3 class="font-bold text-base text-theme-accent">{area.title}</h3>
+			</div>
+			<p class="text-sm text-slate-700 dark:text-slate-300">{area.description}</p>
+		</div>
+		))}
+	</div>
+	</div>
+</section>
+<style>
+  .text-theme-accent {
+    color: hsl(var(--theme-accent));
+  }
+  
+  .hover\:border-theme-accent:hover {
+    border-color: hsl(var(--theme-accent));
+  }
+  
+  .expertise-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 130px;
+  }
+  
+  .icon-container {
+    width: 2.25rem;
+    height: 2.25rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .expertise-card:hover .icon-container {
+    transform: scale(1.1);
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    .dark\:border-slate-700 {
+      border-color: rgb(51, 65, 85);
+    }
+    
+    .dark\:bg-slate-800 {
+      background-color: rgb(30, 41, 59);
+    }
+    
+    .dark\:bg-slate-700 {
+      background-color: rgb(51, 65, 85);
+    }
+    
+    .dark\:text-slate-300 {
+      color: rgb(203, 213, 225);
+    }
+  }
+</style> 
