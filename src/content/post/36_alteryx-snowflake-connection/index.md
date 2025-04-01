@@ -1,5 +1,5 @@
 ---
-title: '#35 Connecting Alteryx to Snowflake: A Comprehensive Guide'
+title: '#36 Connecting Alteryx to Snowflake: A Comprehensive Guide'
 description: 'Integrating Alteryx with Snowflake for advanced data analytics'
 publishDate: '03 April 2025'
 updatedDate: '03 April 2025'
