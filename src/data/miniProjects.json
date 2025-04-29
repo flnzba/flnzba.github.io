@@ -2,13 +2,13 @@
     {
         "title": "AI Image Converter",
         "desc": "A fast, private image converter tool that transforms images between JPG, PNG, WebP, and PDF formats without storing converted files.",
-        "href": "https://ai-image-converter.com/",
+        "href": "https://image-converter-tool.vercel.app",
         "tags": ["JavaScript", "Image Processing", "Privacy"]
     },
     {
         "title": "BlogMate",
         "desc": "An intuitive blogging platform with AI assistance, multiple export formats, and powerful content management tools for bloggers and content creators.",
-        "href": "https://www.blog-mate.com/",
+        "href": "https://saas-blog-mate-v2.vercel.app/",
         "tags": ["React", "AI", "Content Creation"]
     },
     {
