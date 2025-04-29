@@ -5,7 +5,7 @@ publishDate: '29 April 2025'
 updatedDate: '29 April 2025'
 coverImage:
 src: './cover.webp'
-alt: 'Connecting Alteryx to Snowflake'
+alt: 'Docker-in-Docker'
 tags: ['Docker', 'Containers', 'DevOps', 'CI/CD']
 ---
 
