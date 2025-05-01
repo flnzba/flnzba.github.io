@@ -34,5 +34,11 @@
         "desc": "A versatile tool for converting Markdown files to various formats, including HTML and PDF, with a focus on simplicity and efficiency.",
         "href": "https://markdown-converter-roan.vercel.app/",
         "tags": ["Markdown", "JavaScript", "Content Creation"]
+    },
+    {
+        "title": "SQL Tester",
+        "desc": "A web application for testing SQL queries with a user-friendly interface and real-time feedback.",
+        "href": "https://sql-tester.vercel.app/",
+        "tags": ["SQL", "Database", "Testing"]
     }
 ]
