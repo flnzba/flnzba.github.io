@@ -39,7 +39,7 @@ const techIcons: Record<string, string> = {
               rel="noreferrer"
               target="_blank"
             >
-              <div class="h-full p-3 rounded-lg border border-opacity-20 dark:border-opacity-10 border-slate-400 dark:border-slate-700 transition-all duration-300 hover:shadow-md hover:scale-[1.02] hover:border-theme-accent bg-white dark:bg-slate-800 flex flex-col">
+              <div class="h-full p-3 rounded-lg border border-opacity-20 dark:border-opacity-10 border-slate-400 dark:border-slate-700 transition-all duration-300 hover:shadow-md hover:scale-[1.02] hover:border-theme-accent bg-slate-50 dark:bg-slate-700 flex flex-col">
                 <div class="flex items-center mb-1">
                   <span class="text-xl mr-2 icon-container" aria-hidden="true">{techIcons[tech.title] || "🔧"}</span>
                   <h3 class="font-bold text-base text-theme-accent group-hover:text-theme-accent transition-colors">{tech.title}</h3>
@@ -52,7 +52,7 @@ const techIcons: Record<string, string> = {
       </div>
     </details>
   </div>
-  
+
   <!-- Desktop Grid View -->
   <div class="hidden md:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
     {techStack.map(tech => (
@@ -62,7 +62,7 @@ const techIcons: Record<string, string> = {
         rel="noreferrer"
         target="_blank"
       >
-        <div class="h-full p-3 rounded-lg border border-opacity-20 dark:border-opacity-10 border-slate-400 dark:border-slate-700 transition-all duration-300 hover:shadow-md hover:scale-[1.02] hover:border-theme-accent bg-white dark:bg-slate-800 flex flex-col">
+        <div class="h-full p-3 rounded-lg border border-opacity-20 dark:border-opacity-10 border-slate-400 dark:border-slate-700 transition-all duration-300 hover:shadow-md hover:scale-[1.02] hover:border-theme-accent bg-slate-50 dark:bg-slate-700 flex flex-col">
           <div class="flex items-center mb-1">
             <span class="text-xl mr-2 icon-container" aria-hidden="true">{techIcons[tech.title] || "🔧"}</span>
             <h3 class="font-bold text-base text-theme-accent group-hover:text-theme-accent transition-colors">{tech.title}</h3>

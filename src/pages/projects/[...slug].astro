@@ -2,7 +2,7 @@
 import { getAllProjects } from "@/data/project";
 import PostLayout from "@/layouts/ProjectPost.astro";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
-import SocialList from "@/components/SocialList.astro";
+import LinkBadges from "@/components/LinkBadges.astro";
 
 // if you're using an adaptor in SSR mode, getStaticPaths wont work -> https://docs.astro.build/en/guides/routing/#modifying-the-slug-example-for-ssr
 export const getStaticPaths = (async () => {
@@ -24,5 +24,5 @@ const { Content } = await entry.render();
 	<br />
 	<p>Any Questions?</p>
 	<p>Contact me on any of my communication channels:</p>
-	<SocialList />
+	<LinkBadges />
 </PostLayout>
