@@ -20,7 +20,7 @@
     {
         "title": "Tennis Analytics",
         "desc": "A Streamlit-based analytics platform for tennis data visualization and performance tracking.",
-        "href": "https://oetv-tennis-analytics.streamlit.app/",
+        "href": "https://github.com/flnzba/oetv-tennis-analytics",
         "tags": ["Python", "Data Analytics", "Sports"]
     },
     {
