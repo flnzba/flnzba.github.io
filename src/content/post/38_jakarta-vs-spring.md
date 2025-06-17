@@ -3,9 +3,9 @@ title: '#38 Jakarta EE vs. Spring Boot - What you need to know'
 description: 'Jakarta EE and Spring Boot, exploring their fundamental differences, strengths, and weaknesses to help you choose the right framework.'
 publishDate: '17 June 2025'
 updatedDate: '17 June 2025'
-coverImage:
-    src: ''
-    alt: ''
+# coverImage:
+#     src: ''
+#     alt: ''
 tags: ['jakarta', 'spring', 'spring-boot', 'java']
 ---
 
