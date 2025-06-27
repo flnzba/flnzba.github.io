@@ -5,11 +5,6 @@
     "title": "Java"
   },
   {
-    "desc": "Individualizing Wordpress, Laravel Web Apps, ...",
-    "href": "#",
-    "title": "PHP"
-  },
-  {
     "desc": "Node, Web Apps, Game Dev, ...",
     "href": "#",
     "title": "Javascript"
@@ -43,10 +38,5 @@
     "desc": "Arduino, Power Apps, ...",
     "href": "#",
     "title": "Automations"
-  },
-  {
-    "desc": "OOCSS, Tailwind CSS, ...",
-    "href": "#",
-    "title": "CSS"
   }
 ]

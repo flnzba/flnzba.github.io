@@ -9,7 +9,7 @@
         "title": "BlogMate",
         "desc": "An intuitive blogging platform with AI assistance, multiple export formats, and powerful content management tools for bloggers and content creators.",
         "href": "https://saas-blog-mate-v2.vercel.app/",
-        "tags": ["React", "AI", "Content Creation"]
+        "tags": ["React", "AI"]
     },
     {
         "title": "Vehicle Sticker Generator",
@@ -33,7 +33,7 @@
         "title": "Markdown Converter",
         "desc": "A versatile tool for converting Markdown files to various formats, including HTML and PDF, with a focus on simplicity and efficiency.",
         "href": "https://markdown-converter-roan.vercel.app/",
-        "tags": ["Markdown", "JavaScript", "Content Creation"]
+        "tags": ["Markdown", "JavaScript"]
     },
     {
         "title": "SQL Tester",

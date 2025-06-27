@@ -31,44 +31,46 @@ const techIcons: Record<string, string> = {
         <span class="ml-auto text-lg accordion-icon">+</span>
       </summary>
       <div class="p-3 pt-3 border-t border-slate-200 dark:border-slate-700">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <ul class="space-y-2">
           {techStack.map(tech => (
-            <a 
-              href={tech.href} 
-              class="group"
-              rel="noreferrer"
-              target="_blank"
-            >
-              <div class="h-full p-3 rounded-lg border border-opacity-20 dark:border-opacity-10 border-slate-400 dark:border-slate-700 transition-all duration-300 hover:shadow-md hover:scale-[1.02] hover:border-theme-accent bg-slate-50 dark:bg-slate-700 flex flex-col">
-                <div class="flex items-center mb-1">
-                  <span class="text-xl mr-2 icon-container" aria-hidden="true">{techIcons[tech.title] || "🔧"}</span>
-                  <h3 class="font-bold text-base text-theme-accent group-hover:text-theme-accent transition-colors">{tech.title}</h3>
+            <li>
+              <a 
+                href={tech.href} 
+                class="group flex items-center p-3 rounded-lg transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-theme-accent"
+                rel="noreferrer"
+                target="_blank"
+              >
+                <div class="icon-container flex items-center justify-center text-xl mr-3" aria-hidden="true">
+                  {techIcons[tech.title] || "🔧"}
                 </div>
-                <p class="text-xs text-opacity-80 text-slate-700 dark:text-slate-300">{tech.desc}</p>
-              </div>
-            </a>
+                <div>
+                  <h3 class="font-semibold text-base">{tech.title}</h3>
+                  <p class="text-sm text-slate-600 dark:text-slate-400">{tech.desc}</p>
+                </div>
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </details>
   </div>
 
   <!-- Desktop Grid View -->
-  <div class="hidden md:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+  <div class="hidden md:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
     {techStack.map(tech => (
       <a 
         href={tech.href} 
-        class="group"
+        class="group p-3 rounded-lg transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-theme-accent border border-transparent hover:border-slate-200 dark:hover:border-slate-700"
         rel="noreferrer"
         target="_blank"
       >
-        <div class="h-full p-3 rounded-lg border border-opacity-20 dark:border-opacity-10 border-slate-400 dark:border-slate-700 transition-all duration-300 hover:shadow-md hover:scale-[1.02] hover:border-theme-accent bg-slate-50 dark:bg-slate-700 flex flex-col">
-          <div class="flex items-center mb-1">
-            <span class="text-xl mr-2 icon-container" aria-hidden="true">{techIcons[tech.title] || "🔧"}</span>
-            <h3 class="font-bold text-base text-theme-accent group-hover:text-theme-accent transition-colors">{tech.title}</h3>
+        <div class="flex items-center mb-2">
+          <div class="icon-container flex items-center justify-center text-xl mr-3" aria-hidden="true">
+            {techIcons[tech.title] || "🔧"}
           </div>
-          <p class="text-xs text-opacity-80 text-slate-700 dark:text-slate-300">{tech.desc}</p>
+          <h3 class="font-semibold text-base">{tech.title}</h3>
         </div>
+        <p class="text-sm text-slate-600 dark:text-slate-400">{tech.desc}</p>
       </a>
     ))}
   </div>
@@ -137,4 +139,4 @@ const techIcons: Record<string, string> = {
       background-color: rgb(51, 65, 85);
     }
   }
-</style> 
+</style>
