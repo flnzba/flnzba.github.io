@@ -4,139 +4,85 @@ import techStack from '../data/techStack.json';
 // Map of tech titles to their corresponding icons
 // Using simple emoji as placeholders - you can replace with actual icon components if needed
 const techIcons: Record<string, string> = {
-  "Java": "☕",
-  "PHP": "🐘",
-  "Javascript": "🟨",
-  "Python": "🐍",
-  "Databases": "🗄️",
-  "Data Warehouses": "📊",
-  "Business Intelligence": "📈",
-  "Data Analytics": "📉",
-  "Automations": "🤖",
-  "CSS": "🎨"
+    Java: '☕',
+    PHP: '🐘',
+    Javascript: '🟨',
+    Python: '🐍',
+    Databases: '🗄️',
+    'Data Warehouses': '📊',
+    'Business Intelligence': '📈',
+    'Data Analytics': '📉',
+    Automations: '🤖',
+    CSS: '🎨',
 };
 ---
 
-<section class="my-16">
-  <h2 class="title mb-4 text-xl">Tech Stack</h2>
-  
-  <!-- Mobile Accordion View -->
-  <div class="md:hidden">
-    <details class="accordion-item rounded-lg border border-opacity-20 dark:border-opacity-10 border-slate-400 dark:border-slate-700 bg-white dark:bg-slate-800 overflow-hidden">
-      <summary class="p-3 cursor-pointer flex items-center">
-        <div class="icon-container flex items-center justify-center text-xl mr-3 p-1.5 rounded-full bg-slate-50 dark:bg-slate-700" aria-hidden="true">
-          🧰
-        </div>
-        <h3 class="font-bold text-base text-theme-accent">My Tech Stack</h3>
-        <span class="ml-auto text-lg accordion-icon">+</span>
-      </summary>
-      <div class="p-3 pt-3 border-t border-slate-200 dark:border-slate-700">
-        <ul class="space-y-2">
-          {techStack.map(tech => (
-            <li>
-              <a 
-                href={tech.href} 
-                class="group flex items-center p-3 rounded-lg transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-theme-accent"
-                rel="noreferrer"
-                target="_blank"
-              >
-                <div class="icon-container flex items-center justify-center text-xl mr-3" aria-hidden="true">
-                  {techIcons[tech.title] || "🔧"}
-                </div>
-                <div>
-                  <h3 class="font-semibold text-base">{tech.title}</h3>
-                  <p class="text-sm text-slate-600 dark:text-slate-400">{tech.desc}</p>
-                </div>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </details>
-  </div>
-
-  <!-- Desktop Grid View -->
-  <div class="hidden md:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-    {techStack.map(tech => (
-      <a 
-        href={tech.href} 
-        class="group p-3 rounded-lg transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-theme-accent border border-transparent hover:border-slate-200 dark:hover:border-slate-700"
-        rel="noreferrer"
-        target="_blank"
-      >
-        <div class="flex items-center mb-2">
-          <div class="icon-container flex items-center justify-center text-xl mr-3" aria-hidden="true">
-            {techIcons[tech.title] || "🔧"}
-          </div>
-          <h3 class="font-semibold text-base">{tech.title}</h3>
-        </div>
-        <p class="text-sm text-slate-600 dark:text-slate-400">{tech.desc}</p>
-      </a>
-    ))}
-  </div>
+<section class='my-16'>
+    <h2 class='title mb-4 text-xl'>Tech Stack</h2>
+    <div
+        class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3'
+    >
+        {
+            techStack.map((tech) => (
+                <a
+                    href={tech.href}
+                    class='group p-3 rounded-lg transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-theme-accent border border-transparent hover:border-slate-200 dark:hover:border-slate-700'
+                    rel='noreferrer'
+                    target='_blank'
+                >
+                    <div class='flex items-center mb-2'>
+                        <div
+                            class='icon-container flex items-center justify-center text-xl mr-3'
+                            aria-hidden='true'
+                        >
+                            {techIcons[tech.title] || '🔧'}
+                        </div>
+                        <h3 class='font-semibold text-base'>{tech.title}</h3>
+                    </div>
+                    <p class='text-sm text-slate-600 dark:text-slate-400'>
+                        {tech.desc}
+                    </p>
+                </a>
+            ))
+        }
+    </div>
 </section>
 
 <style>
-  .text-theme-accent {
-    color: hsl(var(--theme-accent));
-  }
-  
-  .hover\:border-theme-accent:hover {
-    border-color: hsl(var(--theme-accent));
-  }
-  
-  .icon-container {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s ease;
-  }
-  
-  .group:hover .icon-container {
-    transform: scale(1.2);
-  }
-  
-  /* Accordion styles */
-  details.accordion-item {
-    transition: all 0.3s ease;
-  }
-  
-  details.accordion-item summary {
-    list-style: none;
-    transition: all 0.3s ease;
-  }
-  
-  details.accordion-item summary::-webkit-details-marker {
-    display: none;
-  }
-  
-  details.accordion-item[open] summary .accordion-icon {
-    transform: rotate(45deg);
-  }
-  
-  details.accordion-item summary .accordion-icon {
-    transition: transform 0.3s ease;
-  }
-  
-  details.accordion-item:hover {
-    border-color: hsl(var(--theme-accent));
-  }
-  
-  @media (prefers-color-scheme: dark) {
-    .dark\:border-slate-700 {
-      border-color: rgb(51, 65, 85);
+    .text-theme-accent {
+        color: hsl(var(--theme-accent));
     }
-    
-    .dark\:bg-slate-800 {
-      background-color: rgb(30, 41, 59);
+
+    .hover\:border-theme-accent:hover {
+        border-color: hsl(var(--theme-accent));
     }
-    
-    .dark\:text-slate-300 {
-      color: rgb(203, 213, 225);
+
+    .icon-container {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease;
     }
-    
-    .dark\:bg-slate-700 {
-      background-color: rgb(51, 65, 85);
+
+    .group:hover .icon-container {
+        transform: scale(1.2);
     }
-  }
+
+    @media (prefers-color-scheme: dark) {
+        .dark\:border-slate-700 {
+            border-color: rgb(51, 65, 85);
+        }
+
+        .dark\:bg-slate-800 {
+            background-color: rgb(30, 41, 59);
+        }
+
+        .dark\:text-slate-300 {
+            color: rgb(203, 213, 225);
+        }
+
+        .dark\:bg-slate-700 {
+            background-color: rgb(51, 65, 85);
+        }
+    }
 </style>

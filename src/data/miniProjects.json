@@ -3,7 +3,7 @@
         "title": "AI Image Converter",
         "desc": "A fast, private image converter tool that transforms images between JPG, PNG, WebP, and PDF formats without storing converted files.",
         "href": "https://image-converter-tool.vercel.app",
-        "tags": ["JavaScript", "Image Processing", "Privacy"]
+        "tags": ["JavaScript", "AI", "Privacy"]
     },
     {
         "title": "BlogMate",
