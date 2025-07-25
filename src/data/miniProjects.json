@@ -12,6 +12,24 @@
         "tags": ["React", "AI"]
     },
     {
+        "title": "Maps GPT",
+        "desc": "A Travel Planner powered by AI, offering personalized travel itineraries and recommendations based on user preferences.",
+        "href": "https://maps-gpt-v2.vercel.app/",
+        "tags": ["Travel", "AI"]
+    },
+    {
+        "title": "Markdown Converter",
+        "desc": "A versatile tool for converting Markdown files to various formats, including HTML and PDF, with a focus on simplicity and efficiency.",
+        "href": "https://markdown-converter-roan.vercel.app/",
+        "tags": ["Markdown", "JavaScript"]
+    },
+    {
+        "title": "SQL Tester",
+        "desc": "A web application for testing SQL queries with a user-friendly interface and real-time feedback.",
+        "href": "https://sql-tester.vercel.app/",
+        "tags": ["SQL", "Database", "Testing"]
+    },
+    {
         "title": "Vehicle Sticker Generator",
         "desc": "AI-powered tool for creating professional vehicle identification stickers, perfect for automotive businesses and enthusiasts.",
         "href": "https://vw-etikett.at/",
@@ -28,17 +46,5 @@
         "desc": "Professional soil value analysis service providing comprehensive reports for land valuation and property decisions.",
         "href": "https://www.bodenbewertung.at/",
         "tags": ["Real Estate", "Analysis", "Reporting"]
-    },
-    {
-        "title": "Markdown Converter",
-        "desc": "A versatile tool for converting Markdown files to various formats, including HTML and PDF, with a focus on simplicity and efficiency.",
-        "href": "https://markdown-converter-roan.vercel.app/",
-        "tags": ["Markdown", "JavaScript"]
-    },
-    {
-        "title": "SQL Tester",
-        "desc": "A web application for testing SQL queries with a user-friendly interface and real-time feedback.",
-        "href": "https://sql-tester.vercel.app/",
-        "tags": ["SQL", "Database", "Testing"]
     }
 ]
