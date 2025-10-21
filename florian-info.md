@@ -1,8 +1,11 @@
 # Blog
 
-- new md file with metadata
+- add blog post about new project
 
 # Projects
 
-- update JSON Data with new project and image
-- the data is loaded from a JSON file into the list and the masonry grid in the project page
+- add new projects
+
+# Homepage
+
+- make design more minimalistic
