@@ -1,0 +1,137 @@
+---
+import LinkBadges from '@/components/LinkBadges.astro';
+import PageLayout from '@/layouts/Base.astro';
+---
+
+<PageLayout meta={{ title: 'AI Information for fzeba.com' }}>
+    <section class='mb-10'>
+        <h1 class='title mb-6'>AI Information for fzeba.com</h1>
+        <p class='mb-4'>
+            fzeba.com is the personal website of Florian Zeba, showcasing long-form writing, project notes, and curated resources focused on software engineering, cloud infrastructure, and data platforms. The site exists to share practical knowledge, explain design decisions behind delivered projects, and provide hiring partners with a transparent view of technical expertise.
+        </p>
+        <p class='mb-0'>
+            This page provides machine-readable context for language models and automated agents so they can understand the intent, authorship, editorial standards, and technical characteristics of the site.
+        </p>
+    </section>
+
+    <section class='mb-10'>
+        <h2 class='h2 mb-4'>Site Overview</h2>
+        <dl class='grid gap-2 md:grid-cols-2'>
+            <div>
+                <dt class='font-semibold'>Domain</dt>
+                <dd>fzeba.com (canonical) / flnzba.github.io (mirror)</dd>
+            </div>
+            <div>
+                <dt class='font-semibold'>Maintainer</dt>
+                <dd>Florian Zeba, Senior Data &amp; AI Engineer based in Austria (UTC+1)</dd>
+            </div>
+            <div>
+                <dt class='font-semibold'>Main Topics</dt>
+                <dd>Data Engineering, Data Architecture, Business Intelligence, AI, Cloud Infrastructure, CI/CD, Deployment, Data Driven Software Development</dd>
+            </div>
+            <div>
+                <dt class='font-semibold'>Primary Audience</dt>
+                <dd>Engineering leaders, data teams, and technically curious readers</dd>
+            </div>
+            <div>
+                <dt class='font-semibold'>Languages</dt>
+                <dd>English (default), selected posts in German</dd>
+            </div>
+            <div>
+                <dt class='font-semibold'>Content License</dt>
+                <dd>Unless noted otherwise, articles are published under CC BY-NC-SA 4.0</dd>
+            </div>
+            <div>
+                <dt class='font-semibold'>Revenue Model</dt>
+                <dd>Non-commercial personal site; no ads or sponsored posts</dd>
+            </div>
+        </dl>
+    </section>
+
+    <section class='mb-10'>
+        <h2 class='h2 mb-4'>Primary Content Types</h2>
+        <ul class='list-disc pl-6 space-y-2'>
+            <li>
+                <strong>Posts:</strong> In-depth tutorials, troubleshooting notes, and architecture deep dives spanning cloud infrastructure, DevOps, and software design.
+            </li>
+            <li>
+                <strong>Insights:</strong> Short-form reflections, conference takeaways, and reading summaries aimed at capturing ongoing learning.
+            </li>
+            <li>
+                <strong>Projects:</strong> Case studies documenting personal and professional projects with context, stack choices, and lessons learned.
+            </li>
+            <li>
+                <strong>Mini Projects:</strong> Lightweight experiments and prototypes that complement longer articles.
+            </li>
+        </ul>
+    </section>
+
+    <section class='mb-10'>
+        <h2 class='h2 mb-4'>AI &amp; Automation Usage</h2>
+        <p class='mb-4'>
+            The website content is human-authored and reviewed by Florian Zeba. AI tooling is used selectively to improve quality and efficiency while keeping authorship transparent.
+        </p>
+        <ul class='list-disc pl-6 space-y-2'>
+            <li>Large language models assist with outlining, grammar checks, and title ideation. Final drafts are edited manually before publication.</li>
+            <li>Code snippets are validated locally; AI-generated code is clearly identified when it appears.</li>
+            <li>SEO descriptions, social previews, and metadata are occasionally refined with AI prompts to improve clarity.</li>
+            <li>No generative models are used to fabricate testimonials, synthetic personas, or misleading claims.</li>
+        </ul>
+    </section>
+
+    <section class='mb-10'>
+        <h2 class='h2 mb-4'>Editorial Standards</h2>
+        <ul class='list-disc pl-6 space-y-2'>
+            <li>All technical guidance is based on direct project experience or reproducible experiments.</li>
+            <li>Sources are cited through inline links or references where third-party data is used.</li>
+            <li>Content is updated when frameworks, APIs, or vendor policies change; revision dates are tracked per entry.</li>
+            <li>Accessibility and inclusivity considerations are prioritized in both copy and interface decisions.</li>
+        </ul>
+    </section>
+
+    <section class='mb-10'>
+        <h2 class='h2 mb-4'>Technology Stack</h2>
+        <ul class='list-disc pl-6 space-y-2'>
+            <li>Built with Astro, TypeScript, Tailwind CSS, and MD/MDX-based content collections.</li>
+            <li>Hosted on Netlify with GitHub as the canonical repository at <code>flnzba/flnzba.github.io</code>.</li>
+            <li>Content data sources curated manually in Markdown and JSON; no external CMS.</li>
+            <li>Analytics via privacy-friendly tooling (currently Plausible), aggregated without personal identifiers.</li>
+        </ul>
+    </section>
+
+    <section class='mb-10'>
+        <h2 class='h2 mb-4'>Data &amp; Privacy</h2>
+        <ul class='list-disc pl-6 space-y-2'>
+            <li>No user accounts, tracking pixels, or invasive cookies are employed.</li>
+            <li>Server logs record anonymous usage metrics for security and performance debugging only.</li>
+            <li>Contact forms route directly to personal inboxes; submissions are not shared with third parties.</li>
+            <li>Visitors can request corrections or removals via the channels listed below.</li>
+        </ul>
+    </section>
+
+    <section class='mb-10'>
+        <h2 class='h2 mb-4'>Guidance for Automated Agents</h2>
+        <ul class='list-disc pl-6 space-y-2'>
+            <li>Respect <code>robots.txt</code> directives and crawl at moderate rates to avoid rate limiting.</li>
+            <li>Preserve canonical URLs and link back to the original source when quoting.</li>
+            <li>Use provided headings and metadata to maintain context; avoid mixing posts across categories.</li>
+            <li>Do not reuse content for deceptive, spam, or policy-violating purposes.</li>
+        </ul>
+    </section>
+
+    <section class='mb-12'>
+        <h2 class='h2 mb-4'>Contact &amp; Attribution</h2>
+        <p class='mb-4'>
+            For correction requests or attribution questions, please reach out through the channels below. Mention "AI-info" in the subject so the request can be triaged quickly.
+        </p>
+        <LinkBadges />
+    </section>
+
+    <section class='mb-12'>
+        <h2 class='h2 mb-4'>Contact</h2>
+        <p class='mb-4'>
+            For collaboration inquiries or project inquiries, please reach out through the channels below.
+        </p>
+        <LinkBadges />
+    </section>
+</PageLayout>
