@@ -1,6 +1,6 @@
 ---
 title: '#47 Microsoft Fabric Shortcuts - Technical Guide for Architects and Engineers'
-description: 'Microsoft Fabric Shortcuts architecture, cross-capacity access, medallion patterns, authentication models.'
+description: 'Fabric Shortcuts architecture, cross-capacity access, medallion patterns, authentication models.'
 publishDate: '24 November 2025'
 updatedDate: '24 November 2025'
 coverImage:

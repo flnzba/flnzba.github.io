@@ -1,6 +1,6 @@
 ---
 title: '#48 Architectural Considerations for OpenShift On-Prem vs. Microsoft Fabric'
-description: 'A deep dive into the architectural differences between OpenShift on-premise deployments and Microsoft Fabric.'
+description: 'A deep dive into the architectural differences between OpenShift Fabric.'
 publishDate: '26 November 2025'
 updatedDate: '26 November 2025'
 coverImage:
