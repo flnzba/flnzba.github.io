@@ -1,5 +1,5 @@
 ---
-title: '#49 Schema Consistency and Evolution in Microsoft Fabric and Medallion Architecture'
+title: '#49 Schema Consistency and Evolution in Microsoft Fabric (Medallion Architecture)'
 description: 'How to maintain schema consistency and manage schema evolution in Microsoft Fabric.'
 publishDate: '01 December 2025'
 updatedDate: '01 December 2025'
