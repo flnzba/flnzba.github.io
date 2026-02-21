@@ -1,5 +1,5 @@
 ---
-title: '#52 Your AI Development Team in a Box - How I Built a Container for AI Coding Assistants'
+title: '#52 Your AI Development Team in a Box - Container for AI Coding Assistants'
 description: 'How I built a unified AI development environment in a Docker container, accessible from anywhere.'
 publishDate: '20 January 2026'
 updatedDate: '20 January 2026'

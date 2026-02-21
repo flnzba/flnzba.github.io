@@ -3,8 +3,10 @@ import type { CollectionEntry } from "astro:content";
 import Pagination from "@/components/Paginator.astro";
 import PostPreview from "@/components/blog/PostPreview.astro";
 import ProjectPreview from "@/components/project/PostPreview.astro";
+import InsightPreview from "@/components/insight/PostPreview.astro";
 import { getAllPosts, getUniqueTags as getUniquePostTags, sortMDByDate as sortPostsByDate } from "@/data/post";
 import { getAllProjects, getUniqueTags as getUniqueProjectTags, sortMDByDate as sortProjectsByDate } from "@/data/project";
+import { getAllInsights, getUniqueTags as getUniqueInsightTags, sortMDByDate as sortInsightsByDate } from "@/data/insight";
 import PageLayout from "@/layouts/Base.astro";
 import type { GetStaticPaths, Page } from "astro";
 
@@ -13,15 +15,23 @@ export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
 	const allPostsByDate = sortPostsByDate(allPosts);
 	const allProjects = await getAllProjects();
 	const allProjectsByDate = sortProjectsByDate(allProjects);
+	const allInsights = await getAllInsights();
+	const allInsightsByDate = sortInsightsByDate(allInsights);
 	
 	const postTags = getUniquePostTags(allPostsByDate);
 	const projectTags = getUniqueProjectTags(allProjectsByDate);
-	const uniqueTags = [...new Set([...postTags, ...projectTags])];
+	const insightTags = getUniqueInsightTags(allInsightsByDate);
+	const uniqueTags = [...new Set([...postTags, ...projectTags, ...insightTags])];
 
 	return uniqueTags.flatMap((tag) => {
 		const filterPosts = allPostsByDate.filter((post) => post.data.tags.includes(tag));
 		const filterProjects = allProjectsByDate.filter((project) => project.data.tags.includes(tag));
-		const combined = [...filterPosts, ...filterProjects];
+		const filterInsights = allInsightsByDate.filter((insight) => insight.data.tags.includes(tag));
+		const combined = [...filterPosts, ...filterProjects, ...filterInsights].sort((a, b) => {
+			const aDate = new Date(a.data.updatedDate ?? a.data.publishDate).valueOf();
+			const bDate = new Date(b.data.updatedDate ?? b.data.publishDate).valueOf();
+			return bDate - aDate;
+		});
 		return paginate(combined, {
 			pageSize: 10,
 			params: { tag },
@@ -30,14 +40,14 @@ export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
 };
 
 interface Props {
-	page: Page<CollectionEntry<"post"> | CollectionEntry<"project">>;
+	page: Page<CollectionEntry<"post"> | CollectionEntry<"project"> | CollectionEntry<"insight">>;
 }
 
 const { page } = Astro.props;
 const { tag } = Astro.params;
 
 const meta = {
-	description: `View all posts and projects with the tag - ${tag}`,
+	description: `View all posts, projects, and insights with the tag - ${tag}`,
 	title: `Tag: ${tag}`,
 };
 
@@ -63,15 +73,17 @@ const paginationProps = {
 		<span class="me-3 ms-2">→</span>
 		<span class="text-xl">#{tag}</span>
 	</h1>
-	<section aria-label="Blog post list">
+	<section aria-label="Post and project list">
 		<ul class="space-y-8">
 			{
 				page.data.map((p) => (
 					<li class="flex flex-col flex-wrap gap-2 sm:flex-row [&_q]:basis-full">
 						{p.collection === "post" ? (
 							<PostPreview as="h2" post={p as CollectionEntry<"post">} withDesc />
-						) : (
+						) : p.collection === "project" ? (
 							<ProjectPreview as="h2" project={p as CollectionEntry<"project">} withDesc />
+						) : (
+							<InsightPreview as="h2" insight={p as CollectionEntry<"insight">} withDesc />
 						)}
 					</li>
 				))

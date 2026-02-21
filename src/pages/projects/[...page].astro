@@ -57,7 +57,7 @@ const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a);
 
 <PageLayout meta={meta}>
 	<Image
-	alt='Blog Cover'
+	alt='Projects Cover'
 	class='mb-10 drop-shadow-md rounded-md object-cover'
 	src={projectsCover}
 	/>
@@ -65,7 +65,7 @@ const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a);
 	<p>The most interesting projects / business cases are listed.</p>
 	<p class='mb-6'>The full projectlist is available upon request.</p>
 	<div class='grid gap-y-16 sm:grid-cols-[3fr_1fr] sm:gap-x-8'>
-		<section aria-label='Blog post list'>
+		<section aria-label='Project list'>
 			{
 				descYearKeys.map((yearKey) => (
 					<>

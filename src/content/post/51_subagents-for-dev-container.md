@@ -1,5 +1,5 @@
 ---
-title: '#51 Implementing a SubAgent Orchestration System for Complex AI Development Tasks in my Dev Container'
+title: '#51 Implementing a SubAgent Orchestration System in my Dev Container'
 description: 'How I built a multi-agent orchestration system using bash to coordinate specialized AI agents.'
 publishDate: '19 January 2026'
 updatedDate: '19 January 2026'

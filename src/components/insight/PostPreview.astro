@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { getProjectSortDate } from "@/data/insight";
+import { getInsightSortDate } from "@/data/insight";
 import type { HTMLTag, Polymorphic } from "astro/types";
 import FormattedDate from "../FormattedDate.astro";
 
@@ -10,7 +10,7 @@ type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
 };
 
 const { as: Tag = "div", insight, withDesc = false } = Astro.props;
-const insightDate = getProjectSortDate(insight);
+const insightDate = getInsightSortDate(insight);
 ---
 
 <FormattedDate class="min-w-[120px] text-gray-600 dark:text-gray-400" date={insightDate} />
