@@ -1,88 +1,27 @@
 ---
 import techStack from '../data/techStack.json';
-
-// Map of tech titles to their corresponding icons
-// Using simple emoji as placeholders - you can replace with actual icon components if needed
-const techIcons: Record<string, string> = {
-    Java: '☕',
-    PHP: '🐘',
-    Javascript: '🟨',
-    Python: '🐍',
-    Databases: '🗄️',
-    'Data Warehouses': '📊',
-    'Business Intelligence': '📈',
-    'Data Analytics': '📉',
-    Automations: '🤖',
-    CSS: '🎨',
-};
 ---
 
-<section class='my-16'>
+<section class='mt-12'>
     <h2 class='title mb-4 text-xl'>Tech Stack</h2>
-    <div class='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3'>
+    <ul class='flex flex-wrap gap-x-4 gap-y-1'>
         {
             techStack.map((tech) => (
-                tech.href && tech.href !== '#' ? (
-                <a
-                    href={tech.href}
-                    class='group p-3 rounded-lg transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-theme-accent border border-transparent hover:border-slate-200 dark:hover:border-slate-700'
-                    rel='noreferrer'
-                    target='_blank'
-                >
-                    <div class='flex items-center mb-2'>
-                        <div
-                            class='icon-container flex items-center justify-center text-xl mr-3'
-                            aria-hidden='true'
+                <li class='text-gray-600 dark:text-gray-400'>
+                    {tech.href && tech.href !== '#' ? (
+                        <a
+                            href={tech.href}
+                            class='cactus-link'
+                            rel='noreferrer'
+                            target='_blank'
                         >
-                            {techIcons[tech.title] || '🔧'}
-                        </div>
-                        <h3 class='font-semibold text-base'>{tech.title}</h3>
-                    </div>
-                    <p class='text-sm text-slate-600 dark:text-slate-400'>
-                        {tech.desc}
-                    </p>
-                </a>
-                ) : (
-                <div
-                    class='group p-3 rounded-lg transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700'
-                >
-                    <div class='flex items-center mb-2'>
-                        <div
-                            class='icon-container flex items-center justify-center text-xl mr-3'
-                            aria-hidden='true'
-                        >
-                            {techIcons[tech.title] || '🔧'}
-                        </div>
-                        <h3 class='font-semibold text-base'>{tech.title}</h3>
-                    </div>
-                    <p class='text-sm text-slate-600 dark:text-slate-400'>
-                        {tech.desc}
-                    </p>
-                </div>
-                )
+                            {tech.title}
+                        </a>
+                    ) : (
+                        <span>{tech.title}</span>
+                    )}
+                </li>
             ))
         }
-    </div>
+    </ul>
 </section>
-
-<style>
-    .text-theme-accent {
-        color: hsl(var(--theme-accent));
-    }
-
-    .hover\:border-theme-accent:hover {
-        border-color: hsl(var(--theme-accent));
-    }
-
-    .icon-container {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.3s ease;
-    }
-
-    .group:hover .icon-container {
-        transform: scale(1.2);
-    }
-
-</style>

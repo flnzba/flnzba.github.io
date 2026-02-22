@@ -1,104 +1,24 @@
 ---
 import miniProjects from '../data/miniProjects.json';
-
-// Map of project types to their corresponding icons
-const projectIcons: Record<string, string> = {
-    JavaScript: '📜',
-    React: '⚛️',
-    API: '🔌',
-    Backend: '🖥️',
-    Database: '🗄️',
-    CSS: '🎨',
-    Design: '✏️',
-    Security: '🔒',
-    Utility: '🔧',
-    Productivity: '⏱️',
-    Markdown: '📝',
-    LocalStorage: '💾',
-    'Image Processing': '🖼️',
-    Privacy: '🔐',
-    AI: '🤖',
-    'Content Creation': '✍️',
-    Automotive: '🚗',
-    Python: '🐍',
-    'Data Analytics': '📊',
-    Sports: '🎾',
-    'Real Estate': '🏠',
-    Analysis: '📈',
-    Reporting: '📑',
-};
-
-// Function to get an icon for a project based on its first tag
-const getProjectIcon = (tags: string[]) => {
-    if (tags && tags.length > 0) {
-        return projectIcons[tags[0]] || '🔍';
-    }
-    return '🔍';
-};
 ---
 
-<section class='my-16'>
+<section class='mt-12'>
     <h2 class='title mb-4 text-xl'>Mini Projects</h2>
-
-    <div>
-        <ul class='space-y-2'>
-            {
-                miniProjects.map((project) => (
-                    <li>
-                        <a
-                            href={project.href}
-                            class='group flex items-center justify-between p-3 rounded-lg transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-theme-accent'
-                            rel='noreferrer'
-                            target='_blank'
-                        >
-                            <div class='flex items-center'>
-                                <div
-                                    class='icon-container flex items-center justify-center text-xl mr-3'
-                                    aria-hidden='true'
-                                >
-                                    {getProjectIcon(project.tags)}
-                                </div>
-                                <div>
-                                    <h3 class='font-semibold text-base'>
-                                        {project.title}
-                                    </h3>
-                                    <p class='text-sm text-slate-600 dark:text-slate-400'>
-                                        {project.desc}
-                                    </p>
-                                </div>
-                            </div>
-                            <div class='flex flex-wrap gap-1 justify-end max-w-[50%]'>
-                                {project.tags.map((tag) => (
-                                    <span class='text-xs px-1.5 py-0.5 rounded-full bg-slate-200 dark:bg-slate-600 text-slate-800 dark:text-slate-200'>
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-                        </a>
-                    </li>
-                ))
-            }
-        </ul>
-    </div>
+    <ul class='space-y-3'>
+        {
+            miniProjects.map((project) => (
+                <li>
+                    <a
+                        href={project.href}
+                        class='cactus-link'
+                        rel='noreferrer'
+                        target='_blank'
+                    >
+                        {project.title}
+                    </a>
+                    <span class='text-gray-600 dark:text-gray-400'> — {project.desc}</span>
+                </li>
+            ))
+        }
+    </ul>
 </section>
-
-<style>
-    .text-theme-accent {
-        color: hsl(var(--theme-accent));
-    }
-
-    .hover\:border-theme-accent:hover {
-        border-color: hsl(var(--theme-accent));
-    }
-
-    .icon-container {
-        width: 2.25rem;
-        height: 2.25rem;
-        transition: transform 0.3s ease;
-    }
-
-    .group:hover .icon-container {
-        transform: scale(1.1);
-    }
-
-</style>
