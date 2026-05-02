@@ -33,14 +33,12 @@ jobs:
         env:
           CRIER_DEVTO_API_KEY:    ${{ secrets.DEVTO_API_KEY }}
           CRIER_HASHNODE_API_KEY: ${{ secrets.HASHNODE_API_KEY }}
-          CRIER_MEDIUM_API_KEY:   ${{ secrets.MEDIUM_INTEGRATION_TOKEN }}
         run: crier doctor || true
 
       - name: Publish missing/changed posts
         env:
           CRIER_DEVTO_API_KEY:    ${{ secrets.DEVTO_API_KEY }}
           CRIER_HASHNODE_API_KEY: ${{ secrets.HASHNODE_API_KEY }}
-          CRIER_MEDIUM_API_KEY:   ${{ secrets.MEDIUM_INTEGRATION_TOKEN }}
         run: |
           crier audit --publish --batch --long-form | tee crier-output.json
 

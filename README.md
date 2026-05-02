@@ -8,7 +8,7 @@ Florian Zeba's personal site — built with [Eleventy](https://www.11ty.dev/) an
 - **Pico CSS** (classless) + a thin custom layer
 - **Nunjucks** templates
 - **Pagefind** for full-text search
-- **Crier** (Python) for cross-posting to DEV.to, Hashnode, and Medium via GitHub Actions
+- **Crier** (Python) for cross-posting to DEV.to and Hashnode via GitHub Actions
 
 ## Local development
 
@@ -42,7 +42,7 @@ published: true                # set false to skip cross-posting
 ---
 ```
 
-4. Commit and push to `main` — the deploy workflow builds + publishes the site, and the cross-post workflow posts to DEV.to, Hashnode, and Medium (see below).
+4. Commit and push to `main` — the deploy workflow builds + publishes the site, and the cross-post workflow posts to DEV.to and Hashnode (see below).
 
 ## Authoring a project
 
@@ -62,7 +62,8 @@ Cross-posting is automated via `.github/workflows/crosspost.yml`. After a push t
 |------------------------------|---------------------------------------------|
 | `DEVTO_API_KEY`              | DEV.to API key                              |
 | `HASHNODE_API_KEY`           | `<token>:<publication_id>`                  |
-| `MEDIUM_INTEGRATION_TOKEN`   | Medium integration token (publish-only)     |
+
+> **Medium**: Medium retired their public API in January 2025 and no longer issues new integration tokens. The cross-post workflow only targets DEV.to and Hashnode. If you already have a pre-2025 Medium token, re-add `- medium` to `.crier/config.yaml` (under `profiles.blogs`), uncomment `MEDIUM_INTEGRATION_TOKEN` in `.env.example`, and re-add the `CRIER_MEDIUM_API_KEY` env var to `.github/workflows/crosspost.yml`.
 
 #### Setting them
 
@@ -71,7 +72,6 @@ Either one secret at a time:
 ```bash
 gh secret set DEVTO_API_KEY            --repo flnzba/flnzba.github.io
 gh secret set HASHNODE_API_KEY         --repo flnzba/flnzba.github.io
-gh secret set MEDIUM_INTEGRATION_TOKEN --repo flnzba/flnzba.github.io
 ```
 
 …or in bulk from a local `.env` file:
@@ -86,7 +86,7 @@ gh secret list --repo flnzba/flnzba.github.io   # verify
 
 ### Caveats
 
-- **Medium API is publish-only** — Crier cannot update existing Medium stories. After a post is published once, edits will not propagate to Medium.
+- **Medium is unsupported** — Medium retired their public API in January 2025 and stopped issuing integration tokens. Programmatic publishing is not possible without a pre-2025 token. Manual cross-posting via Medium's "Import a story" feature is still available.
 - **canonical_url** is required for SEO — it tells DEV.to and Hashnode that fzeba.com is the original source.
 - The `[skip ci]` marker in the registry-update commit prevents an infinite loop with the deploy workflow.
 

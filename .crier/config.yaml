@@ -13,4 +13,5 @@ profiles:
   blogs:
     - devto
     - hashnode
-    - medium
+    # medium: API deprecated by Medium in Jan 2025 — no new integration tokens are issued.
+    # If you have a pre-existing token, re-add `- medium` here and set MEDIUM_INTEGRATION_TOKEN.
