@@ -11,6 +11,9 @@
 
     <!-- Pico CSS (classless) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <!-- Prism syntax highlighting themes (light + dark, swapped via prefers-color-scheme/data-theme in custom.css) -->
+    <link id="prism-light" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
+    <link id="prism-dark"  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" disabled />
     <link rel="stylesheet" href="/css/custom.css?v={{ build.timestamp }}" />
 
     <!-- Pagefind UI (only on /search/) -->
@@ -26,12 +29,19 @@
     <meta property="og:image" content="{{ site.url }}/assets/social-card.png" />
 
     <script>
-      // Avoid FOUC: apply stored theme before render
+      // Avoid FOUC: apply stored theme before render, and swap Prism theme accordingly
       (function () {
         try {
-          var t = localStorage.getItem("theme");
-          if (t === "light" || t === "dark") {
-            document.documentElement.setAttribute("data-theme", t);
+          var stored = localStorage.getItem("theme");
+          var theme = (stored === "light" || stored === "dark")
+            ? stored
+            : (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+          document.documentElement.setAttribute("data-theme", theme);
+          var light = document.getElementById("prism-light");
+          var dark  = document.getElementById("prism-dark");
+          if (light && dark) {
+            if (theme === "dark") { light.disabled = true;  dark.disabled = false; }
+            else                  { light.disabled = false; dark.disabled = true;  }
           }
         } catch (e) {}
       })();

@@ -229,10 +229,30 @@ pre[class*="language-"] {
   line-height: 1.6;
   border-radius: 0;
   border: 1px solid var(--pico-muted-border-color);
+  padding: 1rem 1.1rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  background: #fafafa;
+  color: #24292e;
+  text-shadow: none;
 }
+:root[data-theme="dark"] pre[class*="language-"] {
+  background: #1a1d21;
+  border-color: #2a2f36;
+  color: #e6e6e6;
+}
+
+/* Prism token tweaks: keep theme but normalize sizing & remove its glow */
+pre[class*="language-"] *,
+code[class*="language-"] * { text-shadow: none !important; }
+code[class*="language-"] { background: transparent; padding: 0; }
+
+/* Inline code */
 :not(pre) > code {
-  background: var(--pico-code-background-color);
-  padding: 0 .25rem;
+  background: var(--pico-code-background-color, rgba(127,127,127,.12));
+  padding: .05rem .35rem;
+  font-size: .82rem;
+  border-radius: 0;
 }
 
 blockquote {
