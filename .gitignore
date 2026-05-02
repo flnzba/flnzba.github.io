@@ -1,5 +1,6 @@
 _site/
 node_modules/
+src/css/site.css
 .DS_Store
 .cache/
 *.log

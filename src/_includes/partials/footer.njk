@@ -1,11 +1,24 @@
-<hr />
-<div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
-  <small>
-    © 2026 {{ site.author.name }} ·
-    {% for s in site.social %}
-      <a href="{{ s.url }}" rel="me">{{ s.name }}</a>{% if not loop.last %} · {% endif %}
-    {% endfor %}
-    · <a href="/feed.xml">RSS</a>
-  </small>
-  <img src="/assets/logo.png" alt="Logo" style="height: 24px; width: auto; opacity: 0.6;" />
+<div class="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-10 sm:px-6 lg:px-8">
+  <div class="flex flex-col justify-between gap-6 md:flex-row md:items-start">
+    <div class="max-w-xl">
+      <a href="/" class="mb-4 flex w-fit items-center gap-3 text-gray-950 transition-colors hover:text-deep-blue dark:text-white dark:hover:text-accent-blue">
+        <span class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+          <img src="/assets/logo.png" alt="" class="h-7 w-auto opacity-80" />
+        </span>
+        <span class="font-display text-xl font-bold">{{ site.title }}</span>
+      </a>
+      <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">{{ site.description }}</p>
+    </div>
+
+    <div class="flex flex-wrap gap-3">
+      {% for s in site.social %}
+        <a href="{{ s.url }}" rel="me" class="rounded-full border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:border-deep-blue hover:text-deep-blue dark:border-gray-800 dark:text-gray-400 dark:hover:border-accent-blue dark:hover:text-accent-blue">{{ s.name }}</a>
+      {% endfor %}
+      <a href="/feed.xml" class="rounded-full border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:border-deep-blue hover:text-deep-blue dark:border-gray-800 dark:text-gray-400 dark:hover:border-accent-blue dark:hover:text-accent-blue">RSS</a>
+    </div>
+  </div>
+
+  <div class="border-t border-gray-200 pt-6 text-sm text-gray-500 dark:border-gray-800 dark:text-gray-500">
+    © 2026 {{ site.author.name }}
+  </div>
 </div>

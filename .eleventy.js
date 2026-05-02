@@ -22,7 +22,7 @@ export default function (eleventyConfig) {
 
   // Passthrough copy
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
-  eleventyConfig.addPassthroughCopy({ "src/css": "css" });
+  eleventyConfig.addPassthroughCopy({ "src/css/site.css": "css/site.css" });
   eleventyConfig.addPassthroughCopy({ "src/js": "js" });
   eleventyConfig.addPassthroughCopy("src/image-store/**/*.{webp,png,jpg,jpeg,gif,svg,avif,ico}");
   eleventyConfig.addPassthroughCopy("src/posts/**/*.{webp,png,jpg,jpeg,gif,svg}");

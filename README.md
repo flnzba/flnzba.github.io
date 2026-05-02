@@ -1,11 +1,11 @@
 # flnzba.github.io
 
-Florian Zeba's personal site — built with [Eleventy](https://www.11ty.dev/) and styled with [Pico CSS](https://picocss.com/). Deployed to GitHub Pages at [fzeba.com](https://fzeba.com).
+Florian Zeba's personal site — built with [Eleventy](https://www.11ty.dev/) and styled with [Tailwind CSS](https://tailwindcss.com/). Deployed to GitHub Pages at [fzeba.com](https://fzeba.com).
 
 ## Stack
 
 - **Eleventy 3** static site generator
-- **Pico CSS** (classless) + a thin custom layer
+- **Tailwind CSS 4** generated with the official CLI
 - **Nunjucks** templates
 - **Pagefind** for full-text search
 - **Crier** (Python) for cross-posting to DEV.to and Hashnode via GitHub Actions
@@ -13,7 +13,6 @@ Florian Zeba's personal site — built with [Eleventy](https://www.11ty.dev/) an
 ## Local development
 
 ```bash
-cd site-11ty
 npm install
 npm run serve              # http://localhost:8080
 npm run build              # outputs _site/

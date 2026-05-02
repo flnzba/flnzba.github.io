@@ -2,27 +2,30 @@
 layout: layouts/base.njk
 ogType: article
 ---
-<article>
-  <header>
-    <h1>{{ title }}</h1>
-    <p>
-      <small>
-        <time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
-        {% if tags and tags.length %}
-          ·
-          {% for t in tags %}<span class="tag">{{ t }}</span>{% if not loop.last %} {% endif %}{% endfor %}
-        {% endif %}
-      </small>
-    </p>
+<article class="py-12 sm:py-16">
+  <header class="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+      <time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
+      {% if tags and tags.length %}
+        <span aria-hidden="true">/</span>
+        <span class="flex flex-wrap gap-2 normal-case tracking-normal">
+          {% for t in tags %}<span class="tag text-xs text-gray-500 dark:text-gray-400">{{ t }}</span>{% endfor %}
+        </span>
+      {% endif %}
+    </div>
+    <h1 class="mt-5 font-display text-4xl font-bold leading-tight text-gray-950 dark:text-white md:text-5xl">{{ title }}</h1>
     {% if cover and cover.src %}
-      <img src="{{ cover.src | replace('./', page.url) }}" alt="{{ cover.alt }}" class="cover" />
+      <img src="{{ cover.src | replace('./', page.url) }}" alt="{{ cover.alt }}" class="cover mt-8 aspect-video w-full rounded-xl border border-gray-200 object-cover shadow-soft dark:border-gray-800" />
     {% endif %}
   </header>
 
-  {{ content | safe }}
+  <div class="article-body mx-auto mt-10 w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+    {{ content | safe }}
+  </div>
 
-  <footer>
-    <hr />
-    <p><a href="/projects/">← All projects</a></p>
+  <footer class="mx-auto mt-12 w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div class="border-t border-gray-200 pt-8 dark:border-gray-800">
+      <a href="/projects/" class="inline-flex rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 transition hover:border-deep-blue hover:text-deep-blue dark:border-gray-800 dark:text-gray-300 dark:hover:border-accent-blue dark:hover:text-accent-blue">&larr; All projects</a>
+    </div>
   </footer>
 </article>

@@ -9,17 +9,11 @@
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="/feed.xml" />
 
-    <!-- Pico CSS (classless) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
-    <!-- Prism syntax highlighting themes (GitHub Light + GitHub Dark; swapped via data-theme in custom.css) -->
-    <link id="prism-light" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-ghcolors.min.css" />
-    <link id="prism-dark"  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-dracula.min.css" disabled />
-    <link rel="stylesheet" href="/css/custom.css?v={{ build.timestamp }}" />
-
     <!-- Pagefind UI (only on /search/) -->
     {% if page.url == "/search/" %}
       <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
     {% endif %}
+    <link rel="stylesheet" href="/css/site.css?v={{ build.timestamp }}" />
 
     <!-- OpenGraph -->
     <meta property="og:title" content="{{ title or site.title }}" />
@@ -29,7 +23,7 @@
     <meta property="og:image" content="{{ site.url }}/assets/social-card.png" />
 
     <script>
-      // Avoid FOUC: apply stored theme before render, and swap Prism theme accordingly
+      // Avoid FOUC: apply stored theme before render
       (function () {
         try {
           var stored = localStorage.getItem("theme");
@@ -37,26 +31,20 @@
             ? stored
             : (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
           document.documentElement.setAttribute("data-theme", theme);
-          var light = document.getElementById("prism-light");
-          var dark  = document.getElementById("prism-dark");
-          if (light && dark) {
-            if (theme === "dark") { light.disabled = true;  dark.disabled = false; }
-            else                  { light.disabled = false; dark.disabled = true;  }
-          }
         } catch (e) {}
       })();
     </script>
   </head>
   <body>
-    <header class="container">
+    <header class="sticky top-0 z-50 border-b border-gray-200/80 bg-white/80 backdrop-blur-vercel transition-colors dark:border-gray-800 dark:bg-dark-bg/80">
       {% include "partials/header.njk" %}
     </header>
 
-    <main class="container">
+    <main id="main-content" data-pagefind-body class="min-h-[calc(100vh-14rem)]">
       {{ content | safe }}
     </main>
 
-    <footer class="container">
+    <footer class="border-t border-gray-200 bg-gray-50/90 dark:border-gray-800 dark:bg-gray-950/90">
       {% include "partials/footer.njk" %}
     </footer>
 

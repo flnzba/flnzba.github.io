@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Florian Zeba's personal site — 11ty + Pico CSS",
+  "description": "Florian Zeba's personal site — 11ty + Tailwind CSS",
   "scripts": {
-    "build": "eleventy",
-    "serve": "eleventy --serve --quiet",
-    "clean": "rm -rf _site",
+    "build:css": "tailwindcss -i ./src/css/tailwind.css -o ./src/css/site.css --minify",
+    "build": "npm run build:css && eleventy",
+    "serve": "npm run build:css && eleventy --serve --quiet",
+    "clean": "rm -rf _site src/css/site.css",
     "search": "pagefind --site _site",
     "secrets:push": "bash scripts/sync-secrets.sh"
   },
@@ -16,11 +17,13 @@
     "@11ty/eleventy-navigation": "^0.3.5",
     "@11ty/eleventy-plugin-rss": "^2.0.2",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+    "@tailwindcss/cli": "^4.2.4",
     "gray-matter": "^4.0.3",
     "markdown-it": "^14.1.0",
     "markdown-it-anchor": "^9.2.0",
     "markdown-it-attrs": "^4.3.1",
     "pagefind": "^1.1.1",
-    "slugify": "^1.6.6"
+    "slugify": "^1.6.6",
+    "tailwindcss": "^4.2.4"
   }
 }
