@@ -1,0 +1,174 @@
+/* === Custom layer on top of Pico === */
+
+@font-face {
+  font-family: "Roboto Mono";
+  src: url("/assets/fonts/roboto-mono-regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto Mono";
+  src: url("/assets/fonts/roboto-mono-700.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --pico-font-family-sans-serif: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --pico-font-family: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --pico-font-family-monospace: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --pico-font-size: 16px;
+  --pico-line-height: 1.6;
+  --pico-typography-spacing-vertical: 1.1rem;
+  --pico-border-radius: 4px;
+}
+
+html, body { font-family: var(--pico-font-family-sans-serif); }
+
+main.container,
+header.container,
+footer.container {
+  max-width: 680px;
+}
+
+/* --- Header: minimal, no underline, subtle current state --- */
+header.container { padding-top: 1.5rem; padding-bottom: 0.5rem; }
+header nav ul { padding: 0; }
+header nav a { text-decoration: none; }
+header nav a[aria-current="page"] { font-weight: 700; }
+header nav strong a { font-weight: 700; }
+
+/* --- Homepage intro --- */
+section.intro {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 1.5rem 0 2rem;
+}
+section.intro .avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+section.intro hgroup { margin: 0; }
+section.intro h1 { margin: 0 0 .25rem; font-size: 1.4rem; }
+section.intro p  { margin: 0; opacity: .85; font-size: .95rem; }
+
+@media (max-width: 480px) {
+  section.intro { flex-direction: column; align-items: flex-start; gap: .75rem; }
+}
+
+/* --- Headings: quieter --- */
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.25rem; }
+h3 { font-size: 1.1rem; }
+
+/* --- Cover images on posts/projects --- */
+img.cover {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: var(--pico-border-radius);
+  margin: 1rem 0 1.25rem;
+}
+
+/* --- Inline images inside markdown content --- */
+main article img:not(.cover) {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--pico-border-radius);
+  margin: 1rem auto;
+  display: block;
+}
+
+/* --- Tags: minimal — text-only chips --- */
+.tag,
+a.tag {
+  display: inline-block;
+  font-size: 0.8rem;
+  margin-right: .35rem;
+  padding: 0;
+  background: transparent;
+  color: var(--pico-muted-color);
+  text-decoration: none;
+}
+.tag::before { content: "#"; opacity: .6; }
+.tag:hover { color: var(--pico-color); }
+
+/* --- Post-card list: airy, no boxes --- */
+section.post-list { margin-top: 1rem; }
+section.post-list h2 {
+  font-size: .85rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--pico-muted-color);
+  margin-bottom: 1rem;
+}
+section.post-list article {
+  border: none;
+  padding: 0;
+  margin: 0 0 1.25rem;
+}
+section.post-list article header h2,
+section.post-list article header h3 {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--pico-color);
+}
+section.post-list article header a { text-decoration: none; }
+section.post-list article header a:hover { text-decoration: underline; }
+section.post-list article time,
+section.post-list article .meta {
+  font-size: .8rem;
+  color: var(--pico-muted-color);
+  margin-right: .75rem;
+}
+
+/* --- Article (single post/project) --- */
+main article header h1 { margin-bottom: .25rem; }
+main article header .meta {
+  font-size: .85rem;
+  color: var(--pico-muted-color);
+  margin-bottom: 1.5rem;
+}
+
+/* --- Footer --- */
+footer.container {
+  padding: 3rem 0 2rem;
+  text-align: center;
+  font-size: .85rem;
+  color: var(--pico-muted-color);
+}
+footer a { color: var(--pico-muted-color); }
+
+/* --- Theme toggle: text-button --- */
+header nav button#theme-toggle {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+  color: var(--pico-muted-color);
+}
+
+/* --- Code blocks --- */
+pre[class*="language-"],
+pre, code {
+  font-family: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.85rem;
+}
+pre[class*="language-"] { line-height: 1.55; }
+
+/* --- Pagefind UI --- */
+#search { margin: 1rem 0; }
+
+/* --- Links: subtle --- */
+a { text-decoration-thickness: 1px; text-underline-offset: 2px; }

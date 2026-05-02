@@ -1,0 +1,33 @@
+---
+layout: layouts/base.njk
+ogType: article
+---
+<article>
+  <header>
+    <h1>{{ title }}</h1>
+    <p>
+      <small>
+        <time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
+        {% if updated %}
+          · updated <time datetime="{{ updated | htmlDateString }}">{{ updated | readableDate }}</time>
+        {% endif %}
+        {% if tags and tags.length %}
+          ·
+          {% for t in tags %}
+            <a href="/tags/{{ t | slugify }}/" class="tag">{{ t }}</a>{% if not loop.last %} {% endif %}
+          {% endfor %}
+        {% endif %}
+      </small>
+    </p>
+    {% if cover and cover.src %}
+      <img src="{{ cover.src | replace('./', page.url) }}" alt="{{ cover.alt }}" class="cover" />
+    {% endif %}
+  </header>
+
+  {{ content | safe }}
+
+  <footer>
+    <hr />
+    <p><a href="/posts/">← All posts</a></p>
+  </footer>
+</article>

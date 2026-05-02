@@ -1,0 +1,24 @@
+---
+layout: layouts/base.njk
+title: Projects
+permalink: /projects/
+eleventyExcludeFromCollections: true
+---
+<h1>Projects</h1>
+<section class="post-list">
+  {% for project in collections.projects %}
+    <article>
+      <header>
+        <h2 style="margin-bottom: .25rem;"><a href="{{ project.url }}">{{ project.data.title }}</a></h2>
+        <small>
+          <time datetime="{{ project.data.date | htmlDateString }}">{{ project.data.date | readableDate }}</time>
+          {% if project.data.tags and project.data.tags.length %}
+            ·
+            {% for t in project.data.tags %}<span class="tag">{{ t }}</span>{% if not loop.last %} {% endif %}{% endfor %}
+          {% endif %}
+        </small>
+      </header>
+      {% if project.data.description %}<p>{{ project.data.description }}</p>{% endif %}
+    </article>
+  {% endfor %}
+</section>
