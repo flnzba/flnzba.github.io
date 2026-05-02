@@ -11,7 +11,7 @@ cover:
   src: ./cover.webp
   alt: Python & Alteryx Integration
 number: 35
-canonical_url: 'https://fzeba.com/posts/python-alteryx-integration/'
+canonical_url: 'https://www.fzeba.com/posts/python-alteryx-integration/'
 published: true
 ---
 

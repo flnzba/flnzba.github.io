@@ -13,7 +13,7 @@ cover:
     Schema Consistency and Evolution in Microsoft Fabric and Medallion
     Architecture
 number: 49
-canonical_url: 'https://fzeba.com/posts/schema-evolution-and-model-consistency/'
+canonical_url: 'https://www.fzeba.com/posts/schema-evolution-and-model-consistency/'
 published: true
 ---
 

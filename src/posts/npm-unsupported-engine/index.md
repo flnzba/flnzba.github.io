@@ -9,7 +9,7 @@ tags:
   - npm
   - solutions
 number: 3
-canonical_url: 'https://fzeba.com/posts/npm-unsupported-engine/'
+canonical_url: 'https://www.fzeba.com/posts/npm-unsupported-engine/'
 published: true
 ---
 

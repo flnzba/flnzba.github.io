@@ -11,7 +11,7 @@ cover:
   src: ./3.webp
   alt: Dokploy
 number: 41
-canonical_url: 'https://fzeba.com/posts/dokploy-hetzner-setup/'
+canonical_url: 'https://www.fzeba.com/posts/dokploy-hetzner-setup/'
 published: true
 ---
 

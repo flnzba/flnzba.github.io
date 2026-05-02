@@ -13,7 +13,7 @@ cover:
   src: ./cover.webp
   alt: Cover Image
 number: 5
-canonical_url: 'https://fzeba.com/projects/hr-dataflows-alteryx/'
+canonical_url: 'https://www.fzeba.com/projects/hr-dataflows-alteryx/'
 published: true
 ---
 

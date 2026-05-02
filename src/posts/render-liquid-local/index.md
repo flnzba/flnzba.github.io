@@ -13,7 +13,7 @@ cover:
   src: ./cover-shopify.webp
   alt: Rendering Shopify Liquid Code
 number: 18
-canonical_url: 'https://fzeba.com/posts/render-liquid-local/'
+canonical_url: 'https://www.fzeba.com/posts/render-liquid-local/'
 published: true
 ---
 

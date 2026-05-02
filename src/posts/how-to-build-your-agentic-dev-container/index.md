@@ -10,7 +10,7 @@ tags:
   - ai agents
   - hetzner
 number: 52
-canonical_url: 'https://fzeba.com/posts/how-to-build-your-agentic-dev-container/'
+canonical_url: 'https://www.fzeba.com/posts/how-to-build-your-agentic-dev-container/'
 published: true
 ---
 

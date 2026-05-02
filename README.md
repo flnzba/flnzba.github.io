@@ -1,6 +1,6 @@
 # flnzba.github.io
 
-Florian Zeba's personal site — built with [Eleventy](https://www.11ty.dev/) and styled with [Tailwind CSS](https://tailwindcss.com/). Deployed to GitHub Pages at [fzeba.com](https://fzeba.com).
+Florian Zeba's personal site — built with [Eleventy](https://www.11ty.dev/) and styled with [Tailwind CSS](https://tailwindcss.com/). Deployed to GitHub Pages at [www.fzeba.com](https://www.fzeba.com).
 
 ## Stack
 
@@ -36,7 +36,7 @@ cover:
   src: ./cover.webp
   alt: "Cover image alt text"
 draft: false
-canonical_url: https://fzeba.com/posts/post-slug/
+canonical_url: https://www.fzeba.com/posts/post-slug/
 published: true                # set false to skip cross-posting
 ---
 ```
@@ -49,7 +49,7 @@ Same shape, but in `src/projects/<slug>/index.md`. Projects are not cross-posted
 
 ## Image store
 
-Paste standalone images into `src/image-store/`. On build, supported image files are copied to `/image-store/<filename>`, preserving subfolders. For example, `src/image-store/report/chart.webp` is available at `https://fzeba.com/image-store/report/chart.webp`.
+Paste standalone images into `src/image-store/`. On build, supported image files are copied to `/image-store/<filename>`, preserving subfolders. For example, `src/image-store/report/chart.webp` is available at `https://www.fzeba.com/image-store/report/chart.webp`.
 
 ## Cross-posting (Crier)
 
@@ -89,7 +89,7 @@ gh secret list --repo flnzba/flnzba.github.io   # verify
 
 ### Caveats
 
-- **canonical_url** is required for SEO — it tells DEV.to and Hashnode that fzeba.com is the original source.
+- **canonical_url** is required for SEO — it tells DEV.to and Hashnode that www.fzeba.com is the original source.
 - The workflow only publishes newly added post files from the triggering commit or the optional manual `post` input, so enabling the registry does not publish the entire archive at once.
 - The `[skip ci]` marker in the registry-update commit prevents an infinite loop with the deploy workflow.
 

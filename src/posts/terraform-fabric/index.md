@@ -13,7 +13,7 @@ cover:
   src: ./cover.webp
   alt: meeting data architecture
 number: 46
-canonical_url: 'https://fzeba.com/posts/terraform-fabric/'
+canonical_url: 'https://www.fzeba.com/posts/terraform-fabric/'
 published: true
 ---
 

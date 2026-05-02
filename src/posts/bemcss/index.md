@@ -9,7 +9,7 @@ tags:
   - css
   - oop
 number: 5
-canonical_url: 'https://fzeba.com/posts/bemcss/'
+canonical_url: 'https://www.fzeba.com/posts/bemcss/'
 published: true
 ---
 

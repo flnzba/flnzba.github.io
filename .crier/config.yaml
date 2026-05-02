@@ -1,6 +1,6 @@
 content_paths:
   - src/posts
-site_base_url: https://fzeba.com
+site_base_url: https://www.fzeba.com
 exclude_patterns:
   - 'src/posts/index.njk'
   - 'src/posts/tags.njk'

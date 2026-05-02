@@ -12,7 +12,7 @@ cover:
   src: ./cover1.webp
   alt: Quantum Computing
 number: 14
-canonical_url: 'https://fzeba.com/posts/current-state-quantum-chips/'
+canonical_url: 'https://www.fzeba.com/posts/current-state-quantum-chips/'
 published: true
 ---
 

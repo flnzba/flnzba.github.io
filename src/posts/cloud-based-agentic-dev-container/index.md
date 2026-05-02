@@ -10,7 +10,7 @@ tags:
   - ai agents
   - hetzner
 number: 50
-canonical_url: 'https://fzeba.com/posts/cloud-based-agentic-dev-container/'
+canonical_url: 'https://www.fzeba.com/posts/cloud-based-agentic-dev-container/'
 published: true
 ---
 

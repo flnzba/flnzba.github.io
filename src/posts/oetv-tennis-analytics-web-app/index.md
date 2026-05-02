@@ -13,7 +13,7 @@ cover:
   src: ./cover.webp
   alt: Cover image for OETV Tennis Analytics Web App
 number: 30
-canonical_url: 'https://fzeba.com/posts/oetv-tennis-analytics-web-app/'
+canonical_url: 'https://www.fzeba.com/posts/oetv-tennis-analytics-web-app/'
 published: true
 ---
 

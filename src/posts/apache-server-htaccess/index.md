@@ -12,7 +12,7 @@ cover:
   src: ./cover.webp
   alt: A cover image for the article on Apache Server Configuration
 number: 31
-canonical_url: 'https://fzeba.com/posts/apache-server-htaccess/'
+canonical_url: 'https://www.fzeba.com/posts/apache-server-htaccess/'
 published: true
 ---
 

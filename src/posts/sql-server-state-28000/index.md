@@ -9,7 +9,7 @@ tags:
   - sql
   - sql server
 number: 6
-canonical_url: 'https://fzeba.com/posts/sql-server-state-28000/'
+canonical_url: 'https://www.fzeba.com/posts/sql-server-state-28000/'
 published: true
 ---
 

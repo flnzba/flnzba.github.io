@@ -13,7 +13,7 @@ cover:
   src: ./cover-ml-methods.webp
   alt: Machine Learning Methods
 number: 19
-canonical_url: 'https://fzeba.com/posts/ml-model-methods/'
+canonical_url: 'https://www.fzeba.com/posts/ml-model-methods/'
 published: true
 ---
 

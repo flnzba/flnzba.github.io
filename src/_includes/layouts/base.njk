@@ -1,13 +1,36 @@
 <!doctype html>
 <html lang="{{ site.language }}" data-theme="dark">
   <head>
+    {% set metaDescription = description or site.description %}
+    {% set canonicalHref = page.url | pageCanonicalUrl(canonical_url) %}
+    {% set socialImage = site.defaultImage | absoluteUrl(site.url) %}
+    {% if cover and cover.src %}
+      {% set socialImage = cover.src | pageAssetUrl(page.url) %}
+    {% endif %}
+    {% set keywords = tags | compactKeywords(site.keywords) %}
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{% if title %}{{ title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-    <meta name="description" content="{{ description or site.description }}" />
-    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+    <title>{% if title %}{{ title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="description" content="{{ metaDescription }}" />
+    <meta name="author" content="{{ site.author.name }}" />
+    <meta name="generator" content="Eleventy" />
+    <meta name="robots" content="{{ robots or 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}" />
+    {% if keywords and keywords.length %}
+      <meta name="keywords" content="{{ keywords | join(', ') }}" />
+    {% endif %}
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <link rel="canonical" href="{{ canonicalHref }}" />
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
-    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="/feed.xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | absoluteUrl(site.url) }}" />
+    <link rel="alternate" type="text/plain" title="{{ site.title }} LLM guide" href="{{ '/llms.txt' | absoluteUrl(site.url) }}" />
+    <link rel="author" href="{{ site.url }}/humans.txt" />
+    {% for profile in site.social %}
+      <link rel="me" href="{{ profile.url }}" />
+    {% endfor %}
 
     <!-- Pagefind UI (only on /search/) -->
     {% if page.url == "/search/" %}
@@ -16,11 +39,34 @@
     <link rel="stylesheet" href="/css/site.css?v={{ build.timestamp }}" />
 
     <!-- OpenGraph -->
-    <meta property="og:title" content="{{ title or site.title }}" />
-    <meta property="og:description" content="{{ description or site.description }}" />
+    <meta property="og:title" content="{% if title %}{{ title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}" />
+    <meta property="og:description" content="{{ metaDescription }}" />
     <meta property="og:type" content="{{ ogType or 'website' }}" />
-    <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
-    <meta property="og:image" content="{{ site.url }}/assets/social-card.png" />
+    <meta property="og:url" content="{{ canonicalHref }}" />
+    <meta property="og:site_name" content="{{ site.title }}" />
+    <meta property="og:locale" content="{{ site.locale }}" />
+    <meta property="og:image" content="{{ socialImage }}" />
+    <meta property="og:image:secure_url" content="{{ socialImage }}" />
+    <meta property="og:image:alt" content="{% if cover and cover.alt %}{{ cover.alt }}{% else %}{{ site.defaultImageAlt }}{% endif %}" />
+    {% if contentType == "post" or contentType == "project" or ogType == "article" %}
+      {% if date %}<meta property="article:published_time" content="{{ date | rfc3339 }}" />{% endif %}
+      {% if updated or date %}<meta property="article:modified_time" content="{{ (updated or date) | rfc3339 }}" />{% endif %}
+      <meta property="article:author" content="{{ site.author.name }}" />
+      {% if tags and tags.length %}
+        {% for tag in tags %}
+          <meta property="article:tag" content="{{ tag }}" />
+        {% endfor %}
+      {% endif %}
+    {% endif %}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{% if title %}{{ title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}" />
+    <meta name="twitter:description" content="{{ metaDescription }}" />
+    <meta name="twitter:image" content="{{ socialImage }}" />
+    <meta name="twitter:image:alt" content="{% if cover and cover.alt %}{{ cover.alt }}{% else %}{{ site.defaultImageAlt }}{% endif %}" />
+
+    {% seoJsonLd page, site, title, metaDescription, contentType, ogType, date, updated, tags, cover, canonical_url %}
 
     <script>
       // Avoid FOUC: apply stored theme before render

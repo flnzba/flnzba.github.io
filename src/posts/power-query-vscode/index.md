@@ -13,7 +13,7 @@ cover:
   src: ./cover.webp
   alt: data transformation in Power Query SDK
 number: 15
-canonical_url: 'https://fzeba.com/posts/power-query-vscode/'
+canonical_url: 'https://www.fzeba.com/posts/power-query-vscode/'
 published: true
 ---
 

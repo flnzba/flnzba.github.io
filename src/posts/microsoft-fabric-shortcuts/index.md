@@ -12,7 +12,7 @@ cover:
   src: ./cover.webp
   alt: Microsoft Fabric OneLake Shortcuts
 number: 47
-canonical_url: 'https://fzeba.com/posts/microsoft-fabric-shortcuts/'
+canonical_url: 'https://www.fzeba.com/posts/microsoft-fabric-shortcuts/'
 published: true
 ---
 

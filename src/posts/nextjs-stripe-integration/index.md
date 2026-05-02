@@ -13,7 +13,7 @@ cover:
   src: ./cover.webp
   alt: Stripe Integration Guide
 number: 33
-canonical_url: 'https://fzeba.com/posts/nextjs-stripe-integration/'
+canonical_url: 'https://www.fzeba.com/posts/nextjs-stripe-integration/'
 published: true
 ---
 

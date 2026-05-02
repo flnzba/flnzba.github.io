@@ -3,23 +3,67 @@ permalink: /sitemap.xml
 eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="utf-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>{{ site.url }}/</loc></url>
-  <url><loc>{{ site.url }}/posts/</loc></url>
-  <url><loc>{{ site.url }}/projects/</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  {% set latestPost = collections.posts[0] %}
+  {% set latestProject = collections.projects[0] %}
+  <url>
+    <loc>{{ site.url }}/</loc>
+    {% if latestPost %}<lastmod>{{ (latestPost.data.updated or latestPost.data.date) | htmlDateString }}</lastmod>{% endif %}
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>{{ site.defaultImage | absoluteUrl(site.url) }}</image:loc>
+      <image:title>{{ site.defaultImageAlt | escape }}</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>{{ site.url }}/posts/</loc>
+    {% if latestPost %}<lastmod>{{ (latestPost.data.updated or latestPost.data.date) | htmlDateString }}</lastmod>{% endif %}
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>{{ site.url }}/projects/</loc>
+    {% if latestProject %}<lastmod>{{ (latestProject.data.updated or latestProject.data.date) | htmlDateString }}</lastmod>{% endif %}
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   {% for post in collections.posts %}
     <url>
-      <loc>{{ site.url }}{{ post.url }}</loc>
-      <lastmod>{{ post.data.date | htmlDateString }}</lastmod>
+      <loc>{{ post.url | pageCanonicalUrl(post.data.canonical_url) }}</loc>
+      <lastmod>{{ (post.data.updated or post.data.date) | htmlDateString }}</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+      {% if post.data.cover and post.data.cover.src %}
+        <image:image>
+          <image:loc>{{ post.data.cover.src | pageAssetUrl(post.url) }}</image:loc>
+          <image:title>{{ (post.data.cover.alt or post.data.title) | escape }}</image:title>
+        </image:image>
+      {% endif %}
     </url>
   {% endfor %}
   {% for project in collections.projects %}
     <url>
-      <loc>{{ site.url }}{{ project.url }}</loc>
-      <lastmod>{{ project.data.date | htmlDateString }}</lastmod>
+      <loc>{{ project.url | pageCanonicalUrl(project.data.canonical_url) }}</loc>
+      <lastmod>{{ (project.data.updated or project.data.date) | htmlDateString }}</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
+      {% if project.data.cover and project.data.cover.src %}
+        <image:image>
+          <image:loc>{{ project.data.cover.src | pageAssetUrl(project.url) }}</image:loc>
+          <image:title>{{ (project.data.cover.alt or project.data.title) | escape }}</image:title>
+        </image:image>
+      {% endif %}
     </url>
   {% endfor %}
   {% for tag in collections.tagList %}
-    <url><loc>{{ site.url }}/tags/{{ tag | slugify }}/</loc></url>
+    {% set tagged = collections.posts | byTag(tag) %}
+    <url>
+      <loc>{{ site.url }}/tags/{{ tag | slugify }}/</loc>
+      {% if tagged and tagged.length %}<lastmod>{{ (tagged[0].data.updated or tagged[0].data.date) | htmlDateString }}</lastmod>{% endif %}
+      <changefreq>monthly</changefreq>
+      <priority>0.4</priority>
+    </url>
   {% endfor %}
 </urlset>

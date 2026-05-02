@@ -8,7 +8,7 @@ tags:
   - dataspace
   - sovereignty
 number: 53
-canonical_url: 'https://fzeba.com/posts/eclipse-dataspace-protocol/'
+canonical_url: 'https://www.fzeba.com/posts/eclipse-dataspace-protocol/'
 published: true
 ---
 

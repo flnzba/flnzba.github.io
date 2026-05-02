@@ -13,7 +13,7 @@ cover:
   src: ./cover.webp
   alt: Cover Image
 number: 2
-canonical_url: 'https://fzeba.com/projects/logistics-management-database/'
+canonical_url: 'https://www.fzeba.com/projects/logistics-management-database/'
 published: true
 ---
 

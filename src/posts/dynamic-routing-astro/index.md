@@ -13,7 +13,7 @@ cover:
   src: ./cover-data.webp
   alt: Code Block
 number: 12
-canonical_url: 'https://fzeba.com/posts/dynamic-routing-astro/'
+canonical_url: 'https://www.fzeba.com/posts/dynamic-routing-astro/'
 published: true
 ---
 

@@ -11,7 +11,7 @@ cover:
   src: ./cover-node-reinstall.webp
   alt: Guide to Uninstalling and Reinstalling Node.js and npm
 number: 23
-canonical_url: 'https://fzeba.com/posts/reinstall-node/'
+canonical_url: 'https://www.fzeba.com/posts/reinstall-node/'
 published: true
 ---
 

@@ -11,7 +11,7 @@ tags:
   - spring-boot
   - java
 number: 38
-canonical_url: 'https://fzeba.com/posts/jakarta-vs-spring/'
+canonical_url: 'https://www.fzeba.com/posts/jakarta-vs-spring/'
 published: true
 ---
 

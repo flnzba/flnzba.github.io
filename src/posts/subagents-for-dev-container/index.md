@@ -10,7 +10,7 @@ tags:
   - ai agents
   - hetzner
 number: 51
-canonical_url: 'https://fzeba.com/posts/subagents-for-dev-container/'
+canonical_url: 'https://www.fzeba.com/posts/subagents-for-dev-container/'
 published: true
 ---
 

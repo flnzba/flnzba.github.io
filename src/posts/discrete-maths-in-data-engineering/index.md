@@ -12,7 +12,7 @@ cover:
   src: ./cover-image-1.webp
   alt: Cover Image of discrete mathematics in data engineering
 number: 10
-canonical_url: 'https://fzeba.com/posts/discrete-maths-in-data-engineering/'
+canonical_url: 'https://www.fzeba.com/posts/discrete-maths-in-data-engineering/'
 published: true
 ---
 

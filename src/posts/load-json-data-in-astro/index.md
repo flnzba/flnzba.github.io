@@ -13,13 +13,13 @@ cover:
   src: ./cover-data.webp
   alt: Guy working on a laptop
 number: 11
-canonical_url: 'https://fzeba.com/posts/load-json-data-in-astro/'
+canonical_url: 'https://www.fzeba.com/posts/load-json-data-in-astro/'
 published: true
 ---
 
 ## The Original Approach: In-file Data Object
 
-Initially, the technology stack data for the front page of [fzeba.com](https://fzeba.com) was embedded directly within the React component using a constant array `cactusTech`. This array held multiple technology entries, each described by properties like `desc`, `href`, and `title`. The array was directly used in the component to render the technology stack section.
+Initially, the technology stack data for the front page of [fzeba.com](https://www.fzeba.com) was embedded directly within the React component using a constant array `cactusTech`. This array held multiple technology entries, each described by properties like `desc`, `href`, and `title`. The array was directly used in the component to render the technology stack section.
 
 While this approach worked, a better solution (for me) was to separate the data from the component code. Then load the data from a JSON file, which would make the code more maintainable and scalable.
 

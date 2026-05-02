@@ -13,7 +13,7 @@ cover:
   src: ./cover.webp
   alt: Cover Image
 number: 4
-canonical_url: 'https://fzeba.com/projects/eu-subsidies-platform/'
+canonical_url: 'https://www.fzeba.com/projects/eu-subsidies-platform/'
 published: true
 ---
 

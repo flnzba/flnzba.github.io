@@ -1,0 +1,22 @@
+---
+permalink: /humans.txt
+eleventyExcludeFromCollections: true
+---
+/* TEAM */
+
+Author: {{ site.author.name | safe }}
+Role: {{ site.author.jobTitle | safe }}
+Site: {{ site.url }}
+Contact: {{ site.author.email }}
+{% for profile in site.social %}
+{{ profile.name }}: {{ profile.url }}
+{% endfor %}
+
+/* SITE */
+
+Language: {{ site.language }}
+Generator: Eleventy
+Primary topics: {{ site.topics | join(", ") | safe }}
+Sitemap: {{ site.url }}/sitemap.xml
+LLM guide: {{ site.url }}/llms.txt
+AI index: {{ site.url }}/ai.json

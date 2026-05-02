@@ -10,7 +10,7 @@ tags:
   - neural networks
   - machine learning
 number: 40
-canonical_url: 'https://fzeba.com/posts/understanding-backpropagation/'
+canonical_url: 'https://www.fzeba.com/posts/understanding-backpropagation/'
 published: true
 ---
 

@@ -4,25 +4,32 @@ eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>{{ site.title }}</title>
-  <subtitle>{{ site.description }}</subtitle>
+  <title>{{ site.title | escape }}</title>
+  <subtitle>{{ site.description | escape }}</subtitle>
   <link href="{{ site.url }}/feed.xml" rel="self"/>
   <link href="{{ site.url }}/"/>
-  <updated>{{ collections.posts[0].data.date | rfc3339 }}</updated>
+  <updated>{{ (collections.posts[0].data.updated or collections.posts[0].data.date) | rfc3339 }}</updated>
   <id>{{ site.url }}/</id>
   <author>
-    <name>{{ site.author.name }}</name>
-    {% if site.author.email %}<email>{{ site.author.email }}</email>{% endif %}
+    <name>{{ site.author.name | escape }}</name>
+    {% if site.author.email %}<email>{{ site.author.email | escape }}</email>{% endif %}
   </author>
+  <rights>Content copyright {{ site.author.name | escape }}</rights>
   {% for post in collections.posts | head(20) %}
-    {% set absolutePostUrl %}{{ site.url }}{{ post.url }}{% endset %}
+    {% set absolutePostUrl %}{{ post.url | pageCanonicalUrl(post.data.canonical_url) }}{% endset %}
     <entry>
-      <title>{{ post.data.title }}</title>
+      <title>{{ post.data.title | escape }}</title>
       <link href="{{ absolutePostUrl }}"/>
-      <updated>{{ post.data.date | rfc3339 }}</updated>
+      <published>{{ post.data.date | rfc3339 }}</published>
+      <updated>{{ (post.data.updated or post.data.date) | rfc3339 }}</updated>
       <id>{{ absolutePostUrl }}</id>
-      <summary>{{ post.data.description }}</summary>
-      <content type="html">{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) | safe }}</content>
+      <summary>{{ post.data.description | escape }}</summary>
+      {% if post.data.tags %}
+        {% for tag in post.data.tags %}
+          <category term="{{ tag | escape }}" />
+        {% endfor %}
+      {% endif %}
+      <content type="html">{{ '<p>' | escape }}{{ post.data.description | escape }}{{ '</p><p><a href="' | escape }}{{ absolutePostUrl }}{{ '">' | escape }}Read the full article on {{ site.title | escape }}{{ '</a></p>' | escape }}</content>
     </entry>
   {% endfor %}
 </feed>

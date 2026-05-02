@@ -10,7 +10,7 @@ tags:
   - openpanel
   - traefik
 number: 42
-canonical_url: 'https://fzeba.com/posts/dokploy-openpanel-errors/'
+canonical_url: 'https://www.fzeba.com/posts/dokploy-openpanel-errors/'
 published: true
 ---
 

@@ -11,7 +11,7 @@ cover:
   src: ./cover-image-converter-tool.webp
   alt: Guide to Building an Image Converter Tool with Next.js and Sharp
 number: 24
-canonical_url: 'https://fzeba.com/posts/image-converter-tool/'
+canonical_url: 'https://www.fzeba.com/posts/image-converter-tool/'
 published: true
 ---
 

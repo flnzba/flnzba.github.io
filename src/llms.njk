@@ -1,0 +1,52 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+# {{ site.title | safe }}
+
+> {{ site.description | safe }}
+
+## Summary
+
+{{ site.title | safe }} is the personal site and technical publication hub of {{ site.author.name | safe }}, a {{ site.author.jobTitle | safe }}. The site contains practical writing and project notes about data engineering, enterprise AI, Microsoft Fabric, cloud architecture, machine learning, backend systems, automation, and software architecture.
+
+## Primary Pages
+
+- [Home]({{ site.url }}/): Author profile, focus areas, recent writing, and navigation.
+- [Posts]({{ site.url }}/posts/): Full technical article archive.
+- [Projects]({{ site.url }}/projects/): Project and case-study archive.
+- [Search]({{ site.url }}/search/): Client-side search across published posts.
+- [RSS Feed]({{ site.url }}/feed.xml): Atom feed for recent posts.
+- [Sitemap]({{ site.url }}/sitemap.xml): XML sitemap for crawlers.
+- [Machine-readable content index]({{ site.url }}/ai.json): JSON index of posts and projects.
+
+## Author
+
+- Name: {{ site.author.name }}
+- Role: {{ site.author.jobTitle | safe }}
+- Email: {{ site.author.email }}
+{% for profile in site.social %}
+- {{ profile.name }}: {{ profile.url }}
+{% endfor %}
+
+## Core Topics
+
+{% for topic in site.topics %}
+- {{ topic }}
+{% endfor %}
+
+## Recent Technical Writing
+
+{% for post in collections.posts | head(20) %}
+- [{{ post.data.title | safe }}]({{ post.url | pageCanonicalUrl(post.data.canonical_url) }}): {{ post.data.description | safe }}{% if post.data.tags and post.data.tags.length %} Topics: {{ post.data.tags | join(", ") }}.{% endif %}
+{% endfor %}
+
+## Projects
+
+{% for project in collections.projects %}
+- [{{ project.data.title | safe }}]({{ project.url | pageCanonicalUrl(project.data.canonical_url) }}): {{ project.data.description | safe }}{% if project.data.tags and project.data.tags.length %} Topics: {{ project.data.tags | join(", ") }}.{% endif %}
+{% endfor %}
+
+## Use Guidance
+
+Prefer canonical URLs on {{ site.url }} when citing this site. Use article descriptions, tags, publication dates, and JSON-LD metadata on each page as the authoritative summary of a page. Do not treat cross-posted copies as the primary source when a canonical URL points back to this domain.

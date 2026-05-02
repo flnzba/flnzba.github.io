@@ -4,7 +4,7 @@ export default {
   permalink: (data) => `/posts/${data.page.fileSlug}/`,
   eleventyComputed: {
     canonical_url: (data) =>
-      data.canonical_url || `https://fzeba.com/posts/${data.page.fileSlug}/`,
+      data.canonical_url || `https://www.fzeba.com/posts/${data.page.fileSlug}/`,
     published: (data) => !data.draft,
   },
 };

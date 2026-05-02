@@ -5,6 +5,288 @@ import markdownIt from "markdown-it";
 import markdownItAnchor from "markdown-it-anchor";
 import markdownItAttrs from "markdown-it-attrs";
 
+const OWNED_HOSTS = new Set(["fzeba.com", "www.fzeba.com"]);
+const DEFAULT_SITE_URL = "https://www.fzeba.com";
+
+function siteOrigin(siteUrl = DEFAULT_SITE_URL) {
+  return String(siteUrl || "").replace(/\/+$/, "");
+}
+
+function absoluteUrl(input, siteUrl = DEFAULT_SITE_URL, currentPageUrl = "/") {
+  if (currentPageUrl === "/" && String(siteUrl || "").startsWith("/")) {
+    currentPageUrl = siteUrl;
+    siteUrl = DEFAULT_SITE_URL;
+  }
+
+  const origin = siteOrigin(siteUrl);
+  if (!input) return origin;
+
+  let value = String(input).trim();
+  if (value.startsWith("./")) {
+    const basePath = String(currentPageUrl || "/").endsWith("/")
+      ? String(currentPageUrl || "/")
+      : `${currentPageUrl}/`;
+    value = `${basePath}${value.slice(2)}`;
+  }
+
+  if (value.startsWith("//")) return `https:${value}`;
+
+  try {
+    return new URL(value, `${origin}/`).toString();
+  } catch {
+    return value;
+  }
+}
+
+function pageAssetUrl(input, currentPageUrl = "/") {
+  return absoluteUrl(input, DEFAULT_SITE_URL, currentPageUrl);
+}
+
+function pageCanonicalUrl(currentPageUrl = "/", canonicalValue) {
+  return canonicalUrl(canonicalValue, DEFAULT_SITE_URL, currentPageUrl);
+}
+
+function canonicalUrl(input, siteUrl = DEFAULT_SITE_URL, currentPageUrl = "/") {
+  const resolved = absoluteUrl(input || currentPageUrl || "/", siteUrl, currentPageUrl);
+  try {
+    const preferred = new URL(siteOrigin(siteUrl));
+    const canonical = new URL(resolved);
+
+    if (OWNED_HOSTS.has(canonical.hostname)) {
+      canonical.protocol = preferred.protocol;
+      canonical.hostname = preferred.hostname;
+      canonical.port = preferred.port;
+    }
+
+    canonical.hash = "";
+    return canonical.toString();
+  } catch {
+    return resolved;
+  }
+}
+
+function compactKeywords(...sources) {
+  const values = sources.flatMap((source) => {
+    if (!source) return [];
+    return Array.isArray(source) ? source : String(source).split(",");
+  });
+
+  return [...new Set(
+    values
+      .map((value) => String(value).trim())
+      .filter(Boolean)
+  )];
+}
+
+function jsonSafe(value) {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
+}
+
+function toIsoDate(value) {
+  return value ? new Date(value).toISOString() : undefined;
+}
+
+function pageTitle(title, site) {
+  return title ? `${title} - ${site.title}` : site.title;
+}
+
+function imageForPage(cover, site, pageUrl) {
+  if (cover?.src) return absoluteUrl(cover.src, site.url, pageUrl);
+  return absoluteUrl(site.defaultImage, site.url);
+}
+
+function buildBreadcrumb(page, site, title, canonicalPageUrl) {
+  let url = page?.url || "/";
+  if (canonicalPageUrl) {
+    try {
+      url = new URL(canonicalPageUrl).pathname;
+    } catch {
+      url = page?.url || "/";
+    }
+  }
+  const parts = url.split("/").filter(Boolean);
+  const itemListElement = [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: `${siteOrigin(site.url)}/`,
+    },
+  ];
+
+  if (parts[0] === "posts") {
+    itemListElement.push({
+      "@type": "ListItem",
+      position: itemListElement.length + 1,
+      name: "Posts",
+      item: absoluteUrl("/posts/", site.url),
+    });
+  } else if (parts[0] === "projects") {
+    itemListElement.push({
+      "@type": "ListItem",
+      position: itemListElement.length + 1,
+      name: "Projects",
+      item: absoluteUrl("/projects/", site.url),
+    });
+  }
+
+  if (url !== "/" && title) {
+    itemListElement.push({
+      "@type": "ListItem",
+      position: itemListElement.length + 1,
+      name: title,
+      item: canonicalUrl(undefined, site.url, url),
+    });
+  }
+
+  return {
+    "@type": "BreadcrumbList",
+    "@id": `${canonicalUrl(undefined, site.url, url)}#breadcrumb`,
+    itemListElement,
+  };
+}
+
+function buildStructuredData(page, site, options = {}) {
+  const title = options.title || site.title;
+  const description = options.description || site.description;
+  const pageUrl = page?.url || "/";
+  const canonical = canonicalUrl(options.canonicalUrl, site.url, pageUrl);
+  const image = imageForPage(options.cover, site, pageUrl);
+  const keywords = compactKeywords(site.keywords, options.tags);
+  const personId = `${siteOrigin(site.url)}/#person`;
+  const websiteId = `${siteOrigin(site.url)}/#website`;
+  const webpageId = `${canonical}#webpage`;
+  const breadcrumb = buildBreadcrumb(page, site, options.title, canonical);
+  const sameAs = (site.social || []).map((profile) => profile.url);
+
+  const graph = [
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: site.author.name,
+      url: siteOrigin(site.url),
+      email: site.author.email ? `mailto:${site.author.email}` : undefined,
+      image: absoluteUrl(site.author.image, site.url),
+      jobTitle: site.author.jobTitle,
+      description: site.description,
+      sameAs,
+      knowsAbout: site.topics,
+    },
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: siteOrigin(site.url),
+      name: site.title,
+      alternateName: site.shortTitle,
+      description: site.description,
+      inLanguage: site.language,
+      publisher: { "@id": personId },
+    },
+    {
+      "@type": "WebPage",
+      "@id": webpageId,
+      url: canonical,
+      name: pageTitle(options.title, site),
+      description,
+      isPartOf: { "@id": websiteId },
+      about: { "@id": personId },
+      author: { "@id": personId },
+      inLanguage: site.language,
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: image,
+      },
+      breadcrumb: { "@id": breadcrumb["@id"] },
+      datePublished: toIsoDate(options.date),
+      dateModified: toIsoDate(options.updated || options.date),
+    },
+    breadcrumb,
+  ];
+
+  if (options.contentType === "post") {
+    graph.push({
+      "@type": ["BlogPosting", "TechArticle"],
+      "@id": `${canonical}#article`,
+      mainEntityOfPage: { "@id": webpageId },
+      headline: title,
+      description,
+      image,
+      author: { "@id": personId },
+      publisher: { "@id": personId },
+      datePublished: toIsoDate(options.date),
+      dateModified: toIsoDate(options.updated || options.date),
+      keywords,
+      articleSection: options.tags,
+      inLanguage: site.language,
+    });
+  }
+
+  if (options.contentType === "project") {
+    graph.push({
+      "@type": "CreativeWork",
+      "@id": `${canonical}#creativework`,
+      name: title,
+      description,
+      url: canonical,
+      image,
+      creator: { "@id": personId },
+      author: { "@id": personId },
+      keywords,
+      dateCreated: toIsoDate(options.date),
+      dateModified: toIsoDate(options.updated || options.date),
+      inLanguage: site.language,
+    });
+  }
+
+  return `<script type="application/ld+json">${jsonSafe({
+    "@context": "https://schema.org",
+    "@graph": graph,
+  })}</script>`;
+}
+
+function contentIndex(site, posts = [], projects = []) {
+  const siteUrl = siteOrigin(site.url);
+  const mapItem = (item, type) => {
+    const data = item.data || {};
+    return {
+      "@type": "DataFeedItem",
+      dateCreated: toIsoDate(data.date),
+      dateModified: toIsoDate(data.updated || data.date),
+      item: {
+        "@type": type === "post" ? "BlogPosting" : "CreativeWork",
+        name: data.title,
+        headline: data.title,
+        description: data.description,
+        url: canonicalUrl(data.canonical_url, site.url, item.url),
+        image: data.cover?.src ? absoluteUrl(data.cover.src, site.url, item.url) : undefined,
+        keywords: compactKeywords(data.tags),
+        author: {
+          "@type": "Person",
+          name: site.author.name,
+          url: siteUrl,
+        },
+      },
+    };
+  };
+
+  return jsonSafe({
+    "@context": "https://schema.org",
+    "@type": "DataFeed",
+    name: `${site.title} content index`,
+    description: "Machine-readable index of posts and projects for search engines and AI answer engines.",
+    url: `${siteUrl}/ai.json`,
+    author: {
+      "@type": "Person",
+      name: site.author.name,
+      url: siteUrl,
+    },
+    dataFeedElement: [
+      ...posts.map((post) => mapItem(post, "post")),
+      ...projects.map((project) => mapItem(project, "project")),
+    ],
+  });
+}
+
 export default function (eleventyConfig) {
   // Plugins
   eleventyConfig.addPlugin(rssPlugin);
@@ -51,6 +333,13 @@ export default function (eleventyConfig) {
     new Date(date).toISOString()
   );
 
+  eleventyConfig.addFilter("absoluteUrl", absoluteUrl);
+  eleventyConfig.addFilter("canonicalUrl", canonicalUrl);
+  eleventyConfig.addFilter("pageAssetUrl", pageAssetUrl);
+  eleventyConfig.addFilter("pageCanonicalUrl", pageCanonicalUrl);
+  eleventyConfig.addFilter("compactKeywords", compactKeywords);
+  eleventyConfig.addFilter("jsonValue", (value) => jsonSafe(value));
+
   eleventyConfig.addFilter("head", (array, n) => {
     if (!Array.isArray(array) || array.length === 0) return [];
     return n < 0 ? array.slice(n) : array.slice(0, n);
@@ -63,6 +352,34 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("excludeFrom", (collection, slug) =>
     (collection || []).filter((item) => item.fileSlug !== slug)
   );
+
+  eleventyConfig.addShortcode("seoJsonLd", function (
+    page,
+    site,
+    title,
+    description,
+    contentType,
+    ogType,
+    date,
+    updated,
+    tags,
+    cover,
+    canonicalUrlValue
+  ) {
+    return buildStructuredData(page, site, {
+      title,
+      description,
+      contentType,
+      ogType,
+      date,
+      updated,
+      tags,
+      cover,
+      canonicalUrl: canonicalUrlValue,
+    });
+  });
+
+  eleventyConfig.addShortcode("aiContentIndex", contentIndex);
 
   // Collections
   const isPublished = (item) => {

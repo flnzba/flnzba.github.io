@@ -11,7 +11,7 @@ cover:
   src: ./cover.webp
   alt: Data Vault 2.0 Schema Diagram
 number: 43
-canonical_url: 'https://fzeba.com/posts/data-vault-schema-method/'
+canonical_url: 'https://www.fzeba.com/posts/data-vault-schema-method/'
 published: true
 ---
 

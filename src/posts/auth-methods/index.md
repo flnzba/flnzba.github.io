@@ -10,7 +10,7 @@ tags:
   - authentication
   - authorization
 number: 39
-canonical_url: 'https://fzeba.com/posts/auth-methods/'
+canonical_url: 'https://www.fzeba.com/posts/auth-methods/'
 published: true
 ---
 

@@ -13,7 +13,7 @@ cover:
   src: ./github-build-failed-pnpm-lockfile.webp
   alt: Screenshot Github Build Failed
 number: 9
-canonical_url: 'https://fzeba.com/posts/git-actions-build-failed-pnpm-lockfile/'
+canonical_url: 'https://www.fzeba.com/posts/git-actions-build-failed-pnpm-lockfile/'
 published: true
 ---
 
