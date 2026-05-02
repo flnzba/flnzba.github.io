@@ -1,5 +1,5 @@
 ---
-title: '#53 The Dataspace Protocol: Bridging the Gap Between Data Sharing and Data Sovereignty'
+title: '#53 The Dataspace Protocol: Bridging the Gap Between Data Sharing & Sovereignty'
 description: 'How modern enterprises can share data while maintaining control and compliance'
 publishDate: '22 February 2026'
 updatedDate: '22 February 2026'
