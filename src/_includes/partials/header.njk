@@ -1,5 +1,5 @@
 <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-deep-blue focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white">Skip to content</a>
-<nav class="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 py-4 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8" aria-label="Primary navigation">
+<nav class="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6 md:flex-nowrap md:gap-4 lg:px-8" aria-label="Primary navigation">
   <a href="/" class="flex w-fit items-center gap-3 text-gray-950 transition-colors hover:text-deep-blue dark:text-white dark:hover:text-accent-blue" aria-label="{{ site.title }} home">
     <span class="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-900">
       <img src="/assets/logo.png" alt="" class="h-6 w-auto opacity-85" />
@@ -7,7 +7,26 @@
     <span class="font-display text-base font-bold tracking-normal">{{ site.title }}</span>
   </a>
 
-  <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+  <div class="flex items-center gap-2 md:order-3">
+    {% include "partials/theme-toggle.njk" %}
+    <button
+      id="mobile-nav-toggle"
+      type="button"
+      class="inline-flex h-10 w-10 items-center justify-center rounded-md border border-gray-200 bg-white text-gray-700 transition-colors hover:border-deep-blue hover:text-deep-blue md:hidden dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-accent-blue dark:hover:text-accent-blue"
+      aria-controls="primary-menu"
+      aria-expanded="false"
+      aria-label="Open navigation menu"
+      title="Open navigation menu"
+    >
+      <svg class="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 7h16" />
+        <path d="M4 12h16" />
+        <path d="M4 17h16" />
+      </svg>
+    </button>
+  </div>
+
+  <div id="primary-menu" class="order-3 hidden w-full flex-col gap-1 border-t border-gray-200 pt-3 md:order-2 md:flex md:w-auto md:flex-row md:items-center md:gap-2 md:border-0 md:pt-0 dark:border-gray-800">
     {% for item in site.nav %}
       {% if item.url != "/" %}
         {% set isActive = page.url and page.url.startsWith(item.url) %}
@@ -18,6 +37,5 @@
         >{{ item.text }}</a>
       {% endif %}
     {% endfor %}
-    {% include "partials/theme-toggle.njk" %}
   </div>
 </nav>

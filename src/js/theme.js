@@ -28,3 +28,48 @@
     apply(current() === "dark" ? "light" : "dark");
   });
 })();
+
+(function () {
+  const btn = document.getElementById("mobile-nav-toggle");
+  const menu = document.getElementById("primary-menu");
+  if (!btn || !menu) return;
+
+  function closeMenu() {
+    menu.classList.add("hidden");
+    btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("aria-label", "Open navigation menu");
+    btn.setAttribute("title", "Open navigation menu");
+  }
+
+  function openMenu() {
+    menu.classList.remove("hidden");
+    btn.setAttribute("aria-expanded", "true");
+    btn.setAttribute("aria-label", "Close navigation menu");
+    btn.setAttribute("title", "Close navigation menu");
+  }
+
+  btn.addEventListener("click", function () {
+    if (btn.getAttribute("aria-expanded") === "true") {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  menu.addEventListener("click", function (event) {
+    if (event.target instanceof Element && event.target.closest("a")) closeMenu();
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") closeMenu();
+  });
+
+  if (window.matchMedia) {
+    const desktopQuery = window.matchMedia("(min-width: 768px)");
+    if (desktopQuery.addEventListener) {
+      desktopQuery.addEventListener("change", closeMenu);
+    } else {
+      desktopQuery.addListener(closeMenu);
+    }
+  }
+})();
