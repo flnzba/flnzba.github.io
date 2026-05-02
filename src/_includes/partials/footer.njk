@@ -1,8 +1,11 @@
 <hr />
-<small>
-  © 2026 {{ site.author.name }} ·
-  {% for s in site.social %}
-    <a href="{{ s.url }}" rel="me">{{ s.name }}</a>{% if not loop.last %} · {% endif %}
-  {% endfor %}
-  · <a href="/feed.xml">RSS</a>
-</small>
+<div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+  <small>
+    © 2026 {{ site.author.name }} ·
+    {% for s in site.social %}
+      <a href="{{ s.url }}" rel="me">{{ s.name }}</a>{% if not loop.last %} · {% endif %}
+    {% endfor %}
+    · <a href="/feed.xml">RSS</a>
+  </small>
+  <img src="/assets/logo.png" alt="Logo" style="height: 24px; width: auto; opacity: 0.6;" />
+</div>
