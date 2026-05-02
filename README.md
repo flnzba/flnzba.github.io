@@ -63,8 +63,6 @@ Cross-posting is automated via `.github/workflows/crosspost.yml`. After a push t
 | `DEVTO_API_KEY`              | DEV.to API key                              |
 | `HASHNODE_API_KEY`           | `<token>:<publication_id>`                  |
 
-> **Medium**: Medium retired their public API in January 2025 and no longer issues new integration tokens. The cross-post workflow only targets DEV.to and Hashnode. If you already have a pre-2025 Medium token, re-add `- medium` to `.crier/config.yaml` (under `profiles.blogs`), uncomment `MEDIUM_INTEGRATION_TOKEN` in `.env.example`, and re-add the `CRIER_MEDIUM_API_KEY` env var to `.github/workflows/crosspost.yml`.
-
 #### Setting them
 
 Either one secret at a time:
@@ -86,7 +84,6 @@ gh secret list --repo flnzba/flnzba.github.io   # verify
 
 ### Caveats
 
-- **Medium is unsupported** — Medium retired their public API in January 2025 and stopped issuing integration tokens. Programmatic publishing is not possible without a pre-2025 token. Manual cross-posting via Medium's "Import a story" feature is still available.
 - **canonical_url** is required for SEO — it tells DEV.to and Hashnode that fzeba.com is the original source.
 - The `[skip ci]` marker in the registry-update commit prevents an infinite loop with the deploy workflow.
 
