@@ -64,22 +64,31 @@ Cross-posting is automated via `.github/workflows/crosspost.yml`. After a push t
 | `HASHNODE_API_KEY`           | `<token>:<publication_id>`                  |
 | `MEDIUM_INTEGRATION_TOKEN`   | Medium integration token (publish-only)     |
 
+#### Setting them
+
+Either one secret at a time:
+
+```bash
+gh secret set DEVTO_API_KEY            --repo flnzba/flnzba.github.io
+gh secret set HASHNODE_API_KEY         --repo flnzba/flnzba.github.io
+gh secret set MEDIUM_INTEGRATION_TOKEN --repo flnzba/flnzba.github.io
+```
+
+…or in bulk from a local `.env` file:
+
+```bash
+cp .env.example .env       # fill in real values
+npm run secrets:push       # uploads each KEY=VALUE as a repo Actions secret
+gh secret list --repo flnzba/flnzba.github.io   # verify
+```
+
+`.env` is gitignored — it never reaches the repo. The helper script (`scripts/sync-secrets.sh`) only pushes the values into GitHub's encrypted secret store, which the workflow reads at run time via `${{ secrets.* }}`.
+
 ### Caveats
 
 - **Medium API is publish-only** — Crier cannot update existing Medium stories. After a post is published once, edits will not propagate to Medium.
 - **canonical_url** is required for SEO — it tells DEV.to and Hashnode that fzeba.com is the original source.
 - The `[skip ci]` marker in the registry-update commit prevents an infinite loop with the deploy workflow.
-
-## Migration
-
-The original Astro site's posts live in `../src/content/post/` and `../src/content/project/`. To re-run the migration:
-
-```bash
-cd site-11ty
-npm run migrate
-```
-
-This rewrites all frontmatter into the new schema and copies post-folder images into `site-11ty/src/{posts,projects}/<slug>/`.
 
 ## License
 
