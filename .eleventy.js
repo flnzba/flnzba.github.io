@@ -24,6 +24,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addPassthroughCopy({ "src/css": "css" });
   eleventyConfig.addPassthroughCopy({ "src/js": "js" });
+  eleventyConfig.addPassthroughCopy("src/image-store/**/*.{webp,png,jpg,jpeg,gif,svg,avif,ico}");
   eleventyConfig.addPassthroughCopy("src/posts/**/*.{webp,png,jpg,jpeg,gif,svg}");
   eleventyConfig.addPassthroughCopy("src/projects/**/*.{webp,png,jpg,jpeg,gif,svg}");
   eleventyConfig.addPassthroughCopy({ "./CNAME": "CNAME" });
@@ -31,6 +32,7 @@ export default function (eleventyConfig) {
   // Watch CSS/JS so eleventy --serve reloads on changes
   eleventyConfig.addWatchTarget("src/css/");
   eleventyConfig.addWatchTarget("src/js/");
+  eleventyConfig.addWatchTarget("src/image-store/");
 
   // Filters
   eleventyConfig.addFilter("readableDate", (date) =>

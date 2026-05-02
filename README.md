@@ -48,13 +48,19 @@ published: true                # set false to skip cross-posting
 
 Same shape, but in `src/projects/<slug>/index.md`. Projects are not cross-posted.
 
+## Image store
+
+Paste standalone images into `src/image-store/`. On build, supported image files are copied to `/image-store/<filename>`, preserving subfolders. For example, `src/image-store/report/chart.webp` is available at `https://fzeba.com/image-store/report/chart.webp`.
+
 ## Cross-posting (Crier)
 
 Cross-posting is automated via `.github/workflows/crosspost.yml`. After a push to `main` that touches `src/posts/**/*.md`:
 
-1. The workflow installs Crier (`pip install crier`).
-2. Runs `crier audit --publish --batch --long-form` — Crier compares each post against `.crier/registry.yaml` and publishes anything missing/changed to the platforms in the `blogs` profile.
-3. Commits the updated `.crier/registry.yaml` back with `[skip ci]`.
+1. The workflow installs the pinned Crier version from `requirements.txt`.
+2. `scripts/prepare_crosspost.py` finds newly added `src/posts/*/index.md` files and writes sanitized staging files under `/tmp/flnzba-crosspost`.
+3. The staged files keep only Crier metadata in front matter; the API body is frontmatter-free Markdown with relative links resolved and indented code blocks fenced for DEV.to/Hashnode rendering.
+4. Runs `crier audit <staged-dir> --publish --batch --long-form` against DEV.to and Hashnode.
+5. Commits the updated SQLite registry `.crier/crier.db` back with `[skip ci]`.
 
 ### Required repo secrets
 
@@ -85,6 +91,7 @@ gh secret list --repo flnzba/flnzba.github.io   # verify
 ### Caveats
 
 - **canonical_url** is required for SEO — it tells DEV.to and Hashnode that fzeba.com is the original source.
+- The workflow only publishes newly added post files from the triggering commit or the optional manual `post` input, so enabling the registry does not publish the entire archive at once.
 - The `[skip ci]` marker in the registry-update commit prevents an infinite loop with the deploy workflow.
 
 ## License

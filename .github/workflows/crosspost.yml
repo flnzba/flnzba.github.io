@@ -6,15 +6,30 @@ on:
     paths:
       - 'src/posts/**/*.md'
       - '.crier/config.yaml'
+      - '.github/workflows/crosspost.yml'
+      - 'requirements.txt'
+      - 'scripts/prepare_crosspost.py'
+      - 'scripts/check_crosspost_results.py'
+      - 'scripts/link_crosspost_registry.py'
   workflow_dispatch:
+    inputs:
+      post:
+        description: 'Optional post path to publish, e.g. src/posts/example/index.md'
+        required: false
+        type: string
 
 permissions:
   contents: write
 
 jobs:
   crosspost:
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    if: github.event_name != 'push' || !contains(github.event.head_commit.message, '[skip ci]')
     runs-on: ubuntu-latest
+    env:
+      CRIER_CONFIG: .crier/config.yaml
+      CRIER_DB: .crier/crier.db
+      CRIER_DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
+      CRIER_HASHNODE_API_KEY: ${{ secrets.HASHNODE_API_KEY }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -25,29 +40,44 @@ jobs:
         with:
           python-version: '3.12'
           cache: pip
+          cache-dependency-path: requirements.txt
 
       - name: Install Crier
-        run: pip install crier
+        run: pip install -r requirements.txt
+
+      - name: Prepare new posts
+        id: prepare
+        env:
+          CROSSPOST_FILES: ${{ github.event.inputs.post || '' }}
+        run: python scripts/prepare_crosspost.py
 
       - name: Verify API credentials
-        env:
-          CRIER_DEVTO_API_KEY:    ${{ secrets.DEVTO_API_KEY }}
-          CRIER_HASHNODE_API_KEY: ${{ secrets.HASHNODE_API_KEY }}
-        run: crier doctor || true
+        if: steps.prepare.outputs.has_posts == 'true'
+        run: crier doctor
 
-      - name: Publish missing/changed posts
-        env:
-          CRIER_DEVTO_API_KEY:    ${{ secrets.DEVTO_API_KEY }}
-          CRIER_HASHNODE_API_KEY: ${{ secrets.HASHNODE_API_KEY }}
+      - name: Publish new posts
+        if: steps.prepare.outputs.has_posts == 'true'
         run: |
-          crier audit --publish --batch --long-form | tee crier-output.json
+          set +e
+          crier audit "${{ steps.prepare.outputs.staged_dir }}" --publish --batch --long-form > crier-output.json
+          crier_status=$?
+          set -e
+          python scripts/check_crosspost_results.py crier-output.json
+          exit "$crier_status"
+
+      - name: Link registry to source posts
+        if: steps.prepare.outputs.has_posts == 'true'
+        run: python scripts/link_crosspost_registry.py "${{ steps.prepare.outputs.manifest }}"
 
       - name: Commit registry update
+        if: steps.prepare.outputs.has_posts == 'true'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if ! git diff --quiet -- .crier/registry.yaml; then
-            git add .crier/registry.yaml
+          if ! git diff --quiet -- .crier/crier.db || [ -f .crier/crier.db ]; then
+            git add .crier/crier.db
+          fi
+          if ! git diff --cached --quiet -- .crier/crier.db; then
             git commit -m "chore(crosspost): update Crier registry [skip ci]"
             git push
           else
