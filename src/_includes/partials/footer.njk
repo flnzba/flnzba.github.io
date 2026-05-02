@@ -12,9 +12,9 @@
 
     <div class="flex flex-wrap gap-3">
       {% for s in site.social %}
-        <a href="{{ s.url }}" rel="me" class="rounded-full border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:border-deep-blue hover:text-deep-blue dark:border-gray-800 dark:text-gray-400 dark:hover:border-accent-blue dark:hover:text-accent-blue">{{ s.name }}</a>
+        <a href="{{ s.url }}" rel="me" class="rounded-md border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:border-deep-blue hover:text-deep-blue dark:border-gray-800 dark:text-gray-400 dark:hover:border-accent-blue dark:hover:text-accent-blue">{{ s.name }}</a>
       {% endfor %}
-      <a href="/feed.xml" class="rounded-full border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:border-deep-blue hover:text-deep-blue dark:border-gray-800 dark:text-gray-400 dark:hover:border-accent-blue dark:hover:text-accent-blue">RSS</a>
+      <a href="/feed.xml" class="rounded-md border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:border-deep-blue hover:text-deep-blue dark:border-gray-800 dark:text-gray-400 dark:hover:border-accent-blue dark:hover:text-accent-blue">RSS</a>
     </div>
   </div>
 

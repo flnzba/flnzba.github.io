@@ -13,7 +13,7 @@
         {% set isActive = page.url and page.url.startsWith(item.url) %}
         <a
           href="{{ item.url }}"
-          class="rounded-full px-3 py-2 text-sm font-medium transition-colors {% if isActive %}bg-deep-blue/10 text-deep-blue dark:bg-accent-blue/10 dark:text-accent-blue{% else %}text-gray-600 hover:bg-gray-100 hover:text-deep-blue dark:text-gray-400 dark:hover:bg-gray-900 dark:hover:text-accent-blue{% endif %}"
+          class="rounded-md px-3 py-2 text-sm font-medium transition-colors {% if isActive %}bg-deep-blue/10 text-deep-blue dark:bg-accent-blue/10 dark:text-accent-blue{% else %}text-gray-600 hover:bg-gray-100 hover:text-deep-blue dark:text-gray-400 dark:hover:bg-gray-900 dark:hover:text-accent-blue{% endif %}"
           {% if isActive %}aria-current="page"{% endif %}
         >{{ item.text }}</a>
       {% endif %}
