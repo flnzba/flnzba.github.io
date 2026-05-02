@@ -15,17 +15,36 @@
   font-display: swap;
 }
 
-:root {
+:root,
+:root[data-theme="light"],
+:root[data-theme="dark"] {
   --pico-font-family-sans-serif: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --pico-font-family: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --pico-font-family-monospace: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --pico-font-size: 16px;
-  --pico-line-height: 1.6;
-  --pico-typography-spacing-vertical: 1.1rem;
-  --pico-border-radius: 4px;
+  --pico-font-size: 14px;
+  --pico-line-height: 1.65;
+  --pico-typography-spacing-vertical: 1.4rem;
+  --pico-border-radius: 0;
+  --pico-primary: #1e3a8a;
+  --pico-primary-hover: #1e40af;
+  --pico-primary-focus: rgba(30, 58, 138, 0.25);
+  --pico-primary-inverse: #fff;
+  --pico-color-azure-500: #1e3a8a;
 }
 
-html, body { font-family: var(--pico-font-family-sans-serif); }
+:root[data-theme="dark"] {
+  --pico-primary: #93c5fd;
+  --pico-primary-hover: #bfdbfe;
+  --pico-primary-focus: rgba(147, 197, 253, 0.25);
+}
+
+/* Globally flatten: kill all box-shadows */
+*, *::before, *::after { box-shadow: none !important; }
+
+html, body {
+  font-family: var(--pico-font-family-sans-serif);
+  font-size: var(--pico-font-size);
+}
 
 main.container,
 header.container,
@@ -33,142 +52,206 @@ footer.container {
   max-width: 680px;
 }
 
-/* --- Header: minimal, no underline, subtle current state --- */
-header.container { padding-top: 1.5rem; padding-bottom: 0.5rem; }
-header nav ul { padding: 0; }
-header nav a { text-decoration: none; }
-header nav a[aria-current="page"] { font-weight: 700; }
+main.container { padding-top: 1.5rem; padding-bottom: 3rem; }
+
+/* --- Header: minimal, flat --- */
+header.container { padding-top: 2rem; padding-bottom: 1rem; }
+header nav { padding: 0; }
+header nav ul { padding: 0; margin: 0; }
+header nav a { text-decoration: none; color: var(--pico-color); }
+header nav a:hover { color: var(--pico-primary); }
+header nav a[aria-current="page"] { font-weight: 700; color: var(--pico-primary); }
 header nav strong a { font-weight: 700; }
 
 /* --- Homepage intro --- */
 section.intro {
   display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  margin: 1.5rem 0 2rem;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin: 2.5rem 0 3rem;
 }
 section.intro .avatar {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
+  width: 110px;
+  height: 140px;
+  border-radius: 0;
   object-fit: cover;
   flex-shrink: 0;
 }
 section.intro hgroup { margin: 0; }
-section.intro h1 { margin: 0 0 .25rem; font-size: 1.4rem; }
-section.intro p  { margin: 0; opacity: .85; font-size: .95rem; }
-
-@media (max-width: 480px) {
-  section.intro { flex-direction: column; align-items: flex-start; gap: .75rem; }
+section.intro h1 {
+  margin: 0 0 .5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+section.intro p {
+  margin: 0;
+  font-size: .85rem;
+  line-height: 1.7;
+  color: var(--pico-color);
+  opacity: .9;
 }
 
-/* --- Headings: quieter --- */
-h1 { font-size: 1.6rem; }
-h2 { font-size: 1.25rem; }
-h3 { font-size: 1.1rem; }
+@media (max-width: 480px) {
+  section.intro { flex-direction: column; align-items: flex-start; gap: 1rem; }
+}
 
-/* --- Cover images on posts/projects --- */
+/* --- Headings: smaller --- */
+h1 { font-size: 1.4rem; line-height: 1.3; margin-bottom: .75rem; }
+h2 { font-size: 1.1rem; line-height: 1.35; margin-bottom: .6rem; }
+h3 { font-size: .95rem; line-height: 1.4; margin-bottom: .5rem; }
+h4, h5, h6 { font-size: .9rem; }
+
+p, li { font-size: .875rem; line-height: 1.7; }
+
+/* --- Links: dark blue, simple underline --- */
+a { color: var(--pico-primary); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--pico-primary-hover); }
+
+/* --- Cover images: flat, no rounding --- */
 img.cover {
   width: 100%;
   max-height: 320px;
   object-fit: cover;
-  border-radius: var(--pico-border-radius);
-  margin: 1rem 0 1.25rem;
+  border-radius: 0;
+  margin: 1.5rem 0 2rem;
 }
 
 /* --- Inline images inside markdown content --- */
 main article img:not(.cover) {
   max-width: 100%;
   height: auto;
-  border-radius: var(--pico-border-radius);
-  margin: 1rem auto;
+  border-radius: 0;
+  margin: 1.5rem auto;
   display: block;
 }
 
-/* --- Tags: minimal — text-only chips --- */
+/* --- Tags: minimal hash-prefixed text --- */
 .tag,
 a.tag {
   display: inline-block;
-  font-size: 0.8rem;
-  margin-right: .35rem;
+  font-size: .75rem;
+  margin-right: .5rem;
   padding: 0;
   background: transparent;
   color: var(--pico-muted-color);
   text-decoration: none;
 }
-.tag::before { content: "#"; opacity: .6; }
-.tag:hover { color: var(--pico-color); }
+.tag::before { content: "#"; opacity: .55; }
+.tag:hover { color: var(--pico-primary); }
 
-/* --- Post-card list: airy, no boxes --- */
-section.post-list { margin-top: 1rem; }
+/* --- Post-card list: airy, flat --- */
+section.post-list { margin-top: 2rem; }
 section.post-list h2 {
-  font-size: .85rem;
+  font-size: .7rem;
   text-transform: uppercase;
-  letter-spacing: .08em;
+  letter-spacing: .12em;
   color: var(--pico-muted-color);
-  margin-bottom: 1rem;
+  margin-bottom: 1.75rem;
+  font-weight: 400;
 }
 section.post-list article {
   border: none;
+  background: transparent;
   padding: 0;
-  margin: 0 0 1.25rem;
+  margin: 0 0 2rem;
 }
 section.post-list article header h2,
 section.post-list article header h3 {
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.4;
-  margin: 0;
+  font-size: .9rem;
+  font-weight: 700;
+  line-height: 1.45;
+  margin: 0 0 .35rem;
   text-transform: none;
   letter-spacing: 0;
   color: var(--pico-color);
 }
-section.post-list article header a { text-decoration: none; }
-section.post-list article header a:hover { text-decoration: underline; }
-section.post-list article time,
-section.post-list article .meta {
-  font-size: .8rem;
+section.post-list article header a { color: var(--pico-color); text-decoration: none; }
+section.post-list article header a:hover { color: var(--pico-primary); }
+section.post-list article header small {
+  display: block;
+  font-size: .72rem;
   color: var(--pico-muted-color);
-  margin-right: .75rem;
+  margin-bottom: .35rem;
+}
+section.post-list article p {
+  font-size: .8rem;
+  margin: .25rem 0 0;
+  color: var(--pico-muted-color);
 }
 
 /* --- Article (single post/project) --- */
-main article header h1 { margin-bottom: .25rem; }
+main article header { margin-bottom: 2rem; }
+main article header h1 { margin-bottom: .5rem; }
+main article header small,
 main article header .meta {
-  font-size: .85rem;
+  display: block;
+  font-size: .75rem;
   color: var(--pico-muted-color);
-  margin-bottom: 1.5rem;
+}
+main article > * + * { margin-top: 1.25rem; }
+
+/* Pico cards / articles flatness */
+article, .card {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
 }
 
 /* --- Footer --- */
 footer.container {
-  padding: 3rem 0 2rem;
+  padding: 4rem 0 2.5rem;
   text-align: center;
-  font-size: .85rem;
+  font-size: .75rem;
   color: var(--pico-muted-color);
 }
 footer a { color: var(--pico-muted-color); }
+footer a:hover { color: var(--pico-primary); }
 
-/* --- Theme toggle: text-button --- */
+/* --- Theme toggle --- */
 header nav button#theme-toggle {
   border: none;
   background: transparent;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: .9rem;
   padding: 0;
   color: var(--pico-muted-color);
 }
+header nav button#theme-toggle:hover { color: var(--pico-primary); }
 
-/* --- Code blocks --- */
-pre[class*="language-"],
-pre, code {
+/* --- Code --- */
+pre, code, kbd, samp {
   font-family: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.85rem;
+  font-size: .8rem;
+  border-radius: 0;
 }
-pre[class*="language-"] { line-height: 1.55; }
+pre[class*="language-"] {
+  line-height: 1.6;
+  border-radius: 0;
+  border: 1px solid var(--pico-muted-border-color);
+}
+:not(pre) > code {
+  background: var(--pico-code-background-color);
+  padding: 0 .25rem;
+}
+
+blockquote {
+  border-left: 2px solid var(--pico-primary);
+  border-radius: 0;
+  padding-left: 1rem;
+  font-style: normal;
+  color: var(--pico-muted-color);
+}
+
+hr { border: 0; border-top: 1px solid var(--pico-muted-border-color); margin: 2.5rem 0; }
+
+/* Buttons / inputs flat */
+button, input, select, textarea {
+  border-radius: 0 !important;
+}
 
 /* --- Pagefind UI --- */
-#search { margin: 1rem 0; }
+#search { margin: 1.5rem 0; }
+.pagefind-ui__search-input,
+.pagefind-ui__result { border-radius: 0 !important; }
 
-/* --- Links: subtle --- */
-a { text-decoration-thickness: 1px; text-underline-offset: 2px; }
