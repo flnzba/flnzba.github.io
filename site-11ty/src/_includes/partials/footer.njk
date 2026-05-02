@@ -1,0 +1,8 @@
+<hr />
+<small>
+  © 2026 {{ site.author.name }} ·
+  {% for s in site.social %}
+    <a href="{{ s.url }}" rel="me">{{ s.name }}</a>{% if not loop.last %} · {% endif %}
+  {% endfor %}
+  · <a href="/feed.xml">RSS</a>
+</small>

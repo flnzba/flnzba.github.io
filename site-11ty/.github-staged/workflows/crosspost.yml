@@ -1,0 +1,57 @@
+name: Cross-post new content
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/posts/**/*.md'
+      - '.crier/config.yaml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  crosspost:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install Crier
+        run: pip install crier
+
+      - name: Verify API credentials
+        env:
+          CRIER_DEVTO_API_KEY:    ${{ secrets.DEVTO_API_KEY }}
+          CRIER_HASHNODE_API_KEY: ${{ secrets.HASHNODE_API_KEY }}
+          CRIER_MEDIUM_API_KEY:   ${{ secrets.MEDIUM_INTEGRATION_TOKEN }}
+        run: crier doctor || true
+
+      - name: Publish missing/changed posts
+        env:
+          CRIER_DEVTO_API_KEY:    ${{ secrets.DEVTO_API_KEY }}
+          CRIER_HASHNODE_API_KEY: ${{ secrets.HASHNODE_API_KEY }}
+          CRIER_MEDIUM_API_KEY:   ${{ secrets.MEDIUM_INTEGRATION_TOKEN }}
+        run: |
+          crier audit --publish --batch --long-form | tee crier-output.json
+
+      - name: Commit registry update
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- .crier/registry.yaml; then
+            git add .crier/registry.yaml
+            git commit -m "chore(crosspost): update Crier registry [skip ci]"
+            git push
+          else
+            echo "No registry changes to commit."
+          fi

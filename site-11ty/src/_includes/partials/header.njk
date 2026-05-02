@@ -1,0 +1,13 @@
+<nav>
+  <ul>
+    <li><strong><a href="/">{{ site.title }}</a></strong></li>
+  </ul>
+  <ul>
+    {% for item in site.nav %}
+      {% if item.url != "/" %}
+        <li><a href="{{ item.url }}"{% if page.url and page.url.startsWith(item.url) %} aria-current="page"{% endif %}>{{ item.text }}</a></li>
+      {% endif %}
+    {% endfor %}
+    <li>{% include "partials/theme-toggle.njk" %}</li>
+  </ul>
+</nav>

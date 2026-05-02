@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="{{ site.language }}" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if title %}{{ title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="description" content="{{ description or site.description }}" />
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="/feed.xml" />
+
+    <!-- Pico CSS (classless) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+
+    <!-- Pagefind UI (only on /search/) -->
+    {% if page.url == "/search/" %}
+      <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+    {% endif %}
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="{{ title or site.title }}" />
+    <meta property="og:description" content="{{ description or site.description }}" />
+    <meta property="og:type" content="{{ ogType or 'website' }}" />
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+    <meta property="og:image" content="{{ site.url }}/assets/social-card.png" />
+
+    <script>
+      // Avoid FOUC: apply stored theme before render
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          if (t === "light" || t === "dark") {
+            document.documentElement.setAttribute("data-theme", t);
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <header class="container">
+      {% include "partials/header.njk" %}
+    </header>
+
+    <main class="container">
+      {{ content | safe }}
+    </main>
+
+    <footer class="container">
+      {% include "partials/footer.njk" %}
+    </footer>
+
+    <script src="/js/theme.js" defer></script>
+
+    {% if page.url == "/search/" %}
+      <script src="/pagefind/pagefind-ui.js" defer></script>
+      <script defer>
+        window.addEventListener("DOMContentLoaded", function () {
+          new PagefindUI({ element: "#search", showSubResults: true });
+        });
+      </script>
+    {% endif %}
+  </body>
+</html>

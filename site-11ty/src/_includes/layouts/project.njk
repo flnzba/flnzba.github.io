@@ -1,0 +1,28 @@
+---
+layout: layouts/base.njk
+ogType: article
+---
+<article>
+  <header>
+    <h1>{{ title }}</h1>
+    <p>
+      <small>
+        <time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
+        {% if tags and tags.length %}
+          ·
+          {% for t in tags %}<span>#{{ t }}</span>{% if not loop.last %} {% endif %}{% endfor %}
+        {% endif %}
+      </small>
+    </p>
+    {% if cover and cover.src %}
+      <img src="{{ cover.src | replace('./', page.url) }}" alt="{{ cover.alt }}" class="cover" />
+    {% endif %}
+  </header>
+
+  {{ content | safe }}
+
+  <footer>
+    <hr />
+    <p><a href="/projects/">← All projects</a></p>
+  </footer>
+</article>

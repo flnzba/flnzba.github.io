@@ -1,0 +1,20 @@
+---
+layout: layouts/base.njk
+eleventyExcludeFromCollections: true
+pagination:
+  data: collections.tagList
+  size: 1
+  alias: tag
+permalink: /tags/{{ tag | slugify }}/
+eleventyComputed:
+  title: "Tag: {{ tag }}"
+---
+<h1>Tag: <code>{{ tag }}</code></h1>
+<p><a href="/posts/">← All posts</a></p>
+
+<section class="post-list">
+  {% set tagged = collections.posts | byTag(tag) %}
+  {% for post in tagged %}
+    {% include "partials/post-card.njk" %}
+  {% endfor %}
+</section>

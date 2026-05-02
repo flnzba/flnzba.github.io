@@ -1,0 +1,16 @@
+content_paths:
+  - src/posts
+site_base_url: https://fzeba.com
+exclude_patterns:
+  - 'src/posts/index.njk'
+  - 'src/posts/tags.njk'
+  - 'src/posts/posts.11tydata.js'
+file_extensions:
+  - .md
+default_profile: blogs
+
+profiles:
+  blogs:
+    - devto
+    - hashnode
+    - medium

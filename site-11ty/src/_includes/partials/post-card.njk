@@ -1,0 +1,19 @@
+<article>
+  <header>
+    <h2 style="margin-bottom: .25rem;">
+      <a href="{{ post.url }}">{{ post.data.title }}</a>
+    </h2>
+    <small>
+      <time datetime="{{ post.data.date | htmlDateString }}">{{ post.data.date | readableDate }}</time>
+      {% if post.data.tags and post.data.tags.length %}
+        ·
+        {% for t in post.data.tags %}
+          <a href="/tags/{{ t | slugify }}/" class="tag">#{{ t }}</a>{% if not loop.last %} {% endif %}
+        {% endfor %}
+      {% endif %}
+    </small>
+  </header>
+  {% if post.data.description %}
+    <p>{{ post.data.description }}</p>
+  {% endif %}
+</article>

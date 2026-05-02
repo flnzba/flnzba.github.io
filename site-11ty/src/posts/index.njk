@@ -1,0 +1,14 @@
+---
+layout: layouts/base.njk
+title: Posts
+permalink: /posts/
+eleventyExcludeFromCollections: true
+---
+<h1>Posts</h1>
+<p><small>{{ collections.posts.length }} articles · <a href="/feed.xml">RSS</a></small></p>
+
+<section class="post-list">
+  {% for post in collections.posts %}
+    {% include "partials/post-card.njk" %}
+  {% endfor %}
+</section>
