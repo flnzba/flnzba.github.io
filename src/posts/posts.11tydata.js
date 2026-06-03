@@ -1,6 +1,5 @@
 export default {
   layout: "layouts/post.njk",
-  tags: ["post"],
   permalink: (data) => `/posts/${data.page.fileSlug}/`,
   eleventyComputed: {
     canonical_url: (data) =>

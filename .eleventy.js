@@ -165,7 +165,7 @@ function buildStructuredData(page, site, options = {}) {
       "@id": personId,
       name: site.author.name,
       url: siteOrigin(site.url),
-      email: site.author.email ? `mailto:${site.author.email}` : undefined,
+      email: site.author.email || undefined,
       image: absoluteUrl(site.author.image, site.url),
       jobTitle: site.author.jobTitle,
       description: site.description,
@@ -207,7 +207,7 @@ function buildStructuredData(page, site, options = {}) {
     graph.push({
       "@type": ["BlogPosting", "TechArticle"],
       "@id": `${canonical}#article`,
-      mainEntityOfPage: { "@id": webpageId },
+      mainEntityOfPage: canonical,
       headline: title,
       description,
       image,
