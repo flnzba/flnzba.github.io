@@ -13,7 +13,7 @@ cover:
   src: ./cover-data.webp
   alt: Guy working on a laptop
 number: 11
-canonical_url: 'https://www.fzeba.com/posts/load-json-data-in-astro/'
+canonical_url: 'https://www.fzeba.com/posts/11-load-json-data-in-astro/'
 published: true
 ---
 

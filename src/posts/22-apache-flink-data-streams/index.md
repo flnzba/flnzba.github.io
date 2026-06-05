@@ -10,7 +10,7 @@ cover:
   src: ./cover-apache-flink.webp
   alt: Implementing Real-Time Data Processing Using Apache Flink
 number: 22
-canonical_url: 'https://www.fzeba.com/posts/apache-flink-data-streams/'
+canonical_url: 'https://www.fzeba.com/posts/22-apache-flink-data-streams/'
 published: true
 ---
 

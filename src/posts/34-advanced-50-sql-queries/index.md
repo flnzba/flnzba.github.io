@@ -11,7 +11,7 @@ cover:
   src: ./cover.webp
   alt: 50 Advanced SQL Queries
 number: 34
-canonical_url: 'https://www.fzeba.com/posts/advanced-50-sql-queries/'
+canonical_url: 'https://www.fzeba.com/posts/34-advanced-50-sql-queries/'
 published: true
 ---
 

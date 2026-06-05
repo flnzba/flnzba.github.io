@@ -13,7 +13,7 @@ cover:
   src: ./cover.webp
   alt: Power BI Data Source
 number: 16
-canonical_url: 'https://www.fzeba.com/posts/storage-change-adls/'
+canonical_url: 'https://www.fzeba.com/posts/16-storage-change-adls/'
 published: true
 ---
 

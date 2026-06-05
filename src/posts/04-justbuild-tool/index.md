@@ -7,7 +7,7 @@ tags:
   - webapp
   - tool
 number: 4
-canonical_url: 'https://www.fzeba.com/posts/justbuild-tool/'
+canonical_url: 'https://www.fzeba.com/posts/04-justbuild-tool/'
 published: true
 ---
 

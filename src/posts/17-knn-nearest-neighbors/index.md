@@ -13,7 +13,7 @@ cover:
   src: ./cover.webp
   alt: kNN in Business
 number: 17
-canonical_url: 'https://www.fzeba.com/posts/knn-nearest-neighbors/'
+canonical_url: 'https://www.fzeba.com/posts/17-knn-nearest-neighbors/'
 published: true
 ---
 

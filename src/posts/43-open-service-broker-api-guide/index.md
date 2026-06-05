@@ -11,7 +11,7 @@ tags:
   - open source
   - platform engineering
 number: 43
-canonical_url: 'https://www.fzeba.com/posts/open-service-broker-api-guide/'
+canonical_url: 'https://www.fzeba.com/posts/43-open-service-broker-api-guide/'
 published: true
 ---
 ## One Interface, Every Service: A Practical Guide to the Open Service Broker API

@@ -13,7 +13,7 @@ cover:
   src: ./cover.webp
   alt: Guide to Implementing Data Governance in Multi-Cloud Environments
 number: 25
-canonical_url: 'https://www.fzeba.com/posts/apache-atlas-governance/'
+canonical_url: 'https://www.fzeba.com/posts/25-apache-atlas-governance/'
 published: true
 ---
 

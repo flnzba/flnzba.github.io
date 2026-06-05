@@ -14,7 +14,7 @@ cover:
   src: ./cover.webp
   alt: Illustration of Delta Lake architecture in Microsoft Fabric
 number: 45
-canonical_url: 'https://www.fzeba.com/posts/us-crime-stats-in-ms-fabric/'
+canonical_url: 'https://www.fzeba.com/posts/45-us-crime-stats-in-ms-fabric/'
 published: true
 ---
 

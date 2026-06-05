@@ -11,7 +11,7 @@ tags:
   - image generation
   - open source
 number: 46
-canonical_url: 'https://www.fzeba.com/posts/paperbanana-academic-figure-generation/'
+canonical_url: 'https://www.fzeba.com/posts/46-paperbanana-academic-figure-generation/'
 published: true
 ---
 ## Multi-Agent Pipelines for Academic Figures: The PaperBanana Open-Source Implementation

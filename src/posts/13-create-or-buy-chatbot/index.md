@@ -13,7 +13,7 @@ cover:
   src: ./cover.webp
   alt: Chatbot
 number: 13
-canonical_url: 'https://www.fzeba.com/posts/create-or-buy-chatbot/'
+canonical_url: 'https://www.fzeba.com/posts/13-create-or-buy-chatbot/'
 published: true
 ---
 

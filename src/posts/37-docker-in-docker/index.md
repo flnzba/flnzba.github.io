@@ -14,7 +14,7 @@ cover:
   src: ./cover.webp
   alt: Docker-in-Docker
 number: 37
-canonical_url: 'https://www.fzeba.com/posts/docker-in-docker/'
+canonical_url: 'https://www.fzeba.com/posts/37-docker-in-docker/'
 published: true
 ---
 

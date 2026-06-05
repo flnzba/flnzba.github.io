@@ -12,7 +12,7 @@ cover:
   src: ./cover.webp
   alt: Graph Databases in Large-Scale Applications
 number: 27
-canonical_url: 'https://www.fzeba.com/posts/graph-dbs/'
+canonical_url: 'https://www.fzeba.com/posts/27-graph-dbs/'
 published: true
 ---
 

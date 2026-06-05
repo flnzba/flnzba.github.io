@@ -13,7 +13,7 @@ cover:
   src: ./cover.webp
   alt: Cover image for the guide on MLOps within Data Engineering Workflows
 number: 26
-canonical_url: 'https://www.fzeba.com/posts/data-engineering-and-ml/'
+canonical_url: 'https://www.fzeba.com/posts/26-data-engineering-and-ml/'
 published: true
 ---
 

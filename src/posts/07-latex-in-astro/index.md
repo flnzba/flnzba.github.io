@@ -11,7 +11,7 @@ cover:
   src: ./cover-latex-in-astro.webp
   alt: Cover Image Books Flying
 number: 7
-canonical_url: 'https://www.fzeba.com/posts/latex-in-astro/'
+canonical_url: 'https://www.fzeba.com/posts/07-latex-in-astro/'
 published: true
 ---
 

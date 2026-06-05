@@ -10,7 +10,7 @@ cover:
   src: ./cover-data-lake.webp
   alt: Optimizing Data Lake Storage for High-Volume and volatile Data
 number: 21
-canonical_url: 'https://www.fzeba.com/posts/optimizing-data-lake-storage/'
+canonical_url: 'https://www.fzeba.com/posts/21-optimizing-data-lake-storage/'
 published: true
 ---
 

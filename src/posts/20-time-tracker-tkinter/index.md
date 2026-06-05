@@ -11,7 +11,7 @@ cover:
   src: ./cover-tkinter.webp
   alt: Time Tracking App with Tkinter and Pygame in Python
 number: 20
-canonical_url: 'https://www.fzeba.com/posts/time-tracker-tkinter/'
+canonical_url: 'https://www.fzeba.com/posts/20-time-tracker-tkinter/'
 published: true
 ---
 

@@ -11,7 +11,7 @@ tags:
   - data engineering
   - lakeflow
 number: 47
-canonical_url: 'https://www.fzeba.com/posts/databricks-dqx-data-quality/'
+canonical_url: 'https://www.fzeba.com/posts/47-databricks-dqx-data-quality/'
 published: true
 ---
 ## Stop the Garbage Before It Lands: A Deep Look at Databricks Labs DQX

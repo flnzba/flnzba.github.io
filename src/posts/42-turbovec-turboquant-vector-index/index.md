@@ -12,7 +12,7 @@ tags:
   - embeddings
   - faiss
 number: 42
-canonical_url: 'https://www.fzeba.com/posts/turbovec-turboquant-vector-index/'
+canonical_url: 'https://www.fzeba.com/posts/42-turbovec-turboquant-vector-index/'
 published: true
 ---
 ## Eight Megabytes per Million Vectors: How turbovec Builds on TurboQuant to Beat FAISS

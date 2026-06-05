@@ -13,7 +13,7 @@ cover:
   src: ./cover.webp
   alt: PHP Server Tools for your file management needs on the server
 number: 32
-canonical_url: 'https://www.fzeba.com/posts/php-server-tools/'
+canonical_url: 'https://www.fzeba.com/posts/32-php-server-tools/'
 published: true
 ---
 

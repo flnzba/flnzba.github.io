@@ -12,7 +12,7 @@ cover:
   src: ./coverBayes.webp
   alt: Cover Image of the Bayes-Optimal Classifier
 number: 8
-canonical_url: 'https://www.fzeba.com/posts/bayes-optimal-classifier/'
+canonical_url: 'https://www.fzeba.com/posts/08-bayes-optimal-classifier/'
 published: true
 ---
 

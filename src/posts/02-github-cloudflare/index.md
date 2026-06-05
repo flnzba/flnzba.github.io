@@ -9,7 +9,7 @@ tags:
   - github
   - cloudflare
 number: 2
-canonical_url: 'https://www.fzeba.com/posts/github-cloudflare/'
+canonical_url: 'https://www.fzeba.com/posts/02-github-cloudflare/'
 published: true
 ---
 

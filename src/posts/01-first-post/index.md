@@ -9,7 +9,7 @@ cover:
   src: ./pic1.webp
   alt: Screenshot Github Code
 number: 1
-canonical_url: 'https://www.fzeba.com/posts/start/'
+canonical_url: 'https://www.fzeba.com/posts/01-first-post/'
 published: true
 ---
 
