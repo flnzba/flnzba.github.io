@@ -10,8 +10,8 @@ tags:
 cover:
   src: ./cover.webp
   alt: Data Vault 2.0 Schema Diagram
-number: 43
-canonical_url: 'https://www.fzeba.com/posts/43-data-vault-schema-method/'
+number: 45
+canonical_url: 'https://www.fzeba.com/posts/45-data-vault-schema-method/'
 published: true
 ---
 

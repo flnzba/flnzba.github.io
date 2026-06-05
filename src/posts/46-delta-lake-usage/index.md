@@ -12,8 +12,8 @@ tags:
 cover:
   src: ./cover.webp
   alt: Delta Lake Architecture Diagram
-number: 44
-canonical_url: 'https://www.fzeba.com/posts/44-delta-lake-usage/'
+number: 46
+canonical_url: 'https://www.fzeba.com/posts/46-delta-lake-usage/'
 published: true
 ---
 

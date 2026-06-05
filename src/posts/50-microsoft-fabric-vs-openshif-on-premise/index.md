@@ -9,8 +9,8 @@ tags:
 cover:
   src: ./cover.webp
   alt: Architectural Comparison between OpenShift and Microsoft Fabric
-number: 48
-canonical_url: 'https://www.fzeba.com/posts/48-microsoft-fabric-vs-openshif-on-premise/'
+number: 50
+canonical_url: 'https://www.fzeba.com/posts/50-microsoft-fabric-vs-openshif-on-premise/'
 published: true
 ---
 

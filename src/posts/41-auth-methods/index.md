@@ -9,8 +9,8 @@ tags:
   - web security
   - authentication
   - authorization
-number: 39
-canonical_url: 'https://www.fzeba.com/posts/39-auth-methods/'
+number: 41
+canonical_url: 'https://www.fzeba.com/posts/41-auth-methods/'
 published: true
 ---
 

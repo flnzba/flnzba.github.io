@@ -12,8 +12,8 @@ tags:
 cover:
   src: ./cover.webp
   alt: Stripe Integration Guide
-number: 33
-canonical_url: 'https://www.fzeba.com/posts/33-nextjs-stripe-integration/'
+number: 35
+canonical_url: 'https://www.fzeba.com/posts/35-nextjs-stripe-integration/'
 published: true
 ---
 

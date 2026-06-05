@@ -10,8 +10,8 @@ tags:
   - spring
   - spring-boot
   - java
-number: 38
-canonical_url: 'https://www.fzeba.com/posts/38-jakarta-vs-spring/'
+number: 40
+canonical_url: 'https://www.fzeba.com/posts/40-jakarta-vs-spring/'
 published: true
 ---
 

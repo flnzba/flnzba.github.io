@@ -11,8 +11,8 @@ tags:
   - gepa
   - stanford nlp
   - iclr 2026
-number: 45
-canonical_url: 'https://www.fzeba.com/posts/45-dspy-programming-llms-gepa/'
+number: 60
+canonical_url: 'https://www.fzeba.com/posts/60-dspy-programming-llms-gepa/'
 published: true
 ---
 ## Stop Tinkering With Strings: A Practical Tour of DSPy and Reflective Prompt Evolution

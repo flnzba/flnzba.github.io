@@ -10,8 +10,8 @@ tags:
   - cloud foundry
   - open source
   - platform engineering
-number: 43
-canonical_url: 'https://www.fzeba.com/posts/43-open-service-broker-api-guide/'
+number: 58
+canonical_url: 'https://www.fzeba.com/posts/58-open-service-broker-api-guide/'
 published: true
 ---
 ## One Interface, Every Service: A Practical Guide to the Open Service Broker API

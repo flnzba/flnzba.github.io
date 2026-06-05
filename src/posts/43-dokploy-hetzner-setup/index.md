@@ -10,8 +10,8 @@ tags:
 cover:
   src: ./3.webp
   alt: Dokploy
-number: 41
-canonical_url: 'https://www.fzeba.com/posts/41-dokploy-hetzner-setup/'
+number: 43
+canonical_url: 'https://www.fzeba.com/posts/43-dokploy-hetzner-setup/'
 published: true
 ---
 

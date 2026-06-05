@@ -10,8 +10,8 @@ tags:
 cover:
   src: ./cover.webp
   alt: Python & Alteryx Integration
-number: 35
-canonical_url: 'https://www.fzeba.com/posts/35-python-alteryx-integration/'
+number: 37
+canonical_url: 'https://www.fzeba.com/posts/37-python-alteryx-integration/'
 published: true
 ---
 

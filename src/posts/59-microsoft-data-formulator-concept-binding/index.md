@@ -10,8 +10,8 @@ tags:
   - microsoft research
   - llm
   - duckdb
-number: 44
-canonical_url: 'https://www.fzeba.com/posts/44-microsoft-data-formulator-concept-binding/'
+number: 59
+canonical_url: 'https://www.fzeba.com/posts/59-microsoft-data-formulator-concept-binding/'
 published: true
 ---
 ## Beyond Tidy Data: How Microsoft Data Formulator Lets AI Reshape Your Way to a Chart

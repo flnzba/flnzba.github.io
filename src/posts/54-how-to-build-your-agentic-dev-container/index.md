@@ -9,8 +9,8 @@ tags:
   - docker
   - ai agents
   - hetzner
-number: 52
-canonical_url: 'https://www.fzeba.com/posts/52-how-to-build-your-agentic-dev-container/'
+number: 54
+canonical_url: 'https://www.fzeba.com/posts/54-how-to-build-your-agentic-dev-container/'
 published: true
 ---
 

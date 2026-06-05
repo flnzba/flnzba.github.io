@@ -11,8 +11,8 @@ tags:
 cover:
   src: ./cover.webp
   alt: Design Patterns in Software Development
-number: 28
-canonical_url: 'https://www.fzeba.com/posts/28-3-design-patterns-list/'
+number: 30
+canonical_url: 'https://www.fzeba.com/posts/30-3-design-patterns-list/'
 published: true
 ---
 

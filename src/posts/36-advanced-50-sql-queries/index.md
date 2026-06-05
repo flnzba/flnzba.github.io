@@ -10,8 +10,8 @@ tags:
 cover:
   src: ./cover.webp
   alt: 50 Advanced SQL Queries
-number: 34
-canonical_url: 'https://www.fzeba.com/posts/34-advanced-50-sql-queries/'
+number: 36
+canonical_url: 'https://www.fzeba.com/posts/36-advanced-50-sql-queries/'
 published: true
 ---
 

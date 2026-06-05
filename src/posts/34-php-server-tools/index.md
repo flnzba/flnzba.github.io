@@ -12,8 +12,8 @@ tags:
 cover:
   src: ./cover.webp
   alt: PHP Server Tools for your file management needs on the server
-number: 32
-canonical_url: 'https://www.fzeba.com/posts/32-php-server-tools/'
+number: 34
+canonical_url: 'https://www.fzeba.com/posts/34-php-server-tools/'
 published: true
 ---
 

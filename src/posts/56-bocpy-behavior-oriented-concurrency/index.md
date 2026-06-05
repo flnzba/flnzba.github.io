@@ -10,8 +10,8 @@ tags:
   - parallelism
   - microsoft research
   - sub-interpreters
-number: 41
-canonical_url: 'https://www.fzeba.com/posts/41-bocpy-behavior-oriented-concurrency/'
+number: 56
+canonical_url: 'https://www.fzeba.com/posts/56-bocpy-behavior-oriented-concurrency/'
 published: true
 ---
 ## Lock-less Python with bocpy: Behavior-Oriented Concurrency on CPython

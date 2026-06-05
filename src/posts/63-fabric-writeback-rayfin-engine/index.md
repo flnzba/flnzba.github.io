@@ -11,8 +11,8 @@ tags:
   - power bi
   - data engineering
   - typescript
-number: 54
-canonical_url: 'https://www.fzeba.com/posts/54-fabric-writeback-rayfin-engine/'
+number: 63
+canonical_url: 'https://www.fzeba.com/posts/63-fabric-writeback-rayfin-engine/'
 published: true
 ---
 

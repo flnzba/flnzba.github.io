@@ -14,8 +14,8 @@ tags:
 cover:
   src: ./cover.webp
   alt: Migrating a Fintech Investment Platform from PHP to Java (Spring Boot)
-number: 29
-canonical_url: 'https://www.fzeba.com/posts/29-migrating-fintech-to-java/'
+number: 31
+canonical_url: 'https://www.fzeba.com/posts/31-migrating-fintech-to-java/'
 published: true
 ---
 

@@ -9,8 +9,8 @@ tags:
   - docker
   - ai agents
   - hetzner
-number: 51
-canonical_url: 'https://www.fzeba.com/posts/51-subagents-for-dev-container/'
+number: 53
+canonical_url: 'https://www.fzeba.com/posts/53-subagents-for-dev-container/'
 published: true
 ---
 

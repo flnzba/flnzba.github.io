@@ -9,8 +9,8 @@ tags:
   - deep learning
   - neural networks
   - machine learning
-number: 40
-canonical_url: 'https://www.fzeba.com/posts/40-understanding-backpropagation/'
+number: 42
+canonical_url: 'https://www.fzeba.com/posts/42-understanding-backpropagation/'
 published: true
 ---
 

@@ -1,0 +1,28 @@
+---
+# LEGACY REDIRECT STUBS — see src/_data/legacyRedirects.js for context.
+# Emits one client-side redirect page per old post URL. Delete this file and
+# src/_data/legacyRedirects.js to remove all legacy redirects.
+pagination:
+  data: legacyRedirects
+  size: 1
+  alias: redirect
+permalink: "{{ redirect.from }}index.html"
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="en" data-pagefind-ignore>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Redirecting…</title>
+    <link rel="canonical" href="{{ site.url }}{{ redirect.to }}" />
+    <meta http-equiv="refresh" content="0; url={{ redirect.to }}" />
+    <script>
+      location.replace("{{ redirect.to }}" + location.search + location.hash);
+    </script>
+  </head>
+  <body>
+    <p>This page has moved to <a href="{{ redirect.to }}">{{ redirect.to }}</a>.</p>
+  </body>
+</html>

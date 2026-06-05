@@ -10,8 +10,8 @@ tags:
 cover:
   src: ./cover.webp
   alt: Connecting Alteryx to Snowflake
-number: 36
-canonical_url: 'https://www.fzeba.com/posts/36-alteryx-snowflake-connection/'
+number: 38
+canonical_url: 'https://www.fzeba.com/posts/38-alteryx-snowflake-connection/'
 published: true
 ---
 

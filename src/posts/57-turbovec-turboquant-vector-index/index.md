@@ -11,8 +11,8 @@ tags:
   - rust
   - embeddings
   - faiss
-number: 42
-canonical_url: 'https://www.fzeba.com/posts/42-turbovec-turboquant-vector-index/'
+number: 57
+canonical_url: 'https://www.fzeba.com/posts/57-turbovec-turboquant-vector-index/'
 published: true
 ---
 ## Eight Megabytes per Million Vectors: How turbovec Builds on TurboQuant to Beat FAISS
