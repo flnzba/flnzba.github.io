@@ -1,16 +1,16 @@
 ---
 title: 'Building a Write-Back Interface on Microsoft Fabric Apps with Rayfin'
 description: >-
-  A full technical walkthrough of building a governed write-back interface on Microsoft Fabric Apps with the Rayfin SDK — static hosting, Entra ID SSO, and a server-side functions proxy to an existing REST API, with no separate web app to maintain.
+    A full technical walkthrough of building a governed write-back interface on Microsoft Fabric Apps with the Rayfin SDK — static hosting, Entra ID SSO, and a server-side functions proxy to an existing REST API, with no separate web app to maintain.
 date: '2026-06-05'
 updated: '2026-06-05'
 tags:
-  - microsoft fabric
-  - rayfin
-  - write-back
-  - power bi
-  - data engineering
-  - typescript
+    - microsoft fabric
+    - rayfin
+    - write-back
+    - power bi
+    - data engineering
+    - typescript
 number: 63
 canonical_url: 'https://www.fzeba.com/posts/63-fabric-writeback-rayfin-engine/'
 published: true
@@ -18,11 +18,7 @@ published: true
 
 ## Building a Write-Back Interface on Microsoft Fabric Apps with Rayfin
 
-> *Bridging operational data entry and enterprise analytics in a single governed platform.*
-
-**Audience:** Data Engineers, Solution Architects, Fabric Developers
-
----
+> _Bridging operational data entry and enterprise analytics in a single governed platform._
 
 ## Table of Contents
 
@@ -39,15 +35,13 @@ published: true
 11. [Alternative Fallback: Fabric User Data Functions](#11-alternative)
 12. [Recommendations and Decision Framework](#12-recommendations)
 
----
-
 ## 1. The Problem: The Missing Write Layer in Analytics Platforms
 
-Enterprise analytics platforms are, by design, excellent at consuming and presenting data. Microsoft Fabric excels at ingesting, transforming, and visualising data through pipelines, Lakehouses, and Power BI. What it has historically lacked is a first-class, governed mechanism for writing operational data *back* into the pipeline—without bolting on a separate web application, Azure Function, or Logic App that lives outside the Fabric governance boundary.
+Enterprise analytics platforms are, by design, excellent at consuming and presenting data. Microsoft Fabric excels at ingesting, transforming, and visualising data through pipelines, Lakehouses, and Power BI. What it has historically lacked is a first-class, governed mechanism for writing operational data _back_ into the pipeline—without bolting on a separate web application, Azure Function, or Logic App that lives outside the Fabric governance boundary.
 
 The scenario is common in practice:
 
-A business runs operational processes—forecasting, budget adjustments, exception handling, manual corrections—where subject matter experts need to **enter or override values** that feed downstream analytics. These values go into a transactional database, flow through ETL pipelines, and surface in management reports. The challenge is that the data entry interface almost always lives *outside* the analytics platform. It is a separate web app, a SharePoint form, an Excel sheet emailed around, or at worst, a direct database connection handed to power users.
+A business runs operational processes—forecasting, budget adjustments, exception handling, manual corrections—where subject matter experts need to **enter or override values** that feed downstream analytics. These values go into a transactional database, flow through ETL pipelines, and surface in management reports. The challenge is that the data entry interface almost always lives _outside_ the analytics platform. It is a separate web app, a SharePoint form, an Excel sheet emailed around, or at worst, a direct database connection handed to power users.
 
 The consequences are familiar:
 
@@ -57,8 +51,6 @@ The consequences are familiar:
 - **Security surface expansion**: a standalone web app with its own auth, hosting, and database adds attack surface and compliance scope.
 
 With the introduction of **Fabric Apps** and the **Rayfin SDK** at Microsoft Build 2026, there is now a path to solve this within the Fabric ecosystem itself. This article examines that path in full technical detail.
-
----
 
 ## 2. The Use Case Architecture
 
@@ -104,6 +96,7 @@ The starting architecture for this discussion is as follows:
 ### Key Components
 
 **External Web App**: A backend service (Node.js, .NET, Python—any stack) that exposes a REST API. It handles:
+
 - Authentication: issues Bearer tokens via a dedicated auth endpoint (e.g. `POST /auth/token`)
 - Data reads: `GET /api/v1/records`
 - Data writes: `POST /api/v1/records`, `PUT /api/v1/records/{id}`
@@ -119,8 +112,6 @@ The starting architecture for this discussion is as follows:
 There is no Fabric-native interface for the data entry step. Users who need to write data must interact with the external web app directly—separate login, separate URL, separate UX—and then wait for the pipeline to pick up their changes before the report reflects them.
 
 The goal: **replace or augment the data entry interface with a Fabric App that lives inside the governed Fabric workspace, uses Fabric SSO, and writes back to the existing web app via its REST API.**
-
----
 
 ## 3. Microsoft Fabric Apps and Rayfin: What They Actually Are
 
@@ -143,11 +134,11 @@ https://<app-name>-app.rayfin.windows.net/
 
 With the following sub-paths:
 
-| Path | Service |
-|---|---|
-| `/api/graphql` | Data API (GraphQL read/write) |
-| `/auth` | Fabric brokered authentication |
-| `/storage` | File storage |
+| Path           | Service                        |
+| -------------- | ------------------------------ |
+| `/api/graphql` | Data API (GraphQL read/write)  |
+| `/auth`        | Fabric brokered authentication |
+| `/storage`     | File storage                   |
 
 ### 3.2 Rayfin SDK and CLI
 
@@ -159,15 +150,15 @@ Rayfin is the open-source SDK and CLI (`@microsoft/rayfin-cli`) that powers Fabr
 
 The SDK provides a set of npm packages:
 
-| Package | Purpose |
-|---|---|
-| `@microsoft/rayfin-core` | Entity decorators, schema definitions |
-| `@microsoft/rayfin-client` | Type-safe GraphQL client for the frontend |
-| `@microsoft/rayfin-auth` | Auth utilities |
-| `@microsoft/rayfin-auth-provider-fabric` | Fabric SSO auth provider |
-| `@microsoft/rayfin-functions` | Server-side functions runtime |
-| `@microsoft/rayfin-data` | Type-safe client for Data API Builder |
-| `@microsoft/rayfin-storage` | Storage operations client |
+| Package                                  | Purpose                                   |
+| ---------------------------------------- | ----------------------------------------- |
+| `@microsoft/rayfin-core`                 | Entity decorators, schema definitions     |
+| `@microsoft/rayfin-client`               | Type-safe GraphQL client for the frontend |
+| `@microsoft/rayfin-auth`                 | Auth utilities                            |
+| `@microsoft/rayfin-auth-provider-fabric` | Fabric SSO auth provider                  |
+| `@microsoft/rayfin-functions`            | Server-side functions runtime             |
+| `@microsoft/rayfin-data`                 | Type-safe client for Data API Builder     |
+| `@microsoft/rayfin-storage`              | Storage operations client                 |
 
 ### 3.3 Data Models in Code
 
@@ -178,28 +169,27 @@ import { entity, role, text, number, uuid, date } from '@microsoft/rayfin-core';
 
 @entity()
 @role('authenticated', '*', {
-  policy: (claims, item) => claims.sub.eq(item.created_by),
+    policy: (claims, item) => claims.sub.eq(item.created_by),
 })
 export class ForecastEntry {
-  @uuid()    id!: string;
-  @text()    costCenter!: string;
-  @number()  budgetValue!: number;
-  @number()  forecastValue!: number;
-  @text()    period!: string;
-  @text()    created_by!: string;
-  @date()    updatedAt!: Date;
+    @uuid() id!: string;
+    @text() costCenter!: string;
+    @number() budgetValue!: number;
+    @number() forecastValue!: number;
+    @text() period!: string;
+    @text() created_by!: string;
+    @date() updatedAt!: Date;
 }
 ```
 
 This decorator block causes Rayfin to generate:
+
 - A `ForecastEntry` table in the managed SQL database
 - `forecastEntry`, `forecastEntries` GraphQL queries (read)
 - `createForecastEntry`, `updateForecastEntry`, `deleteForecastEntry` GraphQL mutations (write)
 - Row-level security enforcing that users only access their own records
 
-**Important distinction for this use case**: Rayfin's built-in data layer writes to its *own* managed SQL database, not to the existing PostgreSQL instance. This is a fundamental architectural point addressed in the next section.
-
----
+**Important distinction for this use case**: Rayfin's built-in data layer writes to its _own_ managed SQL database, not to the existing PostgreSQL instance. This is a fundamental architectural point addressed in the next section.
 
 ## 4. The Write-Back Pattern: Approach Overview
 
@@ -221,36 +211,38 @@ Fabric App (frontend)  ──► External Web App REST API  ──► PostgreSQL
 ```
 
 **Advantages:**
+
 - No data migration or schema duplication required
 - Existing web app is the single source of truth
 - Write-back is immediate (no sync lag)
 - Full TypeScript frontend can be built with React/Vite
 
 **Disadvantages:**
+
 - CORS must be configured on the external web app
 - Credential management requires care (see Section 6)
 - Does not leverage Rayfin's own data layer for display
 
 ### Approach 2: Full Rayfin Backend (Data Migration)
 
-Rayfin's SQL database becomes the new primary store. Fabric pipelines sync *from* PostgreSQL *into* Rayfin's database. Writes go through the GraphQL API into the Rayfin database, and a reverse pipeline (or webhook) pushes back to PostgreSQL. This is a more complex migration path and is out of scope for this article.
+Rayfin's SQL database becomes the new primary store. Fabric pipelines sync _from_ PostgreSQL _into_ Rayfin's database. Writes go through the GraphQL API into the Rayfin database, and a reverse pipeline (or webhook) pushes back to PostgreSQL. This is a more complex migration path and is out of scope for this article.
 
 **This article focuses entirely on Approach 1.**
-
----
 
 ## 5. CORS: The Browser Security Wall
 
 ### 5.1 What CORS Is and Why It Applies Here
 
-Cross-Origin Resource Sharing (CORS) is a browser security mechanism that restricts how JavaScript running in one origin can make HTTP requests to a different origin. An *origin* is defined as the combination of protocol, host, and port.
+Cross-Origin Resource Sharing (CORS) is a browser security mechanism that restricts how JavaScript running in one origin can make HTTP requests to a different origin. An _origin_ is defined as the combination of protocol, host, and port.
 
 When the Fabric App frontend runs at:
+
 ```
 https://myapp-app.rayfin.windows.net
 ```
 
 And the external REST API is at:
+
 ```
 https://api.mycompany.com
 ```
@@ -285,21 +277,25 @@ For preflight `OPTIONS` responses specifically, the status code must be `200 OK`
 ### 5.4 Example Configuration by Stack
 
 **Express.js (Node.js):**
+
 ```javascript
 import cors from 'cors';
 
-app.use(cors({
-  origin: 'https://myapp-app.rayfin.windows.net',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Authorization', 'Content-Type'],
-  optionsSuccessStatus: 204
-}));
+app.use(
+    cors({
+        origin: 'https://myapp-app.rayfin.windows.net',
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+        allowedHeaders: ['Authorization', 'Content-Type'],
+        optionsSuccessStatus: 204,
+    }),
+);
 
 // Ensure OPTIONS is handled for all routes
 app.options('*', cors());
 ```
 
 **ASP.NET Core:**
+
 ```csharp
 builder.Services.AddCors(options => {
     options.AddPolicy("FabricApp", policy => {
@@ -313,6 +309,7 @@ app.UseCors("FabricApp");
 ```
 
 **Python/FastAPI:**
+
 ```python
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -327,8 +324,6 @@ app.add_middleware(
 ### 5.5 Local Development Consideration
 
 During local development with `npm run dev`, the frontend runs on `http://localhost:<port>`. The external API's CORS configuration must also include `http://localhost:5173` (or whatever Vite's dev port is) to avoid breaking the development workflow. Manage these as environment-specific lists on the server.
-
----
 
 ## 6. Bearer Token Authentication: Two Models
 
@@ -354,42 +349,42 @@ let cachedToken: string | null = null;
 let tokenExpiry: number = 0;
 
 async function acquireToken(): Promise<string> {
-  if (cachedToken && Date.now() < tokenExpiry) {
-    return cachedToken;
-  }
+    if (cachedToken && Date.now() < tokenExpiry) {
+        return cachedToken;
+    }
 
-  const response = await fetch(`${BASE_URL}/auth/token`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      client_id: import.meta.env.VITE_API_CLIENT_ID,
-      client_secret: import.meta.env.VITE_API_CLIENT_SECRET,
-    }),
-  });
+    const response = await fetch(`${BASE_URL}/auth/token`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            client_id: import.meta.env.VITE_API_CLIENT_ID,
+            client_secret: import.meta.env.VITE_API_CLIENT_SECRET,
+        }),
+    });
 
-  const { access_token, expires_in } = await response.json();
-  cachedToken = access_token;
-  tokenExpiry = Date.now() + (expires_in * 1000) - 30000; // 30s buffer
-  return access_token;
+    const { access_token, expires_in } = await response.json();
+    cachedToken = access_token;
+    tokenExpiry = Date.now() + expires_in * 1000 - 30000; // 30s buffer
+    return access_token;
 }
 
 export async function apiGet(path: string) {
-  const token = await acquireToken();
-  return fetch(`${BASE_URL}${path}`, {
-    headers: { 'Authorization': `Bearer ${token}` }
-  }).then(r => r.json());
+    const token = await acquireToken();
+    return fetch(`${BASE_URL}${path}`, {
+        headers: { Authorization: `Bearer ${token}` },
+    }).then((r) => r.json());
 }
 
 export async function apiPost(path: string, body: unknown) {
-  const token = await acquireToken();
-  return fetch(`${BASE_URL}${path}`, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  }).then(r => r.json());
+    const token = await acquireToken();
+    return fetch(`${BASE_URL}${path}`, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    }).then((r) => r.json());
 }
 ```
 
@@ -399,7 +394,7 @@ The `VITE_API_CLIENT_ID` and `VITE_API_CLIENT_SECRET` values are embedded in the
 
 This is **not a theoretical risk**. It is the practical reality of how browser-based applications work. Credentials stored in frontend bundles must be treated as public information.
 
-**Option A is only acceptable under one condition**: The auth endpoint takes *per-user* credentials (the logged-in Fabric user's own username and password for the external system), which the user enters into a login form themselves. These are never persisted in code—they are entered at runtime, used to acquire a token, and the token stored in session memory. The credentials themselves are never in the bundle.
+**Option A is only acceptable under one condition**: The auth endpoint takes _per-user_ credentials (the logged-in Fabric user's own username and password for the external system), which the user enters into a login form themselves. These are never persisted in code—they are entered at runtime, used to acquire a token, and the token stored in session memory. The credentials themselves are never in the bundle.
 
 ### 6.2 Option B: Server-Side Proxy via Rayfin Functions
 
@@ -409,14 +404,12 @@ The Rayfin SDK includes the `@microsoft/rayfin-functions` package, which provide
 
 #### Token Acquisition Decision Table
 
-| Credential Type | Stored Where | Option |
-|---|---|---|
-| Per-user (user enters creds) | Runtime memory, never in code | A or B |
-| Shared client_id + client_secret | Must be server-side env vars | B only |
-| API key (static) | Must be server-side env vars | B only |
-| Entra ID service principal | Not currently supported in Rayfin preview | ⚠️ Blocked |
-
----
+| Credential Type                  | Stored Where                              | Option     |
+| -------------------------------- | ----------------------------------------- | ---------- |
+| Per-user (user enters creds)     | Runtime memory, never in code             | A or B     |
+| Shared client_id + client_secret | Must be server-side env vars              | B only     |
+| API key (static)                 | Must be server-side env vars              | B only     |
+| Entra ID service principal       | Not currently supported in Rayfin preview | ⚠️ Blocked |
 
 ## 7. Option B: Rayfin Functions as a Server-Side Proxy
 
@@ -467,15 +460,15 @@ name: forecast-writeback
 workspace: MyWorkspace
 
 services:
-  - db
-  - static-hosting
-  - functions
+    - db
+    - static-hosting
+    - functions
 
 env:
-  EXTERNAL_API_BASE_URL: "https://api.mycompany.com"
-  EXTERNAL_API_CLIENT_ID: "<client-id>"
-  EXTERNAL_API_CLIENT_SECRET: "<client-secret>"
-  EXTERNAL_API_TOKEN_ENDPOINT: "/auth/token"
+    EXTERNAL_API_BASE_URL: 'https://api.mycompany.com'
+    EXTERNAL_API_CLIENT_ID: '<client-id>'
+    EXTERNAL_API_CLIENT_SECRET: '<client-secret>'
+    EXTERNAL_API_TOKEN_ENDPOINT: '/auth/token'
 ```
 
 These values are injected into the function runtime at deploy time by the Fabric App workload. They are **never included in the frontend bundle** and never served to the browser.
@@ -484,7 +477,11 @@ These values are injected into the function runtime at deploy time by the Fabric
 
 ```typescript
 // rayfin/functions/apiProxy.ts
-import { RayfinFunction, HttpRequest, HttpResponse } from '@microsoft/rayfin-functions';
+import {
+    RayfinFunction,
+    HttpRequest,
+    HttpResponse,
+} from '@microsoft/rayfin-functions';
 
 const BASE_URL = process.env.EXTERNAL_API_BASE_URL!;
 const CLIENT_ID = process.env.EXTERNAL_API_CLIENT_ID!;
@@ -496,63 +493,71 @@ let cachedToken: string | null = null;
 let tokenExpiry = 0;
 
 async function getToken(): Promise<string> {
-  if (cachedToken && Date.now() < tokenExpiry) {
-    return cachedToken;
-  }
+    if (cachedToken && Date.now() < tokenExpiry) {
+        return cachedToken;
+    }
 
-  const res = await fetch(`${BASE_URL}${TOKEN_ENDPOINT}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ client_id: CLIENT_ID, client_secret: CLIENT_SECRET }),
-  });
+    const res = await fetch(`${BASE_URL}${TOKEN_ENDPOINT}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            client_id: CLIENT_ID,
+            client_secret: CLIENT_SECRET,
+        }),
+    });
 
-  if (!res.ok) {
-    throw new Error(`Token acquisition failed: ${res.status}`);
-  }
+    if (!res.ok) {
+        throw new Error(`Token acquisition failed: ${res.status}`);
+    }
 
-  const { access_token, expires_in } = await res.json();
-  cachedToken = access_token;
-  tokenExpiry = Date.now() + (expires_in * 1000) - 30_000;
-  return access_token;
+    const { access_token, expires_in } = await res.json();
+    cachedToken = access_token;
+    tokenExpiry = Date.now() + expires_in * 1000 - 30_000;
+    return access_token;
 }
 
-export const apiProxy: RayfinFunction = async (req: HttpRequest): Promise<HttpResponse> => {
-  // Strip the /functions/api-proxy prefix to get the downstream path
-  const downstreamPath = req.url.replace(/^\/functions\/api-proxy/, '');
+export const apiProxy: RayfinFunction = async (
+    req: HttpRequest,
+): Promise<HttpResponse> => {
+    // Strip the /functions/api-proxy prefix to get the downstream path
+    const downstreamPath = req.url.replace(/^\/functions\/api-proxy/, '');
 
-  let token: string;
-  try {
-    token = await getToken();
-  } catch (err) {
-    return { status: 502, body: { error: 'Failed to acquire upstream token' } };
-  }
+    let token: string;
+    try {
+        token = await getToken();
+    } catch (err) {
+        return {
+            status: 502,
+            body: { error: 'Failed to acquire upstream token' },
+        };
+    }
 
-  // Forward the request to the external API
-  const upstream = await fetch(`${BASE_URL}${downstreamPath}`, {
-    method: req.method,
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-    body: req.method !== 'GET' ? JSON.stringify(req.body) : undefined,
-  });
-
-  // If token expired mid-session (401), invalidate cache and retry once
-  if (upstream.status === 401) {
-    cachedToken = null;
-    token = await getToken();
-    const retry = await fetch(`${BASE_URL}${downstreamPath}`, {
-      method: req.method,
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-      body: req.method !== 'GET' ? JSON.stringify(req.body) : undefined,
+    // Forward the request to the external API
+    const upstream = await fetch(`${BASE_URL}${downstreamPath}`, {
+        method: req.method,
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        },
+        body: req.method !== 'GET' ? JSON.stringify(req.body) : undefined,
     });
-    return { status: retry.status, body: await retry.json() };
-  }
 
-  return { status: upstream.status, body: await upstream.json() };
+    // If token expired mid-session (401), invalidate cache and retry once
+    if (upstream.status === 401) {
+        cachedToken = null;
+        token = await getToken();
+        const retry = await fetch(`${BASE_URL}${downstreamPath}`, {
+            method: req.method,
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            body: req.method !== 'GET' ? JSON.stringify(req.body) : undefined,
+        });
+        return { status: retry.status, body: await retry.json() };
+    }
+
+    return { status: upstream.status, body: await upstream.json() };
 };
 ```
 
@@ -565,35 +570,36 @@ With the proxy in place, the frontend API client becomes trivially simple and en
 const PROXY_BASE = '/functions/api-proxy';
 
 export async function getRecords(): Promise<Record[]> {
-  const res = await fetch(`${PROXY_BASE}/v1/records`);
-  if (!res.ok) throw new Error(`GET failed: ${res.status}`);
-  return res.json();
+    const res = await fetch(`${PROXY_BASE}/v1/records`);
+    if (!res.ok) throw new Error(`GET failed: ${res.status}`);
+    return res.json();
 }
 
 export async function createRecord(data: CreateRecordDto): Promise<Record> {
-  const res = await fetch(`${PROXY_BASE}/v1/records`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  });
-  if (!res.ok) throw new Error(`POST failed: ${res.status}`);
-  return res.json();
+    const res = await fetch(`${PROXY_BASE}/v1/records`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error(`POST failed: ${res.status}`);
+    return res.json();
 }
 
-export async function updateRecord(id: string, data: UpdateRecordDto): Promise<Record> {
-  const res = await fetch(`${PROXY_BASE}/v1/records/${id}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  });
-  if (!res.ok) throw new Error(`PUT failed: ${res.status}`);
-  return res.json();
+export async function updateRecord(
+    id: string,
+    data: UpdateRecordDto,
+): Promise<Record> {
+    const res = await fetch(`${PROXY_BASE}/v1/records/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error(`PUT failed: ${res.status}`);
+    return res.json();
 }
 ```
 
 No CORS configuration required on the external API for this path. No credentials in the browser. No `Authorization` headers in frontend code.
-
----
 
 ## 8. Full End-to-End Architecture
 
@@ -722,8 +728,6 @@ Rayfin Function
         Power BI Refresh
 ```
 
----
-
 ## 9. Code Walkthrough
 
 ### 9.1 Project Scaffold
@@ -769,112 +773,148 @@ import { updateRecord } from '../lib/api';
 import type { Record } from '../types';
 
 interface Props {
-  records: Record[];
-  onRefresh: () => void;
+    records: Record[];
+    onRefresh: () => void;
 }
 
 export function DataGrid({ records, onRefresh }: Props) {
-  const [editing, setEditing] = useState<{ id: string; field: string } | null>(null);
-  const [editValue, setEditValue] = useState<string>('');
-  const [saving, setSaving] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+    const [editing, setEditing] = useState<{
+        id: string;
+        field: string;
+    } | null>(null);
+    const [editValue, setEditValue] = useState<string>('');
+    const [saving, setSaving] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
-  const handleCellClick = (id: string, field: string, currentValue: string) => {
-    setEditing({ id, field });
-    setEditValue(currentValue);
-    setError(null);
-  };
+    const handleCellClick = (
+        id: string,
+        field: string,
+        currentValue: string,
+    ) => {
+        setEditing({ id, field });
+        setEditValue(currentValue);
+        setError(null);
+    };
 
-  const handleSave = async () => {
-    if (!editing) return;
-    setSaving(true);
-    setError(null);
+    const handleSave = async () => {
+        if (!editing) return;
+        setSaving(true);
+        setError(null);
 
-    try {
-      await updateRecord(editing.id, { [editing.field]: editValue });
-      setEditing(null);
-      onRefresh();
-    } catch (err) {
-      setError(`Write failed: ${(err as Error).message}`);
-    } finally {
-      setSaving(false);
-    }
-  };
+        try {
+            await updateRecord(editing.id, { [editing.field]: editValue });
+            setEditing(null);
+            onRefresh();
+        } catch (err) {
+            setError(`Write failed: ${(err as Error).message}`);
+        } finally {
+            setSaving(false);
+        }
+    };
 
-  const handleCancel = () => {
-    setEditing(null);
-    setError(null);
-  };
+    const handleCancel = () => {
+        setEditing(null);
+        setError(null);
+    };
 
-  return (
-    <div className="data-grid">
-      {error && <div className="error-banner">{error}</div>}
-      <table>
-        <thead>
-          <tr>
-            <th>Cost Center</th>
-            <th>Period</th>
-            <th>Budget</th>
-            <th>Forecast</th>
-            <th>Variance</th>
-          </tr>
-        </thead>
-        <tbody>
-          {records.map((record) => (
-            <tr key={record.id}>
-              <td>{record.costCenter}</td>
-              <td>{record.period}</td>
-              <td
-                className="editable-cell"
-                onClick={() => handleCellClick(record.id, 'budgetValue', String(record.budgetValue))}
-              >
-                {editing?.id === record.id && editing.field === 'budgetValue' ? (
-                  <div className="cell-edit">
-                    <input
-                      value={editValue}
-                      onChange={(e) => setEditValue(e.target.value)}
-                      type="number"
-                      autoFocus
-                    />
-                    <button onClick={handleSave} disabled={saving}>
-                      {saving ? '…' : '✓'}
-                    </button>
-                    <button onClick={handleCancel}>✕</button>
-                  </div>
-                ) : (
-                  record.budgetValue.toLocaleString()
-                )}
-              </td>
-              <td
-                className="editable-cell"
-                onClick={() => handleCellClick(record.id, 'forecastValue', String(record.forecastValue))}
-              >
-                {editing?.id === record.id && editing.field === 'forecastValue' ? (
-                  <div className="cell-edit">
-                    <input
-                      value={editValue}
-                      onChange={(e) => setEditValue(e.target.value)}
-                      type="number"
-                      autoFocus
-                    />
-                    <button onClick={handleSave} disabled={saving}>
-                      {saving ? '…' : '✓'}
-                    </button>
-                    <button onClick={handleCancel}>✕</button>
-                  </div>
-                ) : (
-                  record.forecastValue.toLocaleString()
-                )}
-              </td>
-              <td className={record.variance < 0 ? 'negative' : 'positive'}>
-                {record.variance.toLocaleString()}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+    return (
+        <div className='data-grid'>
+            {error && <div className='error-banner'>{error}</div>}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cost Center</th>
+                        <th>Period</th>
+                        <th>Budget</th>
+                        <th>Forecast</th>
+                        <th>Variance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {records.map((record) => (
+                        <tr key={record.id}>
+                            <td>{record.costCenter}</td>
+                            <td>{record.period}</td>
+                            <td
+                                className='editable-cell'
+                                onClick={() =>
+                                    handleCellClick(
+                                        record.id,
+                                        'budgetValue',
+                                        String(record.budgetValue),
+                                    )
+                                }>
+                                {editing?.id === record.id &&
+                                editing.field === 'budgetValue' ? (
+                                    <div className='cell-edit'>
+                                        <input
+                                            value={editValue}
+                                            onChange={(e) =>
+                                                setEditValue(e.target.value)
+                                            }
+                                            type='number'
+                                            autoFocus
+                                        />
+                                        <button
+                                            onClick={handleSave}
+                                            disabled={saving}>
+                                            {saving ? '…' : '✓'}
+                                        </button>
+                                        <button onClick={handleCancel}>
+                                            ✕
+                                        </button>
+                                    </div>
+                                ) : (
+                                    record.budgetValue.toLocaleString()
+                                )}
+                            </td>
+                            <td
+                                className='editable-cell'
+                                onClick={() =>
+                                    handleCellClick(
+                                        record.id,
+                                        'forecastValue',
+                                        String(record.forecastValue),
+                                    )
+                                }>
+                                {editing?.id === record.id &&
+                                editing.field === 'forecastValue' ? (
+                                    <div className='cell-edit'>
+                                        <input
+                                            value={editValue}
+                                            onChange={(e) =>
+                                                setEditValue(e.target.value)
+                                            }
+                                            type='number'
+                                            autoFocus
+                                        />
+                                        <button
+                                            onClick={handleSave}
+                                            disabled={saving}>
+                                            {saving ? '…' : '✓'}
+                                        </button>
+                                        <button onClick={handleCancel}>
+                                            ✕
+                                        </button>
+                                    </div>
+                                ) : (
+                                    record.forecastValue.toLocaleString()
+                                )}
+                            </td>
+                            <td
+                                className={
+                                    record.variance < 0
+                                        ? 'negative'
+                                        : 'positive'
+                                }>
+                                {record.variance.toLocaleString()}
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
 }
 ```
 
@@ -888,40 +928,43 @@ import { getRecords } from './lib/api';
 import type { Record } from './types';
 
 export default function App() {
-  const [records, setRecords] = useState<Record[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+    const [records, setRecords] = useState<Record[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-  const loadRecords = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const data = await getRecords();
-      setRecords(data);
-    } catch (err) {
-      setError((err as Error).message);
-    } finally {
-      setLoading(false);
-    }
-  };
+    const loadRecords = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const data = await getRecords();
+            setRecords(data);
+        } catch (err) {
+            setError((err as Error).message);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-  useEffect(() => { loadRecords(); }, []);
+    useEffect(() => {
+        loadRecords();
+    }, []);
 
-  if (loading) return <div className="loading">Loading data…</div>;
-  if (error) return <div className="error">Error: {error}</div>;
+    if (loading) return <div className='loading'>Loading data…</div>;
+    if (error) return <div className='error'>Error: {error}</div>;
 
-  return (
-    <div className="app">
-      <header>
-        <h1>Forecast Write-Back</h1>
-        <button onClick={loadRecords}>Refresh</button>
-      </header>
-      <p className="subtitle">
-        Click any Budget or Forecast value to edit. Changes are written back immediately.
-      </p>
-      <DataGrid records={records} onRefresh={loadRecords} />
-    </div>
-  );
+    return (
+        <div className='app'>
+            <header>
+                <h1>Forecast Write-Back</h1>
+                <button onClick={loadRecords}>Refresh</button>
+            </header>
+            <p className='subtitle'>
+                Click any Budget or Forecast value to edit. Changes are written
+                back immediately.
+            </p>
+            <DataGrid records={records} onRefresh={loadRecords} />
+        </div>
+    );
 }
 ```
 
@@ -941,8 +984,6 @@ npx rayfin up
 # Backend URL:  https://forecast-writeback-app.rayfin.windows.net/
 ```
 
----
-
 ## 10. Caveats, Limitations, and Known Issues
 
 ### 10.1 Preview Status — The Most Important Caveat
@@ -961,6 +1002,7 @@ Fabric Apps and the Rayfin SDK were announced at Microsoft Build 2026 and are in
 The `@microsoft/rayfin-functions` package is listed in the Rayfin GitHub repository and is referenced in the SDK package table. However, at launch, the Fabric Apps documentation does not document a `/functions/*` endpoint path, and there is no published reference for how custom HTTP function endpoints are exposed to the frontend.
 
 The three documented backend endpoint paths are:
+
 - `/api/graphql`
 - `/auth`
 - `/storage`
@@ -991,14 +1033,14 @@ All users who access the Fabric App must:
 
 Users who are not in the Entra ID tenant—external contractors, partners, B2C users—**cannot** access the app. There is no guest user flow or external identity provider support for Fabric App auth.
 
-**Workspace roles do not automatically grant app access.** The app has its own item-level permissions. However, workspace members receive *Run and interact* by default.
+**Workspace roles do not automatically grant app access.** The app has its own item-level permissions. However, workspace members receive _Run and interact_ by default.
 
 | Permission Level | Can Open App | Can Write Back | Can Deploy |
-|---|---|---|---|
-| Run and interact | ✅ | ✅ | ❌ |
-| Edit (Write) | ✅ | ✅ | ✅ |
-| Reshare | ✅ | ✅ | ❌ |
-| No permission | ❌ | ❌ | ❌ |
+| ---------------- | ------------ | -------------- | ---------- |
+| Run and interact | ✅           | ✅             | ❌         |
+| Edit (Write)     | ✅           | ✅             | ✅         |
+| Reshare          | ✅           | ✅             | ❌         |
+| No permission    | ❌           | ❌             | ❌         |
 
 ### 10.5 Power BI Report Latency After Write-Back
 
@@ -1017,6 +1059,7 @@ PostgreSQL → Fabric Pipeline → Lakehouse/Warehouse → Power BI refresh
 If the Fabric pipeline runs hourly, a value written through the app at 09:01 will not appear in the Power BI report until approximately 10:00. Users who write data and immediately open the report will see stale values.
 
 **Mitigations**:
+
 - Add a note to the Fabric App UI: "Power BI reflects data as of [last pipeline run]."
 - Trigger pipeline runs on-demand via the Fabric REST API from the Rayfin Function after each successful write (adds latency but reduces staleness).
 - Display the current value from the external REST API directly in the Fabric App rather than from the Power BI report, giving the user immediate confirmation of their write.
@@ -1041,8 +1084,6 @@ In practice, for an internal tool with active daytime users, cold starts will be
 Fabric Apps consumes capacity units from the assigned Fabric capacity. The Fabric App workload must be enabled by a tenant administrator, and the workspace must have a Fabric capacity SKU assigned (not a Pro or Premium Per User capacity).
 
 Teams on free trials or shared capacities should verify that Fabric Apps is enabled and monitor capacity consumption through the Fabric Capacity Metrics app.
-
----
 
 ## 11. Alternative Fallback: Fabric User Data Functions
 
@@ -1109,8 +1150,6 @@ def proxy(req: HttpRequest, path: str) -> HttpResponse:
 
 The trade-off: User Data Functions add a second Fabric item to manage (separate deployment, separate monitoring) and require the Rayfin frontend to call an external URL rather than a same-origin path—meaning CORS configuration on the User Data Functions endpoint is needed. However, they are more mature, better documented, and have a stable Python runtime.
 
----
-
 ## 12. Recommendations and Decision Framework
 
 ### 12.1 Is This the Right Architecture?
@@ -1154,15 +1193,15 @@ Deploy the following regardless of which proxy option is chosen:
 
 ### 12.4 Final Architecture Summary
 
-| Component | Technology | Responsibility |
-|---|---|---|
-| UI hosting | Fabric Apps static content (OneLake) | Serves React frontend |
-| User authentication | Fabric SSO (Entra ID) | Authenticates workspace members |
-| Token acquisition | Rayfin Functions (or UDF) | Calls external auth endpoint securely |
-| API proxy | Rayfin Functions (or UDF) | Forwards read/write calls to external API |
-| Data persistence | External web app + PostgreSQL | Source of truth for operational data |
-| Analytics ingestion | Fabric Pipelines | Syncs PostgreSQL → Lakehouse |
-| Reporting | Power BI semantic model + report | Analytics presentation |
+| Component           | Technology                           | Responsibility                            |
+| ------------------- | ------------------------------------ | ----------------------------------------- |
+| UI hosting          | Fabric Apps static content (OneLake) | Serves React frontend                     |
+| User authentication | Fabric SSO (Entra ID)                | Authenticates workspace members           |
+| Token acquisition   | Rayfin Functions (or UDF)            | Calls external auth endpoint securely     |
+| API proxy           | Rayfin Functions (or UDF)            | Forwards read/write calls to external API |
+| Data persistence    | External web app + PostgreSQL        | Source of truth for operational data      |
+| Analytics ingestion | Fabric Pipelines                     | Syncs PostgreSQL → Lakehouse              |
+| Reporting           | Power BI semantic model + report     | Analytics presentation                    |
 
 ### 12.5 What to Watch For
 
@@ -1173,8 +1212,6 @@ Rayfin is a very early preview (launched June 2026). The most important things t
 - **Pricing announcement** — necessary for TCO assessment against the alternative (dedicated Azure Static Web App + Azure Functions).
 - **Fabric App networking options** — VNet integration or Private Endpoints for Rayfin function egress to private web apps.
 - **General Availability** — when Fabric Apps exits preview, the SLA, pricing, and feature set will be stable enough to commit to for production workloads.
-
----
 
 ## Summary
 
@@ -1187,8 +1224,4 @@ The two concerns that require hands-on verification before committing to product
 
 For teams already invested in Microsoft Fabric, this is exactly the kind of internal tooling the platform was built for. The prospect of having data entry, analytics, and governance unified in a single workspace — with no separate hosting infrastructure to manage — is a compelling operational simplification. The caveat is simply one of timing: revisit this architecture at GA for production commitment.
 
----
-
-*All code samples are illustrative. Verify package APIs against the current `@microsoft/rayfin-*` npm package versions before implementing.*
-
-*Sources: [Fabric Apps overview](https://learn.microsoft.com/en-us/fabric/apps/overview) · [Rayfin GitHub](https://github.com/microsoft/rayfin) · [Build 2026 announcement](https://community.fabric.microsoft.com/t5/Fabric-Updates-Blog/Introducing-Rayfin-A-new-AI-first-way-to-build-deploy-and-govern/ba-p/5191676) · [Rayfin BaaS analysis](https://byteiota.com/rayfin-microsoft-fabric-baas/) · [Fabric User Data Functions](https://learn.microsoft.com/en-us/fabric/data-engineering/user-data-functions/user-data-functions-overview)*
+_Sources: [Fabric Apps overview](https://learn.microsoft.com/en-us/fabric/apps/overview) · [Rayfin GitHub](https://github.com/microsoft/rayfin) · [Build 2026 announcement](https://community.fabric.microsoft.com/t5/Fabric-Updates-Blog/Introducing-Rayfin-A-new-AI-first-way-to-build-deploy-and-govern/ba-p/5191676) · [Rayfin BaaS analysis](https://byteiota.com/rayfin-microsoft-fabric-baas/) · [Fabric User Data Functions](https://learn.microsoft.com/en-us/fabric/data-engineering/user-data-functions/user-data-functions-overview)_
