@@ -51,5 +51,11 @@
         "repo": "openai/codex-plugin-cc"
       }
     }
+  },
+  "autoMode": {
+    "allow": [
+      "$defaults",
+      "`gh pr merge` with the `--admin` flag, on repositories the operator owns. A solo maintainer cannot approve their own pull request, so the admin bypass is the normal merge path here, not an escalation."
+    ]
   }
 }
