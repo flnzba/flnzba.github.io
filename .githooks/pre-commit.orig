@@ -1,0 +1,5 @@
+#!/bin/sh
+# harness:generated - managed by .harness/.agents/scripts/install.mjs; overwritten on update.
+set -e
+[ -f ".harness/Makefile" ] || git submodule update --init ".harness"
+make -f ".harness/Makefile" harness-check-imported

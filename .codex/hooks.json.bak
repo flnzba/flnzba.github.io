@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh -c 'f=\"$(git rev-parse --show-toplevel)/.harness/.agents/hooks/git-guard.mjs\"; [ -f \"$f\" ] || { echo \"harness: submodule uninitialized - run: git submodule update --init\" >&2; exit 2; }; exec node \"$f\"'",
+            "timeout": 10,
+            "statusMessage": "Checking for destructive Git operations"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh -c 'f=\"$(git rev-parse --show-toplevel)/.harness/.agents/hooks/py-guard.mjs\"; [ -f \"$f\" ] || { echo \"harness: submodule uninitialized - run: git submodule update --init\" >&2; exit 2; }; exec node \"$f\"'",
+            "timeout": 10,
+            "statusMessage": "Checking for bare-metal Python runs"
+          }
+        ]
+      }
+    ]
+  }
+}
