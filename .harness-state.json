@@ -1,6 +1,6 @@
 {
   "harness": ".harness",
-  "commit": "c3ce30974cb1689e53a4d3107ad32bc4dbd06c74",
+  "commit": "5411dbda37efa4871a8ab05c83ba03b9e7a4208c",
   "artifacts": [
     {
       "path": ".github/workflows/harness.yml",
