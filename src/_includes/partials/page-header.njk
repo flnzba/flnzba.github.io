@@ -1,0 +1,26 @@
+{#
+  Shared page masthead. A macro rather than an include so call sites can pass
+  extra content through {% call %} — the five existing headers are not verbatim
+  copies (posts adds a count and RSS link, tags wraps the title in <code>, 404
+  centres itself in the viewport).
+
+  Usage:
+    {% from "partials/page-header.njk" import pageHeader %}
+    {{ pageHeader("Archive", "Posts") }}
+  or, with a body:
+    {% call pageHeader("Archive", "Posts") %}<p>…</p>{% endcall %}
+#}
+{% macro pageHeader(eyebrow, title, lede) %}
+<section class="border-b border-rule py-16 sm:py-20">
+  <div class="u-shell u-manuscript">
+    <p class="u-eyebrow lg:pt-2">{{ eyebrow }}</p>
+    <div>
+      <h1 class="u-display max-w-3xl text-section">{{ title | safe }}</h1>
+      {% if lede %}
+        <p class="mt-4 max-w-2xl text-[0.98rem] leading-relaxed text-ink-2">{{ lede }}</p>
+      {% endif %}
+      {% if caller %}<div class="mt-5">{{ caller() }}</div>{% endif %}
+    </div>
+  </div>
+</section>
+{% endmacro %}

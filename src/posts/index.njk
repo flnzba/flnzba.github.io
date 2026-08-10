@@ -4,16 +4,18 @@ title: Posts
 permalink: /posts/
 eleventyExcludeFromCollections: true
 ---
-<section class="bg-gradient-to-b from-white to-gray-50 py-14 dark:from-dark-bg dark:to-gray-950 sm:py-16">
-  <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-    <p class="text-sm font-semibold uppercase tracking-wide text-deep-blue dark:text-accent-blue">Archive</p>
-    <h1 class="mt-3 font-display text-4xl font-bold text-gray-950 dark:text-white md:text-5xl">Posts</h1>
-    <p class="mt-4 text-base text-gray-600 dark:text-gray-400">{{ collections.posts.length }} articles · <a href="/feed.xml" class="font-semibold text-deep-blue underline decoration-deep-blue/30 underline-offset-4 transition hover:text-accent-blue dark:text-accent-blue">RSS</a></p>
-  </div>
-</section>
+{% from "partials/page-header.njk" import pageHeader %}
 
-<section class="mx-auto grid w-full max-w-7xl gap-5 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:px-8">
-  {% for post in collections.posts %}
-    {% include "partials/post-card.njk" %}
-  {% endfor %}
+{% call pageHeader("Archive", "Writing", "Notes from building enterprise data platforms — what worked, what did not, and the parts the vendor documentation leaves out.") %}
+  <p class="u-meta">
+    {{ collections.posts.length }} article{{ "s" if collections.posts.length != 1 }} · <a href="/feed.xml" class="u-link">RSS</a>
+  </p>
+{% endcall %}
+
+<section class="u-shell py-14">
+  <ul class="border-t border-rule">
+    {% for post in collections.posts %}
+      {% include "partials/post-row.njk" %}
+    {% endfor %}
+  </ul>
 </section>

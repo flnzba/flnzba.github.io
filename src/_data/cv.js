@@ -1,0 +1,254 @@
+// Canonical CV source. The /cv/ page, the home-page career section and the
+// "roles held, to scale" timeline figure all read from here — edit this file,
+// not the templates.
+//
+// Roles carry ISO `start` and a nullable `end` (null === ongoing) so the
+// timeline can be drawn to scale. `type` drives the bar colour and the
+// relationship chip: industry | founded | advisory.
+//
+// Source: LinkedIn profile export (tmp/Profile.pdf). Bullets were written in
+// German there and are translated here to match the site language.
+
+export default {
+  headline: "Delivering value with software · Information systems design",
+  location: "Linz · Wels · Steyr, Austria",
+  summary:
+    "AI, data and software architecture are my fields of expertise. I design the platforms enterprises run their data on, and I still write the pipelines that fill them. Studied law, AI and computer science at Johannes Kepler University Linz and FernUniversität in Hagen.",
+
+  // Shown as the credentials line under the hero.
+  credentials: ["MSc Computer Science", "MSc Information Systems", "LL.B.", "Ing."],
+
+  roles: [
+    {
+      org: "ORBIS Austria GmbH",
+      shortOrg: "ORBIS Austria",
+      role: "Principal Enterprise Architect Data & AI",
+      start: "2026-08-01",
+      end: null,
+      type: "industry",
+      location: "Austria",
+      url: "https://www.orbis.de/",
+      stack: ["Azure", "Microsoft Fabric", "AWS", "Foundry"],
+      bullets: [
+        "Design data-driven and AI solutions across the client portfolio.",
+        "Own data platform and AI strategy.",
+        "Architect data and AI systems and platforms.",
+        "Build solutions for governance, process optimisation and efficiency with AI.",
+        "Technical consulting and solution system design.",
+      ],
+    },
+    {
+      org: "FZEBA.com",
+      shortOrg: "FZEBA.com",
+      role: "AI / Data / Software Engineer",
+      start: "2025-02-01",
+      end: null,
+      type: "founded",
+      location: "Austria",
+      url: "https://www.fzeba.com",
+      stack: ["Python", "TypeScript", "SQL", "Azure"],
+      bullets: ["Data-driven software development under my own name."],
+    },
+    {
+      org: "CANCOM Austria",
+      shortOrg: "CANCOM Austria",
+      role: "Data & AI Architect",
+      start: "2025-11-01",
+      end: "2026-07-01",
+      type: "industry",
+      location: "Linz, Upper Austria",
+      url: "https://www.cancom.at/",
+      team: "Digital Makers",
+      stack: ["Azure", "Microsoft Fabric", "Databricks", "Python"],
+      bullets: [
+        "Solutions architect for data and AI platforms.",
+        "Advised enterprise architects, solution designers, C-level and IT leads on data and AI architecture and strategy.",
+        "Delivered data-intensive business cases end to end, from requirements to running system.",
+        "Planned data architectures for business intelligence and AI solutions.",
+        "Built AI architectures for enterprise settings — scalability, governance and security.",
+        "Pre-sales engineering on data and AI use cases.",
+      ],
+    },
+    {
+      org: "SOFTWERK GmbH",
+      shortOrg: "SOFTWERK",
+      role: "Software Engineering",
+      start: "2025-02-01",
+      end: "2025-11-01",
+      type: "industry",
+      location: "Austria",
+      url: "https://www.softwerk.at/",
+      stack: ["Python", "Pandas", "scikit-learn", "PostgreSQL", "Azure Data Factory", "PySpark"],
+      bullets: [
+        "Led end-to-end data engineering projects from requirements analysis through to scalable delivery, using Python, SQL and REST API integrations.",
+        "Architected and automated complex data processing pipelines in Azure Data Factory with PySpark, sharply reducing manual data handling for clients in finance, manufacturing and agriculture.",
+        "Built and shipped data-driven software that gave clients actionable insight, on a stack of Apache Spark, SQL and Azure services.",
+      ],
+    },
+    {
+      org: "PwC Österreich",
+      shortOrg: "PwC Österreich",
+      role: "Tax Technology",
+      start: "2024-05-01",
+      end: "2025-02-01",
+      type: "industry",
+      location: "Vienna, Austria",
+      url: "https://www.pwc.at/",
+      stack: ["Power BI", "Alteryx", "KNIME", "RPA", "BMD", "MS Dynamics"],
+      bullets: [
+        "Extended existing information systems and built new ones.",
+        "Raised efficiency in tax advisory, accounting and controlling by designing and automating processes with RPA and robust data workflows.",
+        "Created transparent decision bases through strategic data models in Power BI, Alteryx and KNIME, making ERP data (BMD, MS Business Central / Dynamics) usable.",
+        "Optimised data flows out of core ERP systems to improve data quality and give automation and analytics a consistent foundation.",
+      ],
+    },
+    {
+      org: "PwC Österreich",
+      shortOrg: "PwC Österreich",
+      role: "Senior Associate — Management & Business Intelligence Consulting",
+      start: "2022-06-01",
+      end: "2024-05-01",
+      type: "industry",
+      location: "Linz / Graz, Austria",
+      url: "https://www.pwc.at/",
+      stack: ["Alteryx", "KNIME", "Power BI", "SAP", "Excel"],
+      bullets: [
+        "Raised efficiency in controlling and logistics processes by designing and implementing automated data pipelines (Alteryx, KNIME) and interactive BI dashboards (Power BI, Excel).",
+        "Built decision bases for management through precise data models and digital analytics solutions in the SAP environment.",
+        "Supported strategic decisions at SMEs with analytical advice on M&A, restructuring, liquidation and company valuation (per KFS/BW 1).",
+      ],
+    },
+    {
+      org: "Consulting & Marketing Zeba e.U.",
+      shortOrg: "Zeba e.U.",
+      role: "Programming",
+      start: "2018-07-01",
+      end: "2022-11-01",
+      type: "founded",
+      location: "Wels, Upper Austria",
+      stack: ["PHP", "Python", "JavaScript", "SQL"],
+      bullets: [
+        "Delivered bespoke software focused on data integration and analysis for clients in marketing, agriculture and finance.",
+        "Built and launched e-commerce systems and web applications, from data analysis through to backend implementation.",
+      ],
+    },
+    {
+      org: "TD Trusted Decisions GmbH",
+      shortOrg: "TD Trusted Decisions",
+      role: "Business Intelligence Consulting & Data Engineering",
+      start: "2021-08-01",
+      end: "2022-05-01",
+      type: "industry",
+      location: "Wels, Upper Austria",
+      stack: ["Qlik Sense", "QlikView", "MSSQL"],
+      bullets: [
+        "Improved data reliability and availability for business reporting by designing and optimising ETL processes with Qlik Sense and SQL (MSSQL).",
+        "Enabled sharper analysis for key stakeholders through strategic data models and interactive Qlik Sense dashboards.",
+        "Ran QlikView to Qlik Sense migrations.",
+      ],
+    },
+    {
+      org: "Alps Digital Webservices & Communications GmbH",
+      shortOrg: "Alps Digital",
+      role: "Project Lead",
+      start: "2020-11-01",
+      end: "2021-11-01",
+      type: "industry",
+      location: "Wels, Upper Austria",
+      stack: ["SQL", "Project management"],
+      bullets: [
+        "Led the design and scaling of a new data infrastructure for an IT service agency, including SQL databases and an operational framework supporting app and web development projects.",
+        "Managed the full project lifecycle for data integration pipelines, delivering complex client requirements on schedule.",
+        "Owned budgets and financial planning for IT operations, optimising resource allocation.",
+      ],
+    },
+    {
+      org: "teamCon GmbH",
+      shortOrg: "teamCon",
+      role: "Management Consulting",
+      start: "2019-11-01",
+      end: "2021-04-01",
+      type: "advisory",
+      location: "Linz, Upper Austria",
+      stack: ["Financial modelling", "Actuarial mathematics"],
+      bullets: [
+        "Ran detailed financial analyses and company valuations, extracting and preparing data from financial statements and presenting findings to identify investment opportunities.",
+        "Built financial models and reporting using data-driven methods in actuarial and investment mathematics to deliver risk assessments.",
+      ],
+    },
+    {
+      org: "Kanzlei Dr. Straberger & Mag. Schmidl",
+      shortOrg: "Kanzlei Straberger & Schmidl",
+      role: "Legal Associate",
+      start: "2019-09-01",
+      end: "2020-10-01",
+      type: "industry",
+      location: "Wels, Upper Austria",
+      bullets: [
+        "Legal work and case preparation in civil, insolvency and criminal law for complex court proceedings.",
+      ],
+    },
+  ],
+
+  // The LinkedIn export carries no dates for any degree — `period: null`
+  // renders as a placeholder chip rather than an invented year.
+  education: [
+    {
+      school: "FernUniversität in Hagen",
+      degree: "Master of Science — Computer Science",
+      period: null,
+      url: "https://www.fernuni-hagen.de/",
+    },
+    {
+      school: "Ferdinand Porsche FERNFH",
+      degree: "Master of Science — Information Systems",
+      period: null,
+      url: "https://www.fernfh.ac.at/",
+    },
+    {
+      school: "Hochschule Burgenland",
+      degree: "Master's degree — Business Informatics & Management",
+      period: null,
+      url: "https://www.hochschule-burgenland.at/",
+    },
+    {
+      school: "Johannes Kepler Universität Linz",
+      degree: "Bachelor of Laws (LL.B.) — Wirtschaftsrecht",
+      period: null,
+      url: "https://www.jku.at/",
+    },
+    {
+      school: "HTL Wels",
+      degree: "Ingenieur (Ing.) — Mechatronics, Robotics & Automation",
+      period: null,
+      url: "https://www.htlwels.at/",
+    },
+  ],
+
+  skills: [
+    { group: "Data platforms", items: ["Data lakes", "Data governance", "Microsoft Fabric", "Databricks", "Azure Data Factory", "Delta Lake"] },
+    { group: "Engineering", items: ["Python", "SQL", "PySpark", "TypeScript", "REST APIs", "PHP"] },
+    { group: "Analytics & BI", items: ["Power BI", "Qlik Sense", "Alteryx", "KNIME", "SAP", "Excel"] },
+    { group: "Cloud", items: ["Azure", "AWS", "Foundry", "Terraform", "Kubernetes"] },
+    { group: "Advisory", items: ["Enterprise architecture", "AI strategy", "Pre-sales engineering", "Company valuation", "M&A analysis"] },
+  ],
+
+  certifications: [
+    { name: "KNIME L1", issuer: "KNIME" },
+    { name: "Bloomberg Market Concepts (BMC)", issuer: "Bloomberg" },
+    { name: "Alteryx Designer Core", issuer: "Alteryx" },
+    { name: "Qlik Sense Business Analyst", issuer: "Qlik" },
+  ],
+
+  languages: [
+    { name: "German", level: "Native or bilingual" },
+    { name: "Croatian", level: "Native or bilingual" },
+    { name: "English", level: "Full professional" },
+  ],
+
+  // Not yet supplied — rendered as styled placeholders, never as dead links.
+  documents: [
+    { label: "Résumé", detail: "2 pages, ATS-optimised", href: null },
+    { label: "Full CV", detail: "4 pages", href: null },
+  ],
+};

@@ -11,17 +11,18 @@ eleventyComputed:
   description: "Technical articles by Florian Zeba tagged {{ tag }}."
   canonical_url: "https://www.fzeba.com/tags/{{ tag | slugify }}/"
 ---
-<section class="bg-gradient-to-b from-white to-gray-50 py-14 dark:from-dark-bg dark:to-gray-950 sm:py-16">
-  <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-    <p class="text-sm font-semibold uppercase tracking-wide text-deep-blue dark:text-accent-blue">Tag</p>
-    <h1 class="mt-3 font-display text-4xl font-bold text-gray-950 dark:text-white md:text-5xl"><code>{{ tag }}</code></h1>
-    <a href="/posts/" class="mt-5 inline-flex rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 transition hover:border-deep-blue hover:text-deep-blue dark:border-gray-800 dark:text-gray-300 dark:hover:border-accent-blue dark:hover:text-accent-blue">&larr; All posts</a>
-  </div>
-</section>
+{% from "partials/page-header.njk" import pageHeader %}
+{% set tagged = collections.posts | byTag(tag) %}
 
-<section class="mx-auto grid w-full max-w-7xl gap-5 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:px-8">
-  {% set tagged = collections.posts | byTag(tag) %}
-  {% for post in tagged %}
-    {% include "partials/post-card.njk" %}
-  {% endfor %}
+{% call pageHeader("Tag", "<code>" + (tag | escape) + "</code>") %}
+  <p class="u-meta mb-4">{{ tagged.length }} article{{ "s" if tagged.length != 1 }}</p>
+  <a href="/posts/" class="u-link font-mono text-[0.76rem] uppercase tracking-[0.09em]">&larr; All posts</a>
+{% endcall %}
+
+<section class="u-shell py-14">
+  <ul class="border-t border-rule">
+    {% for post in tagged %}
+      {% include "partials/post-row.njk" %}
+    {% endfor %}
+  </ul>
 </section>

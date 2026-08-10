@@ -1,10 +1,10 @@
-<a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-deep-blue focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white">Skip to content</a>
-<nav class="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6 md:flex-nowrap md:gap-4 lg:px-8" aria-label="Primary navigation">
-  <a href="/" class="flex w-fit items-center gap-3 text-gray-950 transition-colors hover:text-deep-blue dark:text-white dark:hover:text-accent-blue" aria-label="{{ site.title }} home">
-    <span class="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-900">
-      <img src="/assets/logo.png" alt="" class="h-6 w-auto opacity-85" />
+<a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-ink focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:uppercase focus:tracking-[0.09em] focus:text-surface">Skip to content</a>
+<nav class="u-shell flex flex-wrap items-center justify-between gap-3 py-4 md:flex-nowrap md:gap-6" aria-label="Primary navigation">
+  <a href="/" class="group flex w-fit items-center gap-2.5 text-ink transition-colors hover:text-ultra" aria-label="{{ site.title }} home">
+    <span class="flex h-8 w-8 items-center justify-center border border-rule bg-surface">
+      <img src="/assets/logo.png" alt="" class="h-5 w-auto opacity-85" />
     </span>
-    <span class="font-display text-base font-bold tracking-normal">{{ site.title }}</span>
+    <span class="u-display text-[1.05rem]">{{ site.title }}<span class="text-ultra">.</span></span>
   </a>
 
   <div class="flex items-center gap-2 md:order-3">
@@ -12,13 +12,13 @@
     <button
       id="mobile-nav-toggle"
       type="button"
-      class="inline-flex h-10 w-10 items-center justify-center rounded-md border border-gray-200 bg-white text-gray-700 transition-colors hover:border-deep-blue hover:text-deep-blue md:hidden dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-accent-blue dark:hover:text-accent-blue"
+      class="inline-flex h-9 w-9 items-center justify-center border border-rule bg-surface text-ink-2 transition-colors hover:border-ink hover:text-ink md:hidden"
       aria-controls="primary-menu"
       aria-expanded="false"
       aria-label="Open navigation menu"
       title="Open navigation menu"
     >
-      <svg class="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M4 7h16" />
         <path d="M4 12h16" />
         <path d="M4 17h16" />
@@ -26,13 +26,13 @@
     </button>
   </div>
 
-  <div id="primary-menu" class="order-3 hidden w-full flex-col gap-1 border-t border-gray-200 pt-3 md:order-2 md:flex md:w-auto md:flex-row md:items-center md:gap-2 md:border-0 md:pt-0 dark:border-gray-800">
+  <div id="primary-menu" class="order-3 hidden w-full flex-col gap-1 border-t border-rule pt-3 md:order-2 md:flex md:w-auto md:flex-row md:items-center md:gap-x-5 md:border-0 md:pt-0">
     {% for item in site.nav %}
       {% if item.url != "/" %}
         {% set isActive = page.url and page.url.startsWith(item.url) %}
         <a
           href="{{ item.url }}"
-          class="rounded-md px-3 py-2 text-sm font-medium transition-colors {% if isActive %}bg-deep-blue/10 text-deep-blue dark:bg-accent-blue/10 dark:text-accent-blue{% else %}text-gray-600 hover:bg-gray-100 hover:text-deep-blue dark:text-gray-400 dark:hover:bg-gray-900 dark:hover:text-accent-blue{% endif %}"
+          class="py-1.5 font-mono text-[0.76rem] uppercase tracking-[0.09em] transition-colors {% if isActive %}text-ink{% else %}text-ink-3 hover:text-ink{% endif %}"
           {% if isActive %}aria-current="page"{% endif %}
         >{{ item.text }}</a>
       {% endif %}

@@ -1,0 +1,98 @@
+---
+layout: layouts/base.njk
+title: Research
+description: "Research and long-form applied work by Florian Zeba, including Cortex: A Fixed-Point Theory of Governed Coding Agents, co-authored with Marius-Constantin Dinu."
+permalink: /research/
+eleventyExcludeFromCollections: true
+---
+<section class="border-b border-rule py-16 sm:py-20">
+  <div class="u-shell u-manuscript">
+    <p class="u-eyebrow lg:pt-2">Research</p>
+    <div>
+      <h1 class="u-display max-w-3xl text-section">One question, asked at two different scales.</h1>
+      <p class="mt-6 max-w-2xl text-[1.02rem] leading-relaxed text-ink-2">{{ research.statement }}</p>
+    </div>
+  </div>
+</section>
+
+{# -------------------------------------------------------------- Papers -- #}
+<section class="border-b border-rule py-16 sm:py-20">
+  <div class="u-shell u-manuscript">
+    <p class="u-eyebrow lg:pt-1.5">Papers</p>
+    <div>
+      <ul class="space-y-px">
+        {% for p in research.papers %}
+          {% include "partials/paper-card.njk" %}
+        {% endfor %}
+      </ul>
+      <p class="u-meta mt-4 max-w-2xl leading-relaxed">
+        The PDF is hosted by my co-author on dinu.at and linked rather than mirrored here.
+      </p>
+    </div>
+  </div>
+</section>
+
+{# ------------------------------------------------------------- Applied -- #}
+<section class="border-b border-rule bg-surface-2/40 py-16 sm:py-20">
+  <div class="u-shell u-manuscript">
+    <p class="u-eyebrow lg:pt-1.5">Applied</p>
+    <div>
+      <h2 class="u-display mb-3 max-w-2xl text-section">Long-form work published here.</h2>
+      <p class="mb-8 max-w-2xl text-[0.98rem] leading-relaxed text-ink-2">
+        Investigations that ran long enough to need sources. Written solo, and distinct from
+        the co-authored papers above.
+      </p>
+      <ul class="space-y-px">
+        {% for a in research.applied %}
+          <li class="group border border-rule transition-colors hover:border-ink/25">
+            <a href="/posts/{{ a.post }}/" class="block p-6 sm:p-7">
+              <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                <h3 class="u-display text-[1.35rem] text-ink transition-colors group-hover:text-ultra">{{ a.title }}</h3>
+                <span class="u-meta">{{ a.year }}</span>
+              </div>
+              <p class="mt-3 max-w-2xl text-[0.95rem] leading-relaxed text-ink-2">{{ a.note }}</p>
+              <span class="u-link mt-4 inline-block font-mono text-[0.74rem] uppercase tracking-[0.09em]">Read it →</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{# --------------------------------------------------------------- Talks -- #}
+<section class="border-b border-rule py-16 sm:py-20">
+  <div class="u-shell u-manuscript">
+    <p class="u-eyebrow lg:pt-1.5">Talks</p>
+    <div>
+      {% if research.talks.length %}
+        <ul class="divide-y divide-rule border-y border-rule">
+          {% for t in research.talks %}
+            <li class="grid gap-x-8 gap-y-1 py-4 lg:grid-cols-[10rem_minmax(0,1fr)]">
+              <span class="u-meta">{{ t.date }}</span>
+              <span>
+                <span class="block text-[0.98rem] text-ink">{{ t.title }}</span>
+                <span class="u-meta">{{ t.event }}</span>
+              </span>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        {% set phLabel = "Talks and appearances" %}
+        {% set phNote = "Add date, event, title and a link" %}
+        {% include "partials/placeholder.njk" %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<section class="border-b border-rule bg-ink py-16 text-surface sm:py-20">
+  <div class="u-shell">
+    <p class="u-eyebrow !text-surface/45">Get in touch</p>
+    <h2 class="u-display mt-4 max-w-3xl text-[clamp(1.7rem,4vw,2.9rem)]">Working on something adjacent?</h2>
+    <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
+      <a href="mailto:{{ site.author.email }}" class="inline-flex items-center gap-2.5 border border-surface bg-surface px-5 py-2.5 font-mono text-[0.76rem] uppercase tracking-[0.09em] text-ink transition-opacity hover:opacity-85">{{ site.author.email }}</a>
+      <a href="/posts/" class="font-mono text-[0.78rem] text-surface/75 underline decoration-surface/30 underline-offset-4 transition-colors hover:text-surface">All writing →</a>
+    </div>
+  </div>
+</section>

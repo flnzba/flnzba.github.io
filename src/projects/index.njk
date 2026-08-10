@@ -4,36 +4,15 @@ title: Projects
 permalink: /projects/
 eleventyExcludeFromCollections: true
 ---
-<section class="bg-gradient-to-b from-white to-gray-50 py-14 dark:from-dark-bg dark:to-gray-950 sm:py-16">
-  <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-    <p class="text-sm font-semibold uppercase tracking-wide text-deep-blue dark:text-accent-blue">Work</p>
-    <h1 class="mt-3 font-display text-4xl font-bold text-gray-950 dark:text-white md:text-5xl">Projects</h1>
-  </div>
-</section>
+{% from "partials/page-header.njk" import pageHeader %}
 
-<section class="mx-auto grid w-full max-w-7xl gap-6 px-4 py-12 sm:px-6 md:grid-cols-2 lg:px-8">
-  {% for project in collections.projects %}
-    <article class="group overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-deep-blue hover:shadow-soft dark:border-gray-800 dark:bg-gray-900 dark:hover:border-accent-blue">
-      {% if project.data.cover and project.data.cover.src %}
-        <a href="{{ project.url }}" class="block overflow-hidden border-b border-gray-200 dark:border-gray-800">
-          <img src="{{ project.data.cover.src | replace('./', project.url) }}" alt="{{ project.data.cover.alt }}" class="aspect-video w-full object-cover transition duration-300 group-hover:scale-105" />
-        </a>
-      {% endif %}
-      <header class="space-y-3 p-5">
-        <div class="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
-          <time datetime="{{ project.data.date | htmlDateString }}">{{ project.data.date | readableDate }}</time>
-          {% if project.data.tags and project.data.tags.length %}
-            <span aria-hidden="true">/</span>
-            <span class="flex flex-wrap gap-2 normal-case tracking-normal">
-              {% for t in project.data.tags %}<span class="tag text-xs text-gray-500 dark:text-gray-400">{{ t }}</span>{% endfor %}
-            </span>
-          {% endif %}
-        </div>
-        <h2 class="font-display text-xl font-bold leading-tight text-gray-950 dark:text-white">
-          <a href="{{ project.url }}" class="transition-colors group-hover:text-deep-blue dark:group-hover:text-accent-blue">{{ project.data.title }}</a>
-        </h2>
-      </header>
-      {% if project.data.description %}<p class="px-5 pb-5 text-sm leading-6 text-gray-600 dark:text-gray-400">{{ project.data.description }}</p>{% endif %}
-    </article>
-  {% endfor %}
+{{ pageHeader("Work", "Projects", "Client work, written up. Each one names the problem, the stack and what actually changed once it ran.") }}
+
+<section class="u-shell py-14">
+  <ol class="space-y-px">
+    {% for project in collections.projects %}
+      {% set rowIndex = loop.index %}
+      {% include "partials/numbered-row.njk" %}
+    {% endfor %}
+  </ol>
 </section>

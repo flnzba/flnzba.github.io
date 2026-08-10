@@ -1,0 +1,26 @@
+{#
+  Testimonial. Expects `q` = { quote, name, role, source } — or nothing, in
+  which case it renders as a labelled placeholder.
+#}
+{% if q and q.quote %}
+  <li class="flex flex-col justify-between border border-rule p-6">
+    <blockquote class="font-display text-[1.05rem] leading-snug text-ink">“{{ q.quote }}”</blockquote>
+    <div class="mt-5 flex items-baseline justify-between gap-4">
+      <div>
+        <p class="text-[0.88rem] text-ink">{{ q.name }}</p>
+        <p class="u-meta mt-0.5">{{ q.role }}</p>
+      </div>
+      {% if q.source %}
+        <span class="border border-rule px-1.5 py-px font-mono text-[0.62rem] uppercase tracking-[0.1em] text-ink-3" title="{{ q.source }}">Source</span>
+      {% endif %}
+    </div>
+  </li>
+{% else %}
+  <li class="is-placeholder flex min-h-[9rem] flex-col justify-between p-6">
+    <p class="font-display text-[1.05rem] leading-snug text-ink-3">A quote from someone you have worked with goes here.</p>
+    <div class="mt-5 flex items-baseline justify-between gap-4">
+      <p class="u-meta">Name · Role</p>
+      <span class="border border-rule px-1.5 py-px font-mono text-[0.62rem] uppercase tracking-[0.1em] text-ink-3">Placeholder</span>
+    </div>
+  </li>
+{% endif %}

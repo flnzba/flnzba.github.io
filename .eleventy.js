@@ -349,9 +349,95 @@ export default function (eleventyConfig) {
     (posts || []).filter((p) => (p.data.tags || []).includes(tag))
   );
 
-  eleventyConfig.addFilter("excludeFrom", (collection, slug) =>
-    (collection || []).filter((item) => item.fileSlug !== slug)
-  );
+  // -- CV / timeline helpers ------------------------------------------------
+  // Roles carry ISO `start` and a nullable `end` (null === ongoing). The axis
+  // runs from TIMELINE_START to today, recomputed each build so it never goes
+  // stale.
+  // All timeline arithmetic is in UTC. `new Date("2018-01-01")` parses as UTC
+  // midnight, so reading it with local getters lands in the previous year west
+  // of Greenwich — which would put the first axis tick at a negative offset.
+  const TIMELINE_START = new Date("2018-01-01T00:00:00Z");
+  // The axis runs a little past today so a role that started this month still
+  // has room to draw. Without the headroom its bar computes to zero width.
+  const TIMELINE_HORIZON_MONTHS = 6;
+
+  const monthsBetween = (from, to) =>
+    (to.getUTCFullYear() - from.getUTCFullYear()) * 12 +
+    (to.getUTCMonth() - from.getUTCMonth());
+
+  const axisEnd = () => {
+    const d = new Date();
+    d.setUTCMonth(d.getUTCMonth() + TIMELINE_HORIZON_MONTHS);
+    return d;
+  };
+
+  const monthLabel = (value) =>
+    new Date(value).toLocaleDateString("en-GB", {
+      month: "short",
+      year: "numeric",
+    });
+
+  eleventyConfig.addFilter("dateRange", (role) => {
+    if (!role || !role.start) return "";
+    const end = role.end ? monthLabel(role.end) : "present";
+    return `${monthLabel(role.start)} — ${end}`;
+  });
+
+  // `timelineSpan(role, "left" | "width")` → percentage across the axis.
+  eleventyConfig.addFilter("timelineSpan", (role, part) => {
+    if (!role || !role.start) return 0;
+    const total = monthsBetween(TIMELINE_START, axisEnd()) || 1;
+
+    const rawStart = monthsBetween(TIMELINE_START, new Date(role.start));
+    // Ongoing roles run to the end of the axis; the bar is masked to fade out.
+    const rawEnd = role.end
+      ? monthsBetween(TIMELINE_START, new Date(role.end))
+      : total;
+
+    // Bad data should be loud, not silently drawn as a plausible bar.
+    if (rawEnd < rawStart) {
+      throw new Error(
+        `cv.js: role "${role.org} — ${role.role}" ends (${role.end}) before it starts (${role.start}).`
+      );
+    }
+    if (rawStart < 0) {
+      throw new Error(
+        `cv.js: role "${role.org} — ${role.role}" starts ${role.start}, before the timeline axis begins ${TIMELINE_START.toISOString().slice(0, 10)}. Move TIMELINE_START back.`
+      );
+    }
+
+    const start = Math.min(rawStart, total);
+    const end = Math.min(rawEnd, total);
+    const pct = (n) => (n / total) * 100;
+    const round2 = (n) => Math.round(n * 100) / 100;
+
+    const left = Math.min(pct(start), 98);
+    // A one-month role still needs to be visible, hence the floor — but never
+    // wider than the space actually left on the axis.
+    const width = Math.max(Math.min(pct(end - start), 100 - left), 2);
+
+    return round2(part === "width" ? width : left);
+  });
+
+  // Year ticks for the axis, every 2 years from the start to the horizon.
+  eleventyConfig.addFilter("timelineTicks", () => {
+    const end = axisEnd();
+    const total = monthsBetween(TIMELINE_START, end) || 1;
+    const ticks = [];
+    for (let y = TIMELINE_START.getUTCFullYear(); y <= end.getUTCFullYear(); y += 2) {
+      const offset = monthsBetween(TIMELINE_START, new Date(`${y}-01-01T00:00:00Z`));
+      if (offset < 0 || offset > total) continue;
+      ticks.push({ year: y, left: Math.round((offset / total) * 10000) / 100 });
+    }
+    return ticks;
+  });
+
+  eleventyConfig.addFilter("yearsSince", (iso) => {
+    const from = new Date(iso);
+    return Math.floor(
+      (Date.now() - from.getTime()) / (1000 * 60 * 60 * 24 * 365.25)
+    );
+  });
 
   eleventyConfig.addShortcode("seoJsonLd", function (
     page,

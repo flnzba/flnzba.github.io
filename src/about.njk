@@ -1,0 +1,161 @@
+---
+layout: layouts/base.njk
+title: About
+description: "Florian Zeba — why I work on data platforms, how I work, and where I am most useful."
+permalink: /about/
+eleventyExcludeFromCollections: true
+---
+<section class="border-b border-rule py-16 sm:py-20">
+  <div class="u-shell grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_14rem]">
+    <div>
+      <p class="u-eyebrow">About</p>
+      <h1 class="u-display mt-4 max-w-3xl text-section">
+        Most data problems are not modelling problems. They are
+        <em class="not-italic text-ultra">provenance</em> problems.
+      </h1>
+      <p class="mt-6 max-w-2xl text-[1.05rem] leading-relaxed text-ink-2">
+        Nearly every failed reporting project I have been called into failed the same way:
+        the number on the dashboard was wrong, nobody could say why, and by the time anyone
+        traced it back the trust was gone. The model was fine. The lineage was not.
+      </p>
+    </div>
+    <figure class="hidden lg:block">
+      <img src="/assets/profile.webp" alt="Portrait of Florian Zeba" width="440" height="560" class="w-full grayscale-[0.18] contrast-[1.02]" />
+    </figure>
+  </div>
+</section>
+
+<section class="border-b border-rule py-16 sm:py-20">
+  <div class="u-shell u-manuscript">
+    <p class="u-eyebrow lg:pt-1.5">The short version</p>
+    <div class="u-prose text-ink-2">
+      <p>
+        I design enterprise data platforms and the AI built on top of them. The interesting
+        decisions are almost never about which model to use. They are about where the data
+        comes from, who is allowed to see it, what fails the build when a schema drifts, and
+        whether anyone can reconstruct a figure six months after the person who produced it
+        has left.
+      </p>
+      <p class="mt-4">
+        That bias comes from the route in. I started in law and mechatronics, spent years in
+        consulting doing valuations and BI, and came to architecture through the work rather
+        than through a title. It leaves you sceptical of systems whose correctness rests on
+        someone remembering a convention.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="border-b border-rule py-16 sm:py-20">
+  <div class="u-shell u-manuscript">
+    <p class="u-eyebrow lg:pt-1.5">In practice</p>
+    <div>
+      <h2 class="u-display mb-8 max-w-2xl text-section">What that looked like.</h2>
+      <ol class="space-y-px">
+        <li class="border border-rule p-6 sm:p-7">
+          <p class="u-eyebrow">01 · PwC Österreich, 2022 — 2025</p>
+          <h3 class="u-display mt-2 text-[1.25rem] text-ink">Making ERP data usable</h3>
+          <p class="mt-2 max-w-2xl text-[0.95rem] leading-relaxed text-ink-2">
+            Two years and eight months across BI consulting and tax technology. The recurring job was the same:
+            take data locked inside BMD, Business Central or SAP, and turn it into something a
+            controller could act on without re-keying it. Automation with RPA and Alteryx got the
+            headlines; the durable part was the data models underneath.
+          </p>
+        </li>
+        <li class="border border-rule p-6 sm:p-7">
+          <p class="u-eyebrow">02 · CANCOM Austria, 2025 — 2026</p>
+          <h3 class="u-display mt-2 text-[1.25rem] text-ink">Architecture at enterprise scale</h3>
+          <p class="mt-2 max-w-2xl text-[0.95rem] leading-relaxed text-ink-2">
+            Solutions architect for data and AI platforms, advising enterprise architects and
+            C-level on strategy while still delivering the systems. Governance, security and
+            scale designed in from the first diagram, because retrofitting them into a running
+            platform costs an order of magnitude more.
+          </p>
+        </li>
+        <li class="border border-rule p-6 sm:p-7">
+          <p class="u-eyebrow">03 · ORBIS Austria, 2026 — present</p>
+          <h3 class="u-display mt-2 text-[1.25rem] text-ink">Owning the platform and AI strategy</h3>
+          <p class="mt-2 max-w-2xl text-[0.95rem] leading-relaxed text-ink-2">
+            Principal Enterprise Architect for Data &amp; AI: what gets built, on which stack, and
+            how it is governed. Azure, Microsoft Fabric, AWS and Foundry, with the same
+            question applied throughout — can we show why this number is what it is?
+          </p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="border-b border-rule bg-surface-2/40 py-16 sm:py-20">
+  <div class="u-shell u-manuscript">
+    <p class="u-eyebrow lg:pt-1.5">How I work</p>
+    <div class="u-prose text-ink-2">
+      <p>
+        I still write code, and I intend to keep doing so. An architect who cannot read the
+        pipeline they specified is guessing, and the guesses compound quietly until someone
+        has to rebuild the thing.
+      </p>
+      <p class="mt-4">
+        I prefer enforcement to convention. A rule that lives in a document nobody opens is
+        not a rule. Put it in the build — a schema test, a contract, a lineage check that
+        fails — and it holds without anyone policing it.
+      </p>
+      <p class="mt-4">
+        The same instinct is why I ended up co-authoring
+        <a href="/research/" class="u-link">work on governed coding agents</a>: the question of
+        how you prove a system did what it was asked is the same question, one layer up.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="border-b border-rule py-16 sm:py-20">
+  <div class="u-shell u-manuscript">
+    <p class="u-eyebrow lg:pt-1.5">Where I fit</p>
+    <div class="u-prose text-ink-2">
+      <p>
+        I am most useful where a platform strategy has to survive contact with a real
+        migration — regulated industries, manufacturing, finance, the public sector. Places
+        where a wrong number has a cost attached and someone eventually asks to see the
+        derivation.
+      </p>
+      <p class="mt-4">
+        Based in Upper Austria, working across Linz, Wels and Vienna, and remote with
+        distributed teams. If that sounds like your problem,
+        <a href="/consulting/" class="u-link">here is how engagements usually start</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="border-b border-rule py-16 sm:py-20">
+  <div class="u-shell u-manuscript">
+    <p class="u-eyebrow lg:pt-1.5">References</p>
+    <div>
+      <h2 class="u-display mb-3 max-w-2xl text-section">What others say.</h2>
+      <p class="mb-8 max-w-2xl text-[0.98rem] leading-relaxed text-ink-2">
+        Quotes go here once they have been cleared with the people who wrote them. The
+        layout is finished; the words are not mine to publish yet.
+      </p>
+      <ul class="grid gap-px sm:grid-cols-2">
+        {% for i in [1, 2, 3] %}
+          {% set q = null %}
+          {% include "partials/quote-card.njk" %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="border-b border-rule bg-ink py-16 text-surface sm:py-20">
+  <div class="u-shell">
+    <p class="u-eyebrow !text-surface/45">Get in touch</p>
+    <h2 class="u-display mt-4 max-w-3xl text-[clamp(1.7rem,4vw,2.9rem)]">
+      Looking for someone to design the platform <span class="text-surface/50">and</span> still write the pipeline?
+    </h2>
+    <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
+      <a href="mailto:{{ site.author.email }}" class="inline-flex items-center gap-2.5 border border-surface bg-surface px-5 py-2.5 font-mono text-[0.76rem] uppercase tracking-[0.09em] text-ink transition-opacity hover:opacity-85">{{ site.author.email }}</a>
+      <a href="/cv/" class="font-mono text-[0.78rem] text-surface/75 underline decoration-surface/30 underline-offset-4 transition-colors hover:text-surface">Curriculum vitae →</a>
+    </div>
+  </div>
+</section>

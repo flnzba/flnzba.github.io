@@ -1,0 +1,9 @@
+{#
+  A styled, clearly-labelled gap. Set `phLabel` (what is missing) and
+  optionally `phNote` (what it will contain). Never renders a dead link.
+#}
+<div class="is-placeholder flex flex-wrap items-baseline gap-x-3 gap-y-1 px-4 py-3">
+  <span class="border border-rule px-1.5 py-px font-mono text-[0.62rem] uppercase tracking-[0.1em] text-ink-3">Placeholder</span>
+  <span class="text-[0.9rem] text-ink-2">{{ phLabel }}</span>
+  {% if phNote %}<span class="u-meta text-[0.72rem]">{{ phNote }}</span>{% endif %}
+</div>

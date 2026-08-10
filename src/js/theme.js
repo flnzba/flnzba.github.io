@@ -73,3 +73,37 @@
     }
   }
 })();
+
+// Reveal-on-scroll for .u-reveal.
+//
+// The settled state is the CSS default; this script *adds* the hidden state
+// and then removes it as elements enter the viewport. That ordering means a
+// failed or blocked script leaves everything visible rather than blank.
+(function () {
+  const targets = document.querySelectorAll(".u-reveal");
+  if (targets.length === 0) return;
+
+  const reduced =
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced || !("IntersectionObserver" in window)) return;
+
+  targets.forEach(function (el) {
+    el.setAttribute("data-reveal", "pending");
+  });
+
+  const observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.removeAttribute("data-reveal");
+        observer.unobserve(entry.target);
+      });
+    },
+    { rootMargin: "0px 0px -8% 0px", threshold: 0.05 }
+  );
+
+  targets.forEach(function (el) {
+    observer.observe(el);
+  });
+})();

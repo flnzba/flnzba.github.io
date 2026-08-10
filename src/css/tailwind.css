@@ -3,80 +3,260 @@
 @source "../**/*.{njk,md,js}";
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
+/* ---------------------------------------------------------------------------
+   Fonts — self-hosted woff2, latin + latin-ext subsets.
+   Newsreader ships the wght axis only (58 KB vs 132 KB for the opsz build);
+   we trade `font-optical-sizing: auto` for the smaller preload.
+--------------------------------------------------------------------------- */
+
 @font-face {
-  font-family: "Roboto Mono";
-  src: url("/assets/fonts/roboto-mono-regular.ttf") format("truetype");
+  font-family: "Newsreader";
+  src: url("/assets/fonts/newsreader-latin.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("/assets/fonts/newsreader-latin-ext.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("/assets/fonts/newsreader-latin-italic.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  src: url("/assets/fonts/ibm-plex-sans-latin.woff2") format("woff2");
+  font-weight: 100 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  src: url("/assets/fonts/ibm-plex-sans-latin-ext.woff2") format("woff2");
+  font-weight: 100 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("/assets/fonts/ibm-plex-mono-400-latin.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Roboto Mono";
-  src: url("/assets/fonts/roboto-mono-700.ttf") format("truetype");
-  font-weight: 700;
+  font-family: "IBM Plex Mono";
+  src: url("/assets/fonts/ibm-plex-mono-500-latin.woff2") format("woff2");
+  font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
+/* ---------------------------------------------------------------------------
+   Design tokens.
+
+   Tailwind v4 compiles colour utilities to var() references — `.text-ink`
+   becomes `color: var(--color-ink)`. Redefining the tokens under
+   :root[data-theme="dark"] therefore re-skins every utility on the site, so
+   templates carry almost no `dark:` variants.
+--------------------------------------------------------------------------- */
+
 @theme {
-  --font-sans: Inter, "Geist Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-display: Outfit, Inter, "Geist Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  --color-deep-blue: #0070f3;
-  --color-accent-blue: #3291ff;
-  --color-dark-bg: #000000;
-  --shadow-soft: 0 18px 50px -28px rgb(15 23 42 / 0.45);
-  --radius-sm: 0.125rem;
-  --radius-md: 0.1875rem;
-  --radius-lg: 0.25rem;
-  --radius-xl: 0.375rem;
-  --radius-2xl: 0.5rem;
-  --radius-3xl: 0.625rem;
-  --radius-4xl: 0.75rem;
+  --font-display: "Newsreader", ui-serif, Georgia, serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --text-hero: clamp(2.6rem, 7vw, 5.4rem);
+  --text-section: clamp(1.7rem, 3.4vw, 2.6rem);
+  --spacing-rail: 8.5rem;
+
+  /* Light values. Dark overrides live in the :root block below. */
+  --color-ink: #0e1116;
+  --color-ink-2: #454c5a;
+  --color-ink-3: #6b7280;
+  --color-surface: #fcfcfb;
+  --color-surface-2: #f1f2f4;
+  --color-rule: #e3e5e9;
+  --color-ultra: #0070f3;
+  --color-verify: #0e7490;
+
+  /* GitHub light syntax palette */
+  --color-code-bg: #f6f8fa;
+  --color-code-border: #d8dee4;
+  --color-code-text: #24292f;
+  --color-code-muted: #57606a;
+  --color-code-red: #cf222e;
+  --color-code-orange: #bc4c00;
+  --color-code-green: #116329;
+  --color-code-cyan: #1b7c83;
+  --color-code-blue: #0550ae;
+  --color-code-purple: #8250df;
+
+  /* Square by default — the editorial system leans on hairlines, not radii. */
+  --radius-sm: 0px;
+  --radius-md: 2px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
 }
 
 :root {
   color-scheme: light;
-  --site-bg: #ffffff;
-  --site-bg-soft: #f9fafb;
-  --site-text: #111827;
-  --site-muted: #4b5563;
-  --site-subtle: #6b7280;
-  --site-border: #e5e7eb;
-  --site-card: #ffffff;
-  --site-code-bg: #f6f8fa;
-  --site-code-border: #d8dee4;
-  --site-code-text: #24292f;
-  --site-code-muted: #57606a;
-  --site-code-red: #cf222e;
-  --site-code-orange: #bc4c00;
-  --site-code-green: #116329;
-  --site-code-cyan: #1b7c83;
-  --site-code-blue: #0550ae;
-  --site-code-purple: #8250df;
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --site-bg: #000000;
-  --site-bg-soft: #030712;
-  --site-text: #f3f4f6;
-  --site-muted: #d1d5db;
-  --site-subtle: #9ca3af;
-  --site-border: #1f2937;
-  --site-card: #111827;
-  --site-code-bg: #0d1117;
-  --site-code-border: #30363d;
-  --site-code-text: #c9d1d9;
-  --site-code-muted: #8b949e;
-  --site-code-red: #ff7b72;
-  --site-code-orange: #ffa657;
-  --site-code-green: #7ee787;
-  --site-code-cyan: #a5d6ff;
-  --site-code-blue: #79c0ff;
-  --site-code-purple: #d2a8ff;
+
+  --color-ink: #f2f3f5;
+  --color-ink-2: #b6bdc8;
+  --color-ink-3: #838c9a;
+  --color-surface: #0e1116;
+  --color-surface-2: #141920;
+  --color-rule: #232a35;
+  --color-ultra: #3291ff;
+  --color-verify: #38b6c9;
+
+  /* GitHub dark syntax palette */
+  --color-code-bg: #0d1117;
+  --color-code-border: #30363d;
+  --color-code-text: #c9d1d9;
+  --color-code-muted: #8b949e;
+  --color-code-red: #ff7b72;
+  --color-code-orange: #ffa657;
+  --color-code-green: #7ee787;
+  --color-code-cyan: #a5d6ff;
+  --color-code-blue: #79c0ff;
+  --color-code-purple: #d2a8ff;
 }
+
+/* ---------------------------------------------------------------------------
+   Utilities
+--------------------------------------------------------------------------- */
+
+@utility u-shell {
+  width: min(100% - 2.5rem, 78rem);
+  margin-inline: auto;
+}
+
+@utility u-manuscript {
+  display: grid;
+  gap: 0.5rem 2.5rem;
+  grid-template-columns: minmax(0, 1fr);
+
+  /* Nested so the override stays inside @layer utilities. Hoisting it to a
+     top-level @media would make it unlayered, and it would then beat every
+     utility — including a future lg:grid-cols-* on the same element. */
+  @media (min-width: 64rem) {
+    grid-template-columns: var(--spacing-rail) minmax(0, 1fr);
+  }
+}
+
+@utility u-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.03;
+  letter-spacing: -0.021em;
+}
+
+@utility u-eyebrow {
+  color: var(--color-ink-3);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@utility u-meta {
+  color: var(--color-ink-3);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility u-verified {
+  color: var(--color-verify);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility u-link {
+  color: var(--color-ultra);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, var(--color-ultra) 34%, transparent);
+  text-underline-offset: 0.18em;
+  transition: color 160ms, text-decoration-color 160ms;
+}
+
+@utility u-prose {
+  max-width: 42rem;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+@utility u-rule {
+  border-top: 1px solid var(--color-rule);
+}
+
+/* Reveal-on-scroll. The settled state is the CSS default and the hidden state
+   is applied by theme.js, so nothing disappears if JavaScript never runs. */
+@utility u-reveal {
+  transition:
+    opacity 0.62s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.62s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal="pending"] {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+@utility is-placeholder {
+  border: 1px dashed var(--color-rule);
+  background: color-mix(in srgb, var(--color-surface-2) 55%, transparent);
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+
+   These MUST live in @layer base. Unlayered CSS wins over every layered rule
+   regardless of specificity, so an unlayered `a { color: inherit }` would beat
+   `.text-surface` and silently break text colour on every link on the site.
+--------------------------------------------------------------------------- */
+
+@layer base {
 
 *,
 *::before,
@@ -86,15 +266,17 @@
 
 html {
   scroll-behavior: smooth;
-  background: var(--site-bg);
+  background: var(--color-surface);
 }
 
 body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
-  background: var(--site-bg);
-  color: var(--site-text);
+  /* No background here on purpose: `html` already paints the canvas, and an
+     opaque body background would paint over body::before (z-index: -1),
+     hiding the graph-paper ground entirely. */
+  color: var(--color-ink);
   font-family: var(--font-sans);
   font-size: 16px;
   line-height: 1.6;
@@ -103,6 +285,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Graph-paper ground — kept from the previous design as the site's own mark. */
 body::before {
   position: fixed;
   inset: 0;
@@ -113,7 +296,7 @@ body::before {
     linear-gradient(to right, rgb(128 128 128 / 0.07) 1px, transparent 1px),
     linear-gradient(to bottom, rgb(128 128 128 / 0.07) 1px, transparent 1px);
   background-size: 28px 28px;
-  opacity: 0.42;
+  opacity: 0.3;
 }
 
 [data-theme="dark"] body::before {
@@ -121,8 +304,8 @@ body::before {
 }
 
 ::selection {
-  color: #ffffff;
-  background: #0070f3;
+  color: var(--color-surface);
+  background: var(--color-ultra);
 }
 
 a {
@@ -154,54 +337,51 @@ button {
 }
 
 :focus-visible {
-  outline: 2px solid #3291ff;
+  outline: 2px solid var(--color-ultra);
   outline-offset: 3px;
 }
 
-.gradient-text {
-  background-image: linear-gradient(90deg, #0070f3, #3291ff);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
+pre,
+code,
+kbd,
+samp {
+  font-family: var(--font-mono);
 }
 
-.gradient-border {
-  position: relative;
+} /* end @layer base */
+
+/* NOTE: there used to be a `.tag::before { content: "#" }` rule here. Prism
+   emits <span class="token tag"> for markup tokens, so it was prefixing every
+   HTML/JSX tag in every code block with a stray "#". No template uses a bare
+   `tag` class any more — post tags are bordered chips — so it is gone. */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  [data-reveal="pending"] {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-.gradient-border::after {
-  position: absolute;
-  inset: 0;
-  padding: 1px;
-  pointer-events: none;
-  content: "";
-  border-radius: inherit;
-  background: linear-gradient(90deg, #0070f3, #3291ff);
-  opacity: 0.72;
-  transition: opacity 180ms ease;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-}
-
-.gradient-border:hover::after {
-  opacity: 1;
-}
-
-.backdrop-blur-vercel {
-  backdrop-filter: blur(12px);
-}
-
-.tag::before {
-  content: "#";
-  opacity: 0.55;
-}
+/* ---------------------------------------------------------------------------
+   Article prose
+--------------------------------------------------------------------------- */
 
 .article-body {
-  color: var(--site-muted);
-  font-size: 1rem;
-  line-height: 1.8;
+  color: var(--color-ink-2);
+  font-size: 1.0625rem;
+  line-height: 1.75;
 }
 
 .article-body > * + * {
@@ -209,22 +389,34 @@ button {
 }
 
 .article-body :is(h1, h2, h3, h4, h5, h6) {
-  max-width: 48rem;
-  color: var(--site-text);
+  max-width: 42rem;
+  color: var(--color-ink);
   font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.2;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.021em;
   overflow-wrap: break-word;
+}
+
+/* markdown-it-anchor wraps every h2/h3/h4 in an <a href="#slug">, which would
+   otherwise inherit the link colour. */
+.article-body :is(h1, h2, h3, h4, h5, h6) a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.article-body :is(h1, h2, h3, h4, h5, h6) a:hover {
+  color: var(--color-ultra);
 }
 
 .article-body h2 {
   margin-top: 2.75rem;
-  font-size: clamp(1.65rem, 3vw, 2.25rem);
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
 }
 
 .article-body h3 {
   margin-top: 2.1rem;
-  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-size: clamp(1.25rem, 2vw, 1.45rem);
 }
 
 .article-body h4 {
@@ -233,29 +425,32 @@ button {
 }
 
 .article-body :is(p, li, dd, figcaption) {
-  max-width: 48rem;
+  max-width: 42rem;
   overflow-wrap: break-word;
 }
 
-.article-body a {
-  color: #0070f3;
-  font-weight: 500;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
-  overflow-wrap: anywhere;
+.article-body figcaption {
+  color: var(--color-ink-3);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
 }
 
-[data-theme="dark"] .article-body a {
-  color: #3291ff;
+.article-body a {
+  color: var(--color-ultra);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, var(--color-ultra) 34%, transparent);
+  text-underline-offset: 0.18em;
+  overflow-wrap: anywhere;
+  transition: text-decoration-color 160ms;
 }
 
 .article-body a:hover {
-  color: #3291ff;
+  text-decoration-color: var(--color-ultra);
 }
 
 .article-body :is(ul, ol) {
-  max-width: 48rem;
+  max-width: 42rem;
   padding-left: 1.25rem;
 }
 
@@ -267,29 +462,30 @@ button {
   list-style: decimal;
 }
 
+.article-body li::marker {
+  color: var(--color-ink-3);
+}
+
 .article-body li + li {
   margin-top: 0.45rem;
 }
 
 .article-body blockquote {
-  max-width: 48rem;
-  padding: 1rem 1.25rem;
-  color: var(--site-muted);
-  background: color-mix(in srgb, #0070f3 6%, transparent);
-  border-left: 4px solid #0070f3;
-  border-radius: var(--radius-xl);
-}
-
-[data-theme="dark"] .article-body blockquote {
-  background: color-mix(in srgb, #3291ff 10%, transparent);
-  border-left-color: #3291ff;
+  max-width: 42rem;
+  padding-left: 1.5rem;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.5;
+  border-left: 1px solid var(--color-rule);
 }
 
 .article-body hr {
-  max-width: 48rem;
+  max-width: 42rem;
   margin: 2.5rem 0;
   border: 0;
-  border-top: 1px solid var(--site-border);
+  border-top: 1px solid var(--color-rule);
 }
 
 .article-body img:not(.cover) {
@@ -297,9 +493,7 @@ button {
   height: auto;
   max-height: 620px;
   margin: 2rem auto;
-  border: 1px solid var(--site-border);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-rule);
 }
 
 .article-body :is(iframe, video, canvas, svg) {
@@ -311,28 +505,31 @@ button {
   max-width: 100%;
   overflow-x: auto;
   border-collapse: collapse;
+  font-size: 0.92rem;
   -webkit-overflow-scrolling: touch;
 }
 
 .article-body th,
 .article-body td {
-  padding: 0.75rem 0.9rem;
-  border: 1px solid var(--site-border);
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--color-rule);
   vertical-align: top;
 }
 
 .article-body th {
-  color: var(--site-text);
-  background: var(--site-bg-soft);
-  font-weight: 700;
+  color: var(--color-ink);
+  background: var(--color-surface-2);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-align: left;
+  text-transform: uppercase;
 }
 
-pre,
-code,
-kbd,
-samp {
-  font-family: var(--font-mono);
-}
+/* ---------------------------------------------------------------------------
+   Code
+--------------------------------------------------------------------------- */
 
 .article-body pre,
 pre[class*="language-"] {
@@ -340,11 +537,10 @@ pre[class*="language-"] {
   padding: 1rem 1.1rem;
   margin: 1.75rem 0;
   overflow-x: auto;
-  color: var(--site-code-text);
+  color: var(--color-code-text);
   text-shadow: none;
-  background: var(--site-code-bg);
-  border: 1px solid var(--site-code-border);
-  border-radius: var(--radius-xl);
+  background: var(--color-code-bg);
+  border: 1px solid var(--color-code-border);
   -webkit-overflow-scrolling: touch;
 }
 
@@ -358,21 +554,17 @@ pre[class*="language-"] code {
   font-size: 0.82rem;
   line-height: 1.65;
   background: transparent;
+  border: 0;
 }
 
 :not(pre) > code {
   padding: 0.12rem 0.36rem;
-  color: var(--site-text);
-  background: color-mix(in srgb, #0070f3 8%, transparent);
-  border: 1px solid color-mix(in srgb, #0070f3 15%, transparent);
+  color: var(--color-code-text);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-rule);
   border-radius: var(--radius-md);
   font-size: 0.88em;
   overflow-wrap: anywhere;
-}
-
-[data-theme="dark"] :not(pre) > code {
-  background: color-mix(in srgb, #3291ff 14%, transparent);
-  border-color: color-mix(in srgb, #3291ff 22%, transparent);
 }
 
 pre[class*="language-"] *,
@@ -384,12 +576,12 @@ pre[class*="language-"] .token.comment,
 pre[class*="language-"] .token.prolog,
 pre[class*="language-"] .token.doctype,
 pre[class*="language-"] .token.cdata {
-  color: var(--site-code-muted);
+  color: var(--color-code-muted);
 }
 
 pre[class*="language-"] .token.punctuation,
 pre[class*="language-"] .token.operator {
-  color: var(--site-code-text);
+  color: var(--color-code-text);
 }
 
 pre[class*="language-"] .token.property,
@@ -399,7 +591,7 @@ pre[class*="language-"] .token.number,
 pre[class*="language-"] .token.constant,
 pre[class*="language-"] .token.symbol,
 pre[class*="language-"] .token.deleted {
-  color: var(--site-code-red);
+  color: var(--color-code-red);
 }
 
 pre[class*="language-"] .token.selector,
@@ -408,45 +600,45 @@ pre[class*="language-"] .token.string,
 pre[class*="language-"] .token.char,
 pre[class*="language-"] .token.builtin,
 pre[class*="language-"] .token.inserted {
-  color: var(--site-code-green);
+  color: var(--color-code-green);
 }
 
 pre[class*="language-"] .token.entity,
 pre[class*="language-"] .token.url,
 pre[class*="language-"] .token.variable {
-  color: var(--site-code-cyan);
+  color: var(--color-code-cyan);
 }
 
 pre[class*="language-"] .token.atrule,
 pre[class*="language-"] .token.attr-value,
 pre[class*="language-"] .token.function,
 pre[class*="language-"] .token.class-name {
-  color: var(--site-code-purple);
+  color: var(--color-code-purple);
 }
 
 pre[class*="language-"] .token.keyword {
-  color: var(--site-code-blue);
+  color: var(--color-code-blue);
 }
 
 pre[class*="language-"] .token.regex,
 pre[class*="language-"] .token.important {
-  color: var(--site-code-orange);
+  color: var(--color-code-orange);
 }
+
+/* ---------------------------------------------------------------------------
+   Pagefind (/search/)
+--------------------------------------------------------------------------- */
 
 .pagefind-ui {
-  color: var(--site-text);
-  --pagefind-ui-primary: #0070f3;
-  --pagefind-ui-text: var(--site-text);
-  --pagefind-ui-background: var(--site-card);
-  --pagefind-ui-border: var(--site-border);
-  --pagefind-ui-tag: var(--site-bg-soft);
+  color: var(--color-ink);
+  --pagefind-ui-primary: var(--color-ultra);
+  --pagefind-ui-text: var(--color-ink);
+  --pagefind-ui-background: var(--color-surface);
+  --pagefind-ui-border: var(--color-rule);
+  --pagefind-ui-tag: var(--color-surface-2);
   --pagefind-ui-border-width: 1px;
-  --pagefind-ui-border-radius: var(--radius-xl);
+  --pagefind-ui-border-radius: 0px;
   --pagefind-ui-font: var(--font-sans);
-}
-
-[data-theme="dark"] .pagefind-ui {
-  --pagefind-ui-primary: #3291ff;
 }
 
 .pagefind-ui,
@@ -460,7 +652,12 @@ pre[class*="language-"] .token.important {
 
 .pagefind-ui__result {
   padding: 1.5rem 0;
-  border-color: var(--site-border) !important;
+  border-color: var(--color-rule) !important;
+}
+
+.pagefind-ui__result-title {
+  font-family: var(--font-display);
+  font-weight: 400;
 }
 
 .pagefind-ui__result-link,

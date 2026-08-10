@@ -18,8 +18,8 @@
     {% if keywords and keywords.length %}
       <meta name="keywords" content="{{ keywords | join(', ') }}" />
     {% endif %}
-    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fcfcfb" media="(prefers-color-scheme: light)" />
     <meta name="color-scheme" content="dark light" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <link rel="canonical" href="{{ canonicalHref }}" />
@@ -31,6 +31,10 @@
     {% for profile in site.social %}
       <link rel="me" href="{{ profile.url }}" />
     {% endfor %}
+
+    <!-- Fonts: preload the two faces used above the fold; the rest swap in. -->
+    <link rel="preload" href="/assets/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Pagefind UI (only on /search/) -->
     {% if page.url == "/search/" %}
@@ -82,7 +86,7 @@
     </script>
   </head>
   <body>
-    <header class="sticky top-0 z-50 border-b border-gray-200/80 bg-white/80 backdrop-blur-vercel transition-colors dark:border-gray-800 dark:bg-dark-bg/80">
+    <header class="sticky top-0 z-50 border-b border-rule bg-surface/85 backdrop-blur-md">
       {% include "partials/header.njk" %}
     </header>
 
@@ -90,7 +94,7 @@
       {{ content | safe }}
     </main>
 
-    <footer class="border-t border-gray-200 bg-gray-50/90 dark:border-gray-800 dark:bg-gray-950/90">
+    <footer class="border-t border-rule bg-surface-2/50">
       {% include "partials/footer.njk" %}
     </footer>
 

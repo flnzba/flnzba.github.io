@@ -1,40 +1,175 @@
 ---
 layout: layouts/base.njk
-title: Home
 ---
-<section class="relative overflow-hidden bg-gradient-to-b from-white to-gray-50 py-16 dark:from-dark-bg dark:to-gray-950 sm:py-20 lg:py-24">
-  <div class="mx-auto grid w-full max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,28rem)] lg:px-8">
-    <div class="max-w-3xl">
-      <p class="mb-5 w-fit rounded-md border border-deep-blue/20 bg-deep-blue/5 px-4 py-2 text-sm font-semibold text-deep-blue dark:border-accent-blue/25 dark:bg-accent-blue/10 dark:text-accent-blue">Data &amp; AI Architect</p>
-      <h1 class="font-display text-4xl font-bold leading-tight text-gray-950 dark:text-white md:text-5xl lg:text-6xl">Hello, I'm <span class="gradient-text">Florian.</span></h1>
-      <p class="mt-6 max-w-2xl text-lg leading-8 text-gray-600 dark:text-gray-400">I integrate software and AI applications in enterprise settings, build digital products, and write about innovations in tech.</p>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a href="/projects/" class="inline-flex items-center justify-center rounded-lg bg-deep-blue px-5 py-3 text-sm font-bold text-white transition hover:bg-deep-blue/90 dark:bg-accent-blue dark:hover:bg-accent-blue/90">View projects</a>
-        <a href="/posts/" class="inline-flex items-center justify-center rounded-lg border border-gray-200 bg-white px-5 py-3 text-sm font-bold text-gray-900 transition hover:border-deep-blue hover:text-deep-blue dark:border-gray-800 dark:bg-gray-900 dark:text-gray-100 dark:hover:border-accent-blue dark:hover:text-accent-blue">Read posts</a>
+{% set current = cv.roles[0] %}
+
+{# ---------------------------------------------------------------- Hero -- #}
+<section class="border-b border-rule">
+  <div class="u-shell grid items-end gap-12 py-16 sm:py-20 lg:grid-cols-[minmax(0,1fr)_16rem] lg:py-24">
+    <div>
+      <h1 class="u-display text-hero">Florian<br />Zeba<span class="text-ultra">.</span></h1>
+
+      <p class="mt-7 max-w-2xl text-[1.12rem] leading-relaxed text-ink-2 sm:text-[1.22rem]">
+        I design the platforms enterprises run their data on, and I still write the pipelines
+        that fill them. An architecture is only as good as the thing you can
+        <em class="font-display not-italic text-ink">point at when a number is wrong</em>.
+      </p>
+
+      <p class="mt-4 max-w-2xl text-[0.95rem] leading-relaxed text-ink-3">
+        {{ current.role }} at {{ current.org }}. Previously CANCOM, PwC and my own practice.
+        Eight years across engineering, consulting and enterprise architecture.
+      </p>
+
+      <p class="u-meta mt-4">{{ cv.location }} — enterprise data platforms, applied AI</p>
+
+      <div class="mt-9 flex flex-wrap items-center gap-3">
+        <a href="/cv/" class="group inline-flex items-center gap-2.5 bg-ink px-5 py-2.5 font-mono text-[0.76rem] uppercase tracking-[0.09em] text-surface transition-colors hover:bg-ultra">
+          Curriculum vitae
+          <span aria-hidden="true" class="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+        </a>
+        <a href="/consulting/" class="inline-flex items-center gap-2.5 border border-rule bg-surface px-5 py-2.5 font-mono text-[0.76rem] uppercase tracking-[0.09em] text-ink-2 transition-colors hover:border-ink hover:text-ink">
+          Work with me
+          <span aria-hidden="true">→</span>
+        </a>
       </div>
     </div>
 
-    <div class="mx-auto w-full max-w-xs rounded-2xl border border-gray-200 bg-white p-3 shadow-soft dark:border-gray-800 dark:bg-gray-900">
-      <div class="overflow-hidden rounded-xl bg-gray-50 p-3 dark:bg-gray-950">
-        <img src="/assets/profile.webp" alt="Florian Zeba" class="aspect-[4/5] w-full rounded-lg object-cover" width="440" height="560" />
+    <figure class="hidden lg:block">
+      <img src="/assets/profile.webp" alt="Portrait of Florian Zeba" width="440" height="560" class="w-full grayscale-[0.18] contrast-[1.02]" fetchpriority="high" />
+    </figure>
+  </div>
+</section>
+
+{# --------------------------------------------------------- Credentials -- #}
+<section class="border-b border-rule bg-surface-2/40 py-10">
+  <div class="u-shell flex flex-wrap items-start justify-between gap-x-10 gap-y-6">
+    <div>
+      <p class="u-eyebrow text-[0.64rem]">Qualifications</p>
+      <p class="mt-1.5 font-mono text-[0.82rem] text-ink-2">{{ cv.credentials | join(" · ") }}</p>
+    </div>
+    <div class="flex flex-wrap gap-x-10 gap-y-4">
+      {% set m = { label: "Articles published", value: collections.posts.length, source: "This site, " + build.year } %}
+      {% include "partials/metric.njk" %}
+      {% set m = { label: "Years in data & AI", value: "2018-07-01" | yearsSince, source: "First client engagement, 2018" } %}
+      {% include "partials/metric.njk" %}
+      {% set m = { label: "Certifications", value: cv.certifications.length, source: "KNIME, Bloomberg, Alteryx, Qlik" } %}
+      {% include "partials/metric.njk" %}
+    </div>
+  </div>
+</section>
+
+{# ------------------------------------------------------------- Career -- #}
+<section class="border-b border-rule py-20 sm:py-24">
+  <div class="u-shell u-manuscript">
+    <p class="u-eyebrow lg:pt-1.5">Career</p>
+    <div>
+      <h2 class="u-display mb-3 max-w-2xl text-section">Consulting and building, at the same time — not in sequence.</h2>
+      <p class="mb-9 max-w-2xl text-[0.98rem] leading-relaxed text-ink-2">
+        A CV flattens a career into a list, which hides the part that matters. The consultancy
+        roles, the engineering work and my own practice were not phases. They ran together —
+        three at once for nineteen months, and my own practice across five of them.
+      </p>
+      {% set timelineNote = "Zeba e.U. overlapped five other roles, 2018 to 2022." %}
+      {% include "partials/timeline.njk" %}
+    </div>
+  </div>
+</section>
+
+{# ---------------------------------------------------------------- Orgs -- #}
+<section class="border-b border-rule py-20 sm:py-24">
+  <div class="u-shell u-manuscript">
+    <p class="u-eyebrow lg:pt-1.5">Organisations</p>
+    <div>
+      <h2 class="u-display mb-3 max-w-2xl text-section">Where the work was done.</h2>
+      <p class="mb-9 max-w-2xl text-[0.98rem] leading-relaxed text-ink-2">
+        The chart above names them; this says what they are. Each row states the actual
+        relationship — payroll, advisory, or a company of my own.
+      </p>
+      <ul class="space-y-px">
+        {% for o in orgs %}{% include "partials/org-row.njk" %}{% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{# ------------------------------------------------------------ Projects -- #}
+<section class="border-b border-rule bg-surface-2/40 py-20 sm:py-24">
+  <div class="u-shell u-manuscript">
+    <p class="u-eyebrow lg:pt-1.5">Projects</p>
+    <div>
+      <h2 class="u-display mb-3 max-w-2xl text-section">Things I built and shipped.</h2>
+      <p class="mb-9 max-w-2xl text-[0.98rem] leading-relaxed text-ink-2">
+        Client work, written up. Each one names the problem, the stack and what actually
+        changed once it ran.
+      </p>
+      <ol class="space-y-px">
+        {% for project in collections.projects %}
+          {% set rowIndex = loop.index %}
+          {% include "partials/numbered-row.njk" %}
+        {% endfor %}
+      </ol>
+      <div class="mt-8">
+        <a href="/projects/" class="u-link font-mono text-[0.76rem] uppercase tracking-[0.09em]">All projects →</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-  <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+{# ------------------------------------------------------------ Research -- #}
+{% set paper = research.papers[0] %}
+<section class="border-b border-rule py-20 sm:py-24">
+  <div class="u-shell u-manuscript">
+    <p class="u-eyebrow lg:pt-1.5">Research</p>
     <div>
-      <p class="text-sm font-semibold uppercase tracking-wide text-deep-blue dark:text-accent-blue">Writing</p>
-      <h2 class="mt-2 font-display text-3xl font-bold text-gray-950 dark:text-white">Recent posts</h2>
+      <h2 class="u-display mb-3 max-w-2xl text-section">Governance you can prove, not guardrails you hope hold.</h2>
+      <p class="max-w-2xl text-[0.98rem] leading-relaxed text-ink-2">
+        {{ paper.title }} — co-authored with Marius-Constantin Dinu at {{ paper.affiliation }}.
+        It treats an agent's validate–repair loop as a monotone operator on a lattice of
+        satisfied requirements, so “done” becomes a least fixed point you can prove rather
+        than a heuristic stopping rule.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-x-10 gap-y-4">
+        {% for m in paper.metrics %}{% include "partials/metric.njk" %}{% endfor %}
+      </div>
+      <div class="mt-8">
+        <a href="/research/" class="u-link font-mono text-[0.76rem] uppercase tracking-[0.09em]">Papers and applied work →</a>
+      </div>
     </div>
-    <a href="/posts/" class="w-fit rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 transition hover:border-deep-blue hover:text-deep-blue dark:border-gray-800 dark:text-gray-300 dark:hover:border-accent-blue dark:hover:text-accent-blue">All posts &rarr;</a>
   </div>
+</section>
 
-  <div class="grid gap-5 lg:grid-cols-2">
-  {% set recent = collections.posts | head(8) %}
-  {% for post in recent %}
-    {% include "partials/post-card.njk" %}
-  {% endfor %}
+{# ------------------------------------------------------------- Writing -- #}
+<section class="border-b border-rule py-20 sm:py-24">
+  <div class="u-shell u-manuscript">
+    <p class="u-eyebrow lg:pt-1.5">Writing</p>
+    <div>
+      <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
+        <h2 class="u-display max-w-2xl text-section">{{ collections.posts.length }} articles, mostly about making data trustworthy.</h2>
+        <a href="/posts/" class="u-link font-mono text-[0.76rem] uppercase tracking-[0.09em]">All posts →</a>
+      </div>
+      <ul class="border-t border-rule">
+        {% for post in collections.posts | head(6) %}
+          {% include "partials/post-row.njk" %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{# ------------------------------------------------------------- Contact -- #}
+<section class="border-b border-rule bg-ink py-16 text-surface sm:py-20">
+  <div class="u-shell">
+    <p class="u-eyebrow !text-surface/45">Get in touch</p>
+    <h2 class="u-display mt-4 max-w-3xl text-[clamp(1.7rem,4vw,2.9rem)]">
+      Looking for someone to design the platform <span class="text-surface/50">and</span> still write the pipeline?
+    </h2>
+    <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
+      <a href="mailto:{{ site.author.email }}" class="inline-flex items-center gap-2.5 border border-surface bg-surface px-5 py-2.5 font-mono text-[0.76rem] uppercase tracking-[0.09em] text-ink transition-opacity hover:opacity-85">
+        {{ site.author.email }}
+      </a>
+      {% for s in site.social %}
+        <a href="{{ s.url }}" rel="me noopener" class="font-mono text-[0.78rem] text-surface/75 underline decoration-surface/30 underline-offset-4 transition-colors hover:text-surface">{{ s.name }} ↗</a>
+      {% endfor %}
+    </div>
   </div>
 </section>

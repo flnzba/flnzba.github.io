@@ -3,30 +3,41 @@ layout: layouts/base.njk
 contentType: project
 ogType: article
 ---
-<article class="py-12 sm:py-16">
-  <header class="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-      <time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
+<article class="pb-16">
+  <header class="border-b border-rule py-14 sm:py-16">
+    <div class="u-shell max-w-3xl">
+      <p class="u-meta">
+        <time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
+      </p>
+      <h1 class="u-display mt-4 text-[clamp(1.9rem,4.5vw,3.1rem)]">{{ title }}</h1>
+      {% if description %}
+        <p class="mt-5 max-w-2xl text-[1.05rem] leading-relaxed text-ink-2">{{ description }}</p>
+      {% endif %}
       {% if tags and tags.length %}
-        <span aria-hidden="true">/</span>
-        <span class="flex flex-wrap gap-2 normal-case tracking-normal">
-          {% for t in tags %}<span class="tag text-xs text-gray-500 dark:text-gray-400">{{ t }}</span>{% endfor %}
-        </span>
+        <div class="mt-6 flex flex-wrap gap-1.5">
+          {% for t in tags %}
+            <span class="border border-rule px-2 py-px font-mono text-[0.66rem] text-ink-3">{{ t }}</span>
+          {% endfor %}
+        </div>
       {% endif %}
     </div>
-    <h1 class="mt-5 font-display text-4xl font-bold leading-tight text-gray-950 dark:text-white md:text-5xl">{{ title }}</h1>
-    {% if cover and cover.src %}
-      <img src="{{ cover.src | replace('./', page.url) }}" alt="{{ cover.alt }}" class="cover mt-8 aspect-video w-full rounded-xl border border-gray-200 object-cover shadow-soft dark:border-gray-800" />
-    {% endif %}
   </header>
 
-  <div class="article-body mx-auto mt-10 w-full max-w-4xl px-4 sm:px-6 lg:px-8">
-    {{ content | safe }}
+  {% if cover and cover.src %}
+    <div class="u-shell max-w-3xl pt-10">
+      <img src="{{ cover.src | replace('./', page.url) }}" alt="{{ cover.alt }}" class="cover aspect-video w-full border border-rule object-cover" />
+    </div>
+  {% endif %}
+
+  <div class="u-shell">
+    <div class="article-body mt-10 max-w-3xl">
+      {{ content | safe }}
+    </div>
   </div>
 
-  <footer class="mx-auto mt-12 w-full max-w-4xl px-4 sm:px-6 lg:px-8">
-    <div class="border-t border-gray-200 pt-8 dark:border-gray-800">
-      <a href="/projects/" class="inline-flex rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 transition hover:border-deep-blue hover:text-deep-blue dark:border-gray-800 dark:text-gray-300 dark:hover:border-accent-blue dark:hover:text-accent-blue">&larr; All projects</a>
+  <footer class="u-shell mt-14 max-w-3xl">
+    <div class="border-t border-rule pt-8">
+      <a href="/projects/" class="u-link font-mono text-[0.76rem] uppercase tracking-[0.09em]">&larr; All projects</a>
     </div>
   </footer>
 </article>

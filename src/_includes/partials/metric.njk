@@ -1,0 +1,10 @@
+{#
+  A measured number. Expects `m` = { label, value, source }.
+  The source line is mandatory — a figure that cannot be pointed at does not
+  belong on the page.
+#}
+<div>
+  <p class="u-eyebrow text-[0.64rem]">{{ m.label }}</p>
+  <p class="u-verified mt-1 text-[1.4rem]">{{ m.value }}</p>
+  {% if m.source %}<p class="u-meta mt-0.5 text-[0.64rem]">{{ m.source }}</p>{% endif %}
+</div>

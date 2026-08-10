@@ -1,12 +1,12 @@
 export default {
   title: "Florian Zeba",
   shortTitle: "FZeba",
-  description: "Data & AI Architect focused on enterprise AI applications, data engineering, Microsoft Fabric, software architecture, cloud platforms, and practical technical writing.",
+  description: "Principal Enterprise Architect for Data & AI. I design the platforms enterprises run their data on, and still write the pipelines that fill them.",
   url: "https://www.fzeba.com",
   author: {
     name: "Florian Zeba",
     email: "hello@fzeba.com",
-    jobTitle: "Data & AI Architect",
+    jobTitle: "Principal Enterprise Architect, Data & AI",
     image: "/assets/profile.webp",
   },
   language: "en-GB",
@@ -36,8 +36,12 @@ export default {
   ],
   nav: [
     { text: "Home", url: "/" },
-    { text: "Posts", url: "/posts/" },
     { text: "Projects", url: "/projects/" },
+    { text: "Research", url: "/research/" },
+    { text: "Posts", url: "/posts/" },
+    { text: "Consulting", url: "/consulting/" },
+    { text: "About", url: "/about/" },
+    { text: "CV", url: "/cv/" },
     { text: "Search", url: "/search/" },
   ],
   social: [

@@ -29,6 +29,13 @@ eleventyExcludeFromCollections: true
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  {% for path in ["/about/", "/cv/", "/research/", "/consulting/"] %}
+  <url>
+    <loc>{{ site.url }}{{ path }}</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  {% endfor %}
   {% for post in collections.posts %}
     <url>
       <loc>{{ post.url | pageCanonicalUrl(post.data.canonical_url) }}</loc>

@@ -1,0 +1,14 @@
+{# Expects `post` in scope from the caller's loop. Replaces post-card.njk. #}
+<li class="group border-b border-rule">
+  <a href="{{ post.url }}" class="grid gap-1.5 py-5 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-6">
+    <span class="u-meta pt-1">
+      {{ post.date | htmlDateString }}{% if post.data.readingTime %} · {{ post.data.readingTime }} min{% endif %}
+    </span>
+    <span>
+      <span class="u-display block text-[1.25rem] text-ink transition-colors group-hover:text-ultra">{{ post.data.title }}</span>
+      {% if post.data.description %}
+        <span class="mt-1.5 block max-w-2xl text-[0.95rem] leading-relaxed text-ink-2">{{ post.data.description }}</span>
+      {% endif %}
+    </span>
+  </a>
+</li>
