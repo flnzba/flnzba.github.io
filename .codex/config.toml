@@ -1,0 +1,9 @@
+# harness:begin
+[features]
+memories = true
+
+[mcp_servers.codegraph]
+startup_timeout_sec = 15
+command = ".harness/node_modules/.bin/codegraph"
+args = ["serve", "--mcp", "--path", "."]
+# harness:end

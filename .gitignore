@@ -6,3 +6,10 @@ src/css/site.css
 *.log
 .env
 __pycache__/
+
+# harness:begin
+.codegraph/
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+auth.json
+# harness:end
