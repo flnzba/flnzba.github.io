@@ -128,25 +128,6 @@ eleventyExcludeFromCollections: true
   </div>
 </section>
 
-<section class="border-b border-rule py-16 sm:py-20">
-  <div class="u-shell u-manuscript">
-    <p class="u-eyebrow lg:pt-1.5">References</p>
-    <div>
-      <h2 class="u-display mb-3 max-w-2xl text-section">What others say.</h2>
-      <p class="mb-8 max-w-2xl text-[0.98rem] leading-relaxed text-ink-2">
-        Quotes go here once they have been cleared with the people who wrote them. The
-        layout is finished; the words are not mine to publish yet.
-      </p>
-      <ul class="grid gap-px sm:grid-cols-2">
-        {% for i in [1, 2, 3] %}
-          {% set q = null %}
-          {% include "partials/quote-card.njk" %}
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
-</section>
-
 <section class="border-b border-rule bg-ink py-16 text-surface sm:py-20">
   <div class="u-shell">
     <p class="u-eyebrow !text-surface/45">Get in touch</p>
