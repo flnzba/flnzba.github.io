@@ -34,8 +34,12 @@
   const menu = document.getElementById("primary-menu");
   if (!btn || !menu) return;
 
+  // `hidden` is display:none; removing it falls back to display:block, not
+  // flex — which left `flex-col` inert and ran the eight nav links together as
+  // wrapped inline text. The open state has to set display:flex explicitly.
   function closeMenu() {
     menu.classList.add("hidden");
+    menu.classList.remove("flex");
     btn.setAttribute("aria-expanded", "false");
     btn.setAttribute("aria-label", "Open navigation menu");
     btn.setAttribute("title", "Open navigation menu");
@@ -43,6 +47,7 @@
 
   function openMenu() {
     menu.classList.remove("hidden");
+    menu.classList.add("flex");
     btn.setAttribute("aria-expanded", "true");
     btn.setAttribute("aria-label", "Close navigation menu");
     btn.setAttribute("title", "Close navigation menu");

@@ -16,9 +16,12 @@ ogType: article
         <p class="mt-5 max-w-2xl text-[1.05rem] leading-relaxed text-ink-2">{{ description }}</p>
       {% endif %}
       {% if tags and tags.length %}
-        <div class="mt-6 flex flex-wrap gap-1.5">
+        {# Taller and further apart than the decorative chips elsewhere: these
+           are links, and at py-px they were a 21px tap target 6px from the
+           next one. #}
+        <div class="mt-6 flex flex-wrap gap-2">
           {% for t in tags %}
-            <a href="/tags/{{ t | slugify }}/" class="border border-rule px-2 py-px font-mono text-[0.66rem] text-ink-3 transition-colors hover:border-ink hover:text-ink">{{ t }}</a>
+            <a href="/tags/{{ t | slugify }}/" class="border border-rule px-2 py-1 font-mono text-[0.66rem] text-ink-3 transition-colors hover:border-ink hover:text-ink">{{ t }}</a>
           {% endfor %}
         </div>
       {% endif %}
@@ -39,7 +42,7 @@ ogType: article
 
   <footer class="u-shell mt-14 max-w-3xl">
     <div class="border-t border-rule pt-8">
-      <a href="/posts/" class="u-link font-mono text-[0.76rem] uppercase tracking-[0.09em]">&larr; All posts</a>
+      <a href="/posts/" class="u-link inline-block py-1 font-mono text-[0.76rem] uppercase tracking-[0.09em]">&larr; All posts</a>
     </div>
   </footer>
 </article>

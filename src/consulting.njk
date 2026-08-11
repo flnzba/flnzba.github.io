@@ -39,15 +39,11 @@ eleventyExcludeFromCollections: true
               {% endfor %}
             </ul>
 
-            <div class="mt-5">
-              {% if s.rate %}
-                <p class="u-verified text-[1.1rem]">{{ s.rate }}</p>
-              {% else %}
-                {% set phLabel = "Rate for " + s.name | lower %}
-                {% set phNote = "Priced per engagement — ask" %}
-                {% include "partials/placeholder.njk" %}
-              {% endif %}
-            </div>
+            {# Rates are not published. The block renders only once
+               consulting.js carries a real figure — no placeholder chip. #}
+            {% if s.rate %}
+              <p class="u-verified mt-5 text-[1.1rem]">{{ s.rate }}</p>
+            {% endif %}
           </li>
         {% endfor %}
       </ol>
@@ -73,15 +69,9 @@ eleventyExcludeFromCollections: true
         {% endfor %}
       </ol>
 
-      <div class="mt-8">
-        {% if consulting.availability %}
-          <p class="u-meta">{{ consulting.availability }}</p>
-        {% else %}
-          {% set phLabel = "Current availability" %}
-          {% set phNote = "Add earliest start date and capacity" %}
-          {% include "partials/placeholder.njk" %}
-        {% endif %}
-      </div>
+      {% if consulting.availability %}
+        <p class="u-meta mt-8">{{ consulting.availability }}</p>
+      {% endif %}
     </div>
   </div>
 </section>
@@ -101,7 +91,7 @@ eleventyExcludeFromCollections: true
       <a href="mailto:{{ site.author.email }}?subject=Consulting%20enquiry" class="inline-flex items-center gap-2.5 border border-surface bg-surface px-5 py-2.5 font-mono text-[0.76rem] uppercase tracking-[0.09em] text-ink transition-opacity hover:opacity-85">{{ site.author.email }}</a>
       {% for s in site.social %}
         {% if s.name == "LinkedIn" %}
-          <a href="{{ s.url }}" rel="me noopener" class="font-mono text-[0.78rem] text-surface/75 underline decoration-surface/30 underline-offset-4 transition-colors hover:text-surface">LinkedIn ↗</a>
+          <a href="{{ s.url }}" rel="me noopener" class="inline-block py-1 font-mono text-[0.78rem] text-surface/75 underline decoration-surface/30 underline-offset-4 transition-colors hover:text-surface">LinkedIn ↗</a>
         {% endif %}
       {% endfor %}
     </div>

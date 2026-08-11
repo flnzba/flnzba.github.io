@@ -5,7 +5,7 @@ export default {
   url: "https://www.fzeba.com",
   author: {
     name: "Florian Zeba",
-    email: "hello@fzeba.com",
+    email: "florian@fzeba.com",
     jobTitle: "Principal Enterprise Architect, Data & AI",
     image: "/assets/profile.webp",
   },

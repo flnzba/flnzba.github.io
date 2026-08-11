@@ -16,7 +16,7 @@ eleventyComputed:
 
 {% call pageHeader("Tag", "<code>" + (tag | escape) + "</code>") %}
   <p class="u-meta mb-4">{{ tagged.length }} article{{ "s" if tagged.length != 1 }}</p>
-  <a href="/posts/" class="u-link font-mono text-[0.76rem] uppercase tracking-[0.09em]">&larr; All posts</a>
+  <a href="/posts/" class="u-link inline-block py-1 font-mono text-[0.76rem] uppercase tracking-[0.09em]">&larr; All posts</a>
 {% endcall %}
 
 <section class="u-shell py-14">

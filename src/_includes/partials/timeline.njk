@@ -49,12 +49,21 @@
       {% endfor %}
     </ul>
 
+    {# Legend only the types that actually have a bar. A swatch with nothing
+       to point at reads as data that failed to load. `push` mutates the array
+       in place, so the side effect survives the loop's own scope. #}
+    {% set usedTypes = [] %}
+    {% for r in cv.roles %}
+      {% if r.type not in usedTypes %}{% set _ = usedTypes.push(r.type) %}{% endif %}
+    {% endfor %}
     <ul class="mt-4 flex flex-wrap gap-x-6 gap-y-2">
       {% for key, label in typeLabel %}
-        <li class="flex items-center gap-2">
-          <span class="block h-[9px] w-[9px] {{ barColour[key] }}"></span>
-          <span class="u-meta text-[0.68rem]">{{ label }}</span>
-        </li>
+        {% if key in usedTypes %}
+          <li class="flex items-center gap-2">
+            <span class="block h-[9px] w-[9px] {{ barColour[key] }}"></span>
+            <span class="u-meta text-[0.68rem]">{{ label }}</span>
+          </li>
+        {% endif %}
       {% endfor %}
     </ul>
   </div>

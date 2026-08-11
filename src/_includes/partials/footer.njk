@@ -2,7 +2,7 @@
   <div class="lg:col-span-2">
     <p class="u-display text-[1.35rem]">{{ site.title }}</p>
     <p class="mt-1.5 max-w-sm text-[0.85rem] leading-relaxed text-ink-2">{{ site.description }}</p>
-    <a href="mailto:{{ site.author.email }}" class="u-link mt-3 inline-block font-mono text-[0.78rem]">{{ site.author.email }}</a>
+    <a href="mailto:{{ site.author.email }}" class="u-link mt-2 inline-block break-all py-1 font-mono text-[0.78rem]">{{ site.author.email }}</a>
   </div>
 
   <nav aria-label="Site">
@@ -10,7 +10,7 @@
     <ul class="space-y-1.5">
       {% for item in site.nav %}
         {% if item.url != "/" %}
-          <li><a href="{{ item.url }}" class="text-[0.85rem] text-ink-2 transition-colors hover:text-ink">{{ item.text }}</a></li>
+          <li><a href="{{ item.url }}" class="inline-block py-1 text-[0.85rem] text-ink-2 transition-colors hover:text-ink">{{ item.text }}</a></li>
         {% endif %}
       {% endfor %}
     </ul>
@@ -20,9 +20,9 @@
     <p class="u-eyebrow mb-2.5">Elsewhere</p>
     <ul class="space-y-1.5">
       {% for s in site.social %}
-        <li><a href="{{ s.url }}" rel="me" class="text-[0.85rem] text-ink-2 transition-colors hover:text-ink">{{ s.name }}</a></li>
+        <li><a href="{{ s.url }}" rel="me" class="inline-block py-1 text-[0.85rem] text-ink-2 transition-colors hover:text-ink">{{ s.name }}</a></li>
       {% endfor %}
-      <li><a href="/feed.xml" class="text-[0.85rem] text-ink-2 transition-colors hover:text-ink">RSS</a></li>
+      <li><a href="/feed.xml" class="inline-block py-1 text-[0.85rem] text-ink-2 transition-colors hover:text-ink">RSS</a></li>
     </ul>
   </nav>
 </div>

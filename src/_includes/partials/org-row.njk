@@ -12,7 +12,7 @@
       <p class="text-[0.9rem] text-ink">{{ o.summary }}</p>
       <p class="mt-2 max-w-2xl text-[0.95rem] leading-relaxed text-ink-2">{{ o.body }}</p>
       {% if o.url %}
-        <a href="{{ o.url }}" rel="noopener" class="u-link mt-3 inline-block font-mono text-[0.74rem]">{{ o.url | replace("https://", "") | replace("www.", "") | replace("/", "") }} ↗</a>
+        <a href="{{ o.url }}" rel="noopener" class="u-link mt-2 inline-block py-1 font-mono text-[0.74rem]">{{ o.url | replace("https://", "") | replace("www.", "") | replace("/", "") }} ↗</a>
       {% endif %}
     </div>
   </div>

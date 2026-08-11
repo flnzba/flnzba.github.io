@@ -16,19 +16,19 @@ layout: layouts/base.njk
       </p>
 
       <p class="mt-4 max-w-2xl text-[0.95rem] leading-relaxed text-ink-3">
-        {{ current.role }} at {{ current.org }}. Previously CANCOM, PwC and my own practice.
-        Eight years across engineering, consulting and enterprise architecture.
+        {{ current.role }} at {{ current.org }}. Previously CANCOM, SOFTWERK and PwC,
+        alongside my own practice.
       </p>
 
       <p class="u-meta mt-4">{{ cv.location }} — enterprise data platforms, applied AI</p>
 
       <div class="mt-9 flex flex-wrap items-center gap-3">
-        <a href="/cv/" class="group inline-flex items-center gap-2.5 bg-ink px-5 py-2.5 font-mono text-[0.76rem] uppercase tracking-[0.09em] text-surface transition-colors hover:bg-ultra">
-          Curriculum vitae
+        <a href="/consulting/" class="group inline-flex items-center gap-2.5 bg-ink px-5 py-2.5 font-mono text-[0.76rem] uppercase tracking-[0.09em] text-surface transition-colors hover:bg-ultra">
+          Work with me
           <span aria-hidden="true" class="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
         </a>
-        <a href="/consulting/" class="inline-flex items-center gap-2.5 border border-rule bg-surface px-5 py-2.5 font-mono text-[0.76rem] uppercase tracking-[0.09em] text-ink-2 transition-colors hover:border-ink hover:text-ink">
-          Work with me
+        <a href="/research/" class="inline-flex items-center gap-2.5 border border-rule bg-surface px-5 py-2.5 font-mono text-[0.76rem] uppercase tracking-[0.09em] text-ink-2 transition-colors hover:border-ink hover:text-ink">
+          Research
           <span aria-hidden="true">→</span>
         </a>
       </div>
@@ -50,7 +50,7 @@ layout: layouts/base.njk
     <div class="flex flex-wrap gap-x-10 gap-y-4">
       {% set m = { label: "Articles published", value: collections.posts.length, source: "This site, " + build.year } %}
       {% include "partials/metric.njk" %}
-      {% set m = { label: "Years in data & AI", value: "2018-07-01" | yearsSince, source: "First client engagement, 2018" } %}
+      {% set m = { label: "Years in data & AI", value: cv.since | yearsSince, source: "Earliest role listed on the CV" } %}
       {% include "partials/metric.njk" %}
       {% set m = { label: "Certifications", value: cv.certifications.length, source: "KNIME, Bloomberg, Alteryx, Qlik" } %}
       {% include "partials/metric.njk" %}
@@ -67,9 +67,9 @@ layout: layouts/base.njk
       <p class="mb-9 max-w-2xl text-[0.98rem] leading-relaxed text-ink-2">
         A CV flattens a career into a list, which hides the part that matters. The consultancy
         roles, the engineering work and my own practice were not phases. They ran together —
-        three at once for nineteen months, and my own practice across five of them.
+        FZEBA.com has been open alongside every employed role since February 2025.
       </p>
-      {% set timelineNote = "Zeba e.U. overlapped five other roles, 2018 to 2022." %}
+      {% set timelineNote = "FZEBA.com has run alongside every employed role since 2025." %}
       {% include "partials/timeline.njk" %}
     </div>
   </div>
@@ -109,7 +109,7 @@ layout: layouts/base.njk
         {% endfor %}
       </ol>
       <div class="mt-8">
-        <a href="/projects/" class="u-link font-mono text-[0.76rem] uppercase tracking-[0.09em]">All projects →</a>
+        <a href="/projects/" class="u-link inline-block py-1 font-mono text-[0.76rem] uppercase tracking-[0.09em]">All projects →</a>
       </div>
     </div>
   </div>
@@ -132,7 +132,7 @@ layout: layouts/base.njk
         {% for m in paper.metrics %}{% include "partials/metric.njk" %}{% endfor %}
       </div>
       <div class="mt-8">
-        <a href="/research/" class="u-link font-mono text-[0.76rem] uppercase tracking-[0.09em]">Papers and applied work →</a>
+        <a href="/research/" class="u-link inline-block py-1 font-mono text-[0.76rem] uppercase tracking-[0.09em]">Papers and applied work →</a>
       </div>
     </div>
   </div>
@@ -144,8 +144,10 @@ layout: layouts/base.njk
     <p class="u-eyebrow lg:pt-1.5">Writing</p>
     <div>
       <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
-        <h2 class="u-display max-w-2xl text-section">{{ collections.posts.length }} articles, mostly about making data trustworthy.</h2>
-        <a href="/posts/" class="u-link font-mono text-[0.76rem] uppercase tracking-[0.09em]">All posts →</a>
+        {# No count in the heading: it reads as a claim and goes stale the
+           moment a post is added. The live figure lives on /posts/. #}
+        <h2 class="u-display max-w-2xl text-section">Notes on making data trustworthy.</h2>
+        <a href="/posts/" class="u-link inline-block py-1 font-mono text-[0.76rem] uppercase tracking-[0.09em]">All posts →</a>
       </div>
       <ul class="border-t border-rule">
         {% for post in collections.posts | head(6) %}
@@ -168,7 +170,7 @@ layout: layouts/base.njk
         {{ site.author.email }}
       </a>
       {% for s in site.social %}
-        <a href="{{ s.url }}" rel="me noopener" class="font-mono text-[0.78rem] text-surface/75 underline decoration-surface/30 underline-offset-4 transition-colors hover:text-surface">{{ s.name }} ↗</a>
+        <a href="{{ s.url }}" rel="me noopener" class="inline-block py-1 font-mono text-[0.78rem] text-surface/75 underline decoration-surface/30 underline-offset-4 transition-colors hover:text-surface">{{ s.name }} ↗</a>
       {% endfor %}
     </div>
   </div>

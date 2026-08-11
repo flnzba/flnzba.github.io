@@ -8,8 +8,13 @@
 //
 // Source: LinkedIn profile export (tmp/Profile.pdf). Bullets were written in
 // German there and are translated here to match the site language.
+//
+// Scope: the published history starts at PwC Österreich (Jun 2022). Earlier
+// roles are deliberately not listed here, so nothing downstream can render
+// them. Anything derived from the history — the "years" metric, the timeline
+// axis — reads from this array rather than a hardcoded date.
 
-export default {
+const cv = {
   headline: "Delivering value with software · Information systems design",
   location: "Linz · Wels · Steyr, Austria",
   summary:
@@ -118,91 +123,24 @@ export default {
         "Supported strategic decisions at SMEs with analytical advice on M&A, restructuring, liquidation and company valuation (per KFS/BW 1).",
       ],
     },
-    {
-      org: "Consulting & Marketing Zeba e.U.",
-      shortOrg: "Zeba e.U.",
-      role: "Programming",
-      start: "2018-07-01",
-      end: "2022-11-01",
-      type: "founded",
-      location: "Wels, Upper Austria",
-      stack: ["PHP", "Python", "JavaScript", "SQL"],
-      bullets: [
-        "Delivered bespoke software focused on data integration and analysis for clients in marketing, agriculture and finance.",
-        "Built and launched e-commerce systems and web applications, from data analysis through to backend implementation.",
-      ],
-    },
-    {
-      org: "TD Trusted Decisions GmbH",
-      shortOrg: "TD Trusted Decisions",
-      role: "Business Intelligence Consulting & Data Engineering",
-      start: "2021-08-01",
-      end: "2022-05-01",
-      type: "industry",
-      location: "Wels, Upper Austria",
-      stack: ["Qlik Sense", "QlikView", "MSSQL"],
-      bullets: [
-        "Improved data reliability and availability for business reporting by designing and optimising ETL processes with Qlik Sense and SQL (MSSQL).",
-        "Enabled sharper analysis for key stakeholders through strategic data models and interactive Qlik Sense dashboards.",
-        "Ran QlikView to Qlik Sense migrations.",
-      ],
-    },
-    {
-      org: "Alps Digital Webservices & Communications GmbH",
-      shortOrg: "Alps Digital",
-      role: "Project Lead",
-      start: "2020-11-01",
-      end: "2021-11-01",
-      type: "industry",
-      location: "Wels, Upper Austria",
-      stack: ["SQL", "Project management"],
-      bullets: [
-        "Led the design and scaling of a new data infrastructure for an IT service agency, including SQL databases and an operational framework supporting app and web development projects.",
-        "Managed the full project lifecycle for data integration pipelines, delivering complex client requirements on schedule.",
-        "Owned budgets and financial planning for IT operations, optimising resource allocation.",
-      ],
-    },
-    {
-      org: "teamCon GmbH",
-      shortOrg: "teamCon",
-      role: "Management Consulting",
-      start: "2019-11-01",
-      end: "2021-04-01",
-      type: "advisory",
-      location: "Linz, Upper Austria",
-      stack: ["Financial modelling", "Actuarial mathematics"],
-      bullets: [
-        "Ran detailed financial analyses and company valuations, extracting and preparing data from financial statements and presenting findings to identify investment opportunities.",
-        "Built financial models and reporting using data-driven methods in actuarial and investment mathematics to deliver risk assessments.",
-      ],
-    },
-    {
-      org: "Kanzlei Dr. Straberger & Mag. Schmidl",
-      shortOrg: "Kanzlei Straberger & Schmidl",
-      role: "Legal Associate",
-      start: "2019-09-01",
-      end: "2020-10-01",
-      type: "industry",
-      location: "Wels, Upper Austria",
-      bullets: [
-        "Legal work and case preparation in civil, insolvency and criminal law for complex court proceedings.",
-      ],
-    },
   ],
 
-  // The LinkedIn export carries no dates for any degree — `period: null`
-  // renders as a placeholder chip rather than an invented year.
+  // The LinkedIn export carries no dates for any degree, so `period` stays
+  // null and simply renders nothing. `status` marks a degree still in
+  // progress — that is a fact, not a missing value.
   education: [
     {
       school: "FernUniversität in Hagen",
       degree: "Master of Science — Computer Science",
       period: null,
+      status: "Ongoing",
       url: "https://www.fernuni-hagen.de/",
     },
     {
       school: "Ferdinand Porsche FERNFH",
       degree: "Master of Science — Information Systems",
       period: null,
+      status: "Ongoing",
       url: "https://www.fernfh.ac.at/",
     },
     {
@@ -245,10 +183,15 @@ export default {
     { name: "Croatian", level: "Native or bilingual" },
     { name: "English", level: "Full professional" },
   ],
-
-  // Not yet supplied — rendered as styled placeholders, never as dead links.
-  documents: [
-    { label: "Résumé", detail: "2 pages, ATS-optimised", href: null },
-    { label: "Full CV", detail: "4 pages", href: null },
-  ],
 };
+
+// One canonical order, applied here rather than in each template: newest role
+// first. The timeline figure, the /cv/ experience list and the home-page
+// organisation rows all inherit it.
+cv.roles.sort((a, b) => b.start.localeCompare(a.start));
+
+// Earliest published role, for anything that measures "how long" — so the
+// figure can never drift from the history actually shown.
+cv.since = cv.roles[cv.roles.length - 1].start;
+
+export default cv;

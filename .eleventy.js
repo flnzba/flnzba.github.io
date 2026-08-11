@@ -356,7 +356,10 @@ export default function (eleventyConfig) {
   // All timeline arithmetic is in UTC. `new Date("2018-01-01")` parses as UTC
   // midnight, so reading it with local getters lands in the previous year west
   // of Greenwich — which would put the first axis tick at a negative offset.
-  const TIMELINE_START = new Date("2018-01-01T00:00:00Z");
+  // Keep this on the January preceding the earliest role in src/_data/cv.js,
+  // so the first axis tick is a round year. `timelineSpan` throws if a role
+  // starts before it, rather than drawing a misleading bar.
+  const TIMELINE_START = new Date("2022-01-01T00:00:00Z");
   // The axis runs a little past today so a role that started this month still
   // has room to draw. Without the headroom its bar computes to zero width.
   const TIMELINE_HORIZON_MONTHS = 6;

@@ -32,7 +32,7 @@
         {% set isActive = page.url and page.url.startsWith(item.url) %}
         <a
           href="{{ item.url }}"
-          class="py-1.5 font-mono text-[0.76rem] uppercase tracking-[0.09em] transition-colors {% if isActive %}text-ink{% else %}text-ink-3 hover:text-ink{% endif %}"
+          class="py-2 font-mono text-[0.76rem] uppercase tracking-[0.09em] transition-colors md:py-1.5 {% if isActive %}text-ink{% else %}text-ink-3 hover:text-ink{% endif %}"
           {% if isActive %}aria-current="page"{% endif %}
         >{{ item.text }}</a>
       {% endif %}
