@@ -363,7 +363,7 @@ export default function (eleventyConfig) {
     const body = fields
       .map(([k, v]) => `  ${k.padEnd(CITE_PAD)}= {${v}},`)
       .join("\n");
-    return `@${c.type || "misc"}{${c.key},\n${body}\n}`;
+    return `@${c.type || "misc"}{${c.citeId},\n${body}\n}`;
   });
 
   eleventyConfig.addFilter("plainCitation", (paper) => {

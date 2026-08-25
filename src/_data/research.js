@@ -29,7 +29,10 @@ export default {
       // match the co-author's canonical entry at dinu.at.
       citation: {
         type: "techreport",
-        key: "dinu2026cortex",
+        // The BibTeX cite key. Named citeId rather than "key" because a
+        // field literally called `key` holding an alphanumeric value trips
+        // gitleaks' generic-api-key rule and fails CI on a false positive.
+        citeId: "dinu2026cortex",
         bibtexTitle: "Cortex: A {Fixed-Point} Theory of Governed Coding Agents",
         institution: "dinu.at",
         howpublished: "Published at https://www.dinu.at",

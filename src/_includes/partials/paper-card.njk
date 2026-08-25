@@ -49,17 +49,17 @@
       <div class="mt-4">
         <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
           <p class="u-eyebrow">BibTeX</p>
-          <button type="button" hidden data-copy="#bibtex-{{ p.citation.key }}" class="border border-rule px-2 py-1 font-mono text-[0.66rem] uppercase tracking-[0.09em] text-ink-3 transition-colors hover:border-ink hover:text-ink">Copy</button>
+          <button type="button" hidden data-copy="#bibtex-{{ p.citation.citeId }}" class="border border-rule px-2 py-1 font-mono text-[0.66rem] uppercase tracking-[0.09em] text-ink-3 transition-colors hover:border-ink hover:text-ink">Copy</button>
         </div>
-        <pre id="bibtex-{{ p.citation.key }}" class="mt-2 overflow-x-auto border border-rule bg-surface-2/40 p-4 font-mono text-[0.74rem] leading-relaxed text-ink-2"><code>{{ bib }}</code></pre>
+        <pre id="bibtex-{{ p.citation.citeId }}" class="mt-2 overflow-x-auto border border-rule bg-surface-2/40 p-4 font-mono text-[0.74rem] leading-relaxed text-ink-2"><code>{{ bib }}</code></pre>
       </div>
 
       <div class="mt-5">
         <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
           <p class="u-eyebrow">Plain text</p>
-          <button type="button" hidden data-copy="#plain-{{ p.citation.key }}" class="border border-rule px-2 py-1 font-mono text-[0.66rem] uppercase tracking-[0.09em] text-ink-3 transition-colors hover:border-ink hover:text-ink">Copy</button>
+          <button type="button" hidden data-copy="#plain-{{ p.citation.citeId }}" class="border border-rule px-2 py-1 font-mono text-[0.66rem] uppercase tracking-[0.09em] text-ink-3 transition-colors hover:border-ink hover:text-ink">Copy</button>
         </div>
-        <p id="plain-{{ p.citation.key }}" class="mt-2 max-w-2xl text-[0.9rem] leading-relaxed text-ink-2">{{ plain }}</p>
+        <p id="plain-{{ p.citation.citeId }}" class="mt-2 max-w-2xl text-[0.9rem] leading-relaxed text-ink-2">{{ plain }}</p>
       </div>
     </details>
   {% endif %}
