@@ -314,6 +314,69 @@ export default function (eleventyConfig) {
     (posts || []).filter((p) => (p.data.tags || []).includes(tag))
   );
 
+  // -- Citations -----------------------------------------------------------
+  // Both filters take a paper from src/_data/research.js and derive the
+  // citation from the fields already on the card, so the two can never
+  // disagree. A paper without a `citation` block renders no citation at all
+  // rather than a half-built one.
+  //
+  // Dates are formatted in UTC. "2026-06-29" parses as UTC midnight, so
+  // reading it with local getters lands on the 28th anywhere west of
+  // Greenwich — which would print the wrong date in a citation.
+  const CITE_PAD = 14;
+
+  // BibTeX splits an author list on the literal " and ", and expects
+  // "Surname, Given" per name.
+  const bibtexName = (name) => {
+    const parts = String(name).trim().split(/\s+/);
+    if (parts.length < 2) return String(name).trim();
+    const surname = parts.pop();
+    return `${surname}, ${parts.join(" ")}`;
+  };
+
+  // APA orders this "2026, June 29" — deliberately not the en-GB "29 June
+  // 2026" used elsewhere on the site. A citation follows the citation style,
+  // not the page's locale, and this matches the co-author's canonical entry.
+  const citeDate = (iso) => {
+    const d = new Date(`${iso}T00:00:00Z`);
+    const month = d.toLocaleDateString("en-GB", {
+      month: "long",
+      timeZone: "UTC",
+    });
+    return `${d.getUTCFullYear()}, ${month} ${d.getUTCDate()}`;
+  };
+
+  eleventyConfig.addFilter("bibtex", (paper) => {
+    const c = paper && paper.citation;
+    if (!c) return "";
+    const fields = [
+      ["author", (paper.authors || []).map(bibtexName).join(" and ")],
+      ["title", c.bibtexTitle || paper.title],
+      ["institution", c.institution],
+      ["howpublished", c.howpublished],
+      ["year", paper.year],
+      ["date", paper.date],
+      ["pagetotal", paper.pages],
+      ["url", c.url],
+    ].filter(([, v]) => v !== undefined && v !== null && v !== "");
+
+    const body = fields
+      .map(([k, v]) => `  ${k.padEnd(CITE_PAD)}= {${v}},`)
+      .join("\n");
+    return `@${c.type || "misc"}{${c.key},\n${body}\n}`;
+  });
+
+  eleventyConfig.addFilter("plainCitation", (paper) => {
+    const c = paper && paper.citation;
+    if (!c) return "";
+    const who = (paper.authors || []).join(", ");
+    const when = paper.date ? `(${citeDate(paper.date)})` : `(${paper.year})`;
+    const parts = [`${who}. ${when}. ${paper.title}.`];
+    if (c.howpublished) parts.push(`${c.howpublished}.`);
+    if (paper.pages) parts.push(`${paper.pages} pages.`);
+    return parts.join(" ");
+  });
+
   eleventyConfig.addShortcode("seoJsonLd", function (
     page,
     site,

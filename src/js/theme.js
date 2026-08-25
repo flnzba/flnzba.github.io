@@ -112,3 +112,46 @@
     observer.observe(el);
   });
 })();
+
+// Copy-to-clipboard for citation blocks.
+//
+// The buttons are marked `hidden` in the markup and revealed here, so a
+// browser without the async clipboard API — or with this script blocked —
+// shows selectable text and no dead control rather than a button that
+// silently does nothing.
+(function () {
+  const buttons = document.querySelectorAll("[data-copy]");
+  if (buttons.length === 0) return;
+  if (!navigator.clipboard || !navigator.clipboard.writeText) return;
+
+  buttons.forEach(function (btn) {
+    const target = document.querySelector(btn.getAttribute("data-copy"));
+    if (!target) return;
+    const label = btn.textContent;
+    let timer;
+
+    btn.hidden = false;
+    btn.addEventListener("click", function () {
+      // textContent, not innerText: innerText is layout-dependent and
+      // whitespace-normalising, which would flatten the BibTeX indentation.
+      // The template puts each block on a single line, so textContent is
+      // exactly the citation with nothing to strip but the outer trim.
+      navigator.clipboard.writeText(target.textContent.trim()).then(
+        function () {
+          btn.textContent = "Copied";
+          clearTimeout(timer);
+          timer = setTimeout(function () {
+            btn.textContent = label;
+          }, 1600);
+        },
+        function () {
+          btn.textContent = "Press ⌘C";
+          clearTimeout(timer);
+          timer = setTimeout(function () {
+            btn.textContent = label;
+          }, 1600);
+        }
+      );
+    });
+  });
+})();

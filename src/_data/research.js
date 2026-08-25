@@ -19,6 +19,22 @@ export default {
       year: 2026,
       date: "2026-06-29",
       pages: 21,
+      // Citation metadata. Only the BibTeX-specific bits live here — author
+      // list, title, year, date and page count are reused from the fields
+      // above by the `bibtex` / `plainCitation` filters, so a citation can
+      // never drift from the card it sits under.
+      //
+      // `bibtexTitle` differs from `title` on purpose: the brace group stops
+      // BibTeX's title-casing from rewriting the hyphenated compound. Values
+      // match the co-author's canonical entry at dinu.at.
+      citation: {
+        type: "techreport",
+        key: "dinu2026cortex",
+        bibtexTitle: "Cortex: A {Fixed-Point} Theory of Governed Coding Agents",
+        institution: "dinu.at",
+        howpublished: "Published at https://www.dinu.at",
+        url: "https://www.dinu.at/research/cortex-fixed-point-theory-governed-coding-agents",
+      },
       abstract:
         "A coding agent is a large language model (LLM) wrapped in a control loop — a harness — that lets it plan, write, and execute code. Raw harnesses optimize next-token capability, not governed behavior: under adversarial input they can be induced to exfiltrate secrets or run destructive commands, and over a long task they silently abandon requirements. We study Cortex, a meta-level control layer that supervises a base harness. Cortex couples three faculties over the base agent: governance — deterministic pre-execution checks and capability/dependency policies that constrain which actions may run; orchestration — instruction analysis and long-horizon planning that decompose a task into a tracked requirement structure with milestones and a semantic contract; and a validate–repair loop that drives those requirements to verified completion. In control-theoretic terms it is a supervisory controller, and in AI terms a metareasoner over the base policy: it decides not only whether an action is admissible but what the agent should attempt next and whether further computation is worthwhile — direction a guardrail layer alone cannot provide (a filter cannot plan a long-horizon task). Our contributions are fourfold. First, we give Cortex a precise semantics: its governance checks are a projection onto an admissible action set, and its planning–validate–repair loop is an inflationary, monotone operator on the lattice of satisfied requirements. Second, we prove that this loop converges to a least fixed point in a bounded number of iterations, is sound with respect to a validation oracle, and is independent of execution order (Theorem 1) — a guarantee absent from single-pass agents. Third, we define a chance-calibrated suite of evaluation metrics for safety (adversarial attack-success with exact confidence intervals) and capability (trajectory similarity and a gated multi-signal composite), and characterize their range and calibration. Fourth, as a non-replacing addition, we add a probabilistic execution view — a monotone Markov transition layer over the same requirement lattice: it does not define correctness (the fixed-point semantics do that) but makes iteration count, reasoning budget, completion probability, expected hitting time, and risk reduction measurable. Empirically, across five task families, placing the same base model behind Cortex sharply reduces adversarial attack-success while preserving or improving capability, with the largest gains over long horizons where single-pass harnesses decay.",
       summary:
