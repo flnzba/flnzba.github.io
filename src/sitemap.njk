@@ -6,7 +6,6 @@ eleventyExcludeFromCollections: true
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   {% set latestPost = collections.posts[0] %}
-  {% set latestProject = collections.projects[0] %}
   <url>
     <loc>{{ site.url }}/</loc>
     {% if latestPost %}<lastmod>{{ (latestPost.data.updated or latestPost.data.date) | htmlDateString }}</lastmod>{% endif %}
@@ -23,13 +22,7 @@ eleventyExcludeFromCollections: true
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  <url>
-    <loc>{{ site.url }}/projects/</loc>
-    {% if latestProject %}<lastmod>{{ (latestProject.data.updated or latestProject.data.date) | htmlDateString }}</lastmod>{% endif %}
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  {% for path in ["/about/", "/cv/", "/research/", "/consulting/"] %}
+  {% for path in ["/about/", "/research/", "/consulting/"] %}
   <url>
     <loc>{{ site.url }}{{ path }}</loc>
     <changefreq>monthly</changefreq>
@@ -46,20 +39,6 @@ eleventyExcludeFromCollections: true
         <image:image>
           <image:loc>{{ post.data.cover.src | pageAssetUrl(post.url) }}</image:loc>
           <image:title>{{ (post.data.cover.alt or post.data.title) | escape }}</image:title>
-        </image:image>
-      {% endif %}
-    </url>
-  {% endfor %}
-  {% for project in collections.projects %}
-    <url>
-      <loc>{{ project.url | pageCanonicalUrl(project.data.canonical_url) }}</loc>
-      <lastmod>{{ (project.data.updated or project.data.date) | htmlDateString }}</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.6</priority>
-      {% if project.data.cover and project.data.cover.src %}
-        <image:image>
-          <image:loc>{{ project.data.cover.src | pageAssetUrl(project.url) }}</image:loc>
-          <image:title>{{ (project.data.cover.alt or project.data.title) | escape }}</image:title>
         </image:image>
       {% endif %}
     </url>

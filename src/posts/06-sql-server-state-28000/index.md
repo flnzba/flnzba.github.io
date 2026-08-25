@@ -13,7 +13,7 @@ canonical_url: 'https://www.fzeba.com/posts/06-sql-server-state-28000/'
 published: true
 ---
 
-# Navigating SQL Server Error Codes: A Guide to Understanding 28000 to 30999
+## Navigating SQL Server Error Codes: A Guide to Understanding 28000 to 30999
 
 Today I encounterd an Error when creating an ODBC Connection. It stated the “SQL State Error: 28000”.
 

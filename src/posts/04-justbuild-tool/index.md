@@ -11,7 +11,7 @@ canonical_url: 'https://www.fzeba.com/posts/04-justbuild-tool/'
 published: true
 ---
 
-# Discover Tiny Tech Wonders at JustBuildThings
+## Discover Tiny Tech Wonders at JustBuildThings
 
 Today I saw a pretty neat repository of tools on one website: [JustBuildThings](https://www.justbuildthings.com/). To be honest I don't use these tools that often, but when I need them, I always have to search for websites that provide them.
 

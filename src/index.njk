@@ -16,8 +16,8 @@ layout: layouts/base.njk
       </p>
 
       <p class="mt-4 max-w-2xl text-[0.95rem] leading-relaxed text-ink-3">
-        {{ current.role }} at {{ current.org }}. Previously CANCOM, SOFTWERK and PwC,
-        alongside my own practice.
+        {{ current.role }}, working across consultancies, systems integrators and my own
+        practice.
       </p>
 
       <p class="u-meta mt-4">{{ cv.location }} — enterprise data platforms, applied AI</p>
@@ -40,23 +40,9 @@ layout: layouts/base.njk
   </div>
 </section>
 
-{# --------------------------------------------------------- Credentials -- #}
-<section class="border-b border-rule bg-surface-2/40 py-10">
-  <div class="u-shell flex flex-wrap items-start justify-between gap-x-10 gap-y-6">
-    <div>
-      <p class="u-eyebrow text-[0.64rem]">Qualifications</p>
-      <p class="mt-1.5 font-mono text-[0.82rem] text-ink-2">{{ cv.credentials | join(" · ") }}</p>
-    </div>
-    <div class="flex flex-wrap gap-x-10 gap-y-4">
-      {% set m = { label: "Articles published", value: collections.posts.length, source: "This site, " + build.year } %}
-      {% include "partials/metric.njk" %}
-      {% set m = { label: "Years in data & AI", value: cv.since | yearsSince, source: "Earliest role listed on the CV" } %}
-      {% include "partials/metric.njk" %}
-      {% set m = { label: "Certifications", value: cv.certifications.length, source: "KNIME, Bloomberg, Alteryx, Qlik" } %}
-      {% include "partials/metric.njk" %}
-    </div>
-  </div>
-</section>
+{# The Qualifications strip that used to sit here (credentials line + three
+   metric tiles) was removed at the author's request. Credentials still live on
+   /about/; the post count is visible on /posts/ itself. #}
 
 {# ------------------------------------------------------------- Career -- #}
 <section class="border-b border-rule py-20 sm:py-24">
@@ -66,50 +52,13 @@ layout: layouts/base.njk
       <h2 class="u-display mb-3 max-w-2xl text-section">Consulting and building, at the same time — not in sequence.</h2>
       <p class="mb-9 max-w-2xl text-[0.98rem] leading-relaxed text-ink-2">
         A CV flattens a career into a list, which hides the part that matters. The consultancy
-        roles, the engineering work and my own practice were not phases. They ran together —
-        FZEBA.com has been open alongside every employed role since February 2025.
+        roles, the engineering work and my own practice were not phases. They ran together.
+        Titles and shape below; the organisations stay off the page.
       </p>
-      {% set timelineNote = "FZEBA.com has run alongside every employed role since 2025." %}
+      {% set timelineNote = "Relative durations and overlaps, on an undated axis." %}
       {% include "partials/timeline.njk" %}
-    </div>
-  </div>
-</section>
-
-{# ---------------------------------------------------------------- Orgs -- #}
-<section class="border-b border-rule py-20 sm:py-24">
-  <div class="u-shell u-manuscript">
-    <p class="u-eyebrow lg:pt-1.5">Organisations</p>
-    <div>
-      <h2 class="u-display mb-3 max-w-2xl text-section">Where the work was done.</h2>
-      <p class="mb-9 max-w-2xl text-[0.98rem] leading-relaxed text-ink-2">
-        The chart above names them; this says what they are. Each row states the actual
-        relationship — payroll, advisory, or a company of my own.
-      </p>
-      <ul class="space-y-px">
-        {% for o in orgs %}{% include "partials/org-row.njk" %}{% endfor %}
-      </ul>
-    </div>
-  </div>
-</section>
-
-{# ------------------------------------------------------------ Projects -- #}
-<section class="border-b border-rule bg-surface-2/40 py-20 sm:py-24">
-  <div class="u-shell u-manuscript">
-    <p class="u-eyebrow lg:pt-1.5">Projects</p>
-    <div>
-      <h2 class="u-display mb-3 max-w-2xl text-section">Things I built and shipped.</h2>
-      <p class="mb-9 max-w-2xl text-[0.98rem] leading-relaxed text-ink-2">
-        Client work, written up. Each one names the problem, the stack and what actually
-        changed once it ran.
-      </p>
-      <ol class="space-y-px">
-        {% for project in collections.projects %}
-          {% set rowIndex = loop.index %}
-          {% include "partials/numbered-row.njk" %}
-        {% endfor %}
-      </ol>
       <div class="mt-8">
-        <a href="/projects/" class="u-link inline-block py-1 font-mono text-[0.76rem] uppercase tracking-[0.09em]">All projects →</a>
+        <a href="/about/" class="u-link inline-block py-1 font-mono text-[0.76rem] uppercase tracking-[0.09em]">Profile and capabilities →</a>
       </div>
     </div>
   </div>

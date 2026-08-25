@@ -1,14 +1,19 @@
 ---
 layout: layouts/base.njk
-title: About
-description: "Florian Zeba — why I work on data platforms, how I work, and where I am most useful."
+title: Profile
+description: "Florian Zeba — how I work on enterprise data platforms and applied AI, the shape of the career, and the capabilities behind it."
 permalink: /about/
 eleventyExcludeFromCollections: true
 ---
+{# The former /cv/ page merged in here. With employers, dates and per-role task
+   lists deliberately gone (see src/_data/cv.js), a separate CV page said the
+   same thing twice. /cv/ redirects to this page — see src/cv.njk. #}
+{% set typeLabel = { industry: "Employment", founded: "Founded & led" } %}
+
 <section class="border-b border-rule py-16 sm:py-20">
   <div class="u-shell grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_14rem]">
     <div>
-      <p class="u-eyebrow">About</p>
+      <p class="u-eyebrow">Profile</p>
       <h1 class="u-display mt-4 max-w-3xl text-section">
         Most data problems are not modelling problems. They are
         <em class="not-italic text-ultra">provenance</em> problems.
@@ -18,6 +23,17 @@ eleventyExcludeFromCollections: true
         the number on the dashboard was wrong, nobody could say why, and by the time anyone
         traced it back the trust was gone. The model was fine. The lineage was not.
       </p>
+      <p class="mt-4 font-mono text-[0.82rem] text-ink-2">{{ cv.credentials | join(" · ") }}</p>
+
+      {# Stacked on phones: the email alone is nearly a full line at 390px, so
+         a wrapping row leaves the location stranded next to a social link. #}
+      <div class="mt-6 flex flex-col items-start gap-1 sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-8 sm:gap-y-2">
+        <a href="mailto:{{ site.author.email }}" class="u-link inline-block break-all py-1 font-mono text-[0.78rem]">{{ site.author.email }}</a>
+        <span class="u-meta">{{ cv.location }}</span>
+        {% for s in site.social %}
+          <a href="{{ s.url }}" rel="me noopener" class="u-link inline-block py-1 font-mono text-[0.78rem]">{{ s.name }} ↗</a>
+        {% endfor %}
+      </div>
     </div>
     <figure class="hidden lg:block">
       <img src="/assets/profile.webp" alt="Portrait of Florian Zeba" width="440" height="560" class="w-full grayscale-[0.18] contrast-[1.02]" />
@@ -25,6 +41,7 @@ eleventyExcludeFromCollections: true
   </div>
 </section>
 
+{# --------------------------------------------------------- The short version -- #}
 <section class="border-b border-rule py-16 sm:py-20">
   <div class="u-shell u-manuscript">
     <p class="u-eyebrow lg:pt-1.5">The short version</p>
@@ -42,51 +59,71 @@ eleventyExcludeFromCollections: true
         leaves you sceptical of systems whose correctness rests on someone remembering a
         convention.
       </p>
+      <p class="mt-4">
+        I keep the specifics of who I have worked for off this site. The titles, the shape of
+        the career and the capabilities are all here; the client list is not, and the project
+        write-ups are anonymised.
+      </p>
     </div>
   </div>
 </section>
 
+{# ------------------------------------------------------------------ Roles -- #}
 <section class="border-b border-rule py-16 sm:py-20">
   <div class="u-shell u-manuscript">
-    <p class="u-eyebrow lg:pt-1.5">In practice</p>
+    <p class="u-eyebrow lg:pt-1.5">Roles</p>
     <div>
-      <h2 class="u-display mb-8 max-w-2xl text-section">What that looked like.</h2>
-      <ol class="space-y-px">
-        <li class="border border-rule p-6 sm:p-7">
-          <p class="u-eyebrow">01 · PwC Österreich, 2022 — 2025</p>
-          <h3 class="u-display mt-2 text-[1.25rem] text-ink">Making ERP data usable</h3>
-          <p class="mt-2 max-w-2xl text-[0.95rem] leading-relaxed text-ink-2">
-            Two years and eight months across BI consulting and tax technology. The recurring job was the same:
-            take data locked inside BMD, Business Central or SAP, and turn it into something a
-            controller could act on without re-keying it. Automation with RPA and Alteryx got the
-            headlines; the durable part was the data models underneath.
-          </p>
-        </li>
-        <li class="border border-rule p-6 sm:p-7">
-          <p class="u-eyebrow">02 · CANCOM Austria, 2025 — 2026</p>
-          <h3 class="u-display mt-2 text-[1.25rem] text-ink">Architecture at enterprise scale</h3>
-          <p class="mt-2 max-w-2xl text-[0.95rem] leading-relaxed text-ink-2">
-            Solutions architect for data and AI platforms, advising enterprise architects and
-            C-level on strategy while still delivering the systems. Governance, security and
-            scale designed in from the first diagram, because retrofitting them into a running
-            platform costs an order of magnitude more.
-          </p>
-        </li>
-        <li class="border border-rule p-6 sm:p-7">
-          <p class="u-eyebrow">03 · ORBIS Austria, 2026 — present</p>
-          <h3 class="u-display mt-2 text-[1.25rem] text-ink">Owning the platform and AI strategy</h3>
-          <p class="mt-2 max-w-2xl text-[0.95rem] leading-relaxed text-ink-2">
-            Principal Enterprise Architect for Data &amp; AI: what gets built, on which stack, and
-            how it is governed. Azure, Microsoft Fabric, AWS and Foundry, with the same
-            question applied throughout — can we show why this number is what it is?
-          </p>
-        </li>
-      </ol>
+      <h2 class="u-display mb-3 max-w-2xl text-section">Titles held, and how they overlapped.</h2>
+      <p class="mb-9 max-w-2xl text-[0.98rem] leading-relaxed text-ink-2">
+        Consulting, engineering and my own practice ran concurrently rather than in sequence.
+        The bars are true to each other in length; the axis carries no dates.
+      </p>
+      {# The list below is the figure's text equivalent, so the partial must not
+         render its own — see partials/timeline.njk. #}
+      {% set timelineNote = "Relative durations and overlaps, on an undated axis." %}
+      {% set timelineHideList = true %}
+      {% include "partials/timeline.njk" %}
+
+      <ul class="divide-y divide-rule border-y border-rule sm:mt-10">
+        {% for r in cv.roles %}
+          <li class="grid gap-x-8 gap-y-1 py-4 lg:grid-cols-[minmax(0,1fr)_9rem]">
+            <div>
+              <p class="text-[1rem] text-ink">{{ r.role }}</p>
+              <p class="u-meta mt-0.5">{{ r.sector }}</p>
+            </div>
+            <div class="lg:justify-self-end">
+              <span class="border border-rule px-1.5 py-px font-mono text-[0.62rem] uppercase tracking-[0.1em] text-ink-3">{{ typeLabel[r.type] }}</span>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
 </section>
 
+{# ----------------------------------------------------------- Capabilities -- #}
 <section class="border-b border-rule bg-surface-2/40 py-16 sm:py-20">
+  <div class="u-shell u-manuscript">
+    <p class="u-eyebrow lg:pt-1.5">Capabilities</p>
+    <div>
+      <ul class="divide-y divide-rule border-y border-rule">
+        {% for g in cv.skills %}
+          <li class="grid gap-x-8 gap-y-2 py-4 lg:grid-cols-[15rem_minmax(0,1fr)]">
+            <span class="u-eyebrow lg:pt-1">{{ g.group }}</span>
+            <span class="flex flex-wrap gap-1.5">
+              {% for s in g.items %}
+                <span class="border border-rule px-2 py-px font-mono text-[0.68rem] text-ink-3">{{ s }}</span>
+              {% endfor %}
+            </span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{# --------------------------------------------------------- How I work -- #}
+<section class="border-b border-rule py-16 sm:py-20">
   <div class="u-shell u-manuscript">
     <p class="u-eyebrow lg:pt-1.5">How I work</p>
     <div class="u-prose text-ink-2">
@@ -105,25 +142,60 @@ eleventyExcludeFromCollections: true
         <a href="/research/" class="u-link">work on governed coding agents</a>: the question of
         how you prove a system did what it was asked is the same question, one layer up.
       </p>
+      <p class="mt-4">
+        I am most useful where a platform strategy has to survive contact with a real
+        migration — regulated industries, manufacturing, finance, the public sector. Places
+        where a wrong number has a cost attached and someone eventually asks to see the
+        derivation. Austria-based, on-site or remote. If that sounds like your problem,
+        <a href="/consulting/" class="u-link">here is how engagements usually start</a>.
+      </p>
     </div>
   </div>
 </section>
 
+{# ------------------------------------ Education, certifications, languages -- #}
 <section class="border-b border-rule py-16 sm:py-20">
   <div class="u-shell u-manuscript">
-    <p class="u-eyebrow lg:pt-1.5">Where I fit</p>
-    <div class="u-prose text-ink-2">
-      <p>
-        I am most useful where a platform strategy has to survive contact with a real
-        migration — regulated industries, manufacturing, finance, the public sector. Places
-        where a wrong number has a cost attached and someone eventually asks to see the
-        derivation.
-      </p>
-      <p class="mt-4">
-        Based in Upper Austria, working across Linz, Wels and Vienna, and remote with
-        distributed teams. If that sounds like your problem,
-        <a href="/consulting/" class="u-link">here is how engagements usually start</a>.
-      </p>
+    <p class="u-eyebrow lg:pt-1.5">Credentials</p>
+    <div class="space-y-10">
+      <div>
+        <p class="u-eyebrow mb-3">Education</p>
+        <ul class="divide-y divide-rule border-y border-rule">
+          {% for e in cv.education %}
+            <li class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 py-3">
+              <span class="text-[0.95rem] text-ink-2">{{ e.degree }}</span>
+              {% if e.status %}
+                <span class="border border-rule px-1.5 py-px font-mono text-[0.62rem] uppercase tracking-[0.1em] text-ink-3">{{ e.status }}</span>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="grid gap-10 sm:grid-cols-2">
+        <div>
+          <p class="u-eyebrow mb-3">Certifications</p>
+          <ul class="divide-y divide-rule border-y border-rule">
+            {% for c in cv.certifications %}
+              <li class="flex items-baseline justify-between gap-4 py-3">
+                <span class="text-[0.95rem] text-ink">{{ c.name }}</span>
+                <span class="u-meta">{{ c.issuer }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div>
+          <p class="u-eyebrow mb-3">Languages</p>
+          <ul class="divide-y divide-rule border-y border-rule">
+            {% for l in cv.languages %}
+              <li class="flex items-baseline justify-between gap-4 py-3">
+                <span class="text-[0.95rem] text-ink">{{ l.name }}</span>
+                <span class="u-meta">{{ l.level }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </section>

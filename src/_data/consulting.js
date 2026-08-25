@@ -1,14 +1,15 @@
-// Consulting services. Copy here is a first draft written from the CV — read
-// it before this page goes live. Anything commercial (rates, availability) is
-// left null and renders nothing at all; the templates only show these once a
-// real value is set, so nothing is ever invented or advertised as "TBC".
+// Consulting services. Anything commercial (rates, availability) is left null
+// and renders nothing at all; the templates only show these once a real value
+// is set, so nothing is ever invented or advertised as "TBC".
+//
+// No employer or client is named here — see src/_data/cv.js for why.
 
 export default {
   intro:
     "I work on enterprise data platforms and the AI built on top of them. Most of the value is not in picking a model — it is in the architecture around it: where the data comes from, who is allowed to see it, what breaks the build when it drifts, and whether anyone can reconstruct why a number is what it is six months later.",
 
   positioning:
-    "Engineering, consulting and enterprise architecture — PwC, SOFTWERK, CANCOM, ORBIS — plus my own practice run alongside them. Austria-based, remote or on-site.",
+    "Engineering, consulting and enterprise architecture across professional services, IT services and systems integration — plus my own practice run alongside them. Austria-based, remote or on-site.",
 
   services: [
     {

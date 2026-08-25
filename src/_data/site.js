@@ -36,12 +36,10 @@ export default {
   ],
   nav: [
     { text: "Home", url: "/" },
-    { text: "Projects", url: "/projects/" },
     { text: "Research", url: "/research/" },
     { text: "Posts", url: "/posts/" },
     { text: "Consulting", url: "/consulting/" },
-    { text: "About", url: "/about/" },
-    { text: "CV", url: "/cv/" },
+    { text: "Profile", url: "/about/" },
     { text: "Search", url: "/search/" },
   ],
   social: [

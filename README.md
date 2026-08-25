@@ -43,10 +43,6 @@ published: true                # set false to skip cross-posting
 
 4. Commit and push to `main` — the deploy workflow builds + publishes the site, and the cross-post workflow posts to DEV.to and Hashnode (see below).
 
-## Authoring a project
-
-Same shape, but in `src/projects/<slug>/index.md`. Projects are not cross-posted.
-
 ## Image store
 
 Paste standalone images into `src/image-store/`. On build, supported image files are copied to `/image-store/<filename>`, preserving subfolders. For example, `src/image-store/report/chart.webp` is available at `https://www.fzeba.com/image-store/report/chart.webp`.

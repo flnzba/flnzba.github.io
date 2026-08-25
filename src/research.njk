@@ -60,31 +60,31 @@ eleventyExcludeFromCollections: true
   </div>
 </section>
 
-{# --------------------------------------------------------------- Talks -- #}
+{# ----------------------------------------------------------- Talks -- #}
+{# The whole section is gated, not just its contents: an empty Talks heading
+   reads as a gap, and the placeholder that used to sit here was build-time
+   scaffolding that was shipping to the live page. Add entries to
+   research.talks in src/_data/research.js and the section returns. #}
+{% if research.talks.length %}
 <section class="border-b border-rule py-16 sm:py-20">
   <div class="u-shell u-manuscript">
     <p class="u-eyebrow lg:pt-1.5">Talks</p>
     <div>
-      {% if research.talks.length %}
-        <ul class="divide-y divide-rule border-y border-rule">
-          {% for t in research.talks %}
-            <li class="grid gap-x-8 gap-y-1 py-4 lg:grid-cols-[10rem_minmax(0,1fr)]">
-              <span class="u-meta">{{ t.date }}</span>
-              <span>
-                <span class="block text-[0.98rem] text-ink">{{ t.title }}</span>
-                <span class="u-meta">{{ t.event }}</span>
-              </span>
-            </li>
-          {% endfor %}
-        </ul>
-      {% else %}
-        {% set phLabel = "Talks and appearances" %}
-        {% set phNote = "Add date, event, title and a link" %}
-        {% include "partials/placeholder.njk" %}
-      {% endif %}
+      <ul class="divide-y divide-rule border-y border-rule">
+        {% for t in research.talks %}
+          <li class="grid gap-x-8 gap-y-1 py-4 lg:grid-cols-[10rem_minmax(0,1fr)]">
+            <span class="u-meta">{{ t.date }}</span>
+            <span>
+              <span class="block text-[0.98rem] text-ink">{{ t.title }}</span>
+              <span class="u-meta">{{ t.event }}</span>
+            </span>
+          </li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
 </section>
+{% endif %}
 
 <section class="border-b border-rule bg-ink py-16 text-surface sm:py-20">
   <div class="u-shell">

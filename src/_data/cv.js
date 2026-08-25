@@ -1,166 +1,87 @@
-// Canonical CV source. The /cv/ page, the home-page career section and the
-// "roles held, to scale" timeline figure all read from here — edit this file,
-// not the templates.
+// Canonical career source. The /about/ profile page, the home-page career
+// section and the "roles held, to scale" figure all read from here — edit this
+// file, not the templates.
 //
-// Roles carry ISO `start` and a nullable `end` (null === ongoing) so the
-// timeline can be drawn to scale. `type` drives the bar colour and the
-// relationship chip: industry | founded | advisory.
+// DELIBERATELY ANONYMOUS. This file names no employer, no client and no date.
+// Roles carry a job title, a sector descriptor and a position on an abstract
+// axis. That is enough to show seniority, trajectory and how the work
+// overlapped, and not enough to reconstruct an employment history. Do not add
+// organisation names, start dates or per-role task descriptions back in — the
+// figure is built to need none of them.
 //
-// Source: LinkedIn profile export (tmp/Profile.pdf). Bullets were written in
-// German there and are translated here to match the site language.
-//
-// Scope: the published history starts at PwC Österreich (Jun 2022). Earlier
-// roles are deliberately not listed here, so nothing downstream can render
-// them. Anything derived from the history — the "years" metric, the timeline
-// axis — reads from this array rather than a hardcoded date.
+// `type` drives the bar colour and the relationship chip: industry | founded.
 
+// Timeline geometry. `from` and `to` are positions on an arbitrary axis, not
+// dates: only their differences and overlaps mean anything, and the unit is
+// deliberately undefined. `to: null` means ongoing — the bar runs to the end of
+// the axis and is masked to fade out. To add a role, place it on the same axis
+// relative to the others; the percentages below are recomputed from the data.
 const cv = {
-  headline: "Delivering value with software · Information systems design",
-  location: "Linz · Wels · Steyr, Austria",
-  summary:
-    "AI, data and software architecture are my fields of expertise. I design the platforms enterprises run their data on, and I still write the pipelines that fill them. Studied law, AI and computer science at Johannes Kepler University Linz and FernUniversität in Hagen.",
+  location: "Austria",
 
   // Shown as the credentials line under the hero.
   credentials: ["MSc Computer Science", "MSc Information Systems", "LL.B.", "Ing."],
 
   roles: [
     {
-      org: "ORBIS Austria GmbH",
-      shortOrg: "ORBIS Austria",
-      role: "Principal Enterprise Architect Data & AI",
-      start: "2026-08-01",
-      end: null,
+      role: "Principal Enterprise Architect · Data & AI",
+      short: "Principal Enterprise Architect",
+      sector: "Business consultancy & systems integrator",
       type: "industry",
-      location: "Austria",
-      url: "https://www.orbis.de/",
-      stack: ["Azure", "Microsoft Fabric", "AWS", "Foundry"],
-      bullets: [
-        "Design data-driven and AI solutions across the client portfolio.",
-        "Own data platform and AI strategy.",
-        "Architect data and AI systems and platforms.",
-        "Build solutions for governance, process optimisation and efficiency with AI.",
-        "Technical consulting and solution system design.",
-      ],
+      from: 50,
+      to: null,
     },
     {
-      org: "FZEBA.com",
-      shortOrg: "FZEBA.com",
-      role: "AI / Data / Software Engineer",
-      start: "2025-02-01",
-      end: null,
+      role: "AI, Data & Software Engineer",
+      short: "Independent practice",
+      sector: "Independent practice — my own engagements",
       type: "founded",
-      location: "Austria",
-      url: "https://www.fzeba.com",
-      stack: ["Python", "TypeScript", "SQL", "Azure"],
-      bullets: ["Data-driven software development under my own name."],
+      from: 32,
+      to: null,
     },
     {
-      org: "CANCOM Austria",
-      shortOrg: "CANCOM Austria",
       role: "Data & AI Architect",
-      start: "2025-11-01",
-      end: "2026-07-01",
+      short: "Data & AI Architect",
+      sector: "IT services provider",
       type: "industry",
-      location: "Linz, Upper Austria",
-      url: "https://www.cancom.at/",
-      team: "Digital Makers",
-      stack: ["Azure", "Microsoft Fabric", "Databricks", "Python"],
-      bullets: [
-        "Solutions architect for data and AI platforms.",
-        "Advised enterprise architects, solution designers, C-level and IT leads on data and AI architecture and strategy.",
-        "Delivered data-intensive business cases end to end, from requirements to running system.",
-        "Planned data architectures for business intelligence and AI solutions.",
-        "Built AI architectures for enterprise settings — scalability, governance and security.",
-        "Pre-sales engineering on data and AI use cases.",
-      ],
+      from: 41,
+      to: 49,
     },
     {
-      org: "SOFTWERK GmbH",
-      shortOrg: "SOFTWERK",
       role: "Software Engineering",
-      start: "2025-02-01",
-      end: "2025-11-01",
+      short: "Software Engineering",
+      sector: "Software engineering firm",
       type: "industry",
-      location: "Austria",
-      url: "https://www.softwerk.at/",
-      stack: ["Python", "Pandas", "scikit-learn", "PostgreSQL", "Azure Data Factory", "PySpark"],
-      bullets: [
-        "Led end-to-end data engineering projects from requirements analysis through to scalable delivery, using Python, SQL and REST API integrations.",
-        "Architected and automated complex data processing pipelines in Azure Data Factory with PySpark, sharply reducing manual data handling for clients in finance, manufacturing and agriculture.",
-        "Built and shipped data-driven software that gave clients actionable insight, on a stack of Apache Spark, SQL and Azure services.",
-      ],
+      from: 32,
+      to: 41,
     },
     {
-      org: "PwC Österreich",
-      shortOrg: "PwC Österreich",
-      role: "Tax Technology",
-      start: "2024-05-01",
-      end: "2025-02-01",
+      role: "Tax Technology Engineer & Consultant",
+      short: "Tax Technology Engineer",
+      sector: "Professional services firm",
       type: "industry",
-      location: "Vienna, Austria",
-      url: "https://www.pwc.at/",
-      stack: ["Power BI", "Alteryx", "KNIME", "RPA", "BMD", "MS Dynamics"],
-      bullets: [
-        "Extended existing information systems and built new ones.",
-        "Raised efficiency in tax advisory, accounting and controlling by designing and automating processes with RPA and robust data workflows.",
-        "Created transparent decision bases through strategic data models in Power BI, Alteryx and KNIME, making ERP data (BMD, MS Business Central / Dynamics) usable.",
-        "Optimised data flows out of core ERP systems to improve data quality and give automation and analytics a consistent foundation.",
-      ],
+      from: 23,
+      to: 32,
     },
     {
-      org: "PwC Österreich",
-      shortOrg: "PwC Österreich",
-      role: "Senior Associate — Management & Business Intelligence Consulting",
-      start: "2022-06-01",
-      end: "2024-05-01",
+      role: "Senior Associate · Management & BI Consulting",
+      short: "Senior Associate · BI",
+      sector: "Professional services firm",
       type: "industry",
-      location: "Linz / Graz, Austria",
-      url: "https://www.pwc.at/",
-      stack: ["Alteryx", "KNIME", "Power BI", "SAP", "Excel"],
-      bullets: [
-        "Raised efficiency in controlling and logistics processes by designing and implementing automated data pipelines (Alteryx, KNIME) and interactive BI dashboards (Power BI, Excel).",
-        "Built decision bases for management through precise data models and digital analytics solutions in the SAP environment.",
-        "Supported strategic decisions at SMEs with analytical advice on M&A, restructuring, liquidation and company valuation (per KFS/BW 1).",
-      ],
+      from: 0,
+      to: 23,
     },
   ],
 
-  // The LinkedIn export carries no dates for any degree, so `period` stays
-  // null and simply renders nothing. `status` marks a degree still in
-  // progress — that is a fact, not a missing value.
+  // Degrees without institutions: the qualification is the ability claim, the
+  // school is an identifier. `status` marks a degree still in progress — that
+  // is a fact, not a missing value.
   education: [
-    {
-      school: "FernUniversität in Hagen",
-      degree: "Master of Science — Computer Science",
-      period: null,
-      status: "Ongoing",
-      url: "https://www.fernuni-hagen.de/",
-    },
-    {
-      school: "Ferdinand Porsche FERNFH",
-      degree: "Master of Science — Information Systems",
-      period: null,
-      status: "Ongoing",
-      url: "https://www.fernfh.ac.at/",
-    },
-    {
-      school: "Hochschule Burgenland",
-      degree: "Master's degree — Business Informatics & Management",
-      period: null,
-      url: "https://www.hochschule-burgenland.at/",
-    },
-    {
-      school: "Johannes Kepler Universität Linz",
-      degree: "Bachelor of Laws (LL.B.) — Wirtschaftsrecht",
-      period: null,
-      url: "https://www.jku.at/",
-    },
-    {
-      school: "HTL Wels",
-      degree: "Ingenieur (Ing.) — Mechatronics, Robotics & Automation",
-      period: null,
-      url: "https://www.htlwels.at/",
-    },
+    { degree: "Master of Science — Computer Science", status: "Ongoing" },
+    { degree: "Master of Science — Information Systems", status: "Ongoing" },
+    { degree: "Master's degree — Business Informatics & Management" },
+    { degree: "Bachelor of Laws (LL.B.) — Business Law" },
+    { degree: "Ingenieur (Ing.) — Mechatronics, Robotics & Automation" },
   ],
 
   skills: [
@@ -185,13 +106,37 @@ const cv = {
   ],
 };
 
-// One canonical order, applied here rather than in each template: newest role
-// first. The timeline figure, the /cv/ experience list and the home-page
-// organisation rows all inherit it.
-cv.roles.sort((a, b) => b.start.localeCompare(a.start));
+// One canonical order, applied here rather than in each template: latest role
+// first. Ties keep declaration order, so concurrent roles stay in the order
+// written above.
+cv.roles.sort((a, b) => b.from - a.from);
 
-// Earliest published role, for anything that measures "how long" — so the
-// figure can never drift from the history actually shown.
-cv.since = cv.roles[cv.roles.length - 1].start;
+// ── Bar geometry ────────────────────────────────────────────────────────────
+// Computed here rather than in a template filter so the figure has exactly one
+// source of truth and the axis can never drift from the roles it draws.
+//
+// Headroom keeps an ongoing bar from running flush into the edge of the axis,
+// which would read as "ends here" rather than "still running".
+const HEADROOM = 8;
+// A very short role still has to be visible; below this it reads as a gap.
+const MIN_WIDTH = 3;
+
+const origin = Math.min(...cv.roles.map((r) => r.from));
+// The axis has to clear the latest thing on it — the last role to end, and the
+// last role to start, since an ongoing role may begin after every other ends.
+const furthest = Math.max(...cv.roles.map((r) => (r.to === null ? r.from : r.to)));
+const axis = furthest - origin + HEADROOM;
+
+for (const r of cv.roles) {
+  if (r.to !== null && r.to < r.from) {
+    throw new Error(`cv.js: role "${r.role}" ends (${r.to}) before it starts (${r.from}).`);
+  }
+  const round2 = (n) => Math.round(n * 100) / 100;
+  const pct = (n) => ((n - origin) / axis) * 100;
+
+  r.left = round2(pct(r.from));
+  // Ongoing roles run to the end of the axis; the bar is masked to fade out.
+  r.width = round2(Math.max(pct(r.to === null ? origin + axis : r.to) - r.left, MIN_WIDTH));
+}
 
 export default cv;

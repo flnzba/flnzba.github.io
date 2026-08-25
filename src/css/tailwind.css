@@ -226,10 +226,6 @@
   line-height: 1.75;
 }
 
-@utility u-rule {
-  border-top: 1px solid var(--color-rule);
-}
-
 /* Reveal-on-scroll. The settled state is the CSS default and the hidden state
    is applied by theme.js, so nothing disappears if JavaScript never runs. */
 @utility u-reveal {
@@ -241,11 +237,6 @@
 [data-reveal="pending"] {
   opacity: 0;
   transform: translateY(14px);
-}
-
-@utility is-placeholder {
-  border: 1px dashed var(--color-rule);
-  background: color-mix(in srgb, var(--color-surface-2) 55%, transparent);
 }
 
 /* ---------------------------------------------------------------------------

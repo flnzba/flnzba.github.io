@@ -1,177 +1,25 @@
 ---
-layout: layouts/base.njk
-title: Curriculum vitae
-description: "Florian Zeba — Principal Enterprise Architect for Data & AI. Roles, education, skills and certifications."
-permalink: /cv/
+# /cv/ merged into /about/ — the CV page and the profile page said the same
+# thing once employers, dates and per-role task lists came off the site. This
+# stub keeps inbound and printed links alive. GitHub Pages has no server-side
+# redirects, hence the client-side hop.
+permalink: /cv/index.html
 eleventyExcludeFromCollections: true
 ---
-{% set typeLabel = { industry: "Employment", founded: "Founded & led", advisory: "Advisory" } %}
-
-<section class="border-b border-rule py-16 sm:py-20">
-  <div class="u-shell u-manuscript">
-    <p class="u-eyebrow lg:pt-2">Curriculum vitae</p>
-    <div>
-      <h1 class="u-display max-w-3xl text-section">{{ site.author.name }}</h1>
-      <p class="mt-2 font-mono text-[0.82rem] text-ink-2">{{ cv.credentials | join(" · ") }}</p>
-      <p class="mt-5 max-w-2xl text-[1.02rem] leading-relaxed text-ink-2">{{ cv.summary }}</p>
-
-      {# Stacked on phones: the email alone is nearly a full line at 390px, so
-         a wrapping row leaves the location stranded next to a social link. #}
-      <div class="mt-8 flex flex-col items-start gap-1 sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-8 sm:gap-y-2">
-        <a href="mailto:{{ site.author.email }}" class="u-link inline-block break-all py-1 font-mono text-[0.78rem]">{{ site.author.email }}</a>
-        <span class="u-meta">{{ cv.location }}</span>
-        {% for s in site.social %}
-          <a href="{{ s.url }}" rel="me noopener" class="u-link inline-block py-1 font-mono text-[0.78rem]">{{ s.name }} ↗</a>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-</section>
-
-{# ------------------------------------------------------------ Timeline -- #}
-<section class="border-b border-rule py-16 sm:py-20">
-  <div class="u-shell u-manuscript">
-    <p class="u-eyebrow lg:pt-1.5">Overview</p>
-    <div>
-      {% set timelineNote = "Roles overlap; my own practice has run alongside every employed role since 2025." %}
-      {% include "partials/timeline.njk" %}
-    </div>
-  </div>
-</section>
-
-{# ---------------------------------------------------------- Experience -- #}
-<section class="border-b border-rule py-16 sm:py-20">
-  <div class="u-shell u-manuscript">
-    <p class="u-eyebrow lg:pt-1.5">Experience</p>
-    <div class="space-y-px">
-      {% for r in cv.roles %}
-        <article class="border border-rule p-6 sm:p-7">
-          <div class="grid gap-x-8 gap-y-3 lg:grid-cols-[15rem_minmax(0,1fr)]">
-            <div>
-              <h2 class="u-display text-[1.15rem] text-ink">{{ r.org }}</h2>
-              <p class="u-meta mt-1">{{ r | dateRange }}</p>
-              {% if r.location %}<p class="u-meta">{{ r.location }}</p>{% endif %}
-              <p class="mt-2">
-                <span class="border border-rule px-1.5 py-px font-mono text-[0.62rem] uppercase tracking-[0.1em] text-ink-3">{{ typeLabel[r.type] }}</span>
-              </p>
-            </div>
-            <div>
-              <p class="text-[1rem] text-ink">{{ r.role }}</p>
-              {% if r.team %}<p class="u-meta mt-0.5">Team: {{ r.team }}</p>{% endif %}
-              {% if r.bullets %}
-                <ul class="mt-3 max-w-2xl space-y-1.5">
-                  {% for b in r.bullets %}
-                    <li class="flex gap-2.5 text-[0.95rem] leading-relaxed text-ink-2">
-                      <span aria-hidden="true" class="mt-[0.55em] block h-px w-2.5 shrink-0 bg-ink-3"></span>
-                      <span>{{ b }}</span>
-                    </li>
-                  {% endfor %}
-                </ul>
-              {% endif %}
-              {% if r.stack %}
-                <div class="mt-4 flex flex-wrap gap-1.5">
-                  {% for s in r.stack %}
-                    <span class="border border-rule px-2 py-px font-mono text-[0.66rem] text-ink-3">{{ s }}</span>
-                  {% endfor %}
-                </div>
-              {% endif %}
-            </div>
-          </div>
-        </article>
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-{# ----------------------------------------------------------- Education -- #}
-<section class="border-b border-rule py-16 sm:py-20">
-  <div class="u-shell u-manuscript">
-    <p class="u-eyebrow lg:pt-1.5">Education</p>
-    <div>
-      <ul class="divide-y divide-rule border-y border-rule">
-        {% for e in cv.education %}
-          <li class="grid gap-x-8 gap-y-1 py-4 lg:grid-cols-[15rem_minmax(0,1fr)]">
-            <div>
-              {% if e.url %}
-                <a href="{{ e.url }}" rel="noopener" class="inline-block py-1 text-[0.98rem] text-ink transition-colors hover:text-ultra">{{ e.school }} ↗</a>
-              {% else %}
-                <span class="text-[0.98rem] text-ink">{{ e.school }}</span>
-              {% endif %}
-            </div>
-            <div>
-              <p class="text-[0.95rem] text-ink-2">{{ e.degree }}</p>
-              {% if e.period %}<p class="u-meta mt-0.5">{{ e.period }}</p>{% endif %}
-              {% if e.status %}
-                <p class="mt-1.5">
-                  <span class="border border-rule px-1.5 py-px font-mono text-[0.62rem] uppercase tracking-[0.1em] text-ink-3">{{ e.status }}</span>
-                </p>
-              {% endif %}
-            </div>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
-</section>
-
-{# -------------------------------------------------------------- Skills -- #}
-<section class="border-b border-rule py-16 sm:py-20">
-  <div class="u-shell u-manuscript">
-    <p class="u-eyebrow lg:pt-1.5">Skills</p>
-    <div>
-      <ul class="divide-y divide-rule border-y border-rule">
-        {% for g in cv.skills %}
-          <li class="grid gap-x-8 gap-y-2 py-4 lg:grid-cols-[15rem_minmax(0,1fr)]">
-            <span class="u-eyebrow lg:pt-1">{{ g.group }}</span>
-            <span class="flex flex-wrap gap-1.5">
-              {% for s in g.items %}
-                <span class="border border-rule px-2 py-px font-mono text-[0.68rem] text-ink-3">{{ s }}</span>
-              {% endfor %}
-            </span>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
-</section>
-
-{# ------------------------------------------ Certifications & languages -- #}
-<section class="border-b border-rule py-16 sm:py-20">
-  <div class="u-shell u-manuscript">
-    <p class="u-eyebrow lg:pt-1.5">Certifications</p>
-    <div class="grid gap-10 sm:grid-cols-2">
-      <div>
-        <ul class="divide-y divide-rule border-y border-rule">
-          {% for c in cv.certifications %}
-            <li class="flex items-baseline justify-between gap-4 py-3">
-              <span class="text-[0.95rem] text-ink">{{ c.name }}</span>
-              <span class="u-meta">{{ c.issuer }}</span>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-      <div>
-        <p class="u-eyebrow mb-3">Languages</p>
-        <ul class="divide-y divide-rule border-y border-rule">
-          {% for l in cv.languages %}
-            <li class="flex items-baseline justify-between gap-4 py-3">
-              <span class="text-[0.95rem] text-ink">{{ l.name }}</span>
-              <span class="u-meta">{{ l.level }}</span>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="border-b border-rule bg-ink py-16 text-surface sm:py-20">
-  <div class="u-shell">
-    <p class="u-eyebrow !text-surface/45">Get in touch</p>
-    <h2 class="u-display mt-4 max-w-3xl text-[clamp(1.7rem,4vw,2.9rem)]">Want the long version, or the short call?</h2>
-    <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
-      <a href="mailto:{{ site.author.email }}" class="inline-flex items-center gap-2.5 border border-surface bg-surface px-5 py-2.5 font-mono text-[0.76rem] uppercase tracking-[0.09em] text-ink transition-opacity hover:opacity-85">{{ site.author.email }}</a>
-      <a href="/consulting/" class="inline-block py-1 font-mono text-[0.78rem] text-surface/75 underline decoration-surface/30 underline-offset-4 transition-colors hover:text-surface">How I work →</a>
-    </div>
-  </div>
-</section>
+<!doctype html>
+<html lang="{{ site.language }}" data-pagefind-ignore>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Redirecting…</title>
+    <link rel="canonical" href="{{ site.url }}/about/" />
+    <meta http-equiv="refresh" content="0; url=/about/" />
+    <script>
+      location.replace("/about/" + location.search + location.hash);
+    </script>
+  </head>
+  <body>
+    <p>This page has moved to <a href="/about/">/about/</a>.</p>
+  </body>
+</html>

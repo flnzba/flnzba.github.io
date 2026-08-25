@@ -13,7 +13,7 @@ canonical_url: 'https://www.fzeba.com/posts/05-bemcss/'
 published: true
 ---
 
-# Structure CSS the Object Oriented Way
+## Structure CSS the Object Oriented Way
 
 For developers looking to streamline their CSS with minimal effort, the BEM methodology is a game-changer:
 
@@ -35,7 +35,7 @@ Other methods would be:
 - SUITCSS (Structured Class Names)
 - Atomic (Small Building Blocks - like Lego)
 
-More Information: [BEM CSS](getbem.com).
+More Information: [BEM CSS](https://getbem.com/).
 
 **TL;DR**
 1. Structured CSS becomes more and more import as the codebase grows

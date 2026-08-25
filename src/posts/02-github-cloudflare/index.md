@@ -13,7 +13,7 @@ canonical_url: 'https://www.fzeba.com/posts/02-github-cloudflare/'
 published: true
 ---
 
-# How to Connect a Github Page to Your Own Domain and Set Up an Email Address
+## How to Connect a Github Page to Your Own Domain and Set Up an Email Address
 
 Github Pages is a great way to create and host a website for free. However, if you want to have your own domain and a custom email address, you can connect your Github Pages site to your domain and set up an email address associated with your domain.
 

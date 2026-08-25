@@ -1,17 +1,25 @@
 {#
   Roles-held-to-scale figure. Pure CSS + Nunjucks, no JavaScript.
 
-  Caller may set `timelineNote` for the caption aside. Data comes from cv.roles;
-  bar geometry from the timelineSpan / timelineTicks filters in .eleventy.js.
+  The axis is deliberately undated: bar lengths and overlaps are true to each
+  other, but nothing on the page anchors them to a calendar. Geometry
+  (`left` / `width`) is precomputed in src/_data/cv.js — see the note there
+  before adding a role.
 
-  Below `sm` the bars are too narrow to read, so the component swaps to a
-  stacked text list. Both variants render from the same loop; only one shows.
+  Callers may set:
+    timelineNote      caption aside, right of the figure number
+    timelineHideList  true when the page already renders its own roles list
+                      directly below. The chart cannot carry the figure alone —
+                      it is hidden below `sm`, where the bars are too narrow to
+                      read — so suppressing the built-in list also hides the
+                      whole figure at that width, leaving the caller's list to
+                      do the job. Without this the two lists stack up as
+                      duplicated content, twice over for a screen reader.
 #}
-{% set barColour = { industry: "bg-ink", founded: "bg-ultra", advisory: "bg-ink-3" } %}
-{% set typeLabel = { industry: "Employment", founded: "Founded & led", advisory: "Advisory" } %}
-{% set ticks = "" | timelineTicks %}
+{% set barColour = { industry: "bg-ink", founded: "bg-ultra" } %}
+{% set typeLabel = { industry: "Employment", founded: "Founded & led" } %}
 
-<figure class="u-reveal">
+<figure class="u-reveal{% if timelineHideList %} hidden sm:block{% endif %}">
   <figcaption class="mb-5 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
     <span class="u-eyebrow">Fig. 1 — Roles held, to scale</span>
     {% if timelineNote %}<span class="text-[0.78rem] text-ink-3">{{ timelineNote }}</span>{% endif %}
@@ -19,35 +27,33 @@
 
   {# ---- Chart, sm and up ---- #}
   <div class="hidden sm:block">
-    {# The axis labels are decorative: the sr-only list below carries the same
-       dates as text, so announcing "2018 2020 2022…" first is just noise. #}
-    <div class="grid grid-cols-[13rem_minmax(0,1fr)] gap-x-4" aria-hidden="true">
-      <span></span>
-      <div class="relative h-5 border-b border-rule">
-        {% for t in ticks %}
-          <span class="absolute top-0 h-full border-l border-rule" style="left: {{ t.left }}%"></span>
-          <span class="u-meta absolute top-0 pl-1.5 text-[0.68rem]" style="left: {{ t.left }}%">{{ t.year }}</span>
-        {% endfor %}
-      </div>
-    </div>
-
-    <ul class="divide-y divide-rule border-b border-rule" role="img" aria-label="Timeline of roles held from {{ ticks[0].year }} to the present. A text version follows.">
+    <ul class="divide-y divide-rule border-y border-rule" role="img" aria-label="Roles held, drawn to relative scale on an undated axis. A text version follows.">
       {% for r in cv.roles %}
-        <li class="grid grid-cols-[13rem_minmax(0,1fr)] items-center gap-x-4 py-2">
-          <span class="u-meta truncate" title="{{ r.org }} — {{ r.role }}">{{ r.shortOrg }}</span>
+        <li class="grid grid-cols-[14rem_minmax(0,1fr)] items-center gap-x-4 py-2.5">
+          <span class="min-w-0">
+            <span class="block truncate text-[0.85rem] text-ink" title="{{ r.role }}">{{ r.short }}</span>
+            <span class="u-meta block truncate text-[0.68rem]">{{ r.sector }}</span>
+          </span>
           <span class="relative block h-[9px]">
-            {% for t in ticks %}
-              <span class="absolute top-0 h-full border-l border-rule" style="left: {{ t.left }}%"></span>
-            {% endfor %}
             <span
-              class="absolute top-0 h-full {{ barColour[r.type] }}{% if not r.end %} [mask-image:linear-gradient(to_right,#000_78%,transparent)]{% endif %}"
-              style="left: {{ r | timelineSpan('left') }}%; width: {{ r | timelineSpan('width') }}%"
-              title="{{ r.role }} · {{ r | dateRange }}"
+              class="absolute top-0 h-full {{ barColour[r.type] }}{% if r.to === null %} [mask-image:linear-gradient(to_right,#000_72%,transparent)]{% endif %}"
+              style="left: {{ r.left }}%; width: {{ r.width }}%"
+              title="{{ r.role }}"
             ></span>
           </span>
         </li>
       {% endfor %}
     </ul>
+
+    {# The axis carries direction but no scale — that is the whole point of the
+       figure, so it is stated rather than left to be inferred from a blank. #}
+    <div class="mt-2 grid grid-cols-[14rem_minmax(0,1fr)] gap-x-4" aria-hidden="true">
+      <span></span>
+      <span class="u-meta flex items-baseline justify-between text-[0.66rem]">
+        <span>earlier</span>
+        <span>now →</span>
+      </span>
+    </div>
 
     {# Legend only the types that actually have a bar. A swatch with nothing
        to point at reads as data that failed to load. `push` mutates the array
@@ -56,7 +62,7 @@
     {% for r in cv.roles %}
       {% if r.type not in usedTypes %}{% set _ = usedTypes.push(r.type) %}{% endif %}
     {% endfor %}
-    <ul class="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+    <ul class="mt-5 flex flex-wrap gap-x-6 gap-y-2">
       {% for key, label in typeLabel %}
         {% if key in usedTypes %}
           <li class="flex items-center gap-2">
@@ -69,13 +75,14 @@
   </div>
 
   {# ---- Text list, below sm, and the accessible equivalent everywhere ---- #}
-  <ul class="divide-y divide-rule border-y border-rule sm:sr-only">
-    {% for r in cv.roles %}
-      <li class="py-3">
-        <p class="text-[0.95rem] text-ink">{{ r.org }}</p>
-        <p class="text-[0.88rem] text-ink-2">{{ r.role }}</p>
-        <p class="u-meta mt-0.5">{{ r | dateRange }} · {{ typeLabel[r.type] }}</p>
-      </li>
-    {% endfor %}
-  </ul>
+  {% if not timelineHideList %}
+    <ul class="divide-y divide-rule border-y border-rule sm:sr-only">
+      {% for r in cv.roles %}
+        <li class="py-3">
+          <p class="text-[0.95rem] text-ink">{{ r.role }}</p>
+          <p class="u-meta mt-0.5">{{ r.sector }} · {{ typeLabel[r.type] }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
 </figure>

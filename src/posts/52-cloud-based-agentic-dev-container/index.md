@@ -1433,6 +1433,6 @@ HETZNER_IP=YOUR_IP ./scripts/deploy.sh
 NO_CACHE=1 HETZNER_IP=YOUR_IP ./scripts/deploy.sh
 ```
 
-# Conclusion
+## Conclusion
 
 The dev container provides natural guardrails to keep your AI-assisted coding efficient, secure, and consistent. With everything set up, you can focus on building great software with the help of powerful AI tools, no matter where you are or what device you're using. Happy coding!
