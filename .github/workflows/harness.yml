@@ -50,15 +50,18 @@ jobs:
             exit 1
           }
           # Unset the rewrite BEFORE the nested init. The vendored skill
-          # library is a PUBLIC submodule of the harness, and a deploy key is
-          # scoped to one repo - leaving the rewrite in place would send that
-          # public clone over ssh with a key that cannot read it. Plain https
-          # needs no credentials here.
+          # libraries are PUBLIC submodules of the harness, and a deploy key
+          # is scoped to one repo - leaving the rewrite in place would send
+          # those public clones over ssh with a key that cannot read them.
+          # Plain https needs no credentials here.
           git config --global --unset-all url."git@github.com:".insteadOf 2>/dev/null || true
-          git -C .harness submodule update --init .agents/vendor/mattpocock-skills || {
-            echo "::error::the vendored skill library could not be checked out from inside .harness."
+          git -C .harness submodule update --init .agents/vendor/mattpocock-skills .agents/vendor/impeccable || {
+            echo "::error::the vendored skill libraries could not be checked out from inside .harness."
             exit 1
           }
+          # Trim impeccable to its client-neutral build; a full tree also
+          # works, so this is best-effort.
+          git -C .harness/.agents/vendor/impeccable sparse-checkout set .agents/skills/impeccable || true
       - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
         with:
           node-version-file: .harness/.nvmrc

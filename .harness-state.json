@@ -1,6 +1,6 @@
 {
   "harness": ".harness",
-  "commit": "0ae049f31ec4ddcccfb002e58d54d487e247de49",
+  "commit": "7671b7d66261c5f47fc436a2bd25a5fb81a025b9",
   "profile": "core",
   "artifacts": [
     {
@@ -61,6 +61,14 @@
     },
     {
       "path": ".agents/skills/handoff",
+      "kind": "symlink"
+    },
+    {
+      "path": ".claude/skills/impeccable",
+      "kind": "symlink"
+    },
+    {
+      "path": ".agents/skills/impeccable",
       "kind": "symlink"
     },
     {
