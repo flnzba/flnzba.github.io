@@ -101,11 +101,17 @@
   /* Light values. Dark overrides live in the :root block below. */
   --color-ink: #0e1116;
   --color-ink-2: #454c5a;
-  --color-ink-3: #6b7280;
+  /* #6b7280 fell to 4.32:1 on surface-2, where the tag chips and table
+     headers sit. */
+  --color-ink-3: #666d78;
   --color-surface: #fcfcfb;
   --color-surface-2: #f1f2f4;
   --color-rule: #e3e5e9;
-  --color-ultra: #0070f3;
+  /* #0070f3 measured 4.44:1 on --color-surface and 4.25:1 on the footer
+     tint — under 4.5 for every link on the site in light mode. This is the
+     same blue, one step deeper: 4.96 / 4.75 / 4.55 across surface,
+     footer tint and surface-2. */
+  --color-ultra: #0068e6;
   --color-verify: #0e7490;
 
   /* GitHub light syntax palette */
@@ -186,6 +192,9 @@
   font-weight: 400;
   line-height: 1.03;
   letter-spacing: -0.021em;
+  /* Display type is set at 2-4 words per line; without this the last line of
+     a two-line section heading routinely carries a single orphan word. */
+  text-wrap: balance;
 }
 
 @utility u-eyebrow {
@@ -258,6 +267,19 @@
 html {
   scroll-behavior: smooth;
   background: var(--color-surface);
+
+  /* The masthead is sticky and 69px tall, so every in-page jump — a post
+     heading anchor, "Skip to content" — otherwise parks its target directly
+     underneath it, fully hidden. Measured 69px; this leaves ~11px of air. */
+  scroll-padding-top: 5rem;
+
+  /* Surfaces the browser draws for us still belong to the palette: an
+     unthemed scrollbar is the one light-coloured band left on a dark page,
+     and the caret and form-control accent otherwise fall back to the
+     platform blue, which is never this blue. Both inherit from here. */
+  scrollbar-color: var(--color-rule) transparent;
+  accent-color: var(--color-ultra);
+  caret-color: var(--color-ultra);
 }
 
 body {
@@ -327,8 +349,37 @@ button {
   cursor: pointer;
 }
 
+/* Focus ring.
+
+   The colour is seeded on every element rather than set inside
+   :focus-visible, because Tailwind v4 lists outline-color in
+   `transition-colors`. Setting it at focus time animates the ring up from
+   its initial value (currentColor) over 150ms — measured at 1:1 against the
+   page for the first frames, i.e. invisible exactly when it is needed.
+   Seeding makes the focus change a no-op and the ring appears instantly;
+   outline-style stays `none` until :focus-visible, so nothing renders early. */
+*,
+*::before,
+*::after {
+  outline-color: var(--color-ultra);
+}
+
+/* The contact band inverts — bg-ink resolves to near-white in dark mode — and
+   the blue ring measures 2.85:1 there, under the 3:1 a focus indicator needs.
+   The band own foreground clears 15:1 in both themes. Descendants only: an
+   element that *is* bg-ink draws its ring on the page behind it, not on
+   itself, so it keeps the default. */
+.bg-ink *,
+.bg-ink *::before,
+.bg-ink *::after {
+  outline-color: var(--color-surface);
+}
+
+/* Longhands: the `outline` shorthand would reset outline-color back to
+   currentColor and reintroduce the fade above. */
 :focus-visible {
-  outline: 2px solid var(--color-ultra);
+  outline-width: 2px;
+  outline-style: solid;
   outline-offset: 3px;
 }
 
@@ -387,6 +438,7 @@ samp {
   line-height: 1.15;
   letter-spacing: -0.021em;
   overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 /* markdown-it-anchor wraps every h2/h3/h4 in an <a href="#slug">, which would
@@ -418,6 +470,9 @@ samp {
 .article-body :is(p, li, dd, figcaption) {
   max-width: 42rem;
   overflow-wrap: break-word;
+  /* Long-form pages are the one place a single-word last line is frequent
+     enough to notice. `pretty` only adjusts the final lines. */
+  text-wrap: pretty;
 }
 
 .article-body figcaption {

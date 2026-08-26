@@ -3,12 +3,72 @@ import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import markdownIt from "markdown-it";
 import markdownItAnchor from "markdown-it-anchor";
 import markdownItAttrs from "markdown-it-attrs";
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
 
 const OWNED_HOSTS = new Set(["fzeba.com", "www.fzeba.com"]);
 const DEFAULT_SITE_URL = "https://www.fzeba.com";
 
 function siteOrigin(siteUrl = DEFAULT_SITE_URL) {
   return String(siteUrl || "").replace(/\/+$/, "");
+}
+
+/* Intrinsic image dimensions, read straight from the file header.
+
+   Markdown images carry no dimensions, and .article-body sets width and
+   height to auto, so the browser reserves no room for them and the article
+   reflows as each screenshot lands. Parsing the header here keeps that fix
+   dependency-free and independent of any native tool the Linux CI runner
+   does not have. Returns null for anything it cannot read, and the caller
+   then leaves the tag untouched. */
+function intrinsicSize(file) {
+  let b;
+  try { b = readFileSync(file); } catch { return null; }
+  if (b.length < 24) return null;
+
+  if (b.readUInt32BE(0) === 0x89504e47)
+    return { width: b.readUInt32BE(16), height: b.readUInt32BE(20) };
+
+  if (b.toString("ascii", 0, 3) === "GIF")
+    return { width: b.readUInt16LE(6), height: b.readUInt16LE(8) };
+
+  if (b.toString("ascii", 0, 4) === "RIFF" && b.toString("ascii", 8, 12) === "WEBP") {
+    const chunk = b.toString("ascii", 12, 16);
+    if (chunk === "VP8 ")
+      return { width: b.readUInt16LE(26) & 0x3fff, height: b.readUInt16LE(28) & 0x3fff };
+    if (chunk === "VP8L") {
+      const bits = b.readUInt32LE(21);
+      return { width: (bits & 0x3fff) + 1, height: ((bits >> 14) & 0x3fff) + 1 };
+    }
+    if (chunk === "VP8X")
+      return { width: b.readUIntLE(24, 3) + 1, height: b.readUIntLE(27, 3) + 1 };
+    return null;
+  }
+
+  if (b.readUInt16BE(0) === 0xffd8) {
+    let o = 2;
+    while (o + 9 < b.length) {
+      if (b[o] !== 0xff) { o++; continue; }
+      const m = b[o + 1];
+      if (m >= 0xc0 && m <= 0xcf && m !== 0xc4 && m !== 0xc8 && m !== 0xcc)
+        return { width: b.readUInt16BE(o + 7), height: b.readUInt16BE(o + 5) };
+      if (m === 0xd8 || (m >= 0xd0 && m <= 0xd9)) { o += 2; continue; }
+      o += 2 + b.readUInt16BE(o + 2);
+    }
+  }
+  return null;
+}
+
+/* Map an <img src> back to the file that produced it. Absolute paths mirror
+   the passthrough-copy roots one-for-one (/assets -> src/assets); relative
+   ones resolve against the page's own source directory. SVG carries no
+   raster size worth stamping, and remote images cannot be measured here. */
+function resolveImageSource(src, inputPath) {
+  if (!src || /^(https?:|data:|\/\/)/.test(src)) return null;
+  const clean = src.split(/[?#]/)[0];
+  if (clean.endsWith(".svg")) return null;
+  if (clean.startsWith("/")) return join("src", clean.slice(1));
+  return join(dirname(inputPath), clean);
 }
 
 function absoluteUrl(input, siteUrl = DEFAULT_SITE_URL, currentPageUrl = "/") {
@@ -283,6 +343,23 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/image-store/**/*.{webp,png,jpg,jpeg,gif,svg,avif,ico}");
   eleventyConfig.addPassthroughCopy("src/posts/**/*.{webp,png,jpg,jpeg,gif,svg}");
   eleventyConfig.addPassthroughCopy({ "./CNAME": "CNAME" });
+
+  /* Stamp width/height on every <img> that lacks them so the browser can
+     reserve the right box before the file arrives. Cover images already pin
+     their ratio in CSS; the markdown screenshots are the ones that shift. */
+  eleventyConfig.addTransform("imageDimensions", function (content) {
+    if (!String(this.page?.outputPath || "").endsWith(".html")) return content;
+    const inputPath = this.page?.inputPath || "";
+    return content.replace(/<img\b[^>]*>/g, (tag) => {
+      if (/\swidth=/.test(tag) || /\sheight=/.test(tag)) return tag;
+      const src = (tag.match(/\ssrc="([^"]*)"/) || [])[1];
+      const file = resolveImageSource(src, inputPath);
+      if (!file) return tag;
+      const size = intrinsicSize(file);
+      if (!size) return tag;
+      return tag.replace(/<img\b/, `<img width="${size.width}" height="${size.height}"`);
+    });
+  });
 
   // Watch CSS/JS so eleventy --serve reloads on changes
   eleventyConfig.addWatchTarget("src/css/");
