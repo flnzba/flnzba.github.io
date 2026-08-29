@@ -542,6 +542,16 @@ samp {
   border: 1px solid var(--color-rule);
 }
 
+/* Diagrams ship as SVG, which the imageDimensions transform skips (see
+   resolveImageSource in .eleventy.js), so they carry width/height as markup
+   attributes instead. Those only supply the ratio — `width: auto` above still
+   resolves to the column before the fetch and to the file's own width after,
+   which is a reflow. Pin the column in both states; vector art upscales
+   losslessly, so this costs nothing the way it would for a screenshot. */
+.article-body img[src$=".svg"]:not(.cover) {
+  width: 100%;
+}
+
 .article-body :is(iframe, video, canvas, svg) {
   max-width: 100%;
 }
