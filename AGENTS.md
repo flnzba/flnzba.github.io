@@ -73,6 +73,5 @@ Applies to every agent session here and in template-derived repositories.
 
 ## Communication
 
-- Be concise and direct. Lead with the outcome, then the evidence. Use
-  complete sentences; no filler and no unverified claims.
+- Be extremely concise. Sacrifice grammar for the sake of concision.
 <!-- harness:end -->

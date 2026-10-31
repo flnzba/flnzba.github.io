@@ -1,6 +1,6 @@
 {
   "harness": ".harness",
-  "commit": "7671b7d66261c5f47fc436a2bd25a5fb81a025b9",
+  "commit": "8726119beebbad61b98ef62e7182d570590fa171",
   "profile": "core",
   "artifacts": [
     {
@@ -26,6 +26,10 @@
     {
       "path": ".claude/settings.json",
       "kind": "json"
+    },
+    {
+      "path": ".claude/output-styles/terse.md",
+      "kind": "copy"
     },
     {
       "path": ".codex/hooks.json",

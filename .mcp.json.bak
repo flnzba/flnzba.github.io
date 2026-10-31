@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "codegraph": {
+      "command": ".harness/node_modules/.bin/codegraph",
+      "args": [
+        "serve",
+        "--mcp",
+        "--path",
+        "."
+      ]
+    }
+  }
+}

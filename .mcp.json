@@ -8,6 +8,10 @@
         "--path",
         "."
       ]
+    },
+    "workos": {
+      "type": "http",
+      "url": "https://mcp.workos.com/mcp"
     }
   }
 }

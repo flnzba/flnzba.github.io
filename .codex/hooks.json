@@ -23,6 +23,18 @@
           }
         ]
       }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh -c 'top=\"${CLAUDE_PROJECT_DIR:-}\"; [ -n \"$top\" ] || top=\"$(git rev-parse --show-superproject-working-tree 2>/dev/null)\"; [ -n \"$top\" ] || top=\"$(git rev-parse --show-toplevel 2>/dev/null)\"; f=\"$top/.harness/.agents/hooks/terse-guard.mjs\"; [ -f \"$f\" ] || { echo \"harness: submodule uninitialized - run: git submodule update --init\" >&2; exit 0; }; exec node \"$f\"'",
+            "timeout": 10,
+            "statusMessage": "Checking reply concision"
+          }
+        ]
+      }
     ]
   }
 }
