@@ -1,4 +1,4 @@
 [submodule ".harness"]
 	path = .harness
-	url = https://github.com/flnzba/template-coding-harness
+	url = https://github.com/sftwrk/minimal-coding-harness
 	branch = main

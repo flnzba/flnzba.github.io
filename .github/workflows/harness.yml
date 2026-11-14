@@ -13,14 +13,17 @@ permissions:
   contents: read
 
 concurrency:
-  group: harness-${{ github.ref }}
+  # A newer run replaces an older one only within a pull request. Each push
+  # run gets its own group: the secret scan covers just the commits of its
+  # own event, so a cancelled or superseded push run would leave them unscanned.
+  group: harness-${{ github.event.pull_request.number || github.run_id }}
   cancel-in-progress: true
 
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       # The .harness submodule is typically a PRIVATE repo the default Actions
       # token cannot read, and `submodules: recursive` in checkout dies inside
       # the action with "Repository not found" (it also drags in unrelated
@@ -62,7 +65,7 @@ jobs:
           # Trim impeccable to its client-neutral build; a full tree also
           # works, so this is best-effort.
           git -C .harness/.agents/vendor/impeccable sparse-checkout set .agents/skills/impeccable || true
-      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: .harness/.nvmrc
       - run: npm ci --prefix .harness
@@ -70,15 +73,25 @@ jobs:
 
   gitleaks:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: read
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
-      - uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3
+      # The release binary, not gitleaks-action (license key required for
+      # organization-owned repositories). Scans the commits this event adds,
+      # or all of HEAD's history when there is no usable base. Bump the pin in
+      # the harness repo, never in this generated copy.
+      - name: gitleaks
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITLEAKS_ENABLE_COMMENTS: false
-          GITLEAKS_ENABLE_SUMMARY: true
+          VERSION: 8.30.1
+          SHA256: 551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          curl -sSfL --retry 3 -o /tmp/gitleaks.tgz "https://github.com/gitleaks/gitleaks/releases/download/v$VERSION/gitleaks_${VERSION}_linux_x64.tar.gz"
+          echo "$SHA256  /tmp/gitleaks.tgz" | sha256sum -c -
+          tar -xzf /tmp/gitleaks.tgz -C /tmp gitleaks
+          git cat-file -e "$BASE_SHA^{commit}" 2>/dev/null && range="$BASE_SHA..$HEAD_SHA" || range="$HEAD_SHA"
+          # gitleaks exits 0 on a range git rejects, so reject it here first.
+          git rev-list -n 1 "$range" > /dev/null
+          /tmp/gitleaks git --redact --no-banner -v --log-opts="$range"
