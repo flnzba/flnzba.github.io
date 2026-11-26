@@ -49,12 +49,26 @@ Applies to every agent session here and in template-derived repositories.
   subagents; never run concurrent editing agents. Independently verify their
   claims. The current user request outranks stale hook or TODO work.
 
-## Before reporting done
+## Modes
+
+- Implementation mode (default while changing code): per slice, failing
+  test, smallest change, narrowest check. No reviewer, no review reference,
+  no full suite, no whole-diff re-read, no gate-breaking proof until every
+  slice is green.
+- Review mode (once per handoff, or when asked): everything below, once.
+  The full suite runs once before the reviewer, and once more only after a
+  fix pass. Gate proofs and fix checks use the narrowest test.
+  Blocker/major findings get one short implementation pass, then that full
+  run and the reviewer at most once more; minor findings are reported, not
+  looped on.
+
+## Before reporting done (review mode)
 
 - Match proof to claim. Unit, fake, static, or upstream-smoke evidence is not
   integration, end-to-end, or live proof; name the tier and any limitation.
 - Prove each gate loads and exercises the target: a gate that has never been
-  red is not yet evidence. Break what it guards, watch it fail, restore.
+  red is not yet evidence. Break what it guards, watch its narrowest test
+  fail, restore; the review-mode full run shows the gate runs that test.
   Classify every unexpected failure or skip; never subtract a red baseline
   from completion evidence.
 - Report ship-state separately from code-state. "Done" means a user can do the
@@ -62,8 +76,12 @@ Applies to every agent session here and in template-derived repositories.
 - Run the relevant checks (`make check`, targeted tests) and report only
   observed results. If something could not be verified, say exactly what
   and why.
-- Invoke the `reviewer` subagent once after any non-trivial plan or change,
-  before handing off. Fix its findings and rerun it at most once.
+- Invoke the `reviewer` subagent once per handoff of a non-trivial plan or
+  change, never per slice: spawn it (Claude Task; omp task; Codex
+  spawn_agent with task_name reviewer, fork_turns none and a message that
+  starts "Follow .codex/agents/reviewer.toml"). Reviewing in your own
+  context is not that review. Fix blocker/major findings and rerun it at
+  most once.
 
 ## Learning
 

@@ -12,6 +12,15 @@
     "workos": {
       "type": "http",
       "url": "https://mcp.workos.com/mcp"
+    },
+    "playwright": {
+      "command": ".harness/node_modules/.bin/playwright-mcp",
+      "args": [
+        "--browser",
+        "chromium",
+        "--headless",
+        "--isolated"
+      ]
     }
   }
 }

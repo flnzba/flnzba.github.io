@@ -1,0 +1,20 @@
+# harness:begin
+# omp project settings for this harness (decisions D22, D24). The installer
+# copies each top-level key below into a project's .omp/config.yml managed
+# block unless the project sets that key itself.
+#
+# omp's own extra review passes stay off, so a turn ends when the work does:
+# the advisor reviews every turn and can wake the agent after its final
+# answer; autolearn adds a capture turn after each stop. Review happens once
+# per handoff, through .omp/agents/reviewer.md on the @slow model role.
+advisor:
+  enabled: false
+autolearn:
+  enabled: false
+# The eval tool runs Python/JS cells - and any shell they start - outside the
+# bash tool, so git-guard and py-guard never see them. Both backends off
+# removes the tool; a project that wants it sets its own `eval:` key.
+eval:
+  py: false
+  js: false
+# harness:end

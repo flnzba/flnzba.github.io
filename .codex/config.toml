@@ -10,6 +10,10 @@ args = ["serve", "--mcp", "--path", "."]
 [mcp_servers.workos]
 url = "https://mcp.workos.com/mcp"
 
+[mcp_servers.playwright]
+command = ".harness/node_modules/.bin/playwright-mcp"
+args = ["--browser", "chromium", "--headless", "--isolated"]
+
 [tui]
 status_line = ["model-with-reasoning", "current-dir", "git-branch", "pull-request-number", "context-used", "run-state"]
 # harness:end
