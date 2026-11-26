@@ -24,6 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       # The .harness submodule is typically a PRIVATE repo the default Actions
       # token cannot read, and `submodules: recursive` in checkout dies inside
       # the action with "Repository not found" (it also drags in unrelated
@@ -76,6 +78,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          persist-credentials: false
           fetch-depth: 0
       # The release binary, not gitleaks-action (license key required for
       # organization-owned repositories). Scans the commits this event adds,

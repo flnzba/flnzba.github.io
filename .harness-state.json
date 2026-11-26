@@ -1,7 +1,19 @@
 {
   "harness": ".harness",
-  "commit": "c6b5177c0f4f1fcff37b1a13262a58ff9af9852e",
+  "commit": "120922f660be47ded3aceb09ca321df80d4bc58f",
   "profile": "core",
+  "modules": [],
+  "mcp": {
+    "playwright": {
+      "command": ".harness/node_modules/.bin/playwright-mcp",
+      "args": [
+        "--browser",
+        "chromium",
+        "--headless",
+        "--isolated"
+      ]
+    }
+  },
   "artifacts": [
     {
       "path": ".github/workflows/harness.yml",
@@ -130,6 +142,18 @@
     {
       "path": ".codex/agents/reviewer.toml",
       "kind": "symlink"
+    },
+    {
+      "path": ".omp/agents/reviewer.md",
+      "kind": "symlink"
+    },
+    {
+      "path": ".omp/extensions/harness-guards.js",
+      "kind": "copy"
+    },
+    {
+      "path": ".omp/config.yml",
+      "kind": "managed"
     }
   ]
 }

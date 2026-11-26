@@ -42,14 +42,18 @@ jobs:
           cache: pip
           cache-dependency-path: requirements.txt
 
+      # Python runs only in a venv (harness D27): one job venv, first on PATH for crier.
       - name: Install Crier
-        run: pip install -r requirements.txt
+        run: |
+          python -m venv "$RUNNER_TEMP/venv"
+          "$RUNNER_TEMP/venv/bin/pip" install -r requirements.txt
+          echo "$RUNNER_TEMP/venv/bin" >> "$GITHUB_PATH"
 
       - name: Prepare new posts
         id: prepare
         env:
           CROSSPOST_FILES: ${{ github.event.inputs.post || '' }}
-        run: python scripts/prepare_crosspost.py
+        run: '"$RUNNER_TEMP/venv/bin/python" scripts/prepare_crosspost.py'
 
       - name: Verify API credentials
         if: steps.prepare.outputs.has_posts == 'true'
@@ -62,12 +66,12 @@ jobs:
           crier audit "${{ steps.prepare.outputs.staged_dir }}" --publish --batch --long-form > crier-output.json
           crier_status=$?
           set -e
-          python scripts/check_crosspost_results.py crier-output.json
+          "$RUNNER_TEMP/venv/bin/python" scripts/check_crosspost_results.py crier-output.json
           exit "$crier_status"
 
       - name: Link registry to source posts
         if: steps.prepare.outputs.has_posts == 'true'
-        run: python scripts/link_crosspost_registry.py "${{ steps.prepare.outputs.manifest }}"
+        run: '"$RUNNER_TEMP/venv/bin/python" scripts/link_crosspost_registry.py "${{ steps.prepare.outputs.manifest }}"'
 
       - name: Commit registry update
         if: steps.prepare.outputs.has_posts == 'true'
